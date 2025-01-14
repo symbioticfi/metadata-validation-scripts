@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import * as core from "@actions/core";
 import * as github from "./github.js";
 import * as messages from "./messages.js";
 
@@ -8,7 +7,7 @@ const addressRegex = /^0x[a-fA-F0-9]{40}$/;
 const allowedTypes = ["vaults", "operators", "networks", "tokens"];
 const allowedFiles = ["info.json", "logo.png"];
 
-export async function validateFs(changedFiles: string[]) {
+export async function validateFs(changedFiles: string[]): Promise<{metadata?: string, logo?: string}> {
   const notAllowed = new Set<string>();
   const entityDirs = new Set<string>();
 
@@ -71,17 +70,21 @@ export async function validateFs(changedFiles: string[]) {
     throw new Error("`info.json` is not found in the entity folder");
   }
 
+  const result: {metadata?: string, logo?: string} = {};
+
   /**
-   * Send metadata to the next validation step only if the file was changed and exists.
+   * Add metadata to result only if the file was changed and exists.
    */
   if (isMetadataChanged && metadataPath) {
-    core.setOutput("metadata", metadataPath);
+    result.metadata = metadataPath;
   }
 
   /**
-   * Send logo to the next validation step only if the file was changed and exists.
+   * Add logo to result only if the file was changed and exists.
    */
   if (isLogoChanged && logoPath) {
-    core.setOutput("logo", logoPath);
+    result.logo = logoPath;
   }
+
+  return result;
 }

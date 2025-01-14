@@ -4,9 +4,6 @@ author: Symbiotic
 
 # Define your inputs here.
 inputs:
-  script:
-    description: Script to run. Options - validate-metadata, validate-logo, validate-fs
-    required: true
   files:
     description: List of files to validate
     required: true
