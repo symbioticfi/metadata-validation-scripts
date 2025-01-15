@@ -10,9 +10,6 @@ export async function run(): Promise<void> {
   });
 
   const files = inputFiles.split(" ").filter(Boolean);
-
-  console.log("Validating files:", files);
-
   const result = await validateFs(files);
 
   if (result.metadata) {

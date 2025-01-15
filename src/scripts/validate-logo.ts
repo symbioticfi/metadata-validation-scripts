@@ -2,8 +2,8 @@ import { Image } from "image-js";
 import * as path from "path";
 import * as fs from "fs/promises";
 
-import * as github from "./github.js";
-import * as messages from "./messages.js";
+import * as github from "./github";
+import * as messages from "./messages";
 
 export async function run(logoPath: string) {
   const errors: string[] = [];

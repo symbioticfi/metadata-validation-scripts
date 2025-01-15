@@ -1,11 +1,10 @@
 import Ajv, { ErrorObject } from "ajv";
 import addFormats from "ajv-formats";
 import * as fs from "fs/promises";
-// @ts-expect-error ajv-formats is not typed
 import { parse } from "json-source-map";
 
-import * as github from "./github.js";
-import * as messages from "./messages.js";
+import * as github from "./github";
+import * as messages from "./messages";
 
 import metadataSchema from "./schemas/info.json";
 
@@ -30,7 +29,6 @@ export async function validateMetadata(metadataPath: string) {
   const { data: metadata, pointers: lineMap } = parse(metadataContent);
 
   const ajv = new Ajv({ allErrors: true });
-
   addFormats(ajv);
 
   ajv.validate(metadataSchema, metadata);
