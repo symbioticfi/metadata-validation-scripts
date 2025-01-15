@@ -9,7 +9,10 @@ inputs:
     required: true
   issue:
     description: The issue number to comment on (github.context.issue.number)
-    required: false
+    required: true
+  token:
+    description: GITHUB_TOKEN for commenting on the issue
+    required: true
 
 # Define your outputs here.
 outputs:

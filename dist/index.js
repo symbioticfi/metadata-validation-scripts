@@ -1,6 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import path__default from 'path';
+import require$$1$5, { fileURLToPath } from 'url';
 import require$$0$4 from 'os';
 import require$$0$5 from 'crypto';
 import require$$1$1, { readFile, createWriteStream, writeFile } from 'fs';
@@ -23,7 +24,6 @@ import require$$2$2 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4$2 from 'async_hooks';
 import require$$1$4 from 'console';
-import require$$1$5 from 'url';
 import require$$3$3 from 'zlib';
 import require$$6 from 'string_decoder';
 import require$$0$d from 'diagnostics_channel';
@@ -39124,32 +39124,32 @@ function requireGithub () {
 var githubExports = requireGithub();
 
 let octokit;
-const getOctokit = () => {
-    const token = process.env.GITHUB_TOKEN;
-    if (!token) {
-        throw new Error("GITHUB_TOKEN env variable is required");
-    }
-    octokit = octokit || githubExports.getOctokit(token);
-    return octokit;
-};
 [
     githubExports.context.repo.owner,
     githubExports.context.repo.repo,
 ].join("/");
 const getInput = coreExports.getInput;
 const getIssueNumber = () => {
-    const { number } = githubExports.context.issue;
-    if (number) {
-        return number;
-    }
     const inputNumber = getInput("issue", {
-        required: false,
+        required: true,
         trimWhitespace: true,
     });
-    if (!inputNumber) {
-        throw new Error("Issue number is required");
-    }
     return +inputNumber;
+};
+const getToken = () => {
+    const token = getInput("token", {
+        required: true,
+        trimWhitespace: true,
+    });
+    return token;
+};
+const getOctokit = () => {
+    const token = getToken();
+    if (!token) {
+        throw new Error("GITHUB_TOKEN env variable is required");
+    }
+    octokit = octokit || githubExports.getOctokit(token);
+    return octokit;
 };
 const addComment = async (body) => {
     const { owner, repo } = githubExports.context.issue;
@@ -39192,6 +39192,8 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error, lineMap) => {
     const { instancePath, message, params } = error;

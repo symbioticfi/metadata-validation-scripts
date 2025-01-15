@@ -4,9 +4,13 @@ import * as fs from "fs/promises";
 // @ts-expect-error ajv-formats is not typed
 import { parse } from "json-source-map";
 import * as path from "path";
+import { fileURLToPath } from "url";
 
 import * as github from "./github.js";
 import * as messages from "./messages.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {

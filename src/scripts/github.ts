@@ -1,20 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
-let octokit: ReturnType<typeof github.getOctokit>;
-
-const getOctokit = () => {
-  const token = process.env.GITHUB_TOKEN;
-
-  if (!token) {
-    throw new Error("GITHUB_TOKEN env variable is required");
-  }
-
-  octokit = octokit || github.getOctokit(token);
-
-  return octokit;
-};
-
 export type ReviewComment = {
   path: string;
   body: string;
@@ -27,6 +13,8 @@ export type Review = {
   comments?: ReviewComment[];
 };
 
+let octokit: ReturnType<typeof github.getOctokit>;
+
 export const repoPath = [
   github.context.repo.owner,
   github.context.repo.repo,
@@ -35,22 +23,33 @@ export const repoPath = [
 export const getInput = core.getInput;
 
 const getIssueNumber = () => {
-  const { number } = github.context.issue;
-
-  if (number) {
-    return number;
-  }
-
   const inputNumber = getInput("issue", {
-    required: false,
+    required: true,
     trimWhitespace: true,
   });
 
-  if (!inputNumber) {
-    throw new Error("Issue number is required");
+  return +inputNumber;
+};
+
+const getToken = () => {
+  const token = getInput("token", {
+    required: true,
+    trimWhitespace: true,
+  });
+
+  return token;
+};
+
+const getOctokit = () => {
+  const token = getToken();
+
+  if (!token) {
+    throw new Error("GITHUB_TOKEN env variable is required");
   }
 
-  return +inputNumber;
+  octokit = octokit || github.getOctokit(token);
+
+  return octokit;
 };
 
 export const addComment = async (body: string) => {
