@@ -3,7 +3,7 @@ import { run as validateLogo } from "./scripts/validate-logo.js";
 import { validateFs } from "./scripts/validate-fs.js";
 import { getInput } from "@actions/core";
 
-export async function run(): Promise<void> {
+export async function validate(): Promise<void> {
   const inputFiles = getInput("files", {
     required: true,
     trimWhitespace: true,

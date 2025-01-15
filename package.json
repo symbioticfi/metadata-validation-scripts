@@ -22,8 +22,8 @@
   "scripts": {
     "bundle": "npm run package",
     "lint": "npx eslint .",
-    "local-action": "npx local-action . src/main.ts .env",
-    "package": "ncc build src/main.ts -o dist --source-map",
+    "local-action": "npx local-action . src/index.ts .env",
+    "package": "ncc build src/index.ts -o dist --source-map",
     "package:watch": "npm run package -- --watch"
   },
   "license": "MIT",

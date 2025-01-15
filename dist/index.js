@@ -80141,23 +80141,8 @@ module.exports = {"version":"1.0.1"};
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXPORTS
-__nccwpck_require__.d(__webpack_exports__, {
-  e: () => (/* binding */ main_run)
-});
-
-// EXTERNAL MODULE: ./node_modules/ajv/dist/ajv.js
-var dist_ajv = __nccwpck_require__(42463);
-var ajv_default = /*#__PURE__*/__nccwpck_require__.n(dist_ajv);
-// EXTERNAL MODULE: ./node_modules/ajv-formats/dist/index.js
-var dist = __nccwpck_require__(82815);
-var dist_default = /*#__PURE__*/__nccwpck_require__.n(dist);
-;// CONCATENATED MODULE: external "fs/promises"
-const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
-// EXTERNAL MODULE: ./node_modules/json-source-map/index.js
-var json_source_map = __nccwpck_require__(72007);
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
-var lib_core = __nccwpck_require__(37484);
+var core = __nccwpck_require__(37484);
 // EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
 var github = __nccwpck_require__(93228);
 ;// CONCATENATED MODULE: ./src/scripts/github.ts
@@ -80168,7 +80153,7 @@ const repoPath = [
     github.context.repo.owner,
     github.context.repo.repo,
 ].join("/");
-const getInput = lib_core.getInput;
+const getInput = core.getInput;
 const getIssueNumber = () => {
     const inputNumber = getInput("issue", {
         required: true,
@@ -80221,8 +80206,19 @@ const run = async (command) => {
     }
 };
 
+// EXTERNAL MODULE: ./node_modules/ajv/dist/ajv.js
+var dist_ajv = __nccwpck_require__(42463);
+var ajv_default = /*#__PURE__*/__nccwpck_require__.n(dist_ajv);
+// EXTERNAL MODULE: ./node_modules/ajv-formats/dist/index.js
+var dist = __nccwpck_require__(82815);
+var dist_default = /*#__PURE__*/__nccwpck_require__.n(dist);
+;// CONCATENATED MODULE: external "fs/promises"
+const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
+// EXTERNAL MODULE: ./node_modules/json-source-map/index.js
+var json_source_map = __nccwpck_require__(72007);
 ;// CONCATENATED MODULE: ./src/scripts/messages.ts
-const contributionGuidelines = `Please, follow the [contribution guidelines](https://github.com/symbioticfi/metadata-holesky/blob/main/README.md).`;
+
+const contributionGuidelines = `Please, follow the [contribution guidelines](https://github.com/${repoPath}/blob/main/README.md).`;
 const notAllowedChanges = (files) => `We detected changes in the pull request that are not allowed. ${contributionGuidelines}
 
   **Not allowed files:**
@@ -80233,10 +80229,8 @@ const onlyOneEntityPerPr = (dirs) => `It is not allowed to change more than one 
   **Entities:**
   ${dirs.map((file) => `- ${file}`).join("\n")}
 `;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const noInfoJson = (entityDir, files) => `The entity folder should have \`info.json\` file. ${contributionGuidelines}`;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const invalidInfoJson = (path, erros) => `The \`info.json\` file is invalid. ${contributionGuidelines}`;
+const noInfoJson = () => `The entity folder should have \`info.json\` file. ${contributionGuidelines}`;
+const invalidInfoJson = () => `The \`info.json\` file is invalid. ${contributionGuidelines}`;
 const invalidLogo = (path, errors) => `The logo image is invalid. ${contributionGuidelines}
 
   **Unmet requirements:**
@@ -80278,7 +80272,7 @@ async function validateMetadata(metadataPath) {
         .filter(Boolean) || [];
     if (errors.length) {
         await addReview({
-            body: invalidInfoJson(metadataPath, errors),
+            body: invalidInfoJson(),
             comments: errors.map(({ message, line }) => ({
                 line,
                 path: metadataPath,
@@ -80368,7 +80362,6 @@ async function validateFs(changedFiles) {
         throw new Error("Several entities are changed in one pull request");
     }
     const [entityDir] = entityDirs;
-    console.log("Entity dir:", { entityDir });
     const existingFiles = await external_fs_default().promises.readdir(entityDir);
     const [metadataPath, logoPath] = allowedFiles.map((name) => {
         return existingFiles.includes(name)
@@ -80382,7 +80375,7 @@ async function validateFs(changedFiles) {
      * Validate that metadata present in the entity folder.
      */
     if (!metadataPath) {
-        await addComment(noInfoJson(entityDir, existingFiles));
+        await addComment(noInfoJson());
         throw new Error("`info.json` is not found in the entity folder");
     }
     const result = {};
@@ -80406,8 +80399,8 @@ async function validateFs(changedFiles) {
 
 
 
-async function main_run() {
-    const inputFiles = (0,lib_core.getInput)("files", {
+async function validate() {
+    const inputFiles = (0,core.getInput)("files", {
         required: true,
         trimWhitespace: true,
     });
@@ -80421,7 +80414,10 @@ async function main_run() {
     }
 }
 
-var __webpack_exports__run = __webpack_exports__.e;
-export { __webpack_exports__run as run };
+;// CONCATENATED MODULE: ./src/index.ts
+
+
+run(validate);
+
 
 //# sourceMappingURL=index.js.map
