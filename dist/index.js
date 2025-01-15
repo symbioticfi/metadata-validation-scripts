@@ -39136,22 +39136,36 @@ const getOctokit = () => {
     githubExports.context.repo.owner,
     githubExports.context.repo.repo,
 ].join("/");
+const getInput = coreExports.getInput;
+const getIssueNumber = () => {
+    const { number } = githubExports.context.issue;
+    if (number) {
+        return number;
+    }
+    const inputNumber = getInput("issue", {
+        required: false,
+        trimWhitespace: true,
+    });
+    if (!inputNumber) {
+        throw new Error("Issue number is required");
+    }
+    return +inputNumber;
+};
 const addComment = async (body) => {
-    console.log("Adding comment:", body, githubExports.context.issue);
-    const { owner, repo, number } = githubExports.context.issue;
+    const { owner, repo } = githubExports.context.issue;
     await getOctokit().rest.issues.createComment({
         owner,
         repo,
-        issue_number: number,
+        issue_number: getIssueNumber(),
         body,
     });
 };
 const addReview = async (review) => {
-    const { owner, repo, number } = githubExports.context.issue;
+    const { owner, repo } = githubExports.context.issue;
     await getOctokit().rest.pulls.createReview({
         owner,
         repo,
-        pull_number: number,
+        pull_number: getIssueNumber(),
         event: "COMMENT",
         ...review,
     });

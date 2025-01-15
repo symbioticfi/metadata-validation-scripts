@@ -34,26 +34,43 @@ export const repoPath = [
 
 export const getInput = core.getInput;
 
-export const addComment = async (body: string) => {
-  console.log("Adding comment:", body, github.context.issue);
+const getIssueNumber = () => {
+  const { number } = github.context.issue;
 
-  const { owner, repo, number } = github.context.issue;
+  if (number) {
+    return number;
+  }
+
+  const inputNumber = getInput("issue", {
+    required: false,
+    trimWhitespace: true,
+  });
+
+  if (!inputNumber) {
+    throw new Error("Issue number is required");
+  }
+
+  return +inputNumber;
+};
+
+export const addComment = async (body: string) => {
+  const { owner, repo } = github.context.issue;
 
   await getOctokit().rest.issues.createComment({
     owner,
     repo,
-    issue_number: number,
+    issue_number: getIssueNumber(),
     body,
   });
 };
 
 export const addReview = async (review: Review) => {
-  const { owner, repo, number } = github.context.issue;
+  const { owner, repo } = github.context.issue;
 
   await getOctokit().rest.pulls.createReview({
     owner,
     repo,
-    pull_number: number,
+    pull_number: getIssueNumber(),
     event: "COMMENT",
     ...review,
   });

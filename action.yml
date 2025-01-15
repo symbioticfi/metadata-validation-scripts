@@ -7,6 +7,9 @@ inputs:
   files:
     description: List of files to validate
     required: true
+  issue:
+    description: The issue number to comment on (github.context.issue.number)
+    required: false
 
 # Define your outputs here.
 outputs:
