@@ -1,5 +1,4 @@
-import { run } from "./main";
+import { run } from "./scripts/github";
+import { validate } from "./main";
 
-run();
-
-export default null;
+run(validate);

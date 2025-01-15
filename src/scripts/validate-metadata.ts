@@ -42,7 +42,7 @@ export async function validateMetadata(metadataPath: string) {
 
   if (errors.length) {
     await github.addReview({
-      body: messages.invalidInfoJson(metadataPath, errors),
+      body: messages.invalidInfoJson(),
       comments: errors.map(
         ({ message, line }: { message: string; line: number }) => ({
           line,
