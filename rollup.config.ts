@@ -14,7 +14,6 @@ const config = {
     sourcemap: true,
   },
   plugins: [typescript(), nodeResolve(), commonjs(), json()],
-  external: ["sharp"], // Mark "sharp" as external
 };
 
 export default config;

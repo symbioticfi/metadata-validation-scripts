@@ -1,1 +1,4 @@
-export declare function validateFs(changedFiles: string[]): Promise<void>;
+export declare function validateFs(changedFiles: string[]): Promise<{
+    metadata?: string;
+    logo?: string;
+}>;
