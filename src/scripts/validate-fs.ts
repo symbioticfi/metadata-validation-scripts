@@ -70,7 +70,7 @@ export async function validateFs(
    * Validate that metadata present in the entity folder.
    */
   if (!metadataPath) {
-    await github.addComment(messages.noInfoJson(entityDir, existingFiles));
+    await github.addComment(messages.noInfoJson());
 
     throw new Error("`info.json` is not found in the entity folder");
   }
