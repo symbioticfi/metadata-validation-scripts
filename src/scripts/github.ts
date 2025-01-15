@@ -35,6 +35,8 @@ export const repoPath = [
 export const getInput = core.getInput;
 
 export const addComment = async (body: string) => {
+  console.log("Adding comment:", body, github.context.issue);
+
   const { owner, repo, number } = github.context.issue;
 
   await getOctokit().rest.issues.createComment({

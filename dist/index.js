@@ -39137,6 +39137,7 @@ const getOctokit = () => {
     githubExports.context.repo.repo,
 ].join("/");
 const addComment = async (body) => {
+    console.log("Adding comment:", body, githubExports.context.issue);
     const { owner, repo, number } = githubExports.context.issue;
     await getOctokit().rest.issues.createComment({
         owner,
