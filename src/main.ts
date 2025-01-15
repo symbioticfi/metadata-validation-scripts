@@ -1,6 +1,6 @@
-import { validateMetadata } from "./scripts/validate-metadata.js";
-import { run as validateLogo } from "./scripts/validate-logo.js";
-import { validateFs } from "./scripts/validate-fs.js";
+import { validateMetadata } from "./scripts/validate-metadata";
+import { run as validateLogo } from "./scripts/validate-logo";
+import { validateFs } from "./scripts/validate-fs";
 
 export async function run(): Promise<void> {
   const files = process.argv.slice(2);

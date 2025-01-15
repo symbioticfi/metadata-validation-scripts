@@ -1,8 +1,8 @@
 import sharp from "sharp";
 import * as fs from "fs/promises";
 
-import * as github from "./github.js";
-import * as messages from "./messages.js";
+import * as github from "./github";
+import * as messages from "./messages";
 
 export async function run(logoPath: string) {
   const image = sharp(logoPath);

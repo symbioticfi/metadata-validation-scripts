@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
-import * as github from "./github.js";
-import * as messages from "./messages.js";
+import * as github from "./github";
+import * as messages from "./messages";
 
 const addressRegex = /^0x[a-fA-F0-9]{40}$/;
 const allowedTypes = ["vaults", "operators", "networks", "tokens"];
