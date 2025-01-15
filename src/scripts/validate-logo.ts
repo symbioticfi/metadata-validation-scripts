@@ -23,7 +23,9 @@ export async function run(logoPath: string) {
     // }
 
     if (image.width != 256 || image.height != 256) {
-      errors.push("The image size must be 256x256 pixels");
+      errors.push(
+        `The image size must be 256x256 pixels. Current size is ${image.width}x${image.height}.`,
+      );
     }
   }
 
