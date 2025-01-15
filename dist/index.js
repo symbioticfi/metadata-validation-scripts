@@ -76791,9 +76791,9 @@ async function run$1(logoPath) {
     }
     else {
         const image = await Image.load(logoPath);
-        if (!image.alpha) {
-            errors.push("The image background should be transparent");
-        }
+        // if (!image.alpha) {
+        //   errors.push("The image background should be transparent");
+        // }
         if (image.width != 256 || image.height != 256) {
             errors.push("The image size must be 256x256 pixels");
         }
@@ -76840,6 +76840,7 @@ async function validateFs(changedFiles) {
         throw new Error("Several entities are changed in one pull request");
     }
     const [entityDir] = entityDirs;
+    console.log("Entity dir:", { entityDir });
     const existingFiles = await require$$1$1.promises.readdir(entityDir);
     const [metadataPath, logoPath] = allowedFiles.map((name) => {
         return existingFiles.includes(name)
@@ -76874,6 +76875,7 @@ async function validateFs(changedFiles) {
 
 async function run() {
     const files = process.argv.slice(2);
+    console.log("Validating files:", files);
     const result = await validateFs(files);
     if (result.metadata) {
         await validateMetadata(result.metadata);

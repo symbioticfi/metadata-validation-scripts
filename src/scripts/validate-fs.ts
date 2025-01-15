@@ -51,6 +51,9 @@ export async function validateFs(
   }
 
   const [entityDir] = entityDirs;
+
+  console.log("Entity dir:", { entityDir });
+
   const existingFiles = await fs.promises.readdir(entityDir);
 
   const [metadataPath, logoPath] = allowedFiles.map((name) => {

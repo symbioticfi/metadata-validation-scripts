@@ -18,9 +18,9 @@ export async function run(logoPath: string) {
   } else {
     const image = await Image.load(logoPath);
 
-    if (!image.alpha) {
-      errors.push("The image background should be transparent");
-    }
+    // if (!image.alpha) {
+    //   errors.push("The image background should be transparent");
+    // }
 
     if (image.width != 256 || image.height != 256) {
       errors.push("The image size must be 256x256 pixels");

@@ -4,6 +4,9 @@ import { validateFs } from "./scripts/validate-fs.js";
 
 export async function run(): Promise<void> {
   const files = process.argv.slice(2);
+
+  console.log("Validating files:", files);
+
   const result = await validateFs(files);
 
   if (result.metadata) {
