@@ -7,7 +7,9 @@ const addressRegex = /^0x[a-fA-F0-9]{40}$/;
 const allowedTypes = ["vaults", "operators", "networks", "tokens"];
 const allowedFiles = ["info.json", "logo.png"];
 
-export async function validateFs(changedFiles: string[]): Promise<{metadata?: string, logo?: string}> {
+export async function validateFs(
+  changedFiles: string[],
+): Promise<{ metadata?: string; logo?: string }> {
   const notAllowed = new Set<string>();
   const entityDirs = new Set<string>();
 
@@ -49,6 +51,9 @@ export async function validateFs(changedFiles: string[]): Promise<{metadata?: st
   }
 
   const [entityDir] = entityDirs;
+
+  console.log("Entity dir:", { entityDir });
+
   const existingFiles = await fs.promises.readdir(entityDir);
 
   const [metadataPath, logoPath] = allowedFiles.map((name) => {
@@ -70,7 +75,7 @@ export async function validateFs(changedFiles: string[]): Promise<{metadata?: st
     throw new Error("`info.json` is not found in the entity folder");
   }
 
-  const result: {metadata?: string, logo?: string} = {};
+  const result: { metadata?: string; logo?: string } = {};
 
   /**
    * Add metadata to result only if the file was changed and exists.

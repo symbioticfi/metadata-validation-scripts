@@ -1,9 +1,6 @@
-const contributionGuidelines = `Please, follow the [contribution guidelines](https://github.com/symbioticfi/metadata-holesky/blob/main/README.md).`;
+import { repoPath } from "./github";
 
-type JSONSchemaError = {
-  line: number;
-  message: string;
-};
+const contributionGuidelines = `Please, follow the [contribution guidelines](https://github.com/${repoPath}/blob/main/README.md).`;
 
 export const notAllowedChanges = (files: string[]) =>
   `We detected changes in the pull request that are not allowed. ${contributionGuidelines}
@@ -19,12 +16,10 @@ export const onlyOneEntityPerPr = (dirs: string[]) =>
   ${dirs.map((file) => `- ${file}`).join("\n")}
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const noInfoJson = (entityDir: string, files: string[]) =>
+export const noInfoJson = () =>
   `The entity folder should have \`info.json\` file. ${contributionGuidelines}`;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const invalidInfoJson = (path: string, erros: JSONSchemaError[]) =>
+export const invalidInfoJson = () =>
   `The \`info.json\` file is invalid. ${contributionGuidelines}`;
 
 export const invalidLogo = (path: string, errors: string[]) =>

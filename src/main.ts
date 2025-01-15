@@ -1,15 +1,21 @@
-import { validateMetadata } from "./scripts/validate-metadata";
-import { run as validateLogo } from "./scripts/validate-logo";
-import { validateFs } from "./scripts/validate-fs";
+import { validateMetadata } from "./scripts/validate-metadata.js";
+import { run as validateLogo } from "./scripts/validate-logo.js";
+import { validateFs } from "./scripts/validate-fs.js";
+import { getInput } from "@actions/core";
 
 export async function run(): Promise<void> {
-  const files = process.argv.slice(2);
+  const inputFiles = getInput("files", {
+    required: true,
+    trimWhitespace: true,
+  });
+
+  const files = inputFiles.split(" ").filter(Boolean);
   const result = await validateFs(files);
-  
+
   if (result.metadata) {
     await validateMetadata(result.metadata);
   }
-  
+
   if (result.logo) {
     await validateLogo(result.logo);
   }

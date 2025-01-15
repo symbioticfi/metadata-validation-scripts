@@ -1,15 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
-const token = process.env.GITHUB_TOKEN;
-
-if (!token) {
-  core.setFailed("GITHUB_TOKEN env variable is required");
-  process.exit(1);
-}
-
-const octokit = github.getOctokit(token);
-
 export type ReviewComment = {
   path: string;
   body: string;
@@ -22,24 +13,63 @@ export type Review = {
   comments?: ReviewComment[];
 };
 
-export const addComment = async (body: string) => {
-  const { owner, repo, number } = github.context.issue;
+let octokit: ReturnType<typeof github.getOctokit>;
 
-  await octokit.rest.issues.createComment({
+export const repoPath = [
+  github.context.repo.owner,
+  github.context.repo.repo,
+].join("/");
+
+export const getInput = core.getInput;
+
+const getIssueNumber = () => {
+  const inputNumber = getInput("issue", {
+    required: true,
+    trimWhitespace: true,
+  });
+
+  return +inputNumber;
+};
+
+const getToken = () => {
+  const token = getInput("token", {
+    required: true,
+    trimWhitespace: true,
+  });
+
+  return token;
+};
+
+const getOctokit = () => {
+  const token = getToken();
+
+  if (!token) {
+    throw new Error("GITHUB_TOKEN env variable is required");
+  }
+
+  octokit = octokit || github.getOctokit(token);
+
+  return octokit;
+};
+
+export const addComment = async (body: string) => {
+  const { owner, repo } = github.context.issue;
+
+  await getOctokit().rest.issues.createComment({
     owner,
     repo,
-    issue_number: number,
+    issue_number: getIssueNumber(),
     body,
   });
 };
 
 export const addReview = async (review: Review) => {
-  const { owner, repo, number } = github.context.issue;
+  const { owner, repo } = github.context.issue;
 
-  await octokit.rest.pulls.createReview({
+  await getOctokit().rest.pulls.createReview({
     owner,
     repo,
-    pull_number: number,
+    pull_number: getIssueNumber(),
     event: "COMMENT",
     ...review,
   });
@@ -49,6 +79,8 @@ export const run = async (command: () => Promise<void>) => {
   try {
     await command();
   } catch (error) {
-    core.setFailed(error instanceof Error ? error.message : "Unknown error");
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
   }
 };
