@@ -39123,15 +39123,22 @@ function requireGithub () {
 
 var githubExports = requireGithub();
 
-const token = process.env.GITHUB_TOKEN;
-if (!token) {
-    coreExports.setFailed("GITHUB_TOKEN env variable is required");
-    process.exit(1);
-}
-const octokit = githubExports.getOctokit(token);
+let octokit;
+const getOctokit = () => {
+    const token = process.env.GITHUB_TOKEN;
+    if (!token) {
+        throw new Error("GITHUB_TOKEN env variable is required");
+    }
+    octokit = octokit || githubExports.getOctokit(token);
+    return octokit;
+};
+[
+    githubExports.context.repo.owner,
+    githubExports.context.repo.repo,
+].join("/");
 const addComment = async (body) => {
     const { owner, repo, number } = githubExports.context.issue;
-    await octokit.rest.issues.createComment({
+    await getOctokit().rest.issues.createComment({
         owner,
         repo,
         issue_number: number,
@@ -39140,7 +39147,7 @@ const addComment = async (body) => {
 };
 const addReview = async (review) => {
     const { owner, repo, number } = githubExports.context.issue;
-    await octokit.rest.pulls.createReview({
+    await getOctokit().rest.pulls.createReview({
         owner,
         repo,
         pull_number: number,
@@ -76874,7 +76881,11 @@ async function validateFs(changedFiles) {
 }
 
 async function run() {
-    const files = process.argv.slice(2);
+    const inputFiles = coreExports.getInput("files", {
+        required: true,
+        trimWhitespace: true,
+    });
+    const files = inputFiles.split(" ").filter(Boolean);
     console.log("Validating files:", files);
     const result = await validateFs(files);
     if (result.metadata) {

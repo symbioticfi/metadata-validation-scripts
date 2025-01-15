@@ -1,14 +1,19 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 
-const token = process.env.GITHUB_TOKEN;
+let octokit: ReturnType<typeof github.getOctokit>;
 
-if (!token) {
-  core.setFailed("GITHUB_TOKEN env variable is required");
-  process.exit(1);
-}
+const getOctokit = () => {
+  const token = process.env.GITHUB_TOKEN;
 
-const octokit = github.getOctokit(token);
+  if (!token) {
+    throw new Error("GITHUB_TOKEN env variable is required");
+  }
+
+  octokit = octokit || github.getOctokit(token);
+
+  return octokit;
+};
 
 export type ReviewComment = {
   path: string;
@@ -22,10 +27,17 @@ export type Review = {
   comments?: ReviewComment[];
 };
 
+export const repoPath = [
+  github.context.repo.owner,
+  github.context.repo.repo,
+].join("/");
+
+export const getInput = core.getInput;
+
 export const addComment = async (body: string) => {
   const { owner, repo, number } = github.context.issue;
 
-  await octokit.rest.issues.createComment({
+  await getOctokit().rest.issues.createComment({
     owner,
     repo,
     issue_number: number,
@@ -36,7 +48,7 @@ export const addComment = async (body: string) => {
 export const addReview = async (review: Review) => {
   const { owner, repo, number } = github.context.issue;
 
-  await octokit.rest.pulls.createReview({
+  await getOctokit().rest.pulls.createReview({
     owner,
     repo,
     pull_number: number,
@@ -49,6 +61,8 @@ export const run = async (command: () => Promise<void>) => {
   try {
     await command();
   } catch (error) {
-    core.setFailed(error instanceof Error ? error.message : "Unknown error");
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
   }
 };
