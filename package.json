@@ -23,9 +23,8 @@
     "bundle": "npm run package",
     "lint": "npx eslint .",
     "local-action": "npx local-action . src/main.ts .env",
-    "package": "npx webpack",
-    "package:watch": "npm run package -- --watch",
-    "install": "SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install --platform=linux --arch=x64 sharp@0.33.5"
+    "package": "ncc build src/main.ts -o dist --source-map",
+    "package:watch": "npm run package -- --watch"
   },
   "license": "MIT",
   "dependencies": {
@@ -34,7 +33,8 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "image-js": "^0.36.0",
-    "json-source-map": "^0.6.1"
+    "json-source-map": "^0.6.1",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
@@ -43,18 +43,14 @@
     "@types/node": "^22.10.6",
     "@typescript-eslint/eslint-plugin": "^8.20.0",
     "@typescript-eslint/parser": "^8.20.0",
-    "copy-webpack-plugin": "^12.0.2",
+    "@vercel/ncc": "^0.38.3",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.10.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "node-loader": "^2.1.0",
-    "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
+    "typescript": "^5.7.3"
   }
 }

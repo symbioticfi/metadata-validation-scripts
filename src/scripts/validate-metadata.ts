@@ -1,6 +1,8 @@
 import Ajv, { ErrorObject } from "ajv";
 import addFormats from "ajv-formats";
 import * as fs from "fs/promises";
+
+// @ts-expect-error - no types available
 import { parse } from "json-source-map";
 
 import * as github from "./github";
