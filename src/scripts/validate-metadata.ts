@@ -3,14 +3,11 @@ import addFormats from "ajv-formats";
 import * as fs from "fs/promises";
 // @ts-expect-error ajv-formats is not typed
 import { parse } from "json-source-map";
-import * as path from "path";
-import { fileURLToPath } from "url";
 
 import * as github from "./github.js";
 import * as messages from "./messages.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import metadataSchema from "./schemas/info.json";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {
@@ -31,14 +28,12 @@ const normalizeErrors = (error: ErrorObject, lineMap: any) => {
 export async function validateMetadata(metadataPath: string) {
   const metadataContent = await fs.readFile(metadataPath, "utf8");
   const { data: metadata, pointers: lineMap } = parse(metadataContent);
-  const schemaPath = path.join(__dirname, "schemas", "info.json");
-  const schema = JSON.parse(await fs.readFile(schemaPath, "utf8"));
 
-  // @ts-expect-error new Ajv is actually is constructor
   const ajv = new Ajv({ allErrors: true });
-  // @ts-expect-error ajv-formats is not typed
+
   addFormats(ajv);
-  ajv.validate(schema, metadata);
+
+  ajv.validate(metadataSchema, metadata);
 
   const errors =
     ajv.errors

@@ -1,10 +1,9 @@
 import * as fs from 'fs/promises';
-import * as path from 'path';
-import path__default from 'path';
-import require$$1$5, { fileURLToPath } from 'url';
 import require$$0$4 from 'os';
 import require$$0$5 from 'crypto';
 import require$$1$1, { readFile, createWriteStream, writeFile } from 'fs';
+import * as path from 'path';
+import path__default from 'path';
 import require$$2$1 from 'http';
 import require$$3$2 from 'https';
 import require$$0$9 from 'net';
@@ -24,6 +23,7 @@ import require$$2$2 from 'perf_hooks';
 import require$$5 from 'util/types';
 import require$$4$2 from 'async_hooks';
 import require$$1$4 from 'console';
+import require$$1$5 from 'url';
 import require$$3$3 from 'zlib';
 import require$$6 from 'string_decoder';
 import require$$0$d from 'diagnostics_channel';
@@ -3335,11 +3335,11 @@ function requireCompile () {
 
 var $id$1 = "https://raw.githubusercontent.com/ajv-validator/ajv/master/lib/refs/data.json#";
 var description$1 = "Meta-schema for $data reference (JSON AnySchema extension proposal)";
-var type$1 = "object";
-var required$1 = [
+var type$2 = "object";
+var required$2 = [
 	"$data"
 ];
-var properties$2 = {
+var properties$3 = {
 	$data: {
 		type: "string",
 		anyOf: [
@@ -3356,9 +3356,9 @@ var additionalProperties$1 = false;
 var require$$9 = {
 	$id: $id$1,
 	description: description$1,
-	type: type$1,
-	required: required$1,
-	properties: properties$2,
+	type: type$2,
+	required: required$2,
+	properties: properties$3,
 	additionalProperties: additionalProperties$1
 };
 
@@ -5186,14 +5186,14 @@ function requireLimitProperties () {
 	return limitProperties;
 }
 
-var required = {};
+var required$1 = {};
 
 var hasRequiredRequired;
 
 function requireRequired () {
-	if (hasRequiredRequired) return required;
+	if (hasRequiredRequired) return required$1;
 	hasRequiredRequired = 1;
-	Object.defineProperty(required, "__esModule", { value: true });
+	Object.defineProperty(required$1, "__esModule", { value: true });
 	const code_1 = requireCode();
 	const codegen_1 = requireCodegen();
 	const util_1 = requireUtil$7();
@@ -5269,9 +5269,9 @@ function requireRequired () {
 	        }
 	    },
 	};
-	required.default = def;
+	required$1.default = def;
 	
-	return required;
+	return required$1;
 }
 
 var limitItems = {};
@@ -6070,14 +6070,14 @@ function requireAdditionalProperties () {
 	return additionalProperties;
 }
 
-var properties$1 = {};
+var properties$2 = {};
 
 var hasRequiredProperties;
 
 function requireProperties () {
-	if (hasRequiredProperties) return properties$1;
+	if (hasRequiredProperties) return properties$2;
 	hasRequiredProperties = 1;
-	Object.defineProperty(properties$1, "__esModule", { value: true });
+	Object.defineProperty(properties$2, "__esModule", { value: true });
 	const validate_1 = requireValidate();
 	const code_1 = requireCode();
 	const util_1 = requireUtil$7();
@@ -6128,9 +6128,9 @@ function requireProperties () {
 	        }
 	    },
 	};
-	properties$1.default = def;
+	properties$2.default = def;
 	
-	return properties$1;
+	return properties$2;
 }
 
 var patternProperties = {};
@@ -6866,11 +6866,11 @@ var definitions = {
 		]
 	}
 };
-var type = [
+var type$1 = [
 	"object",
 	"boolean"
 ];
-var properties = {
+var properties$1 = {
 	$id: {
 		type: "string",
 		format: "uri-reference"
@@ -7067,8 +7067,8 @@ var require$$3$1 = {
 	$id: $id,
 	title: title,
 	definitions: definitions,
-	type: type,
-	properties: properties,
+	type: type$1,
+	properties: properties$1,
 	"default": true
 };
 
@@ -39192,8 +39192,67 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+var type = "object";
+var properties = {
+	name: {
+		type: "string"
+	},
+	tags: {
+		type: "array",
+		items: {
+			type: "string"
+		}
+	},
+	links: {
+		type: "array",
+		items: {
+			type: "object",
+			properties: {
+				type: {
+					type: "string",
+					"enum": [
+						"website",
+						"explorer",
+						"docs",
+						"example"
+					]
+				},
+				name: {
+					type: "string"
+				},
+				url: {
+					type: "string",
+					format: "uri"
+				}
+			},
+			required: [
+				"type",
+				"name",
+				"url"
+			]
+		}
+	},
+	cmcId: {
+		type: "string"
+	},
+	permitName: {
+		type: "string"
+	},
+	permitVersion: {
+		type: "string"
+	}
+};
+var required = [
+	"name",
+	"tags",
+	"links"
+];
+var metadataSchema = {
+	type: type,
+	properties: properties,
+	required: required
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error, lineMap) => {
     const { instancePath, message, params } = error;
@@ -39210,13 +39269,9 @@ const normalizeErrors = (error, lineMap) => {
 async function validateMetadata(metadataPath) {
     const metadataContent = await fs.readFile(metadataPath, "utf8");
     const { data: metadata, pointers: lineMap } = jsonSourceMapExports.parse(metadataContent);
-    const schemaPath = path.join(__dirname, "schemas", "info.json");
-    const schema = JSON.parse(await fs.readFile(schemaPath, "utf8"));
-    // @ts-expect-error new Ajv is actually is constructor
     const ajv = new Ajv({ allErrors: true });
-    // @ts-expect-error ajv-formats is not typed
     addFormats(ajv);
-    ajv.validate(schema, metadata);
+    ajv.validate(metadataSchema, metadata);
     const errors = ajv.errors
         ?.map((error) => normalizeErrors(error, lineMap))
         .filter(Boolean) || [];
