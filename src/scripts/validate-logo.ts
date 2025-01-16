@@ -5,7 +5,7 @@ import * as fs from "fs/promises";
 import * as github from "./github";
 import * as messages from "./messages";
 
-export async function run(logoPath: string) {
+export async function validateLogo(logoPath: string) {
   const errors: string[] = [];
   const { size } = await fs.stat(logoPath);
 
@@ -23,7 +23,9 @@ export async function run(logoPath: string) {
     // }
 
     if (image.width != 256 || image.height != 256) {
-      errors.push("The image size must be 256x256 pixels");
+      errors.push(
+        `The image size must be 256x256 pixels. Current size is ${image.width}x${image.height}.`,
+      );
     }
   }
 

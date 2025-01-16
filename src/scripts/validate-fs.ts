@@ -4,20 +4,32 @@ import * as github from "./github";
 import * as messages from "./messages";
 
 const addressRegex = /^0x[a-fA-F0-9]{40}$/;
-const allowedTypes = ["vaults", "operators", "networks", "tokens"];
+const allowedTypes = ["vaults", "operators", "networks", "tokens"] as const;
 const allowedFiles = ["info.json", "logo.png"];
+
+export type EntityType = (typeof allowedTypes)[number];
+export type FsValidationResult = {
+  metadata?: string;
+  logo?: string;
+  entityId: string;
+  entityType: EntityType;
+};
+
+const isValidEntity = (entityType: string): entityType is EntityType =>
+  allowedTypes.includes(entityType as EntityType);
 
 export async function validateFs(
   changedFiles: string[],
-): Promise<{ metadata?: string; logo?: string }> {
+): Promise<FsValidationResult> {
   const notAllowed = new Set<string>();
   const entityDirs = new Set<string>();
 
   for (const filePath of changedFiles) {
     const dir = path.dirname(filePath);
     const [type, address, fileName] = filePath.split(path.sep);
+
     const isValid =
-      allowedTypes.includes(type) &&
+      isValidEntity(type) &&
       addressRegex.test(address) &&
       allowedFiles.includes(fileName);
 
@@ -51,8 +63,10 @@ export async function validateFs(
   }
 
   const [entityDir] = entityDirs;
-  const existingFiles = await fs.promises.readdir(entityDir);
+  const entityType = path.basename(path.dirname(entityDir)) as EntityType;
+  const entityId = path.basename(entityDir);
 
+  const existingFiles = await fs.promises.readdir(entityDir);
   const [metadataPath, logoPath] = allowedFiles.map((name) => {
     return existingFiles.includes(name)
       ? path.join(entityDir, name)
@@ -72,7 +86,7 @@ export async function validateFs(
     throw new Error("`info.json` is not found in the entity folder");
   }
 
-  const result: { metadata?: string; logo?: string } = {};
+  const result: FsValidationResult = { entityId, entityType };
 
   /**
    * Add metadata to result only if the file was changed and exists.

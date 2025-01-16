@@ -14,6 +14,7 @@ export type Review = {
 };
 
 let octokit: ReturnType<typeof github.getOctokit>;
+const isLocalRun = process.env.LOCAL_ACTION_RUN === "true";
 
 export const repoPath = [
   github.context.repo.owner,
@@ -55,6 +56,14 @@ const getOctokit = () => {
 export const addComment = async (body: string) => {
   const { owner, repo } = github.context.issue;
 
+  if (isLocalRun) {
+    console.group("Add Comment");
+    console.log("Add comment:", body);
+    console.groupEnd();
+
+    return;
+  }
+
   await getOctokit().rest.issues.createComment({
     owner,
     repo,
@@ -65,6 +74,14 @@ export const addComment = async (body: string) => {
 
 export const addReview = async (review: Review) => {
   const { owner, repo } = github.context.issue;
+
+  if (isLocalRun) {
+    console.group("Add review");
+    console.log(review);
+    console.groupEnd();
+
+    return;
+  }
 
   await getOctokit().rest.pulls.createReview({
     owner,

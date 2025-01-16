@@ -1,4 +1,3 @@
-import { run } from "./scripts/github";
-import { validate } from "./main";
+import { run } from "./main";
 
-run(validate);
+run();
