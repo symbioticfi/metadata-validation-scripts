@@ -91481,7 +91481,7 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   **Unmet requirements:**
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
-const notRegisteredEntity = (label, address, chain, registryContract) => `${label} (\`${address}\`) is not registered on ${chain} (\`${registryContract}\`). ${contributionGuidelines}`;
+const notRegisteredEntity = (label, address, chain, registryContract) => `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
 const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
@@ -100353,7 +100353,7 @@ const validateEntity = async ({ entityType, entityId, }) => {
     });
     if (!isEntity) {
         await addComment(notRegisteredEntity(entityMeta.label, entityId, chain.name, entityMeta.contract));
-        throw new Error(`${entityMeta.label} (\`${entityAddress}\`) is not registered on ${chain.name} (\`${entityMeta.contract}\`)`);
+        throw new Error(`${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${entityMeta.contract}\`)`);
     }
 };
 

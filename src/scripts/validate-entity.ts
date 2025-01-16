@@ -77,7 +77,7 @@ export const validateEntity = async ({
     );
 
     throw new Error(
-      `${entityMeta.label} (\`${entityAddress}\`) is not registered on ${chain.name} (\`${entityMeta.contract}\`)`,
+      `${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${entityMeta.contract}\`)`,
     );
   }
 };

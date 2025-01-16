@@ -35,4 +35,4 @@ export const notRegisteredEntity = (
   chain: string,
   registryContract: string,
 ) =>
-  `${label} (\`${address}\`) is not registered on ${chain} (\`${registryContract}\`). ${contributionGuidelines}`;
+  `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
