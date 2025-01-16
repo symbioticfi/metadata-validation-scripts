@@ -100369,13 +100369,17 @@ const main = async () => {
         trimWhitespace: true,
     });
     const files = inputFiles.split(" ").filter(Boolean);
-    const result = await validateFs(files);
-    await validateEntity(result);
-    if (result.metadata) {
-        await validateMetadata(result.metadata);
-    }
-    if (result.logo) {
-        await validateLogo(result.logo);
+    const entity = await validateFs(files);
+    const result = await Promise.allSettled([
+        validateEntity(entity),
+        entity.metadata && validateMetadata(entity.metadata),
+        entity.logo && validateLogo(entity.logo),
+    ]);
+    const errors = result
+        .map((r) => r && r.status === "rejected" && r.reason.message)
+        .filter(Boolean);
+    if (errors.length) {
+        throw new Error(`Validation failed:\n${errors.map((e) => `- ${e}`).join("\n")}`);
     }
 };
 const main_run = () => run(main);
