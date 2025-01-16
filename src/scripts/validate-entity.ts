@@ -1,7 +1,9 @@
 import { Address, createPublicClient, http } from "viem";
 import * as allChains from "viem/chains";
 
-import { getInput } from "./github";
+import * as github from "./github";
+import * as messages from "./messages";
+
 import { FsValidationResult, EntityType } from "./validate-fs";
 
 type ContractsMap = Partial<Record<EntityType, Address>>;
@@ -35,8 +37,8 @@ export const validateEntity = async ({
   entityType,
   entityId,
 }: FsValidationResult) => {
-  const rpcUrl = getInput("rpc-url") || undefined;
-  const chainId = +getInput("chain-id");
+  const rpcUrl = github.getInput("rpc-url") || undefined;
+  const chainId = +github.getInput("chain-id");
   const chain = chains.find(({ id }) => id === chainId) || allChains.holesky;
   const client = createPublicClient({ chain, transport: http(rpcUrl) });
 
@@ -55,6 +57,10 @@ export const validateEntity = async ({
   });
 
   if (!isEntity) {
+    await github.addComment(
+      messages.notRegisteredEntity(entityType, entityId, chain.name),
+    );
+
     throw new Error(
       `Entity ${entityAddress} is not registered in ${entityType} on ${chain.name}`,
     );

@@ -28,3 +28,10 @@ export const invalidLogo = (path: string, errors: string[]) =>
   **Unmet requirements:**
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
+
+export const notRegisteredEntity = (
+  entityType: string,
+  entityId: string,
+  chain: string,
+) =>
+  `The entity \`${entityId}\` is not registered in ${entityType} on ${chain}. ${contributionGuidelines}`;

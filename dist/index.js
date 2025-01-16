@@ -91481,6 +91481,7 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   **Unmet requirements:**
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
+const notRegisteredEntity = (entityType, entityId, chain) => `The entity \`${entityId}\` is not registered in ${entityType} on ${chain}. ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
 const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
@@ -100306,6 +100307,7 @@ const mainnet = /*#__PURE__*/ defineChain({
 
 
 
+
 const chains = [holesky, mainnet];
 const entityRegistryContracts = {
     [holesky.id]: {
@@ -100345,6 +100347,7 @@ const validateEntity = async ({ entityType, entityId, }) => {
         args: [entityAddress],
     });
     if (!isEntity) {
+        await addComment(notRegisteredEntity(entityType, entityId, chain.name));
         throw new Error(`Entity ${entityAddress} is not registered in ${entityType} on ${chain.name}`);
     }
 };
