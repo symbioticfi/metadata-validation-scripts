@@ -13,9 +13,18 @@ inputs:
   token:
     description: GITHUB_TOKEN for commenting on the issue
     required: true
+  vault-registry:
+    description: Vaults registry contract address to use for off-chain validation
+    required: true
+  operator-registry:
+    description: Operators registry contract address to use for off-chain validation
+    required: true
+  network-registry:
+    description: Networks registry contract address to use for off-chain validation
+    required: true
   chain-id:
     description: Blockchain chain ID to use for on-chain validation
-    required: false
+    required: true
   rpc-url:
     description: Blockchain RPC URL to use for on-chain validation
     required: false
