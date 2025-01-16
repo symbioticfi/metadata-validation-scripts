@@ -1,4 +1,4 @@
-import './sourcemap-register.cjs';import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
+import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
 /******/ var __webpack_modules__ = ({
 
 /***/ 44914:
@@ -80149,6 +80149,7 @@ var github = __nccwpck_require__(93228);
 
 
 let octokit;
+const isLocalRun = process.env.LOCAL_ACTION_RUN === "true";
 const repoPath = [
     github.context.repo.owner,
     github.context.repo.repo,
@@ -80178,6 +80179,12 @@ const getOctokit = () => {
 };
 const addComment = async (body) => {
     const { owner, repo } = github.context.issue;
+    if (isLocalRun) {
+        console.group("Add Comment");
+        console.log("Add comment:", body);
+        console.groupEnd();
+        return;
+    }
     await getOctokit().rest.issues.createComment({
         owner,
         repo,
@@ -80187,6 +80194,12 @@ const addComment = async (body) => {
 };
 const addReview = async (review) => {
     const { owner, repo } = github.context.issue;
+    if (isLocalRun) {
+        console.group("Add review");
+        console.log(review);
+        console.groupEnd();
+        return;
+    }
     await getOctokit().rest.pulls.createReview({
         owner,
         repo,
@@ -80309,7 +80322,7 @@ async function validate_logo_run(logoPath) {
         //   errors.push("The image background should be transparent");
         // }
         if (image.width != 256 || image.height != 256) {
-            errors.push("The image size must be 256x256 pixels");
+            errors.push(`The image size must be 256x256 pixels. Current size is ${image.width}x${image.height}.`);
         }
     }
     if (errors.length) {
@@ -80399,7 +80412,8 @@ async function validateFs(changedFiles) {
 
 
 
-async function validate() {
+
+const main = async () => {
     const inputFiles = (0,core.getInput)("files", {
         required: true,
         trimWhitespace: true,
@@ -80412,12 +80426,10 @@ async function validate() {
     if (result.logo) {
         await validate_logo_run(result.logo);
     }
-}
+};
+const main_run = () => run(main);
 
 ;// CONCATENATED MODULE: ./src/index.ts
 
+main_run();
 
-run(validate);
-
-
-//# sourceMappingURL=index.js.map
