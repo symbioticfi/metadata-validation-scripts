@@ -91481,7 +91481,7 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   **Unmet requirements:**
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
-const notRegisteredEntity = (entityType, entityId, chain) => `The entity \`${entityId}\` is not registered in ${entityType} on ${chain}. ${contributionGuidelines}`;
+const notRegisteredEntity = (label, address, chain, registryContract) => `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
 const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
@@ -100309,18 +100309,6 @@ const mainnet = /*#__PURE__*/ defineChain({
 
 
 const chains = [holesky, mainnet];
-const entityRegistryContracts = {
-    [holesky.id]: {
-        vaults: "0x407a039d94948484d356efb765b3c74382a050b4",
-        networks: "0x7d03b7343bf8d5cec7c0c27ece084a20113d15c9",
-        operators: "0x6f75a4fff97326a00e52662d82ea4fde86a2c548",
-    },
-    [mainnet.id]: {
-        vaults: "0xAEb6bdd95c502390db8f52c8909F703E9Af6a346",
-        networks: "0xC773b1011461e7314CF05f97d95aa8e92C1Fd8aA",
-        operators: "0xAd817a6Bc954F678451A71363f04150FDD81Af9F",
-    },
-};
 const isEntityAbi = [
     {
         inputs: [{ internalType: "address", name: "entity_", type: "address" }],
@@ -100330,25 +100318,42 @@ const isEntityAbi = [
         type: "function",
     },
 ];
+const entityMetaMap = {
+    vaults: {
+        label: "Vault",
+        contract: getInput("vault-registry", { required: true }),
+    },
+    networks: {
+        label: "Network",
+        contract: getInput("network-registry", { required: true }),
+    },
+    operators: {
+        label: "Operator",
+        contract: getInput("operator-registry", { required: true }),
+    },
+};
 const validateEntity = async ({ entityType, entityId, }) => {
     const rpcUrl = getInput("rpc-url") || undefined;
-    const chainId = +getInput("chain-id");
-    const chain = chains.find(({ id }) => id === chainId) || holesky;
+    const chainId = +getInput("chain-id", { required: true });
+    const chain = chains.find(({ id }) => id === chainId);
+    if (!chain) {
+        throw new Error(`Chain with id ${chainId} is not supported`);
+    }
     const client = createPublicClient({ chain, transport: http(rpcUrl) });
     const entityAddress = entityId;
-    const contractAddress = entityRegistryContracts[chain.id][entityType];
-    if (!contractAddress) {
+    const entityMeta = entityMetaMap[entityType];
+    if (!entityMeta) {
         return;
     }
     const isEntity = await client.readContract({
-        address: contractAddress,
+        address: entityMeta.contract,
         abi: isEntityAbi,
         functionName: "isEntity",
         args: [entityAddress],
     });
     if (!isEntity) {
-        await addComment(notRegisteredEntity(entityType, entityId, chain.name));
-        throw new Error(`Entity ${entityAddress} is not registered in ${entityType} on ${chain.name}`);
+        await addComment(notRegisteredEntity(entityMeta.label, entityId, chain.name, entityMeta.contract));
+        throw new Error(`${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${entityMeta.contract}\`)`);
     }
 };
 
@@ -100364,13 +100369,17 @@ const main = async () => {
         trimWhitespace: true,
     });
     const files = inputFiles.split(" ").filter(Boolean);
-    const result = await validateFs(files);
-    await validateEntity(result);
-    if (result.metadata) {
-        await validateMetadata(result.metadata);
-    }
-    if (result.logo) {
-        await validateLogo(result.logo);
+    const entity = await validateFs(files);
+    const result = await Promise.allSettled([
+        validateEntity(entity),
+        entity.metadata && validateMetadata(entity.metadata),
+        entity.logo && validateLogo(entity.logo),
+    ]);
+    const errors = result
+        .map((r) => r && r.status === "rejected" && r.reason.message)
+        .filter(Boolean);
+    if (errors.length) {
+        throw new Error(`Validation failed:\n${errors.map((e) => `- ${e}`).join("\n")}`);
     }
 };
 const main_run = () => run(main);

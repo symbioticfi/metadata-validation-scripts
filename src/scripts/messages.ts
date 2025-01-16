@@ -30,8 +30,9 @@ export const invalidLogo = (path: string, errors: string[]) =>
 `;
 
 export const notRegisteredEntity = (
-  entityType: string,
-  entityId: string,
+  label: string,
+  address: string,
   chain: string,
+  registryContract: string,
 ) =>
-  `The entity \`${entityId}\` is not registered in ${entityType} on ${chain}. ${contributionGuidelines}`;
+  `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
