@@ -1,9 +1,9 @@
-import { run as runAction } from "./scripts/github";
+import { run as runAction, getInput } from "./scripts/github";
 
 import { validateMetadata } from "./scripts/validate-metadata.js";
-import { run as validateLogo } from "./scripts/validate-logo.js";
+import { validateLogo } from "./scripts/validate-logo.js";
 import { validateFs } from "./scripts/validate-fs.js";
-import { getInput } from "@actions/core";
+import { validateEntity } from "./scripts/validate-entity";
 
 const main = async () => {
   const inputFiles = getInput("files", {
@@ -13,6 +13,8 @@ const main = async () => {
 
   const files = inputFiles.split(" ").filter(Boolean);
   const result = await validateFs(files);
+
+  await validateEntity(result);
 
   if (result.metadata) {
     await validateMetadata(result.metadata);

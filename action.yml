@@ -13,6 +13,12 @@ inputs:
   token:
     description: GITHUB_TOKEN for commenting on the issue
     required: true
+  chain-id:
+    description: Blockchain chain ID to use for on-chain validation
+    required: false
+  rpc-url:
+    description: Blockchain RPC URL to use for on-chain validation
+    required: false
 
 # Define your outputs here.
 outputs:

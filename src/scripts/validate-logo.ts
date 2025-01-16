@@ -5,7 +5,7 @@ import * as fs from "fs/promises";
 import * as github from "./github";
 import * as messages from "./messages";
 
-export async function run(logoPath: string) {
+export async function validateLogo(logoPath: string) {
   const errors: string[] = [];
   const { size } = await fs.stat(logoPath);
 
