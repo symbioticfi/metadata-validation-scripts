@@ -4,6 +4,7 @@ import { validateMetadata } from "./scripts/validate-metadata.js";
 import { validateLogo } from "./scripts/validate-logo.js";
 import { validateFs } from "./scripts/validate-fs.js";
 import { validateEntity } from "./scripts/validate-entity";
+import { validateCollateral } from "./scripts/validate-collateral";
 
 const main = async () => {
   const inputFiles = getInput("files", {
@@ -18,6 +19,7 @@ const main = async () => {
     validateEntity(entity),
     entity.metadata && validateMetadata(entity.metadata),
     entity.logo && validateLogo(entity.logo),
+    entity.entityType === "vaults" && validateCollateral(entity.entityId),
   ]);
 
   const errors = result

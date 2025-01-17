@@ -36,3 +36,9 @@ export const notRegisteredEntity = (
   registryContract: string,
 ) =>
   `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
+
+export const invalidVault = (address: string, chain: string) =>
+  `Contract \`${address}\` is not a valid Vault on ${chain} network. ${contributionGuidelines}`;
+
+export const noVaultTokenInfo = (tokenAddress: string) =>
+  `Information for the vault collateral \`${tokenAddress}\` is not found in the repository. ${contributionGuidelines}`;
