@@ -19,7 +19,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["website", "explorer", "docs", "example"]
+            "enum": ["website", "explorer", "docs", "example", "externalLink"]
           },
 
           "name": {
@@ -37,6 +37,10 @@
     },
 
     "cmcId": {
+      "type": "string"
+    },
+
+    "curatorName": {
       "type": "string"
     },
 
