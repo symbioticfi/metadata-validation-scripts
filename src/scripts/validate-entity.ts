@@ -1,17 +1,16 @@
-import { Address, createPublicClient, http } from "viem";
-import * as allChains from "viem/chains";
+import { Address } from "viem";
 
 import * as github from "./github";
 import * as messages from "./messages";
 
 import { FsValidationResult, EntityType } from "./validate-fs";
+import { createClient, getChain } from "./blockchain";
 
 type EntityMeta = {
   contract: string;
   label: string;
 };
 
-const chains = [allChains.holesky, allChains.mainnet];
 const isEntityAbi = [
   {
     inputs: [{ internalType: "address", name: "entity_", type: "address" }],
@@ -43,15 +42,8 @@ export const validateEntity = async ({
   entityType,
   entityId,
 }: FsValidationResult) => {
-  const rpcUrl = github.getInput("rpc-url") || undefined;
-  const chainId = +github.getInput("chain-id", { required: true });
-  const chain = chains.find(({ id }) => id === chainId);
-
-  if (!chain) {
-    throw new Error(`Chain with id ${chainId} is not supported`);
-  }
-
-  const client = createPublicClient({ chain, transport: http(rpcUrl) });
+  const chain = getChain();
+  const client = createClient();
   const entityAddress = entityId as Address;
   const entityMeta = entityMetaMap[entityType];
 
