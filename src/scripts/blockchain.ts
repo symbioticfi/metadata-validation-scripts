@@ -3,11 +3,9 @@ import * as allChains from "viem/chains";
 
 import * as github from "./github";
 
-export const SUPPORTED_CHAINS = [allChains.holesky, allChains.mainnet];
-
 export const getChain = () => {
   const chainId = +github.getInput("chain-id", { required: true });
-  const chain = SUPPORTED_CHAINS.find(({ id }) => id === chainId);
+  const chain = Object.values(allChains).find(({ id }) => id === chainId);
 
   if (!chain) {
     throw new Error(`Chain with id ${chainId} is not supported`);
