@@ -116054,7 +116054,6 @@ const validateEntity = async ({ entityType, entityId, }) => {
 
 
 
-
 const collateralAbi = [
     {
         inputs: [],
@@ -116076,9 +116075,8 @@ const validateCollateral = async (vaultAddress) => {
         await addComment(invalidVault(vaultAddress, chain.name));
         throw new Error(`Contract \`${vaultAddress}\` is not a valid Vault on ${chain.name} network.`);
     }
-    const tokenInfoExists = await promises_default().stat(external_path_default().join("tokens", tokenAddress))
-        .then((stats) => stats.isDirectory())
-        .catch(() => false);
+    const dirItems = await promises_default().readdir("tokens");
+    const tokenInfoExists = dirItems.some((item) => item.toLowerCase() === tokenAddress.toLowerCase());
     if (!tokenInfoExists) {
         await addComment(noVaultTokenInfo(tokenAddress));
         throw new Error(`Information for the vault collateral \`${tokenAddress}\` is not found in the repository.`);

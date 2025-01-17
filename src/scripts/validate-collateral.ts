@@ -1,6 +1,5 @@
 import { Address } from "viem";
 import { createClient, getChain } from "./blockchain";
-import path from "path";
 import fs from "fs/promises";
 
 import * as github from "./github";
@@ -34,10 +33,10 @@ export const validateCollateral = async (vaultAddress: string) => {
     );
   }
 
-  const tokenInfoExists = await fs
-    .stat(path.join("tokens", tokenAddress))
-    .then((stats) => stats.isDirectory())
-    .catch(() => false);
+  const dirItems = await fs.readdir("tokens");
+  const tokenInfoExists = dirItems.some(
+    (item) => item.toLowerCase() === tokenAddress.toLowerCase(),
+  );
 
   if (!tokenInfoExists) {
     await github.addComment(messages.noVaultTokenInfo(tokenAddress));
