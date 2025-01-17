@@ -84368,8 +84368,8 @@ var transactionRequest = __nccwpck_require__(87466);
 var createBatchScheduler = __nccwpck_require__(97940);
 // EXTERNAL MODULE: ./node_modules/viem/_esm/utils/stateOverride.js
 var utils_stateOverride = __nccwpck_require__(9110);
-// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/transaction/assertRequest.js + 1 modules
-var assertRequest = __nccwpck_require__(68117);
+// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/transaction/assertRequest.js
+var assertRequest = __nccwpck_require__(92355);
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/actions/public/call.js
 
 
@@ -86089,6 +86089,114 @@ const universalSignatureValidatorByteCode = '0x608060405234801561001057600080fd5
 
 /***/ }),
 
+/***/ 118:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
+
+/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
+/* harmony export */   Ao: () => (/* binding */ maxUint256),
+/* harmony export */   Au: () => (/* binding */ maxUint16)
+/* harmony export */ });
+/* unused harmony exports maxInt8, maxInt16, maxInt24, maxInt32, maxInt40, maxInt48, maxInt56, maxInt64, maxInt72, maxInt80, maxInt88, maxInt96, maxInt104, maxInt112, maxInt120, maxInt128, maxInt136, maxInt144, maxInt152, maxInt160, maxInt168, maxInt176, maxInt184, maxInt192, maxInt200, maxInt208, maxInt216, maxInt224, maxInt232, maxInt240, maxInt248, maxInt256, minInt8, minInt16, minInt24, minInt32, minInt40, minInt48, minInt56, minInt64, minInt72, minInt80, minInt88, minInt96, minInt104, minInt112, minInt120, minInt128, minInt136, minInt144, minInt152, minInt160, minInt168, minInt176, minInt184, minInt192, minInt200, minInt208, minInt216, minInt224, minInt232, minInt240, minInt248, minInt256, maxUint8, maxUint24, maxUint32, maxUint40, maxUint48, maxUint56, maxUint64, maxUint72, maxUint80, maxUint88, maxUint96, maxUint104, maxUint112, maxUint120, maxUint128, maxUint136, maxUint144, maxUint152, maxUint160, maxUint168, maxUint176, maxUint184, maxUint192, maxUint200, maxUint208, maxUint216, maxUint224, maxUint232, maxUint240, maxUint248 */
+const maxInt8 = (/* unused pure expression or super */ null && (2n ** (8n - 1n) - 1n));
+const maxInt16 = (/* unused pure expression or super */ null && (2n ** (16n - 1n) - 1n));
+const maxInt24 = (/* unused pure expression or super */ null && (2n ** (24n - 1n) - 1n));
+const maxInt32 = (/* unused pure expression or super */ null && (2n ** (32n - 1n) - 1n));
+const maxInt40 = (/* unused pure expression or super */ null && (2n ** (40n - 1n) - 1n));
+const maxInt48 = (/* unused pure expression or super */ null && (2n ** (48n - 1n) - 1n));
+const maxInt56 = (/* unused pure expression or super */ null && (2n ** (56n - 1n) - 1n));
+const maxInt64 = (/* unused pure expression or super */ null && (2n ** (64n - 1n) - 1n));
+const maxInt72 = (/* unused pure expression or super */ null && (2n ** (72n - 1n) - 1n));
+const maxInt80 = (/* unused pure expression or super */ null && (2n ** (80n - 1n) - 1n));
+const maxInt88 = (/* unused pure expression or super */ null && (2n ** (88n - 1n) - 1n));
+const maxInt96 = (/* unused pure expression or super */ null && (2n ** (96n - 1n) - 1n));
+const maxInt104 = (/* unused pure expression or super */ null && (2n ** (104n - 1n) - 1n));
+const maxInt112 = (/* unused pure expression or super */ null && (2n ** (112n - 1n) - 1n));
+const maxInt120 = (/* unused pure expression or super */ null && (2n ** (120n - 1n) - 1n));
+const maxInt128 = (/* unused pure expression or super */ null && (2n ** (128n - 1n) - 1n));
+const maxInt136 = (/* unused pure expression or super */ null && (2n ** (136n - 1n) - 1n));
+const maxInt144 = (/* unused pure expression or super */ null && (2n ** (144n - 1n) - 1n));
+const maxInt152 = (/* unused pure expression or super */ null && (2n ** (152n - 1n) - 1n));
+const maxInt160 = (/* unused pure expression or super */ null && (2n ** (160n - 1n) - 1n));
+const maxInt168 = (/* unused pure expression or super */ null && (2n ** (168n - 1n) - 1n));
+const maxInt176 = (/* unused pure expression or super */ null && (2n ** (176n - 1n) - 1n));
+const maxInt184 = (/* unused pure expression or super */ null && (2n ** (184n - 1n) - 1n));
+const maxInt192 = (/* unused pure expression or super */ null && (2n ** (192n - 1n) - 1n));
+const maxInt200 = (/* unused pure expression or super */ null && (2n ** (200n - 1n) - 1n));
+const maxInt208 = (/* unused pure expression or super */ null && (2n ** (208n - 1n) - 1n));
+const maxInt216 = (/* unused pure expression or super */ null && (2n ** (216n - 1n) - 1n));
+const maxInt224 = (/* unused pure expression or super */ null && (2n ** (224n - 1n) - 1n));
+const maxInt232 = (/* unused pure expression or super */ null && (2n ** (232n - 1n) - 1n));
+const maxInt240 = (/* unused pure expression or super */ null && (2n ** (240n - 1n) - 1n));
+const maxInt248 = (/* unused pure expression or super */ null && (2n ** (248n - 1n) - 1n));
+const maxInt256 = (/* unused pure expression or super */ null && (2n ** (256n - 1n) - 1n));
+const minInt8 = (/* unused pure expression or super */ null && (-(2n ** (8n - 1n))));
+const minInt16 = (/* unused pure expression or super */ null && (-(2n ** (16n - 1n))));
+const minInt24 = (/* unused pure expression or super */ null && (-(2n ** (24n - 1n))));
+const minInt32 = (/* unused pure expression or super */ null && (-(2n ** (32n - 1n))));
+const minInt40 = (/* unused pure expression or super */ null && (-(2n ** (40n - 1n))));
+const minInt48 = (/* unused pure expression or super */ null && (-(2n ** (48n - 1n))));
+const minInt56 = (/* unused pure expression or super */ null && (-(2n ** (56n - 1n))));
+const minInt64 = (/* unused pure expression or super */ null && (-(2n ** (64n - 1n))));
+const minInt72 = (/* unused pure expression or super */ null && (-(2n ** (72n - 1n))));
+const minInt80 = (/* unused pure expression or super */ null && (-(2n ** (80n - 1n))));
+const minInt88 = (/* unused pure expression or super */ null && (-(2n ** (88n - 1n))));
+const minInt96 = (/* unused pure expression or super */ null && (-(2n ** (96n - 1n))));
+const minInt104 = (/* unused pure expression or super */ null && (-(2n ** (104n - 1n))));
+const minInt112 = (/* unused pure expression or super */ null && (-(2n ** (112n - 1n))));
+const minInt120 = (/* unused pure expression or super */ null && (-(2n ** (120n - 1n))));
+const minInt128 = (/* unused pure expression or super */ null && (-(2n ** (128n - 1n))));
+const minInt136 = (/* unused pure expression or super */ null && (-(2n ** (136n - 1n))));
+const minInt144 = (/* unused pure expression or super */ null && (-(2n ** (144n - 1n))));
+const minInt152 = (/* unused pure expression or super */ null && (-(2n ** (152n - 1n))));
+const minInt160 = (/* unused pure expression or super */ null && (-(2n ** (160n - 1n))));
+const minInt168 = (/* unused pure expression or super */ null && (-(2n ** (168n - 1n))));
+const minInt176 = (/* unused pure expression or super */ null && (-(2n ** (176n - 1n))));
+const minInt184 = (/* unused pure expression or super */ null && (-(2n ** (184n - 1n))));
+const minInt192 = (/* unused pure expression or super */ null && (-(2n ** (192n - 1n))));
+const minInt200 = (/* unused pure expression or super */ null && (-(2n ** (200n - 1n))));
+const minInt208 = (/* unused pure expression or super */ null && (-(2n ** (208n - 1n))));
+const minInt216 = (/* unused pure expression or super */ null && (-(2n ** (216n - 1n))));
+const minInt224 = (/* unused pure expression or super */ null && (-(2n ** (224n - 1n))));
+const minInt232 = (/* unused pure expression or super */ null && (-(2n ** (232n - 1n))));
+const minInt240 = (/* unused pure expression or super */ null && (-(2n ** (240n - 1n))));
+const minInt248 = (/* unused pure expression or super */ null && (-(2n ** (248n - 1n))));
+const minInt256 = (/* unused pure expression or super */ null && (-(2n ** (256n - 1n))));
+const maxUint8 = (/* unused pure expression or super */ null && (2n ** 8n - 1n));
+const maxUint16 = 2n ** 16n - 1n;
+const maxUint24 = (/* unused pure expression or super */ null && (2n ** 24n - 1n));
+const maxUint32 = (/* unused pure expression or super */ null && (2n ** 32n - 1n));
+const maxUint40 = (/* unused pure expression or super */ null && (2n ** 40n - 1n));
+const maxUint48 = (/* unused pure expression or super */ null && (2n ** 48n - 1n));
+const maxUint56 = (/* unused pure expression or super */ null && (2n ** 56n - 1n));
+const maxUint64 = (/* unused pure expression or super */ null && (2n ** 64n - 1n));
+const maxUint72 = (/* unused pure expression or super */ null && (2n ** 72n - 1n));
+const maxUint80 = (/* unused pure expression or super */ null && (2n ** 80n - 1n));
+const maxUint88 = (/* unused pure expression or super */ null && (2n ** 88n - 1n));
+const maxUint96 = (/* unused pure expression or super */ null && (2n ** 96n - 1n));
+const maxUint104 = (/* unused pure expression or super */ null && (2n ** 104n - 1n));
+const maxUint112 = (/* unused pure expression or super */ null && (2n ** 112n - 1n));
+const maxUint120 = (/* unused pure expression or super */ null && (2n ** 120n - 1n));
+const maxUint128 = (/* unused pure expression or super */ null && (2n ** 128n - 1n));
+const maxUint136 = (/* unused pure expression or super */ null && (2n ** 136n - 1n));
+const maxUint144 = (/* unused pure expression or super */ null && (2n ** 144n - 1n));
+const maxUint152 = (/* unused pure expression or super */ null && (2n ** 152n - 1n));
+const maxUint160 = (/* unused pure expression or super */ null && (2n ** 160n - 1n));
+const maxUint168 = (/* unused pure expression or super */ null && (2n ** 168n - 1n));
+const maxUint176 = (/* unused pure expression or super */ null && (2n ** 176n - 1n));
+const maxUint184 = (/* unused pure expression or super */ null && (2n ** 184n - 1n));
+const maxUint192 = (/* unused pure expression or super */ null && (2n ** 192n - 1n));
+const maxUint200 = (/* unused pure expression or super */ null && (2n ** 200n - 1n));
+const maxUint208 = (/* unused pure expression or super */ null && (2n ** 208n - 1n));
+const maxUint216 = (/* unused pure expression or super */ null && (2n ** 216n - 1n));
+const maxUint224 = (/* unused pure expression or super */ null && (2n ** 224n - 1n));
+const maxUint232 = (/* unused pure expression or super */ null && (2n ** 232n - 1n));
+const maxUint240 = (/* unused pure expression or super */ null && (2n ** 240n - 1n));
+const maxUint248 = (/* unused pure expression or super */ null && (2n ** 248n - 1n));
+const maxUint256 = 2n ** 256n - 1n;
+//# sourceMappingURL=number.js.map
+
+/***/ }),
+
 /***/ 41358:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
 
@@ -86649,9 +86757,10 @@ function walk(err, fn) {
 
 /* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
 /* harmony export */   YE: () => (/* binding */ ClientChainNotConfiguredError),
+/* harmony export */   qD: () => (/* binding */ InvalidChainIdError),
 /* harmony export */   rj: () => (/* binding */ ChainDoesNotSupportContract)
 /* harmony export */ });
-/* unused harmony exports ChainMismatchError, ChainNotFoundError, InvalidChainIdError */
+/* unused harmony exports ChainMismatchError, ChainNotFoundError */
 /* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(29298);
 
 class ChainDoesNotSupportContract extends _base_js__WEBPACK_IMPORTED_MODULE_0__/* .BaseError */ .C {
@@ -87532,9 +87641,11 @@ function prettyStateOverride(stateOverride) {
 /* harmony export */   Vg: () => (/* binding */ InvalidSerializableTransactionError),
 /* harmony export */   WA: () => (/* binding */ WaitForTransactionReceiptTimeoutError),
 /* harmony export */   aO: () => (/* binding */ prettyPrint),
-/* harmony export */   n3: () => (/* binding */ FeeConflictError)
+/* harmony export */   fZ: () => (/* binding */ InvalidStorageKeySizeError),
+/* harmony export */   n3: () => (/* binding */ FeeConflictError),
+/* harmony export */   zW: () => (/* binding */ InvalidLegacyVError)
 /* harmony export */ });
-/* unused harmony exports InvalidLegacyVError, InvalidSerializedTransactionTypeError, InvalidSerializedTransactionError, InvalidStorageKeySizeError, TransactionExecutionError */
+/* unused harmony exports InvalidSerializedTransactionTypeError, InvalidSerializedTransactionError, TransactionExecutionError */
 /* harmony import */ var _utils_unit_formatEther_js__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(97939);
 /* harmony import */ var _utils_unit_formatGwei_js__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(25819);
 /* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(29298);
@@ -90041,14 +90152,46 @@ function extract(value_, { format }) {
 
 /***/ }),
 
+/***/ 57945:
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
+
+/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
+/* harmony export */   q: () => (/* binding */ defineFormatter)
+/* harmony export */ });
+function defineFormatter(type, format) {
+    return ({ exclude, format: overrides, }) => {
+        return {
+            exclude,
+            format: (args) => {
+                const formatted = format(args);
+                if (exclude) {
+                    for (const key of exclude) {
+                        delete formatted[key];
+                    }
+                }
+                return {
+                    ...formatted,
+                    ...overrides(args),
+                };
+            },
+            type,
+        };
+    };
+}
+//# sourceMappingURL=formatter.js.map
+
+/***/ }),
+
 /***/ 87466:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
 
 /* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   Bv: () => (/* binding */ formatTransactionRequest)
+/* harmony export */   Bv: () => (/* binding */ formatTransactionRequest),
+/* harmony export */   bm: () => (/* binding */ defineTransactionRequest)
 /* harmony export */ });
-/* unused harmony exports rpcTransactionType, defineTransactionRequest */
+/* unused harmony export rpcTransactionType */
 /* harmony import */ var _encoding_toHex_js__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(747);
+/* harmony import */ var _formatter_js__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(57945);
 
 
 const rpcTransactionType = {
@@ -90096,7 +90239,7 @@ function formatTransactionRequest(request) {
         rpcRequest.value = (0,_encoding_toHex_js__WEBPACK_IMPORTED_MODULE_0__/* .numberToHex */ .cK)(request.value);
     return rpcRequest;
 }
-const defineTransactionRequest = /*#__PURE__*/ (/* unused pure expression or super */ null && (defineFormatter('transactionRequest', formatTransactionRequest)));
+const defineTransactionRequest = /*#__PURE__*/ (0,_formatter_js__WEBPACK_IMPORTED_MODULE_1__/* .defineFormatter */ .q)('transactionRequest', formatTransactionRequest);
 //////////////////////////////////////////////////////////////////////////////
 function formatAuthorizationList(authorizationList) {
     return authorizationList.map((authorization) => ({
@@ -90918,124 +91061,18 @@ const stringify = (value, replacer, space) => JSON.stringify(value, (key, value_
 
 /***/ }),
 
-/***/ 68117:
+/***/ 92355:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
 
-
-// EXPORTS
-__nccwpck_require__.d(__webpack_exports__, {
-  c: () => (/* binding */ assertRequest)
-});
-
-// EXTERNAL MODULE: ./node_modules/viem/_esm/accounts/utils/parseAccount.js
-var parseAccount = __nccwpck_require__(20304);
-;// CONCATENATED MODULE: ./node_modules/viem/_esm/constants/number.js
-const maxInt8 = (/* unused pure expression or super */ null && (2n ** (8n - 1n) - 1n));
-const maxInt16 = (/* unused pure expression or super */ null && (2n ** (16n - 1n) - 1n));
-const maxInt24 = (/* unused pure expression or super */ null && (2n ** (24n - 1n) - 1n));
-const maxInt32 = (/* unused pure expression or super */ null && (2n ** (32n - 1n) - 1n));
-const maxInt40 = (/* unused pure expression or super */ null && (2n ** (40n - 1n) - 1n));
-const maxInt48 = (/* unused pure expression or super */ null && (2n ** (48n - 1n) - 1n));
-const maxInt56 = (/* unused pure expression or super */ null && (2n ** (56n - 1n) - 1n));
-const maxInt64 = (/* unused pure expression or super */ null && (2n ** (64n - 1n) - 1n));
-const maxInt72 = (/* unused pure expression or super */ null && (2n ** (72n - 1n) - 1n));
-const maxInt80 = (/* unused pure expression or super */ null && (2n ** (80n - 1n) - 1n));
-const maxInt88 = (/* unused pure expression or super */ null && (2n ** (88n - 1n) - 1n));
-const maxInt96 = (/* unused pure expression or super */ null && (2n ** (96n - 1n) - 1n));
-const maxInt104 = (/* unused pure expression or super */ null && (2n ** (104n - 1n) - 1n));
-const maxInt112 = (/* unused pure expression or super */ null && (2n ** (112n - 1n) - 1n));
-const maxInt120 = (/* unused pure expression or super */ null && (2n ** (120n - 1n) - 1n));
-const maxInt128 = (/* unused pure expression or super */ null && (2n ** (128n - 1n) - 1n));
-const maxInt136 = (/* unused pure expression or super */ null && (2n ** (136n - 1n) - 1n));
-const maxInt144 = (/* unused pure expression or super */ null && (2n ** (144n - 1n) - 1n));
-const maxInt152 = (/* unused pure expression or super */ null && (2n ** (152n - 1n) - 1n));
-const maxInt160 = (/* unused pure expression or super */ null && (2n ** (160n - 1n) - 1n));
-const maxInt168 = (/* unused pure expression or super */ null && (2n ** (168n - 1n) - 1n));
-const maxInt176 = (/* unused pure expression or super */ null && (2n ** (176n - 1n) - 1n));
-const maxInt184 = (/* unused pure expression or super */ null && (2n ** (184n - 1n) - 1n));
-const maxInt192 = (/* unused pure expression or super */ null && (2n ** (192n - 1n) - 1n));
-const maxInt200 = (/* unused pure expression or super */ null && (2n ** (200n - 1n) - 1n));
-const maxInt208 = (/* unused pure expression or super */ null && (2n ** (208n - 1n) - 1n));
-const maxInt216 = (/* unused pure expression or super */ null && (2n ** (216n - 1n) - 1n));
-const maxInt224 = (/* unused pure expression or super */ null && (2n ** (224n - 1n) - 1n));
-const maxInt232 = (/* unused pure expression or super */ null && (2n ** (232n - 1n) - 1n));
-const maxInt240 = (/* unused pure expression or super */ null && (2n ** (240n - 1n) - 1n));
-const maxInt248 = (/* unused pure expression or super */ null && (2n ** (248n - 1n) - 1n));
-const maxInt256 = (/* unused pure expression or super */ null && (2n ** (256n - 1n) - 1n));
-const minInt8 = (/* unused pure expression or super */ null && (-(2n ** (8n - 1n))));
-const minInt16 = (/* unused pure expression or super */ null && (-(2n ** (16n - 1n))));
-const minInt24 = (/* unused pure expression or super */ null && (-(2n ** (24n - 1n))));
-const minInt32 = (/* unused pure expression or super */ null && (-(2n ** (32n - 1n))));
-const minInt40 = (/* unused pure expression or super */ null && (-(2n ** (40n - 1n))));
-const minInt48 = (/* unused pure expression or super */ null && (-(2n ** (48n - 1n))));
-const minInt56 = (/* unused pure expression or super */ null && (-(2n ** (56n - 1n))));
-const minInt64 = (/* unused pure expression or super */ null && (-(2n ** (64n - 1n))));
-const minInt72 = (/* unused pure expression or super */ null && (-(2n ** (72n - 1n))));
-const minInt80 = (/* unused pure expression or super */ null && (-(2n ** (80n - 1n))));
-const minInt88 = (/* unused pure expression or super */ null && (-(2n ** (88n - 1n))));
-const minInt96 = (/* unused pure expression or super */ null && (-(2n ** (96n - 1n))));
-const minInt104 = (/* unused pure expression or super */ null && (-(2n ** (104n - 1n))));
-const minInt112 = (/* unused pure expression or super */ null && (-(2n ** (112n - 1n))));
-const minInt120 = (/* unused pure expression or super */ null && (-(2n ** (120n - 1n))));
-const minInt128 = (/* unused pure expression or super */ null && (-(2n ** (128n - 1n))));
-const minInt136 = (/* unused pure expression or super */ null && (-(2n ** (136n - 1n))));
-const minInt144 = (/* unused pure expression or super */ null && (-(2n ** (144n - 1n))));
-const minInt152 = (/* unused pure expression or super */ null && (-(2n ** (152n - 1n))));
-const minInt160 = (/* unused pure expression or super */ null && (-(2n ** (160n - 1n))));
-const minInt168 = (/* unused pure expression or super */ null && (-(2n ** (168n - 1n))));
-const minInt176 = (/* unused pure expression or super */ null && (-(2n ** (176n - 1n))));
-const minInt184 = (/* unused pure expression or super */ null && (-(2n ** (184n - 1n))));
-const minInt192 = (/* unused pure expression or super */ null && (-(2n ** (192n - 1n))));
-const minInt200 = (/* unused pure expression or super */ null && (-(2n ** (200n - 1n))));
-const minInt208 = (/* unused pure expression or super */ null && (-(2n ** (208n - 1n))));
-const minInt216 = (/* unused pure expression or super */ null && (-(2n ** (216n - 1n))));
-const minInt224 = (/* unused pure expression or super */ null && (-(2n ** (224n - 1n))));
-const minInt232 = (/* unused pure expression or super */ null && (-(2n ** (232n - 1n))));
-const minInt240 = (/* unused pure expression or super */ null && (-(2n ** (240n - 1n))));
-const minInt248 = (/* unused pure expression or super */ null && (-(2n ** (248n - 1n))));
-const minInt256 = (/* unused pure expression or super */ null && (-(2n ** (256n - 1n))));
-const maxUint8 = (/* unused pure expression or super */ null && (2n ** 8n - 1n));
-const maxUint16 = (/* unused pure expression or super */ null && (2n ** 16n - 1n));
-const maxUint24 = (/* unused pure expression or super */ null && (2n ** 24n - 1n));
-const maxUint32 = (/* unused pure expression or super */ null && (2n ** 32n - 1n));
-const maxUint40 = (/* unused pure expression or super */ null && (2n ** 40n - 1n));
-const maxUint48 = (/* unused pure expression or super */ null && (2n ** 48n - 1n));
-const maxUint56 = (/* unused pure expression or super */ null && (2n ** 56n - 1n));
-const maxUint64 = (/* unused pure expression or super */ null && (2n ** 64n - 1n));
-const maxUint72 = (/* unused pure expression or super */ null && (2n ** 72n - 1n));
-const maxUint80 = (/* unused pure expression or super */ null && (2n ** 80n - 1n));
-const maxUint88 = (/* unused pure expression or super */ null && (2n ** 88n - 1n));
-const maxUint96 = (/* unused pure expression or super */ null && (2n ** 96n - 1n));
-const maxUint104 = (/* unused pure expression or super */ null && (2n ** 104n - 1n));
-const maxUint112 = (/* unused pure expression or super */ null && (2n ** 112n - 1n));
-const maxUint120 = (/* unused pure expression or super */ null && (2n ** 120n - 1n));
-const maxUint128 = (/* unused pure expression or super */ null && (2n ** 128n - 1n));
-const maxUint136 = (/* unused pure expression or super */ null && (2n ** 136n - 1n));
-const maxUint144 = (/* unused pure expression or super */ null && (2n ** 144n - 1n));
-const maxUint152 = (/* unused pure expression or super */ null && (2n ** 152n - 1n));
-const maxUint160 = (/* unused pure expression or super */ null && (2n ** 160n - 1n));
-const maxUint168 = (/* unused pure expression or super */ null && (2n ** 168n - 1n));
-const maxUint176 = (/* unused pure expression or super */ null && (2n ** 176n - 1n));
-const maxUint184 = (/* unused pure expression or super */ null && (2n ** 184n - 1n));
-const maxUint192 = (/* unused pure expression or super */ null && (2n ** 192n - 1n));
-const maxUint200 = (/* unused pure expression or super */ null && (2n ** 200n - 1n));
-const maxUint208 = (/* unused pure expression or super */ null && (2n ** 208n - 1n));
-const maxUint216 = (/* unused pure expression or super */ null && (2n ** 216n - 1n));
-const maxUint224 = (/* unused pure expression or super */ null && (2n ** 224n - 1n));
-const maxUint232 = (/* unused pure expression or super */ null && (2n ** 232n - 1n));
-const maxUint240 = (/* unused pure expression or super */ null && (2n ** 240n - 1n));
-const maxUint248 = (/* unused pure expression or super */ null && (2n ** 248n - 1n));
-const maxUint256 = 2n ** 256n - 1n;
-//# sourceMappingURL=number.js.map
-// EXTERNAL MODULE: ./node_modules/viem/_esm/errors/address.js
-var address = __nccwpck_require__(75345);
-// EXTERNAL MODULE: ./node_modules/viem/_esm/errors/node.js
-var node = __nccwpck_require__(45405);
-// EXTERNAL MODULE: ./node_modules/viem/_esm/errors/transaction.js
-var transaction = __nccwpck_require__(23725);
-// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/address/isAddress.js
-var isAddress = __nccwpck_require__(89936);
-;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/transaction/assertRequest.js
+/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
+/* harmony export */   c: () => (/* binding */ assertRequest)
+/* harmony export */ });
+/* harmony import */ var _accounts_utils_parseAccount_js__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(20304);
+/* harmony import */ var _constants_number_js__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(118);
+/* harmony import */ var _errors_address_js__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(75345);
+/* harmony import */ var _errors_node_js__WEBPACK_IMPORTED_MODULE_5__ = __nccwpck_require__(45405);
+/* harmony import */ var _errors_transaction_js__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(23725);
+/* harmony import */ var _address_isAddress_js__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(89936);
 
 
 
@@ -91044,21 +91081,21 @@ var isAddress = __nccwpck_require__(89936);
 
 function assertRequest(args) {
     const { account: account_, gasPrice, maxFeePerGas, maxPriorityFeePerGas, to, } = args;
-    const account = account_ ? (0,parseAccount/* parseAccount */.J)(account_) : undefined;
-    if (account && !(0,isAddress/* isAddress */.P)(account.address))
-        throw new address/* InvalidAddressError */.M({ address: account.address });
-    if (to && !(0,isAddress/* isAddress */.P)(to))
-        throw new address/* InvalidAddressError */.M({ address: to });
+    const account = account_ ? (0,_accounts_utils_parseAccount_js__WEBPACK_IMPORTED_MODULE_0__/* .parseAccount */ .J)(account_) : undefined;
+    if (account && !(0,_address_isAddress_js__WEBPACK_IMPORTED_MODULE_1__/* .isAddress */ .P)(account.address))
+        throw new _errors_address_js__WEBPACK_IMPORTED_MODULE_2__/* .InvalidAddressError */ .M({ address: account.address });
+    if (to && !(0,_address_isAddress_js__WEBPACK_IMPORTED_MODULE_1__/* .isAddress */ .P)(to))
+        throw new _errors_address_js__WEBPACK_IMPORTED_MODULE_2__/* .InvalidAddressError */ .M({ address: to });
     if (typeof gasPrice !== 'undefined' &&
         (typeof maxFeePerGas !== 'undefined' ||
             typeof maxPriorityFeePerGas !== 'undefined'))
-        throw new transaction/* FeeConflictError */.n3();
-    if (maxFeePerGas && maxFeePerGas > maxUint256)
-        throw new node/* FeeCapTooHighError */.BG({ maxFeePerGas });
+        throw new _errors_transaction_js__WEBPACK_IMPORTED_MODULE_3__/* .FeeConflictError */ .n3();
+    if (maxFeePerGas && maxFeePerGas > _constants_number_js__WEBPACK_IMPORTED_MODULE_4__/* .maxUint256 */ .Ao)
+        throw new _errors_node_js__WEBPACK_IMPORTED_MODULE_5__/* .FeeCapTooHighError */ .BG({ maxFeePerGas });
     if (maxPriorityFeePerGas &&
         maxFeePerGas &&
         maxPriorityFeePerGas > maxFeePerGas)
-        throw new node/* TipAboveFeeCapError */.lN({ maxFeePerGas, maxPriorityFeePerGas });
+        throw new _errors_node_js__WEBPACK_IMPORTED_MODULE_5__/* .TipAboveFeeCapError */ .lN({ maxFeePerGas, maxPriorityFeePerGas });
 }
 //# sourceMappingURL=assertRequest.js.map
 
@@ -91373,6 +91410,513 @@ module.exports = {"version":"1.0.1"};
 /************************************************************************/
 var __webpack_exports__ = {};
 
+// NAMESPACE OBJECT: ./node_modules/viem/_esm/chains/index.js
+var chains_namespaceObject = {};
+__nccwpck_require__.r(chains_namespaceObject);
+__nccwpck_require__.d(chains_namespaceObject, {
+  abey: () => (abey),
+  abstractTestnet: () => (abstractTestnet),
+  acala: () => (acala),
+  acria: () => (acria),
+  adf: () => (adf),
+  aioz: () => (aioz),
+  alephZero: () => (alephZero),
+  alienx: () => (alienx),
+  alienxHalTestnet: () => (alienxHalTestnet),
+  ancient8: () => (ancient8),
+  ancient8Sepolia: () => (ancient8Sepolia),
+  anvil: () => (anvil),
+  apeChain: () => (apeChain),
+  apexTestnet: () => (apexTestnet),
+  arbitrum: () => (arbitrum),
+  arbitrumGoerli: () => (arbitrumGoerli),
+  arbitrumNova: () => (arbitrumNova),
+  arbitrumSepolia: () => (arbitrumSepolia),
+  areonNetwork: () => (areonNetwork),
+  areonNetworkTestnet: () => (areonNetworkTestnet),
+  artelaTestnet: () => (artelaTestnet),
+  arthera: () => (arthera),
+  assetChain: () => (assetChain),
+  assetChainTestnet: () => (assetChainTestnet),
+  astar: () => (astar),
+  astarZkEVM: () => (astarZkEVM),
+  astarZkyoto: () => (astarZkyoto),
+  atletaOlympia: () => (atletaOlympia),
+  aurora: () => (aurora),
+  auroraTestnet: () => (auroraTestnet),
+  auroria: () => (auroria),
+  avalanche: () => (avalanche),
+  avalancheFuji: () => (avalancheFuji),
+  b3: () => (b3),
+  b3Sepolia: () => (b3Sepolia),
+  bahamut: () => (bahamut),
+  base: () => (base_base),
+  baseGoerli: () => (baseGoerli),
+  baseSepolia: () => (baseSepolia),
+  beam: () => (beam),
+  beamTestnet: () => (beamTestnet),
+  bearNetworkChainMainnet: () => (bearNetworkChainMainnet),
+  bearNetworkChainTestnet: () => (bearNetworkChainTestnet),
+  berachainTestnet: () => (berachainTestnet),
+  berachainTestnetbArtio: () => (berachainTestnetbArtio),
+  bevmMainnet: () => (bevmMainnet),
+  bifrost: () => (bifrost),
+  bitTorrent: () => (bitTorrent),
+  bitTorrentTestnet: () => (bitTorrentTestnet),
+  bitgert: () => (bitgert),
+  bitkub: () => (bitkub),
+  bitkubTestnet: () => (bitkubTestnet),
+  bitlayer: () => (bitlayer),
+  bitlayerTestnet: () => (bitlayerTestnet),
+  bitrock: () => (bitrock),
+  blast: () => (blast),
+  blastSepolia: () => (blastSepolia),
+  bob: () => (bob),
+  bobSepolia: () => (bobSepolia),
+  boba: () => (boba),
+  bobaSepolia: () => (bobaSepolia),
+  boolBetaMainnet: () => (boolBetaMainnet),
+  botanixTestnet: () => (botanixTestnet),
+  bounceBit: () => (bounceBit),
+  bounceBitTestnet: () => (bounceBitTestnet),
+  bronos: () => (bronos),
+  bronosTestnet: () => (bronosTestnet),
+  bsc: () => (bsc),
+  bscGreenfield: () => (bscGreenfield),
+  bscTestnet: () => (bscTestnet),
+  bsquared: () => (bsquared),
+  bsquaredTestnet: () => (bsquaredTestnet),
+  btr: () => (btr),
+  btrTestnet: () => (btrTestnet),
+  bxn: () => (bxn),
+  bxnTestnet: () => (bxnTestnet),
+  cannon: () => (cannon),
+  canto: () => (canto),
+  celo: () => (celo),
+  celoAlfajores: () => (celoAlfajores),
+  chang: () => (chang),
+  chiliz: () => (chiliz),
+  chips: () => (chips),
+  citreaTestnet: () => (citreaTestnet),
+  classic: () => (classic),
+  coinbit: () => (coinbit),
+  coinex: () => (coinex),
+  confluxESpace: () => (confluxESpace),
+  confluxESpaceTestnet: () => (confluxESpaceTestnet),
+  coreDao: () => (coreDao),
+  corn: () => (corn),
+  cornTestnet: () => (cornTestnet),
+  crab: () => (crab),
+  creatorTestnet: () => (creatorTestnet),
+  cronos: () => (cronos),
+  cronosTestnet: () => (cronosTestnet),
+  cronoszkEVM: () => (cronoszkEVM),
+  cronoszkEVMTestnet: () => (cronoszkEVMTestnet),
+  crossbell: () => (crossbell),
+  curtis: () => (curtis),
+  cyber: () => (cyber),
+  cyberTestnet: () => (cyberTestnet),
+  dailyNetwork: () => (dailyNetwork),
+  dailyNetworkTestnet: () => (dailyNetworkTestnet),
+  darwinia: () => (darwinia),
+  dchain: () => (dchain),
+  dchainTestnet: () => (dchainTestnet),
+  defichainEvm: () => (defichainEvm),
+  defichainEvmTestnet: () => (defichainEvmTestnet),
+  degen: () => (degen),
+  dfk: () => (dfk),
+  diode: () => (diode),
+  disChain: () => (disChain),
+  dodochainTestnet: () => (dodochainTestnet),
+  dogechain: () => (dogechain),
+  dosChain: () => (dosChain),
+  dosChainTestnet: () => (dosChainTestnet),
+  dreyerxMainnet: () => (dreyerxMainnet),
+  dreyerxTestnet: () => (dreyerxTestnet),
+  dustboyIoT: () => (dustboyIoT),
+  dymension: () => (dymension),
+  edgeless: () => (edgeless),
+  edgelessTestnet: () => (edgelessTestnet),
+  edgeware: () => (edgeware),
+  edgewareTestnet: () => (edgewareTestnet),
+  ekta: () => (ekta),
+  ektaTestnet: () => (ektaTestnet),
+  elastos: () => (elastos),
+  elastosTestnet: () => (elastosTestnet),
+  electroneum: () => (electroneum),
+  electroneumTestnet: () => (electroneumTestnet),
+  elysiumTestnet: () => (elysiumTestnet),
+  energy: () => (energy),
+  enuls: () => (enuls),
+  eon: () => (eon),
+  eos: () => (eos),
+  eosTestnet: () => (eosTestnet),
+  etherlink: () => (etherlink),
+  etherlinkTestnet: () => (etherlinkTestnet),
+  evmos: () => (evmos),
+  evmosTestnet: () => (evmosTestnet),
+  excelonMainnet: () => (excelonMainnet),
+  expanse: () => (expanse),
+  exsat: () => (exsat),
+  exsatTestnet: () => (exsatTestnet),
+  fantom: () => (fantom),
+  fantomSonicTestnet: () => (fantomSonicTestnet),
+  fantomTestnet: () => (fantomTestnet),
+  fibo: () => (fibo),
+  filecoin: () => (filecoin),
+  filecoinCalibration: () => (filecoinCalibration),
+  filecoinHyperspace: () => (filecoinHyperspace),
+  fireChain: () => (fireChain),
+  flare: () => (flare),
+  flareTestnet: () => (flareTestnet),
+  flowMainnet: () => (flowMainnet),
+  flowPreviewnet: () => (flowPreviewnet),
+  flowTestnet: () => (flowTestnet),
+  fluence: () => (fluence),
+  fluenceStage: () => (fluenceStage),
+  fluenceTestnet: () => (fluenceTestnet),
+  forma: () => (forma),
+  foundry: () => (foundry),
+  fraxtal: () => (fraxtal),
+  fraxtalTestnet: () => (fraxtalTestnet),
+  funkiMainnet: () => (funkiMainnet),
+  funkiSepolia: () => (funkiSepolia),
+  fuse: () => (fuse),
+  fuseSparknet: () => (fuseSparknet),
+  fusion: () => (fusion),
+  fusionTestnet: () => (fusionTestnet),
+  garnet: () => (garnet),
+  geist: () => (geist),
+  genesys: () => (genesys),
+  glideL1Protocol: () => (glideL1Protocol),
+  glideL2Protocol: () => (glideL2Protocol),
+  gnosis: () => (gnosis),
+  gnosisChiado: () => (gnosisChiado),
+  goChain: () => (goChain),
+  gobi: () => (gobi),
+  godwoken: () => (godwoken),
+  goerli: () => (goerli),
+  gravity: () => (gravity),
+  guruNetwork: () => (guruNetwork),
+  guruTestnet: () => (guruTestnet),
+  ham: () => (ham),
+  haqqMainnet: () => (haqqMainnet),
+  haqqTestedge2: () => (haqqTestedge2),
+  hardhat: () => (hardhat),
+  harmonyOne: () => (harmonyOne),
+  hashkeyTestnet: () => (hashkeyTestnet),
+  hedera: () => (hedera),
+  hederaPreviewnet: () => (hederaPreviewnet),
+  hederaTestnet: () => (hederaTestnet),
+  hela: () => (hela),
+  hemiSepolia: () => (hemiSepolia),
+  holesky: () => (holesky),
+  hpb: () => (hpb),
+  huddle01Mainnet: () => (huddle01Mainnet),
+  huddle01Testnet: () => (huddle01Testnet),
+  humanode: () => (humanode),
+  humanodeTestnet5: () => (humanodeTestnet5),
+  hychain: () => (hychain),
+  hychainTestnet: () => (hychainTestnet),
+  iSunCoin: () => (iSunCoin),
+  idchain: () => (idchain),
+  immutableZkEvm: () => (immutableZkEvm),
+  immutableZkEvmTestnet: () => (immutableZkEvmTestnet),
+  inEVM: () => (inEVM),
+  initVerseGenesis: () => (initVerseGenesis),
+  ink: () => (ink),
+  inkSepolia: () => (inkSepolia),
+  iota: () => (iota),
+  iotaTestnet: () => (iotaTestnet),
+  iotex: () => (iotex),
+  iotexTestnet: () => (iotexTestnet),
+  jbc: () => (jbc),
+  jbcTestnet: () => (jbcTestnet),
+  kaia: () => (kaia),
+  kairos: () => (kairos),
+  kakarotSepolia: () => (kakarotSepolia),
+  kakarotStarknetSepolia: () => (kakarotStarknetSepolia),
+  kardiaChain: () => (kardiaChain),
+  karura: () => (karura),
+  kava: () => (kava),
+  kavaTestnet: () => (kavaTestnet),
+  kcc: () => (kcc),
+  kinto: () => (kinto),
+  klaytn: () => (klaytn),
+  klaytnBaobab: () => (klaytnBaobab),
+  koi: () => (koi),
+  kroma: () => (kroma),
+  kromaSepolia: () => (kromaSepolia),
+  l3x: () => (l3x),
+  l3xTestnet: () => (l3xTestnet),
+  lavita: () => (lavita),
+  lightlinkPegasus: () => (lightlinkPegasus),
+  lightlinkPhoenix: () => (lightlinkPhoenix),
+  linea: () => (linea),
+  lineaGoerli: () => (lineaGoerli),
+  lineaSepolia: () => (lineaSepolia),
+  lineaTestnet: () => (lineaTestnet),
+  lisk: () => (lisk),
+  liskSepolia: () => (liskSepolia),
+  localhost: () => (localhost),
+  loop: () => (loop),
+  lukso: () => (lukso),
+  luksoTestnet: () => (luksoTestnet),
+  lumiaMainnet: () => (lumiaMainnet),
+  lumiaTestnet: () => (lumiaTestnet),
+  lycan: () => (lycan),
+  lyra: () => (lyra),
+  mainnet: () => (mainnet),
+  mandala: () => (mandala),
+  manta: () => (manta),
+  mantaSepoliaTestnet: () => (mantaSepoliaTestnet),
+  mantaTestnet: () => (mantaTestnet),
+  mantle: () => (mantle),
+  mantleSepoliaTestnet: () => (mantleSepoliaTestnet),
+  mantleTestnet: () => (mantleTestnet),
+  mapProtocol: () => (mapProtocol),
+  matchain: () => (matchain),
+  matchainTestnet: () => (matchainTestnet),
+  mchVerse: () => (mchVerse),
+  mekong: () => (mekong),
+  meld: () => (meld),
+  merlin: () => (merlin),
+  metachain: () => (metachain),
+  metachainIstanbul: () => (metachainIstanbul),
+  metadium: () => (metadium),
+  metalL2: () => (metalL2),
+  meter: () => (meter),
+  meterTestnet: () => (meterTestnet),
+  metis: () => (metis),
+  metisGoerli: () => (metisGoerli),
+  mev: () => (mev),
+  mevTestnet: () => (mevTestnet),
+  mint: () => (mint),
+  mintSepoliaTestnet: () => (mintSepoliaTestnet),
+  mitosisTestnet: () => (mitosisTestnet),
+  mode: () => (mode),
+  modeTestnet: () => (modeTestnet),
+  moonbaseAlpha: () => (moonbaseAlpha),
+  moonbeam: () => (moonbeam),
+  moonbeamDev: () => (moonbeamDev),
+  moonriver: () => (moonriver),
+  morph: () => (morph),
+  morphHolesky: () => (morphHolesky),
+  morphSepolia: () => (morphSepolia),
+  nahmii: () => (nahmii),
+  nautilus: () => (nautilus),
+  neonDevnet: () => (neonDevnet),
+  neonMainnet: () => (neonMainnet),
+  neoxMainnet: () => (neoxMainnet),
+  neoxT4: () => (neoxT4),
+  nexi: () => (nexi),
+  nexilix: () => (nexilix),
+  oasisTestnet: () => (oasisTestnet),
+  oasys: () => (oasys),
+  odysseyTestnet: () => (odysseyTestnet),
+  okc: () => (okc),
+  omax: () => (omax),
+  oneWorld: () => (oneWorld),
+  oortMainnetDev: () => (oortMainnetDev),
+  opBNB: () => (opBNB),
+  opBNBTestnet: () => (opBNBTestnet),
+  optimism: () => (optimism),
+  optimismGoerli: () => (optimismGoerli),
+  optimismSepolia: () => (optimismSepolia),
+  optopia: () => (optopia),
+  optopiaTestnet: () => (optopiaTestnet),
+  orderly: () => (orderly),
+  orderlySepolia: () => (orderlySepolia),
+  otimDevnet: () => (otimDevnet),
+  palm: () => (palm),
+  palmTestnet: () => (palmTestnet),
+  pgn: () => (pgn),
+  pgnTestnet: () => (pgnTestnet),
+  phoenix: () => (phoenix),
+  planq: () => (planq),
+  playfiAlbireo: () => (playfiAlbireo),
+  plinga: () => (plinga),
+  plume: () => (plume),
+  plumeDevnet: () => (plumeDevnet),
+  plumeTestnet: () => (plumeTestnet),
+  polterTestnet: () => (polterTestnet),
+  polygon: () => (polygon),
+  polygonAmoy: () => (polygonAmoy),
+  polygonMumbai: () => (polygonMumbai),
+  polygonZkEvm: () => (polygonZkEvm),
+  polygonZkEvmCardona: () => (polygonZkEvmCardona),
+  polygonZkEvmTestnet: () => (polygonZkEvmTestnet),
+  pulsechain: () => (pulsechain),
+  pulsechainV4: () => (pulsechainV4),
+  qMainnet: () => (qMainnet),
+  qTestnet: () => (qTestnet),
+  ql1: () => (ql1),
+  real: () => (real),
+  redbellyMainnet: () => (redbellyMainnet),
+  redbellyTestnet: () => (redbellyTestnet),
+  redstone: () => (redstone),
+  rei: () => (rei),
+  reyaNetwork: () => (reyaNetwork),
+  rivalz: () => (rivalz),
+  rollux: () => (rollux),
+  rolluxTestnet: () => (rolluxTestnet),
+  ronin: () => (ronin),
+  root: () => (root),
+  rootPorcini: () => (rootPorcini),
+  rootstock: () => (rootstock),
+  rootstockTestnet: () => (rootstockTestnet),
+  rss3: () => (rss3),
+  rss3Sepolia: () => (rss3Sepolia),
+  saakuru: () => (saakuru),
+  saga: () => (saga),
+  saigon: () => (saigon),
+  sanko: () => (sanko),
+  sapphire: () => (sapphire),
+  sapphireTestnet: () => (sapphireTestnet),
+  satoshiVM: () => (satoshiVM),
+  satoshiVMTestnet: () => (satoshiVMTestnet),
+  scroll: () => (scroll_scroll),
+  scrollSepolia: () => (scrollSepolia),
+  sei: () => (sei),
+  seiDevnet: () => (seiDevnet),
+  seiTestnet: () => (seiTestnet),
+  sepolia: () => (sepolia),
+  shape: () => (shape),
+  shapeSepolia: () => (shapeSepolia),
+  shardeumSphinx: () => (shardeumSphinx),
+  shibarium: () => (shibarium),
+  shibariumTestnet: () => (shibariumTestnet),
+  shiden: () => (shiden),
+  shimmer: () => (shimmer),
+  shimmerTestnet: () => (shimmerTestnet),
+  silicon: () => (silicon),
+  siliconSepolia: () => (siliconSepolia),
+  sixProtocol: () => (sixProtocol),
+  skaleBlockBrawlers: () => (skaleBlockBrawlers),
+  skaleCalypso: () => (skaleCalypso),
+  skaleCalypsoTestnet: () => (skaleCalypsoTestnet),
+  skaleCryptoBlades: () => (skaleCryptoBlades),
+  skaleCryptoColosseum: () => (skaleCryptoColosseum),
+  skaleEuropa: () => (skaleEuropa),
+  skaleEuropaTestnet: () => (skaleEuropaTestnet),
+  skaleExorde: () => (skaleExorde),
+  skaleHumanProtocol: () => (skaleHumanProtocol),
+  skaleNebula: () => (skaleNebula),
+  skaleNebulaTestnet: () => (skaleNebulaTestnet),
+  skaleRazor: () => (skaleRazor),
+  skaleTitan: () => (skaleTitan),
+  skaleTitanTestnet: () => (skaleTitanTestnet),
+  sketchpad: () => (sketchpad),
+  snax: () => (snax),
+  snaxTestnet: () => (snaxTestnet),
+  soneiumMinato: () => (soneiumMinato),
+  songbird: () => (songbird),
+  songbirdTestnet: () => (songbirdTestnet),
+  sonic: () => (sonic),
+  sonicTestnet: () => (sonicTestnet),
+  sophon: () => (sophon),
+  sophonTestnet: () => (sophonTestnet),
+  spicy: () => (spicy),
+  step: () => (step),
+  storyOdyssey: () => (storyOdyssey),
+  storyTestnet: () => (storyTestnet),
+  stratis: () => (stratis),
+  superlumio: () => (superlumio),
+  superposition: () => (superposition),
+  superseed: () => (superseed),
+  superseedSepolia: () => (superseedSepolia),
+  swan: () => (swan),
+  swanProximaTestnet: () => (swanProximaTestnet),
+  swanSaturnTestnet: () => (swanSaturnTestnet),
+  swissdlt: () => (swissdlt),
+  syscoin: () => (syscoin),
+  syscoinTestnet: () => (syscoinTestnet),
+  taiko: () => (taiko),
+  taikoHekla: () => (taikoHekla),
+  taikoJolnir: () => (taikoJolnir),
+  taikoKatla: () => (taikoKatla),
+  taikoTestnetSepolia: () => (taikoTestnetSepolia),
+  taraxa: () => (taraxa),
+  taraxaTestnet: () => (taraxaTestnet),
+  telcoinTestnet: () => (telcoinTestnet),
+  telos: () => (telos),
+  telosTestnet: () => (telosTestnet),
+  tenet: () => (tenet),
+  ternoa: () => (ternoa),
+  thaiChain: () => (thaiChain),
+  that: () => (that),
+  theta: () => (theta),
+  thetaTestnet: () => (thetaTestnet),
+  thunderCore: () => (thunderCore),
+  thunderTestnet: () => (thunderTestnet),
+  tiktrixTestnet: () => (tiktrixTestnet),
+  tomb: () => (tomb),
+  treasure: () => (treasure),
+  treasureTopaz: () => (treasureTopaz),
+  tron: () => (tron),
+  ubiq: () => (ubiq),
+  ultron: () => (ultron),
+  ultronTestnet: () => (ultronTestnet),
+  unichainSepolia: () => (unichainSepolia),
+  unique: () => (unique),
+  uniqueOpal: () => (uniqueOpal),
+  uniqueQuartz: () => (uniqueQuartz),
+  unreal: () => (unreal),
+  vanar: () => (vanar),
+  vechain: () => (vechain),
+  velas: () => (velas),
+  viction: () => (viction),
+  victionTestnet: () => (victionTestnet),
+  vision: () => (vision),
+  visionTestnet: () => (visionTestnet),
+  wanchain: () => (wanchain),
+  wanchainTestnet: () => (wanchainTestnet),
+  weaveVMAlphanet: () => (weaveVMAlphanet),
+  wemix: () => (wemix),
+  wemixTestnet: () => (wemixTestnet),
+  worldLand: () => (worldLand),
+  worldchain: () => (worldchain),
+  worldchainSepolia: () => (worldchainSepolia),
+  x1Testnet: () => (xLayerTestnet),
+  xLayer: () => (xLayer),
+  xLayerTestnet: () => (xLayerTestnet),
+  xai: () => (xai),
+  xaiTestnet: () => (xaiTestnet),
+  xdc: () => (xdc),
+  xdcTestnet: () => (xdcTestnet),
+  xrOne: () => (xrOne),
+  xrSepolia: () => (xrSepolia),
+  yooldoVerse: () => (yooldoVerse),
+  yooldoVerseTestnet: () => (yooldoVerseTestnet),
+  zenchainTestnet: () => (zenchainTestnet),
+  zeniq: () => (zeniq),
+  zetachain: () => (zetachain),
+  zetachainAthensTestnet: () => (zetachainAthensTestnet),
+  zhejiang: () => (zhejiang),
+  zilliqa: () => (zilliqa),
+  zilliqaTestnet: () => (zilliqaTestnet),
+  zircuit: () => (zircuit),
+  zircuitTestnet: () => (zircuitTestnet),
+  zkFair: () => (zkFair),
+  zkFairTestnet: () => (zkFairTestnet),
+  zkLinkNova: () => (zkLinkNova),
+  zkLinkNovaSepoliaTestnet: () => (zkLinkNovaSepoliaTestnet),
+  zkSync: () => (zksync),
+  zkSyncInMemoryNode: () => (zksyncInMemoryNode),
+  zkSyncLocalNode: () => (zksyncLocalNode),
+  zkSyncSepoliaTestnet: () => (zksyncSepoliaTestnet),
+  zksync: () => (zksync),
+  zksyncInMemoryNode: () => (zksyncInMemoryNode),
+  zksyncLocalCustomHyperchain: () => (zksyncLocalCustomHyperchain),
+  zksyncLocalHyperchain: () => (zksyncLocalHyperchain),
+  zksyncLocalHyperchainL1: () => (zksyncLocalHyperchainL1),
+  zksyncLocalNode: () => (zksyncLocalNode),
+  zksyncSepoliaTestnet: () => (zksyncSepoliaTestnet),
+  zora: () => (zora),
+  zoraSepolia: () => (zoraSepolia),
+  zoraTestnet: () => (zoraTestnet)
+});
+
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(37484);
 // EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
@@ -91459,6 +92003,7 @@ var dist = __nccwpck_require__(82815);
 var dist_default = /*#__PURE__*/__nccwpck_require__.n(dist);
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
+var promises_default = /*#__PURE__*/__nccwpck_require__.n(promises_namespaceObject);
 // EXTERNAL MODULE: ./node_modules/json-source-map/index.js
 var json_source_map = __nccwpck_require__(72007);
 ;// CONCATENATED MODULE: ./src/scripts/messages.ts
@@ -91482,6 +92027,8 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
   ${errors.map((error) => `- ${error}`).join("\n")}
 `;
 const notRegisteredEntity = (label, address, chain, registryContract) => `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
+const invalidVault = (address, chain) => `Contract \`${address}\` is not a valid Vault on ${chain} network. ${contributionGuidelines}`;
+const noVaultTokenInfo = (tokenAddress) => `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
 const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
@@ -92992,8 +93539,8 @@ var getCallError = __nccwpck_require__(78341);
 var extract = __nccwpck_require__(35098);
 // EXTERNAL MODULE: ./node_modules/viem/_esm/utils/formatters/transactionRequest.js
 var transactionRequest = __nccwpck_require__(87466);
-// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/transaction/assertRequest.js + 1 modules
-var assertRequest = __nccwpck_require__(68117);
+// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/transaction/assertRequest.js
+var assertRequest = __nccwpck_require__(92355);
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/actions/public/createAccessList.js
 
 
@@ -93652,6 +94199,8 @@ class BlockNotFoundError extends base/* BaseError */.C {
     }
 }
 //# sourceMappingURL=block.js.map
+// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/formatters/formatter.js
+var formatter = __nccwpck_require__(57945);
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/formatters/transaction.js
 
 
@@ -93727,7 +94276,7 @@ function formatTransaction(transaction) {
     }
     return transaction_;
 }
-const defineTransaction = /*#__PURE__*/ (/* unused pure expression or super */ null && (defineFormatter('transaction', formatTransaction)));
+const defineTransaction = /*#__PURE__*/ (0,formatter/* defineFormatter */.q)('transaction', formatTransaction);
 //////////////////////////////////////////////////////////////////////////////
 function formatAuthorizationList(authorizationList) {
     return authorizationList.map((authorization) => ({
@@ -93771,7 +94320,7 @@ function formatBlock(block) {
             : null,
     };
 }
-const defineBlock = /*#__PURE__*/ (/* unused pure expression or super */ null && (defineFormatter('block', formatBlock)));
+const defineBlock = /*#__PURE__*/ (0,formatter/* defineFormatter */.q)('block', formatBlock);
 //# sourceMappingURL=block.js.map
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/actions/public/getBlock.js
 
@@ -96201,7 +96750,7 @@ function formatTransactionReceipt(transactionReceipt) {
         receipt.blobGasUsed = BigInt(transactionReceipt.blobGasUsed);
     return receipt;
 }
-const defineTransactionReceipt = /*#__PURE__*/ (/* unused pure expression or super */ null && (defineFormatter('transactionReceipt', formatTransactionReceipt)));
+const defineTransactionReceipt = /*#__PURE__*/ (0,formatter/* defineFormatter */.q)('transactionReceipt', formatTransactionReceipt);
 //# sourceMappingURL=transactionReceipt.js.map
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/actions/public/getTransactionReceipt.js
 
@@ -96468,10 +97017,10 @@ function prettyPrint(args) {
  * throw new Errors.BaseError('An error occurred')
  * ```
  */
-class BaseError extends Error {
+class Errors_BaseError extends Error {
     constructor(shortMessage, options = {}) {
         const details = (() => {
-            if (options.cause instanceof BaseError) {
+            if (options.cause instanceof Errors_BaseError) {
                 if (options.cause.details)
                     return options.cause.details;
                 if (options.cause.shortMessage)
@@ -96482,7 +97031,7 @@ class BaseError extends Error {
             return options.details;
         })();
         const docsPath = (() => {
-            if (options.cause instanceof BaseError)
+            if (options.cause instanceof Errors_BaseError)
                 return options.cause.docsPath || options.docsPath;
             return options.docsPath;
         })();
@@ -97222,7 +97771,7 @@ function validate(value, options = {}) {
  * // @error: Hex.IntegerOutOfRangeError: Number \`4.2018273891273126e+26\` is not in safe unsigned integer range (`0` to `9007199254740991`)
  * ```
  */
-class IntegerOutOfRangeError extends BaseError {
+class IntegerOutOfRangeError extends Errors_BaseError {
     constructor({ max, min, signed, size, value, }) {
         super(`Number \`${value}\` is not in safe${size ? ` ${size * 8}-bit` : ''}${signed ? ' signed' : ' unsigned'} integer range ${max ? `(\`${min}\` to \`${max}\`)` : `(above \`${min}\`)`}`);
         Object.defineProperty(this, "name", {
@@ -97245,7 +97794,7 @@ class IntegerOutOfRangeError extends BaseError {
  * // @error: The hex value must be `"0x0"` (false) or `"0x1"` (true).
  * ```
  */
-class InvalidHexBooleanError extends BaseError {
+class InvalidHexBooleanError extends Errors_BaseError {
     constructor(hex) {
         super(`Hex value \`"${hex}"\` is not a valid boolean.`, {
             metaMessages: [
@@ -97271,7 +97820,7 @@ class InvalidHexBooleanError extends BaseError {
  * // @error: Hex.InvalidHexTypeError: Value `1` of type `number` is an invalid hex type.
  * ```
  */
-class InvalidHexTypeError extends BaseError {
+class InvalidHexTypeError extends Errors_BaseError {
     constructor(value) {
         super(`Value \`${typeof value === 'object' ? Json_stringify(value) : value}\` of type \`${typeof value}\` is an invalid hex type.`, {
             metaMessages: ['Hex types must be represented as `"0x${string}"`.'],
@@ -97296,7 +97845,7 @@ class InvalidHexTypeError extends BaseError {
  * // @error: Hex values must start with `"0x"` and contain only hexadecimal characters (0-9, a-f, A-F).
  * ```
  */
-class InvalidHexValueError extends BaseError {
+class InvalidHexValueError extends Errors_BaseError {
     constructor(value) {
         super(`Value \`${value}\` is an invalid hex value.`, {
             metaMessages: [
@@ -97322,7 +97871,7 @@ class InvalidHexValueError extends BaseError {
  * // @error: Hex.InvalidLengthError: Hex value `"0xabcde"` is an odd length (5 nibbles).
  * ```
  */
-class InvalidLengthError extends BaseError {
+class InvalidLengthError extends Errors_BaseError {
     constructor(value) {
         super(`Hex value \`"${value}"\` is an odd length (${value.length - 2} nibbles).`, {
             metaMessages: ['It must be an even length.'],
@@ -97346,7 +97895,7 @@ class InvalidLengthError extends BaseError {
  * // @error: Hex.SizeOverflowError: Size cannot exceed `8` bytes. Given size: `12` bytes.
  * ```
  */
-class SizeOverflowError extends BaseError {
+class SizeOverflowError extends Errors_BaseError {
     constructor({ givenSize, maxSize }) {
         super(`Size cannot exceed \`${maxSize}\` bytes. Given size: \`${givenSize}\` bytes.`);
         Object.defineProperty(this, "name", {
@@ -97368,7 +97917,7 @@ class SizeOverflowError extends BaseError {
  * // @error: Hex.SliceOffsetOutOfBoundsError: Slice starting at offset `6` is out-of-bounds (size: `5`).
  * ```
  */
-class SliceOffsetOutOfBoundsError extends BaseError {
+class SliceOffsetOutOfBoundsError extends Errors_BaseError {
     constructor({ offset, position, size, }) {
         super(`Slice ${position === 'start' ? 'starting' : 'ending'} at offset \`${offset}\` is out-of-bounds (size: \`${size}\`).`);
         Object.defineProperty(this, "name", {
@@ -97390,7 +97939,7 @@ class SliceOffsetOutOfBoundsError extends BaseError {
  * // @error: Hex.SizeExceedsPaddingSizeError: Hex size (`43`) exceeds padding size (`32`).
  * ```
  */
-class SizeExceedsPaddingSizeError extends BaseError {
+class SizeExceedsPaddingSizeError extends Errors_BaseError {
     constructor({ size, targetSize, type, }) {
         super(`${type.charAt(0).toUpperCase()}${type
             .slice(1)
@@ -98079,7 +98628,7 @@ async function verifyMessage(client, { address, message, factory, factoryData, s
 }
 //# sourceMappingURL=verifyMessage.js.map
 // EXTERNAL MODULE: ./node_modules/viem/_esm/errors/address.js
-var address = __nccwpck_require__(75345);
+var errors_address = __nccwpck_require__(75345);
 // EXTERNAL MODULE: ./node_modules/viem/_esm/utils/stringify.js
 var utils_stringify = __nccwpck_require__(52162);
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/errors/typedData.js
@@ -98110,7 +98659,7 @@ class InvalidStructTypeError extends base/* BaseError */.C {
 }
 //# sourceMappingURL=typedData.js.map
 // EXTERNAL MODULE: ./node_modules/viem/_esm/utils/address/isAddress.js
-var isAddress = __nccwpck_require__(89936);
+var address_isAddress = __nccwpck_require__(89936);
 // EXTERNAL MODULE: ./node_modules/viem/_esm/utils/regex.js
 var regex = __nccwpck_require__(63756);
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/typedData.js
@@ -98165,8 +98714,8 @@ function validateTypedData(parameters) {
                     size: Number.parseInt(size_) / 8,
                 });
             }
-            if (type === 'address' && typeof value === 'string' && !(0,isAddress/* isAddress */.P)(value))
-                throw new address/* InvalidAddressError */.M({ address: value });
+            if (type === 'address' && typeof value === 'string' && !(0,address_isAddress/* isAddress */.P)(value))
+                throw new errors_address/* InvalidAddressError */.M({ address: value });
             const bytesMatch = type.match(regex/* bytesRegex */.BD);
             if (bytesMatch) {
                 const [_type, size_] = bytesMatch;
@@ -100235,6 +100784,6304 @@ function defineChain(chain) {
     };
 }
 //# sourceMappingURL=defineChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/abey.js
+
+const abey = /*#__PURE__*/ defineChain({
+    id: 179,
+    name: 'ABEY Mainnet',
+    nativeCurrency: { name: 'ABEY', symbol: 'ABEY', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.abeychain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Abey Scan',
+            url: 'https://abeyscan.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=abey.js.map
+// EXTERNAL MODULE: ./node_modules/viem/_esm/constants/number.js
+var number = __nccwpck_require__(118);
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/constants/number.js
+
+const gasPerPubdataDefault = 50000n;
+const maxBytecodeSize = number/* maxUint16 */.Au * 32n;
+const requiredL1ToL2GasPerPubdataLimit = 800n;
+//# sourceMappingURL=number.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/formatters.js
+
+
+
+
+
+
+
+
+
+const formatters = {
+    block: /*#__PURE__*/ defineBlock({
+        format(args) {
+            const transactions = args.transactions?.map((transaction) => {
+                if (typeof transaction === 'string')
+                    return transaction;
+                const formatted = formatters.transaction?.format(transaction);
+                if (formatted.typeHex === '0x71')
+                    formatted.type = 'eip712';
+                else if (formatted.typeHex === '0xff')
+                    formatted.type = 'priority';
+                return formatted;
+            });
+            return {
+                l1BatchNumber: args.l1BatchNumber
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchNumber)
+                    : null,
+                l1BatchTimestamp: args.l1BatchTimestamp
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchTimestamp)
+                    : null,
+                transactions,
+            };
+        },
+    }),
+    transaction: /*#__PURE__*/ defineTransaction({
+        format(args) {
+            const transaction = {};
+            if (args.type === '0x71')
+                transaction.type = 'eip712';
+            else if (args.type === '0xff')
+                transaction.type = 'priority';
+            return {
+                ...transaction,
+                l1BatchNumber: args.l1BatchNumber
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchNumber)
+                    : null,
+                l1BatchTxIndex: args.l1BatchTxIndex
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchTxIndex)
+                    : null,
+            };
+        },
+    }),
+    transactionReceipt: /*#__PURE__*/ defineTransactionReceipt({
+        format(args) {
+            return {
+                l1BatchNumber: args.l1BatchNumber
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchNumber)
+                    : null,
+                l1BatchTxIndex: args.l1BatchTxIndex
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.l1BatchTxIndex)
+                    : null,
+                logs: args.logs.map((log) => {
+                    return {
+                        ...formatLog(log),
+                        l1BatchNumber: log.l1BatchNumber
+                            ? (0,fromHex/* hexToBigInt */.uU)(log.l1BatchNumber)
+                            : null,
+                        transactionLogIndex: (0,fromHex/* hexToNumber */.ME)(log.transactionLogIndex),
+                        logType: log.logType,
+                    };
+                }),
+                l2ToL1Logs: args.l2ToL1Logs.map((l2ToL1Log) => {
+                    return {
+                        blockNumber: (0,fromHex/* hexToBigInt */.uU)(l2ToL1Log.blockHash),
+                        blockHash: l2ToL1Log.blockHash,
+                        l1BatchNumber: l2ToL1Log.l1BatchNumber
+                            ? (0,fromHex/* hexToBigInt */.uU)(l2ToL1Log.l1BatchNumber)
+                            : null,
+                        transactionIndex: (0,fromHex/* hexToBigInt */.uU)(l2ToL1Log.transactionIndex),
+                        shardId: (0,fromHex/* hexToBigInt */.uU)(l2ToL1Log.shardId),
+                        isService: l2ToL1Log.isService,
+                        sender: l2ToL1Log.sender,
+                        key: l2ToL1Log.key,
+                        value: l2ToL1Log.value,
+                        transactionHash: l2ToL1Log.transactionHash,
+                        logIndex: (0,fromHex/* hexToBigInt */.uU)(l2ToL1Log.logIndex),
+                    };
+                }),
+            };
+        },
+    }),
+    transactionRequest: /*#__PURE__*/ (0,transactionRequest/* defineTransactionRequest */.bm)({
+        exclude: [
+            'customSignature',
+            'factoryDeps',
+            'gasPerPubdata',
+            'paymaster',
+            'paymasterInput',
+        ],
+        format(args) {
+            if (args.gasPerPubdata ||
+                (args.paymaster && args.paymasterInput) ||
+                args.factoryDeps ||
+                args.customSignature)
+                return {
+                    eip712Meta: {
+                        ...(args.gasPerPubdata
+                            ? { gasPerPubdata: (0,toHex/* toHex */.nj)(args.gasPerPubdata) }
+                            : { gasPerPubdata: (0,toHex/* toHex */.nj)(gasPerPubdataDefault) }),
+                        ...(args.paymaster && args.paymasterInput
+                            ? {
+                                paymasterParams: {
+                                    paymaster: args.paymaster,
+                                    paymasterInput: Array.from((0,toBytes/* hexToBytes */.aT)(args.paymasterInput)),
+                                },
+                            }
+                            : {}),
+                        ...(args.factoryDeps
+                            ? {
+                                factoryDeps: args.factoryDeps.map((dep) => Array.from((0,toBytes/* hexToBytes */.aT)(dep))),
+                            }
+                            : {}),
+                        ...(args.customSignature
+                            ? {
+                                customSignature: Array.from((0,toBytes/* hexToBytes */.aT)(args.customSignature)),
+                            }
+                            : {}),
+                    },
+                    type: '0x71',
+                };
+            return {};
+        },
+    }),
+};
+//# sourceMappingURL=formatters.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/experimental/eip7702/utils/serializeAuthorizationList.js
+
+
+/*
+ * Serializes an EIP-7702 authorization list.
+ */
+function serializeAuthorizationList(authorizationList) {
+    if (!authorizationList || authorizationList.length === 0)
+        return [];
+    const serializedAuthorizationList = [];
+    for (const authorization of authorizationList) {
+        const { contractAddress, chainId, nonce, ...signature } = authorization;
+        serializedAuthorizationList.push([
+            chainId ? (0,toHex/* toHex */.nj)(chainId) : '0x',
+            contractAddress,
+            nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+            ...toYParitySignatureArray({}, signature),
+        ]);
+    }
+    return serializedAuthorizationList;
+}
+//# sourceMappingURL=serializeAuthorizationList.js.map
+// EXTERNAL MODULE: ./node_modules/viem/_esm/errors/chain.js
+var chain = __nccwpck_require__(99504);
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/transaction/assertTransaction.js
+
+
+
+
+
+
+
+
+
+
+
+function assertTransactionEIP7702(transaction) {
+    const { authorizationList } = transaction;
+    if (authorizationList) {
+        for (const authorization of authorizationList) {
+            const { contractAddress, chainId } = authorization;
+            if (!(0,address_isAddress/* isAddress */.P)(contractAddress))
+                throw new errors_address/* InvalidAddressError */.M({ address: contractAddress });
+            if (chainId < 0)
+                throw new chain/* InvalidChainIdError */.qD({ chainId });
+        }
+    }
+    assertTransactionEIP1559(transaction);
+}
+function assertTransactionEIP4844(transaction) {
+    const { blobVersionedHashes } = transaction;
+    if (blobVersionedHashes) {
+        if (blobVersionedHashes.length === 0)
+            throw new EmptyBlobError();
+        for (const hash of blobVersionedHashes) {
+            const size_ = (0,data_size/* size */.E)(hash);
+            const version = (0,fromHex/* hexToNumber */.ME)((0,data_slice/* slice */.di)(hash, 0, 1));
+            if (size_ !== 32)
+                throw new InvalidVersionedHashSizeError({ hash, size: size_ });
+            if (version !== versionedHashVersionKzg)
+                throw new InvalidVersionedHashVersionError({
+                    hash,
+                    version,
+                });
+        }
+    }
+    assertTransactionEIP1559(transaction);
+}
+function assertTransactionEIP1559(transaction) {
+    const { chainId, maxPriorityFeePerGas, maxFeePerGas, to } = transaction;
+    if (chainId <= 0)
+        throw new chain/* InvalidChainIdError */.qD({ chainId });
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+    if (maxFeePerGas && maxFeePerGas > number/* maxUint256 */.Ao)
+        throw new node/* FeeCapTooHighError */.BG({ maxFeePerGas });
+    if (maxPriorityFeePerGas &&
+        maxFeePerGas &&
+        maxPriorityFeePerGas > maxFeePerGas)
+        throw new node/* TipAboveFeeCapError */.lN({ maxFeePerGas, maxPriorityFeePerGas });
+}
+function assertTransactionEIP2930(transaction) {
+    const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to } = transaction;
+    if (chainId <= 0)
+        throw new chain/* InvalidChainIdError */.qD({ chainId });
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+    if (maxPriorityFeePerGas || maxFeePerGas)
+        throw new base/* BaseError */.C('`maxFeePerGas`/`maxPriorityFeePerGas` is not a valid EIP-2930 Transaction attribute.');
+    if (gasPrice && gasPrice > number/* maxUint256 */.Ao)
+        throw new node/* FeeCapTooHighError */.BG({ maxFeePerGas: gasPrice });
+}
+function assertTransactionLegacy(transaction) {
+    const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to } = transaction;
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+    if (typeof chainId !== 'undefined' && chainId <= 0)
+        throw new chain/* InvalidChainIdError */.qD({ chainId });
+    if (maxPriorityFeePerGas || maxFeePerGas)
+        throw new base/* BaseError */.C('`maxFeePerGas`/`maxPriorityFeePerGas` is not a valid Legacy Transaction attribute.');
+    if (gasPrice && gasPrice > number/* maxUint256 */.Ao)
+        throw new node/* FeeCapTooHighError */.BG({ maxFeePerGas: gasPrice });
+}
+//# sourceMappingURL=assertTransaction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/transaction/serializeAccessList.js
+
+
+
+/*
+ * Serialize an  EIP-2930 access list
+ * @remarks
+ * Use to create a transaction serializer with support for EIP-2930 access lists
+ *
+ * @param accessList - Array of objects of address and arrays of Storage Keys
+ * @throws InvalidAddressError, InvalidStorageKeySizeError
+ * @returns Array of hex strings
+ */
+function serializeAccessList(accessList) {
+    if (!accessList || accessList.length === 0)
+        return [];
+    const serializedAccessList = [];
+    for (let i = 0; i < accessList.length; i++) {
+        const { address, storageKeys } = accessList[i];
+        for (let j = 0; j < storageKeys.length; j++) {
+            if (storageKeys[j].length - 2 !== 64) {
+                throw new errors_transaction/* InvalidStorageKeySizeError */.fZ({ storageKey: storageKeys[j] });
+            }
+        }
+        if (!(0,address_isAddress/* isAddress */.P)(address, { strict: false })) {
+            throw new errors_address/* InvalidAddressError */.M({ address });
+        }
+        serializedAccessList.push([address, storageKeys]);
+    }
+    return serializedAccessList;
+}
+//# sourceMappingURL=serializeAccessList.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/utils/transaction/serializeTransaction.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+function serializeTransaction(transaction, signature) {
+    const type = getTransactionType(transaction);
+    if (type === 'eip1559')
+        return serializeTransactionEIP1559(transaction, signature);
+    if (type === 'eip2930')
+        return serializeTransactionEIP2930(transaction, signature);
+    if (type === 'eip4844')
+        return serializeTransactionEIP4844(transaction, signature);
+    if (type === 'eip7702')
+        return serializeTransactionEIP7702(transaction, signature);
+    return serializeTransactionLegacy(transaction, signature);
+}
+function serializeTransactionEIP7702(transaction, signature) {
+    const { authorizationList, chainId, gas, nonce, to, value, maxFeePerGas, maxPriorityFeePerGas, accessList, data, } = transaction;
+    assertTransactionEIP7702(transaction);
+    const serializedAccessList = serializeAccessList(accessList);
+    const serializedAuthorizationList = serializeAuthorizationList(authorizationList);
+    return (0,concat/* concatHex */.aP)([
+        '0x04',
+        toRlp([
+            (0,toHex/* toHex */.nj)(chainId),
+            nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+            maxPriorityFeePerGas ? (0,toHex/* toHex */.nj)(maxPriorityFeePerGas) : '0x',
+            maxFeePerGas ? (0,toHex/* toHex */.nj)(maxFeePerGas) : '0x',
+            gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+            to ?? '0x',
+            value ? (0,toHex/* toHex */.nj)(value) : '0x',
+            data ?? '0x',
+            serializedAccessList,
+            serializedAuthorizationList,
+            ...toYParitySignatureArray(transaction, signature),
+        ]),
+    ]);
+}
+function serializeTransactionEIP4844(transaction, signature) {
+    const { chainId, gas, nonce, to, value, maxFeePerBlobGas, maxFeePerGas, maxPriorityFeePerGas, accessList, data, } = transaction;
+    assertTransactionEIP4844(transaction);
+    let blobVersionedHashes = transaction.blobVersionedHashes;
+    let sidecars = transaction.sidecars;
+    // If `blobs` are passed, we will need to compute the KZG commitments & proofs.
+    if (transaction.blobs &&
+        (typeof blobVersionedHashes === 'undefined' ||
+            typeof sidecars === 'undefined')) {
+        const blobs = (typeof transaction.blobs[0] === 'string'
+            ? transaction.blobs
+            : transaction.blobs.map((x) => (0,toHex/* bytesToHex */.My)(x)));
+        const kzg = transaction.kzg;
+        const commitments = blobsToCommitments({
+            blobs,
+            kzg,
+        });
+        if (typeof blobVersionedHashes === 'undefined')
+            blobVersionedHashes = commitmentsToVersionedHashes({
+                commitments,
+            });
+        if (typeof sidecars === 'undefined') {
+            const proofs = blobsToProofs({ blobs, commitments, kzg });
+            sidecars = toBlobSidecars({ blobs, commitments, proofs });
+        }
+    }
+    const serializedAccessList = serializeAccessList(accessList);
+    const serializedTransaction = [
+        (0,toHex/* toHex */.nj)(chainId),
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        maxPriorityFeePerGas ? (0,toHex/* toHex */.nj)(maxPriorityFeePerGas) : '0x',
+        maxFeePerGas ? (0,toHex/* toHex */.nj)(maxFeePerGas) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x',
+        serializedAccessList,
+        maxFeePerBlobGas ? (0,toHex/* toHex */.nj)(maxFeePerBlobGas) : '0x',
+        blobVersionedHashes ?? [],
+        ...toYParitySignatureArray(transaction, signature),
+    ];
+    const blobs = [];
+    const commitments = [];
+    const proofs = [];
+    if (sidecars)
+        for (let i = 0; i < sidecars.length; i++) {
+            const { blob, commitment, proof } = sidecars[i];
+            blobs.push(blob);
+            commitments.push(commitment);
+            proofs.push(proof);
+        }
+    return (0,concat/* concatHex */.aP)([
+        '0x03',
+        sidecars
+            ? // If sidecars are enabled, envelope turns into a "wrapper":
+                toRlp([serializedTransaction, blobs, commitments, proofs])
+            : // If sidecars are disabled, standard envelope is used:
+                toRlp(serializedTransaction),
+    ]);
+}
+function serializeTransactionEIP1559(transaction, signature) {
+    const { chainId, gas, nonce, to, value, maxFeePerGas, maxPriorityFeePerGas, accessList, data, } = transaction;
+    assertTransactionEIP1559(transaction);
+    const serializedAccessList = serializeAccessList(accessList);
+    const serializedTransaction = [
+        (0,toHex/* toHex */.nj)(chainId),
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        maxPriorityFeePerGas ? (0,toHex/* toHex */.nj)(maxPriorityFeePerGas) : '0x',
+        maxFeePerGas ? (0,toHex/* toHex */.nj)(maxFeePerGas) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x',
+        serializedAccessList,
+        ...toYParitySignatureArray(transaction, signature),
+    ];
+    return (0,concat/* concatHex */.aP)([
+        '0x02',
+        toRlp(serializedTransaction),
+    ]);
+}
+function serializeTransactionEIP2930(transaction, signature) {
+    const { chainId, gas, data, nonce, to, value, accessList, gasPrice } = transaction;
+    assertTransactionEIP2930(transaction);
+    const serializedAccessList = serializeAccessList(accessList);
+    const serializedTransaction = [
+        (0,toHex/* toHex */.nj)(chainId),
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        gasPrice ? (0,toHex/* toHex */.nj)(gasPrice) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x',
+        serializedAccessList,
+        ...toYParitySignatureArray(transaction, signature),
+    ];
+    return (0,concat/* concatHex */.aP)([
+        '0x01',
+        toRlp(serializedTransaction),
+    ]);
+}
+function serializeTransactionLegacy(transaction, signature) {
+    const { chainId = 0, gas, data, nonce, to, value, gasPrice } = transaction;
+    assertTransactionLegacy(transaction);
+    let serializedTransaction = [
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        gasPrice ? (0,toHex/* toHex */.nj)(gasPrice) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x',
+    ];
+    if (signature) {
+        const v = (() => {
+            // EIP-155 (inferred chainId)
+            if (signature.v >= 35n) {
+                const inferredChainId = (signature.v - 35n) / 2n;
+                if (inferredChainId > 0)
+                    return signature.v;
+                return 27n + (signature.v === 35n ? 0n : 1n);
+            }
+            // EIP-155 (explicit chainId)
+            if (chainId > 0)
+                return BigInt(chainId * 2) + BigInt(35n + signature.v - 27n);
+            // Pre-EIP-155 (no chainId)
+            const v = 27n + (signature.v === 27n ? 0n : 1n);
+            if (signature.v !== v)
+                throw new errors_transaction/* InvalidLegacyVError */.zW({ v: signature.v });
+            return v;
+        })();
+        const r = (0,src_trim/* trim */.B)(signature.r);
+        const s = (0,src_trim/* trim */.B)(signature.s);
+        serializedTransaction = [
+            ...serializedTransaction,
+            (0,toHex/* toHex */.nj)(v),
+            r === '0x00' ? '0x' : r,
+            s === '0x00' ? '0x' : s,
+        ];
+    }
+    else if (chainId > 0) {
+        serializedTransaction = [
+            ...serializedTransaction,
+            (0,toHex/* toHex */.nj)(chainId),
+            '0x',
+            '0x',
+        ];
+    }
+    return toRlp(serializedTransaction);
+}
+function toYParitySignatureArray(transaction, signature_) {
+    const signature = signature_ ?? transaction;
+    const { v, yParity } = signature;
+    if (typeof signature.r === 'undefined')
+        return [];
+    if (typeof signature.s === 'undefined')
+        return [];
+    if (typeof v === 'undefined' && typeof yParity === 'undefined')
+        return [];
+    const r = (0,src_trim/* trim */.B)(signature.r);
+    const s = (0,src_trim/* trim */.B)(signature.s);
+    const yParity_ = (() => {
+        if (typeof yParity === 'number')
+            return yParity ? (0,toHex/* toHex */.nj)(1) : '0x';
+        if (v === 0n)
+            return '0x';
+        if (v === 1n)
+            return (0,toHex/* toHex */.nj)(1);
+        return v === 27n ? '0x' : (0,toHex/* toHex */.nj)(1);
+    })();
+    return [yParity_, r === '0x00' ? '0x' : r, s === '0x00' ? '0x' : s];
+}
+//# sourceMappingURL=serializeTransaction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/errors/transaction.js
+
+class InvalidEip712TransactionError extends base/* BaseError */.C {
+    constructor() {
+        super([
+            'Transaction is not an EIP712 transaction.',
+            '',
+            'Transaction must:',
+            '  - include `type: "eip712"`',
+            '  - include one of the following: `customSignature`, `paymaster`, `paymasterInput`, `gasPerPubdata`, `factoryDeps`',
+        ].join('\n'), { name: 'InvalidEip712TransactionError' });
+    }
+}
+//# sourceMappingURL=transaction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/utils/isEip712Transaction.js
+function isEIP712Transaction(transaction) {
+    if (transaction.type === 'eip712')
+        return true;
+    if (('customSignature' in transaction && transaction.customSignature) ||
+        ('paymaster' in transaction && transaction.paymaster) ||
+        ('paymasterInput' in transaction && transaction.paymasterInput) ||
+        ('gasPerPubdata' in transaction &&
+            typeof transaction.gasPerPubdata === 'bigint') ||
+        ('factoryDeps' in transaction && transaction.factoryDeps))
+        return true;
+    return false;
+}
+//# sourceMappingURL=isEip712Transaction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/utils/assertEip712Transaction.js
+
+
+
+
+
+
+function assertEip712Transaction(transaction) {
+    const { chainId, to, from, paymaster, paymasterInput } = transaction;
+    if (!isEIP712Transaction(transaction))
+        throw new InvalidEip712TransactionError();
+    if (!chainId || chainId <= 0)
+        throw new chain/* InvalidChainIdError */.qD({ chainId });
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+    if (from && !(0,address_isAddress/* isAddress */.P)(from))
+        throw new errors_address/* InvalidAddressError */.M({ address: from });
+    if (paymaster && !(0,address_isAddress/* isAddress */.P)(paymaster))
+        throw new errors_address/* InvalidAddressError */.M({ address: paymaster });
+    if (paymaster && !paymasterInput) {
+        throw new base/* BaseError */.C('`paymasterInput` must be provided when `paymaster` is defined');
+    }
+    if (!paymaster && paymasterInput) {
+        throw new base/* BaseError */.C('`paymaster` must be provided when `paymasterInput` is defined');
+    }
+}
+//# sourceMappingURL=assertEip712Transaction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/serializers.js
+
+
+
+
+
+
+
+function serializers_serializeTransaction(transaction, signature) {
+    if (isEIP712Transaction(transaction))
+        return serializeTransactionEIP712(transaction);
+    return serializeTransaction(transaction, signature);
+}
+const serializers = {
+    transaction: serializers_serializeTransaction,
+};
+function serializeTransactionEIP712(transaction) {
+    const { chainId, gas, nonce, to, from, value, maxFeePerGas, maxPriorityFeePerGas, customSignature, factoryDeps, paymaster, paymasterInput, gasPerPubdata, data, } = transaction;
+    assertEip712Transaction(transaction);
+    const serializedTransaction = [
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        maxPriorityFeePerGas ? (0,toHex/* toHex */.nj)(maxPriorityFeePerGas) : '0x',
+        maxFeePerGas ? (0,toHex/* toHex */.nj)(maxFeePerGas) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x0',
+        (0,toHex/* toHex */.nj)(chainId),
+        (0,toHex/* toHex */.nj)(''),
+        (0,toHex/* toHex */.nj)(''),
+        (0,toHex/* toHex */.nj)(chainId),
+        from ?? '0x',
+        gasPerPubdata ? (0,toHex/* toHex */.nj)(gasPerPubdata) : (0,toHex/* toHex */.nj)(gasPerPubdataDefault),
+        factoryDeps ?? [],
+        customSignature ?? '0x', // EIP712 signature
+        paymaster && paymasterInput ? [paymaster, paymasterInput] : [],
+    ];
+    return (0,concat/* concatHex */.aP)([
+        '0x71',
+        toRlp(serializedTransaction),
+    ]);
+}
+//# sourceMappingURL=serializers.js.map
+// EXTERNAL MODULE: ./node_modules/viem/_esm/utils/data/pad.js
+var data_pad = __nccwpck_require__(7917);
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/errors/bytecode.js
+
+class BytecodeLengthExceedsMaxSizeError extends base/* BaseError */.C {
+    constructor({ givenLength, maxBytecodeSize, }) {
+        super(`Bytecode cannot be longer than ${maxBytecodeSize} bytes. Given length: ${givenLength}`, { name: 'BytecodeLengthExceedsMaxSizeError' });
+    }
+}
+class BytecodeLengthInWordsMustBeOddError extends base/* BaseError */.C {
+    constructor({ givenLengthInWords }) {
+        super(`Bytecode length in 32-byte words must be odd. Given length in words: ${givenLengthInWords}`, { name: 'BytecodeLengthInWordsMustBeOddError' });
+    }
+}
+class BytecodeLengthMustBeDivisibleBy32Error extends base/* BaseError */.C {
+    constructor({ givenLength }) {
+        super(`The bytecode length in bytes must be divisible by 32. Given length: ${givenLength}`, { name: 'BytecodeLengthMustBeDivisibleBy32Error' });
+    }
+}
+//# sourceMappingURL=bytecode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/utils/hashBytecode.js
+
+
+
+
+
+function hashBytecode(bytecode) {
+    const bytecodeBytes = (0,toBytes/* toBytes */.ZJ)(bytecode);
+    if (bytecodeBytes.length % 32 !== 0)
+        throw new BytecodeLengthMustBeDivisibleBy32Error({
+            givenLength: bytecodeBytes.length,
+        });
+    if (bytecodeBytes.length > maxBytecodeSize)
+        throw new BytecodeLengthExceedsMaxSizeError({
+            givenLength: bytecodeBytes.length,
+            maxBytecodeSize: maxBytecodeSize,
+        });
+    const hashStr = sha256_sha256(bytecodeBytes);
+    const hash = (0,toBytes/* toBytes */.ZJ)(hashStr);
+    // Note that the length of the bytecode
+    // should be provided in 32-byte words.
+    const bytecodeLengthInWords = bytecodeBytes.length / 32;
+    if (bytecodeLengthInWords % 2 === 0) {
+        throw new BytecodeLengthInWordsMustBeOddError({
+            givenLengthInWords: bytecodeLengthInWords,
+        });
+    }
+    const bytecodeLength = (0,toBytes/* toBytes */.ZJ)(bytecodeLengthInWords);
+    // The bytecode should always take the first 2 bytes of the bytecode hash,
+    // so we pad it from the left in case the length is smaller than 2 bytes.
+    const bytecodeLengthPadded = (0,data_pad/* pad */.eV)(bytecodeLength, { size: 2 });
+    const codeHashVersion = new Uint8Array([1, 0]);
+    hash.set(codeHashVersion, 0);
+    hash.set(bytecodeLengthPadded, 2);
+    return hash;
+}
+//# sourceMappingURL=hashBytecode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/utils/getEip712Domain.js
+
+
+
+
+const getEip712Domain_getEip712Domain = (transaction) => {
+    assertEip712Transaction(transaction);
+    const message = transactionToMessage(transaction);
+    return {
+        domain: {
+            name: 'zkSync',
+            version: '2',
+            chainId: transaction.chainId,
+        },
+        types: {
+            Transaction: [
+                { name: 'txType', type: 'uint256' },
+                { name: 'from', type: 'uint256' },
+                { name: 'to', type: 'uint256' },
+                { name: 'gasLimit', type: 'uint256' },
+                { name: 'gasPerPubdataByteLimit', type: 'uint256' },
+                { name: 'maxFeePerGas', type: 'uint256' },
+                { name: 'maxPriorityFeePerGas', type: 'uint256' },
+                { name: 'paymaster', type: 'uint256' },
+                { name: 'nonce', type: 'uint256' },
+                { name: 'value', type: 'uint256' },
+                { name: 'data', type: 'bytes' },
+                { name: 'factoryDeps', type: 'bytes32[]' },
+                { name: 'paymasterInput', type: 'bytes' },
+            ],
+        },
+        primaryType: 'Transaction',
+        message: message,
+    };
+};
+//////////////////////////////////////////////////////////////////////////////
+// Utilities
+function transactionToMessage(transaction) {
+    const { gas, nonce, to, from, value, maxFeePerGas, maxPriorityFeePerGas, factoryDeps, paymaster, paymasterInput, gasPerPubdata, data, } = transaction;
+    return {
+        txType: 113n,
+        from: BigInt(from),
+        to: to ? BigInt(to) : 0n,
+        gasLimit: gas ?? 0n,
+        gasPerPubdataByteLimit: gasPerPubdata ?? gasPerPubdataDefault,
+        maxFeePerGas: maxFeePerGas ?? 0n,
+        maxPriorityFeePerGas: maxPriorityFeePerGas ?? 0n,
+        paymaster: paymaster ? BigInt(paymaster) : 0n,
+        nonce: nonce ? BigInt(nonce) : 0n,
+        value: value ?? 0n,
+        data: data ? data : '0x0',
+        factoryDeps: factoryDeps?.map((dep) => (0,toHex/* toHex */.nj)(hashBytecode(dep))) ?? [],
+        paymasterInput: paymasterInput ? paymasterInput : '0x',
+    };
+}
+//# sourceMappingURL=getEip712Domain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/zksync/chainConfig.js
+
+
+
+const chainConfig = {
+    formatters: formatters,
+    serializers: serializers,
+    custom: {
+        getEip712Domain: getEip712Domain_getEip712Domain,
+    },
+};
+//# sourceMappingURL=chainConfig.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/abstractTestnet.js
+
+
+const abstractTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 11_124,
+    name: 'Abstract Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.testnet.abs.xyz'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Abstract Block Explorer',
+            url: 'https://sepolia.abscan.org',
+        },
+    },
+    testnet: true,
+    contracts: {
+        multicall3: {
+            address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
+            blockCreated: 358349,
+        },
+        universalSignatureVerifier: {
+            address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+            blockCreated: 431682,
+        },
+    },
+});
+//# sourceMappingURL=abstractTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/acala.js
+
+const acala = /*#__PURE__*/ defineChain({
+    id: 787,
+    name: 'Acala',
+    network: 'acala',
+    nativeCurrency: {
+        name: 'Acala',
+        symbol: 'ACA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-rpc-acala.aca-api.network'],
+            webSocket: ['wss://eth-rpc-acala.aca-api.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Acala Blockscout',
+            url: 'https://blockscout.acala.network',
+            apiUrl: 'https://blockscout.acala.network/api',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=acala.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/acria.js
+
+const acria = /*#__PURE__*/ defineChain({
+    id: 47,
+    name: 'Acria IntelliChain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ACRIA',
+        symbol: 'ACRIA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://aic.acria.ai'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Acria Explorer',
+            url: 'https://explorer.acria.ai',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=acria.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/adf.js
+
+const adf = /*#__PURE__*/ defineChain({
+    id: 1215,
+    name: 'ADF Chain',
+    nativeCurrency: { name: 'ADDFILL', symbol: 'ADF', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.adftechnology.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ADF Mainnet Explorer',
+            url: 'https://explorer.adftechnology.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=adf.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/aioz.js
+
+const aioz = /*#__PURE__*/ defineChain({
+    id: 168,
+    name: 'AIOZ Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'AIOZ',
+        symbol: 'AIOZ',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-dataseed.aioz.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'AIOZ Explorer',
+            url: 'https://explorer.aioz.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=aioz.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/alephZero.js
+
+const alephZero = /*#__PURE__*/ defineChain({
+    id: 41_455,
+    name: 'Aleph Zero',
+    nativeCurrency: { name: 'Aleph Zero', symbol: 'AZERO', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.alephzero.raas.gelato.cloud'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Aleph Zero EVM Explorer',
+            url: 'https://evm-explorer.alephzero.org',
+            apiUrl: 'https://evm-explorer.alephzero.org/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 4603377,
+        },
+    },
+});
+//# sourceMappingURL=alephZero.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/alienX.js
+
+const alienx = /*#__PURE__*/ defineChain({
+    id: 10241024,
+    name: 'AlienX Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.alienxchain.io/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'AlienX Explorer',
+            url: 'https://explorer.alienxchain.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=alienX.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/alienXHalTestnet.js
+
+const alienxHalTestnet = /*#__PURE__*/ defineChain({
+    id: 10241025,
+    name: 'ALIENX Hal Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://hal-rpc.alienxchain.io/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'AlienX Explorer',
+            url: 'https://hal-explorer.alienxchain.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=alienXHalTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/op-stack/contracts.js
+/**
+ * Predeploy contracts for OP Stack.
+ * @see https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md
+ */
+const contracts_contracts = {
+    gasPriceOracle: { address: '0x420000000000000000000000000000000000000F' },
+    l1Block: { address: '0x4200000000000000000000000000000000000015' },
+    l2CrossDomainMessenger: {
+        address: '0x4200000000000000000000000000000000000007',
+    },
+    l2Erc721Bridge: { address: '0x4200000000000000000000000000000000000014' },
+    l2StandardBridge: { address: '0x4200000000000000000000000000000000000010' },
+    l2ToL1MessagePasser: {
+        address: '0x4200000000000000000000000000000000000016',
+    },
+};
+//# sourceMappingURL=contracts.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/op-stack/formatters.js
+
+
+
+
+const formatters_formatters = {
+    block: /*#__PURE__*/ defineBlock({
+        format(args) {
+            const transactions = args.transactions?.map((transaction) => {
+                if (typeof transaction === 'string')
+                    return transaction;
+                const formatted = formatTransaction(transaction);
+                if (formatted.typeHex === '0x7e') {
+                    formatted.isSystemTx = transaction.isSystemTx;
+                    formatted.mint = transaction.mint
+                        ? (0,fromHex/* hexToBigInt */.uU)(transaction.mint)
+                        : undefined;
+                    formatted.sourceHash = transaction.sourceHash;
+                    formatted.type = 'deposit';
+                }
+                return formatted;
+            });
+            return {
+                transactions,
+                stateRoot: args.stateRoot,
+            };
+        },
+    }),
+    transaction: /*#__PURE__*/ defineTransaction({
+        format(args) {
+            const transaction = {};
+            if (args.type === '0x7e') {
+                transaction.isSystemTx = args.isSystemTx;
+                transaction.mint = args.mint ? (0,fromHex/* hexToBigInt */.uU)(args.mint) : undefined;
+                transaction.sourceHash = args.sourceHash;
+                transaction.type = 'deposit';
+            }
+            return transaction;
+        },
+    }),
+    transactionReceipt: /*#__PURE__*/ defineTransactionReceipt({
+        format(args) {
+            return {
+                l1GasPrice: args.l1GasPrice ? (0,fromHex/* hexToBigInt */.uU)(args.l1GasPrice) : null,
+                l1GasUsed: args.l1GasUsed ? (0,fromHex/* hexToBigInt */.uU)(args.l1GasUsed) : null,
+                l1Fee: args.l1Fee ? (0,fromHex/* hexToBigInt */.uU)(args.l1Fee) : null,
+                l1FeeScalar: args.l1FeeScalar ? Number(args.l1FeeScalar) : null,
+            };
+        },
+    }),
+};
+//# sourceMappingURL=formatters.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/op-stack/serializers.js
+
+
+
+
+
+
+function op_stack_serializers_serializeTransaction(transaction, signature) {
+    if (isDeposit(transaction))
+        return serializeTransactionDeposit(transaction);
+    return serializeTransaction(transaction, signature);
+}
+const serializers_serializers = {
+    transaction: op_stack_serializers_serializeTransaction,
+};
+function serializeTransactionDeposit(transaction) {
+    assertTransactionDeposit(transaction);
+    const { sourceHash, data, from, gas, isSystemTx, mint, to, value } = transaction;
+    const serializedTransaction = [
+        sourceHash,
+        from,
+        to ?? '0x',
+        mint ? (0,toHex/* toHex */.nj)(mint) : '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        isSystemTx ? '0x1' : '0x',
+        data ?? '0x',
+    ];
+    return (0,concat/* concatHex */.aP)([
+        '0x7e',
+        toRlp(serializedTransaction),
+    ]);
+}
+function isDeposit(transaction) {
+    if (transaction.type === 'deposit')
+        return true;
+    if (typeof transaction.sourceHash !== 'undefined')
+        return true;
+    return false;
+}
+function assertTransactionDeposit(transaction) {
+    const { from, to } = transaction;
+    if (from && !(0,address_isAddress/* isAddress */.P)(from))
+        throw new errors_address/* InvalidAddressError */.M({ address: from });
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+}
+//# sourceMappingURL=serializers.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/op-stack/chainConfig.js
+
+
+
+const chainConfig_chainConfig = {
+    contracts: contracts_contracts,
+    formatters: formatters_formatters,
+    serializers: serializers_serializers,
+};
+//# sourceMappingURL=chainConfig.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ancient8.js
+
+
+const sourceId = 1; // mainnet
+const ancient8 = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 888888888,
+    name: 'Ancient8',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.ancient8.gg'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ancient8 explorer',
+            url: 'https://scan.ancient8.gg',
+            apiUrl: 'https://scan.ancient8.gg/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [sourceId]: {
+                address: '0xB09DC08428C8b4EFB4ff9C0827386CDF34277996',
+            },
+        },
+        portal: {
+            [sourceId]: {
+                address: '0x639F2AECE398Aa76b07e59eF6abe2cFe32bacb68',
+                blockCreated: 19070571,
+            },
+        },
+        l1StandardBridge: {
+            [sourceId]: {
+                address: '0xd5e3eDf5b68135D559D572E26bF863FBC1950033',
+                blockCreated: 19070571,
+            },
+        },
+    },
+    sourceId,
+});
+//# sourceMappingURL=ancient8.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ancient8Sepolia.js
+
+
+const ancient8Sepolia_sourceId = 11_155_111; // sepolia
+const ancient8Sepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 28122024,
+    name: 'Ancient8 Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpcv2-testnet.ancient8.gg'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ancient8 Celestia Testnet explorer',
+            url: 'https://scanv2-testnet.ancient8.gg',
+            apiUrl: 'https://scanv2-testnet.ancient8.gg/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [ancient8Sepolia_sourceId]: {
+                address: '0x942fD5017c0F60575930D8574Eaca13BEcD6e1bB',
+            },
+        },
+        portal: {
+            [ancient8Sepolia_sourceId]: {
+                address: '0xfa1d9E26A6aCD7b22115D27572c1221B9803c960',
+                blockCreated: 4972908,
+            },
+        },
+        l1StandardBridge: {
+            [ancient8Sepolia_sourceId]: {
+                address: '0xF6Bc0146d3c74D48306e79Ae134A260E418C9335',
+                blockCreated: 4972908,
+            },
+        },
+    },
+    sourceId: ancient8Sepolia_sourceId,
+});
+//# sourceMappingURL=ancient8Sepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/anvil.js
+
+const anvil = /*#__PURE__*/ defineChain({
+    id: 31_337,
+    name: 'Anvil',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['http://127.0.0.1:8545'],
+            webSocket: ['ws://127.0.0.1:8545'],
+        },
+    },
+});
+//# sourceMappingURL=anvil.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/apeChain.js
+
+const apeChain_sourceId = 42_161; // Arbitrum One
+const apeChain = /*#__PURE__*/ defineChain({
+    id: 33139,
+    name: 'Ape Chain',
+    nativeCurrency: {
+        name: 'ApeCoin',
+        symbol: 'APE',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.apechain.com/http'],
+            webSocket: ['wss://rpc.apechain.com/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Apescan',
+            url: 'https://apescan.io',
+            apiUrl: 'https://api.apescan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 20889,
+        },
+    },
+    sourceId: apeChain_sourceId,
+});
+//# sourceMappingURL=apeChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/apexTestnet.js
+
+const apexTestnet = /*#__PURE__*/ defineChain({
+    id: 3993,
+    name: 'APEX Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-testnet.apexlayer.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://exp-testnet.apexlayer.xyz',
+            apiUrl: 'https://exp-testnet.apexlayer.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xf7642be33a6b18D16a995657adb5a68CD0438aE2',
+            blockCreated: 283775,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=apexTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/arbitrum.js
+
+const arbitrum = /*#__PURE__*/ defineChain({
+    id: 42_161,
+    name: 'Arbitrum One',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://arb1.arbitrum.io/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Arbiscan',
+            url: 'https://arbiscan.io',
+            apiUrl: 'https://api.arbiscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 7654707,
+        },
+    },
+});
+//# sourceMappingURL=arbitrum.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/arbitrumGoerli.js
+
+const arbitrumGoerli = /*#__PURE__*/ defineChain({
+    id: 421_613,
+    name: 'Arbitrum Goerli',
+    nativeCurrency: {
+        name: 'Arbitrum Goerli Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://goerli-rollup.arbitrum.io/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Arbiscan',
+            url: 'https://goerli.arbiscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 88114,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=arbitrumGoerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/arbitrumNova.js
+
+const arbitrumNova = /*#__PURE__*/ defineChain({
+    id: 42_170,
+    name: 'Arbitrum Nova',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://nova.arbitrum.io/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Arbiscan',
+            url: 'https://nova.arbiscan.io',
+            apiUrl: 'https://api-nova.arbiscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1746963,
+        },
+    },
+});
+//# sourceMappingURL=arbitrumNova.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/arbitrumSepolia.js
+
+const arbitrumSepolia = /*#__PURE__*/ defineChain({
+    id: 421_614,
+    name: 'Arbitrum Sepolia',
+    nativeCurrency: {
+        name: 'Arbitrum Sepolia Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia-rollup.arbitrum.io/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Arbiscan',
+            url: 'https://sepolia.arbiscan.io',
+            apiUrl: 'https://api-sepolia.arbiscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 81930,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=arbitrumSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/areonNetwork.js
+
+const areonNetwork = /*#__PURE__*/ defineChain({
+    id: 463,
+    name: 'Areon Network',
+    nativeCurrency: { decimals: 18, name: 'AREA', symbol: 'AREA' },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet-rpc.areon.network'],
+            webSocket: ['wss://mainnet-ws.areon.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Areonscan',
+            url: 'https://areonscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 353286,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=areonNetwork.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/areonNetworkTestnet.js
+
+const areonNetworkTestnet = /*#__PURE__*/ defineChain({
+    id: 462,
+    name: 'Areon Network Testnet',
+    nativeCurrency: { decimals: 18, name: 'TAREA', symbol: 'TAREA' },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.areon.network'],
+            webSocket: ['wss://testnet-ws.areon.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Areonscan',
+            url: 'https://areonscan.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=areonNetworkTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/artelaTestnet.js
+
+const artelaTestnet = /*#__PURE__*/ defineChain({
+    id: 11822,
+    name: 'Artela Testnet',
+    nativeCurrency: { name: 'ART', symbol: 'ART', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://betanet-rpc1.artela.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Artela',
+            url: 'https://betanet-scan.artela.network',
+            apiUrl: 'https://betanet-scan.artela.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xd07c8635f76e8745Ee7092fbb6e8fbc5FeF09DD7',
+            blockCreated: 7001871,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=artelaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/arthera.js
+
+const arthera = /*#__PURE__*/ defineChain({
+    id: 10242,
+    name: 'Arthera',
+    nativeCurrency: { name: 'Arthera', symbol: 'AA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.arthera.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Arthera EVM Explorer',
+            url: 'https://explorer.arthera.net',
+            apiUrl: 'https://explorer.arthera.net/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 4502791,
+        },
+    },
+});
+//# sourceMappingURL=arthera.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/assetChain.js
+
+const assetChain = /*#__PURE__*/ defineChain({
+    id: 42_420,
+    name: 'AssetChain Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Real World Asset',
+        symbol: 'RWA',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet-rpc.assetchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Asset Chain Explorer',
+            url: 'https://scan.assetchain.org',
+            apiUrl: 'https://scan.assetchain.org/api',
+        },
+    },
+    testnet: false,
+    contracts: {},
+});
+//# sourceMappingURL=assetChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/assetChainTestnet.js
+
+const assetChainTestnet = /*#__PURE__*/ defineChain({
+    id: 42_421,
+    name: 'AssetChain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Real World Asset',
+        symbol: 'RWA',
+    },
+    rpcUrls: {
+        default: { http: ['https://enugu-rpc.assetchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Asset Chain Testnet Explorer',
+            url: 'https://scan-testnet.assetchain.org',
+            apiUrl: 'https://scan-testnet.assetchain.org/api',
+        },
+    },
+    testnet: true,
+    contracts: {
+        multicall3: {
+            address: '0x989F832D35988cb5e3eB001Fa2Fe789469EC31Ea',
+            blockCreated: 17177,
+        },
+    },
+});
+//# sourceMappingURL=assetChainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/astar.js
+
+const astar = /*#__PURE__*/ defineChain({
+    id: 592,
+    name: 'Astar',
+    network: 'astar-mainnet',
+    nativeCurrency: {
+        name: 'Astar',
+        symbol: 'ASTR',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://astar.api.onfinality.io/public'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Astar Subscan',
+            url: 'https://astar.subscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 761794,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=astar.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/astarZkEVM.js
+
+const astarZkEVM = /*#__PURE__*/ defineChain({
+    id: 3_776,
+    name: 'Astar zkEVM',
+    network: 'AstarZkEVM',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-zkevm.astar.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Astar zkEVM Explorer',
+            url: 'https://astar-zkevm.explorer.startale.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 93528,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=astarZkEVM.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/astarZkyoto.js
+
+const astarZkyoto = /*#__PURE__*/ defineChain({
+    id: 6_038_361,
+    name: 'Astar zkEVM Testnet zKyoto',
+    network: 'zKyoto',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.startale.com/zkyoto'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'zKyoto Explorer',
+            url: 'https://zkyoto.explorer.startale.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 196153,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=astarZkyoto.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/atletaOlympia.js
+
+const atletaOlympia = /*#__PURE__*/ defineChain({
+    id: 2340,
+    name: 'Atleta Olympia',
+    nativeCurrency: { decimals: 18, name: 'Atla', symbol: 'ATLA' },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://testnet-rpc.atleta.network:9944',
+                'https://testnet-rpc.atleta.network',
+            ],
+            ws: ['wss://testnet-rpc.atleta.network:9944'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Atleta Olympia Explorer',
+            url: 'https://blockscout.atleta.network',
+            apiUrl: 'https://blockscout.atleta.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x1472ec6392180fb84F345d2455bCC75B26577115',
+            blockCreated: 1076473,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=atletaOlympia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/aurora.js
+
+const aurora = /*#__PURE__*/ defineChain({
+    id: 1313161554,
+    name: 'Aurora',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet.aurora.dev'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Aurorascan',
+            url: 'https://aurorascan.dev',
+            apiUrl: 'https://aurorascan.dev/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 62907816,
+        },
+    },
+});
+//# sourceMappingURL=aurora.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/auroraTestnet.js
+
+const auroraTestnet = /*#__PURE__*/ defineChain({
+    id: 1313161555,
+    name: 'Aurora Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://testnet.aurora.dev'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Aurorascan',
+            url: 'https://testnet.aurorascan.dev',
+            apiUrl: 'https://testnet.aurorascan.dev/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=auroraTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/auroria.js
+
+const auroria = /*#__PURE__*/ defineChain({
+    id: 205205,
+    name: 'Auroria Testnet',
+    network: 'auroria',
+    nativeCurrency: {
+        name: 'Auroria Stratis',
+        symbol: 'tSTRAX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://auroria.rpc.stratisevm.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Auroria Testnet Explorer',
+            url: 'https://auroria.explorer.stratisevm.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=auroria.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/avalanche.js
+
+const avalanche = /*#__PURE__*/ defineChain({
+    id: 43_114,
+    name: 'Avalanche',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Avalanche',
+        symbol: 'AVAX',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.avax.network/ext/bc/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SnowTrace',
+            url: 'https://snowtrace.io',
+            apiUrl: 'https://api.snowtrace.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 11907934,
+        },
+    },
+});
+//# sourceMappingURL=avalanche.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/avalancheFuji.js
+
+const avalancheFuji = /*#__PURE__*/ defineChain({
+    id: 43_113,
+    name: 'Avalanche Fuji',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Avalanche Fuji',
+        symbol: 'AVAX',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SnowTrace',
+            url: 'https://testnet.snowtrace.io',
+            apiUrl: 'https://api-testnet.snowtrace.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 7096959,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=avalancheFuji.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/b3.js
+
+const b3_sourceId = 8453; // base
+const b3 = /*#__PURE__*/ defineChain({
+    id: 8333,
+    name: 'B3',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet-rpc.b3.fun/http'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.b3.fun',
+        },
+    },
+    sourceId: b3_sourceId,
+});
+//# sourceMappingURL=b3.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/b3Sepolia.js
+
+const b3Sepolia_sourceId = 168_587_773; // base-sepolia
+const b3Sepolia = /*#__PURE__*/ defineChain({
+    id: 1993,
+    name: 'B3 Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.b3.fun/http'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://sepolia.explorer.b3.fun',
+        },
+    },
+    testnet: true,
+    sourceId: b3Sepolia_sourceId,
+});
+//# sourceMappingURL=b3Sepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bahamut.js
+
+const bahamut = /*#__PURE__*/ defineChain({
+    id: 5165,
+    network: 'bahamut',
+    name: 'Bahamut',
+    nativeCurrency: { name: 'Fasttoken', symbol: 'FTN', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc1.bahamut.io',
+                'https://bahamut-rpc.publicnode.com',
+                'https://rpc2.bahamut.io',
+            ],
+            webSocket: [
+                'wss://ws1.sahara.bahamutchain.com',
+                'wss://bahamut-rpc.publicnode.com',
+                'wss://ws2.sahara.bahamutchain.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ftnscan',
+            url: 'https://www.ftnscan.com',
+            apiUrl: 'https://www.ftnscan.com/api',
+        },
+    },
+});
+//# sourceMappingURL=bahamut.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/base.js
+
+
+const base_sourceId = 1; // mainnet
+const base_base = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 8453,
+    name: 'Base',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.base.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Basescan',
+            url: 'https://basescan.org',
+            apiUrl: 'https://api.basescan.org/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [base_sourceId]: {
+                address: '0x43edB88C4B80fDD2AdFF2412A7BebF9dF42cB40e',
+            },
+        },
+        l2OutputOracle: {
+            [base_sourceId]: {
+                address: '0x56315b90c40730925ec5485cf004d835058518A0',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 5022,
+        },
+        portal: {
+            [base_sourceId]: {
+                address: '0x49048044D57e1C92A77f79988d21Fa8fAF74E97e',
+                blockCreated: 17482143,
+            },
+        },
+        l1StandardBridge: {
+            [base_sourceId]: {
+                address: '0x3154Cf16ccdb4C6d922629664174b904d80F2C35',
+                blockCreated: 17482143,
+            },
+        },
+    },
+    sourceId: base_sourceId,
+});
+//# sourceMappingURL=base.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/baseGoerli.js
+
+
+const baseGoerli_sourceId = 5; // goerli
+const baseGoerli = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 84531,
+    name: 'Base Goerli',
+    nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://goerli.base.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Basescan',
+            url: 'https://goerli.basescan.org',
+            apiUrl: 'https://goerli.basescan.org/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [baseGoerli_sourceId]: {
+                address: '0x2A35891ff30313CcFa6CE88dcf3858bb075A2298',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1376988,
+        },
+        portal: {
+            [baseGoerli_sourceId]: {
+                address: '0xe93c8cD0D409341205A592f8c4Ac1A5fe5585cfA',
+            },
+        },
+        l1StandardBridge: {
+            [baseGoerli_sourceId]: {
+                address: '0xfA6D8Ee5BE770F84FC001D098C4bD604Fe01284a',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: baseGoerli_sourceId,
+});
+//# sourceMappingURL=baseGoerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/baseSepolia.js
+
+
+const baseSepolia_sourceId = 11_155_111; // sepolia
+const baseSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 84532,
+    network: 'base-sepolia',
+    name: 'Base Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.base.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Basescan',
+            url: 'https://sepolia.basescan.org',
+            apiUrl: 'https://api-sepolia.basescan.org/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [baseSepolia_sourceId]: {
+                address: '0xd6E6dBf4F7EA0ac412fD8b65ED297e64BB7a06E1',
+            },
+        },
+        l2OutputOracle: {
+            [baseSepolia_sourceId]: {
+                address: '0x84457ca9D0163FbC4bbfe4Dfbb20ba46e48DF254',
+            },
+        },
+        portal: {
+            [baseSepolia_sourceId]: {
+                address: '0x49f53e41452c74589e85ca1677426ba426459e85',
+                blockCreated: 4446677,
+            },
+        },
+        l1StandardBridge: {
+            [baseSepolia_sourceId]: {
+                address: '0xfd0Bf71F60660E2f608ed56e1659C450eB113120',
+                blockCreated: 4446677,
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1059647,
+        },
+    },
+    testnet: true,
+    sourceId: baseSepolia_sourceId,
+});
+//# sourceMappingURL=baseSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/beam.js
+
+const beam = /*#__PURE__*/ defineChain({
+    id: 4337,
+    name: 'Beam',
+    network: 'beam',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Beam',
+        symbol: 'BEAM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://build.onbeam.com/rpc'],
+            webSocket: ['wss://build.onbeam.com/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Beam Explorer',
+            url: 'https://subnets.avax.network/beam',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x4956f15efdc3dc16645e90cc356eafa65ffc65ec',
+            blockCreated: 1,
+        },
+    },
+});
+//# sourceMappingURL=beam.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/beamTestnet.js
+
+const beamTestnet = /*#__PURE__*/ defineChain({
+    id: 13337,
+    name: 'Beam Testnet',
+    network: 'beam',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Beam',
+        symbol: 'BEAM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://build.onbeam.com/rpc/testnet'],
+            webSocket: ['wss://build.onbeam.com/ws/testnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Beam Explorer',
+            url: 'https://subnets-test.avax.network/beam',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x9bf49b704ee2a095b95c1f2d4eb9010510c41c9e',
+            blockCreated: 3,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=beamTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bearNetworkChainMainnet.js
+
+const bearNetworkChainMainnet = /*#__PURE__*/ defineChain({
+    id: 641230,
+    name: 'Bear Network Chain Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BearNetworkChain',
+        symbol: 'BRNKC',
+    },
+    rpcUrls: {
+        default: { http: ['https://brnkc-mainnet.bearnetwork.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BrnkScan',
+            url: 'https://brnkscan.bearnetwork.net',
+            apiUrl: 'https://brnkscan.bearnetwork.net/api',
+        },
+    },
+});
+//# sourceMappingURL=bearNetworkChainMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bearNetworkChainTestnet.js
+
+const bearNetworkChainTestnet = /*#__PURE__*/ defineChain({
+    id: 751230,
+    name: 'Bear Network Chain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'tBRNKC',
+        symbol: 'tBRNKC',
+    },
+    rpcUrls: {
+        default: { http: ['https://brnkc-test.bearnetwork.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BrnkTestScan',
+            url: 'https://brnktest-scan.bearnetwork.net',
+            apiUrl: 'https://brnktest-scan.bearnetwork.net/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bearNetworkChainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/berachainTestnet.js
+
+const berachainTestnet = /*#__PURE__*/ defineChain({
+    id: 80085,
+    name: 'Berachain Artio',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BERA Token',
+        symbol: 'BERA',
+    },
+    rpcUrls: {
+        default: { http: ['https://artio.rpc.berachain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Berachain',
+            url: 'https://artio.beratrail.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=berachainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/berachainTestnetbArtio.js
+
+const berachainTestnetbArtio = /*#__PURE__*/ defineChain({
+    id: 80084,
+    name: 'Berachain bArtio',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BERA Token',
+        symbol: 'BERA',
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 109269,
+        },
+        ensRegistry: {
+            address: '0xB0eef18971290b333450586D33dcA6cE122651D2',
+            blockCreated: 7736794,
+        },
+        ensUniversalResolver: {
+            address: '0x41692Ef1EA0C79E6b73077E4A67572D2BDbD7057',
+            blockCreated: 7736795,
+        },
+    },
+    rpcUrls: {
+        default: { http: ['https://bartio.rpc.berachain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Berachain bArtio Beratrail',
+            url: 'https://bartio.beratrail.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=berachainTestnetbArtio.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bevmMainnet.js
+
+const bevmMainnet = /*#__PURE__*/ defineChain({
+    id: 11501,
+    name: 'BEVM Mainnet',
+    nativeCurrency: { name: 'Bitcoin', symbol: 'BTC', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc-mainnet-1.bevm.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bevmscan',
+            url: 'https://scan-mainnet.bevm.io',
+            apiUrl: 'https://scan-mainnet-api.bevm.io/api',
+        },
+    },
+});
+//# sourceMappingURL=bevmMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bifrost.js
+
+const bifrost = /*#__PURE__*/ defineChain({
+    id: 3068,
+    name: 'Bifrost Mainnet',
+    nativeCurrency: { name: 'BFC', symbol: 'BFC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://public-01.mainnet.bifrostnetwork.com/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bifrost Blockscout',
+            url: 'https://explorer.mainnet.bifrostnetwork.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=bifrost.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitgert.js
+
+const bitgert = /*#__PURE__*/ defineChain({
+    id: 32520,
+    name: 'Bitgert Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Brise',
+        symbol: 'Brise',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc-bitgert.icecreamswap.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitgert Scan',
+            url: 'https://brisescan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 2118034,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=bitgert.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitkub.js
+
+const bitkub = /*#__PURE__*/ defineChain({
+    id: 96,
+    name: 'Bitkub',
+    nativeCurrency: { name: 'Bitkub', symbol: 'KUB', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.bitkubchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitkub Chain Mainnet Explorer',
+            url: 'https://www.bkcscan.com',
+            apiUrl: 'https://www.bkcscan.com/api',
+        },
+    },
+});
+//# sourceMappingURL=bitkub.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitkubTestnet.js
+
+const bitkubTestnet = /*#__PURE__*/ defineChain({
+    id: 25925,
+    name: 'Bitkub Testnet',
+    network: 'Bitkub Testnet',
+    nativeCurrency: { name: 'Bitkub Test', symbol: 'tKUB', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-testnet.bitkubchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitkub Chain Testnet Explorer',
+            url: 'https://testnet.bkcscan.com',
+            apiUrl: 'https://testnet.bkcscan.com/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bitkubTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitlayer.js
+
+const bitlayer = /*#__PURE__*/ defineChain({
+    id: 200901,
+    name: 'Bitlayer Mainnet',
+    nativeCurrency: {
+        name: 'BTC',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.bitlayer.org'],
+            webSocket: ['wss://ws.bitlayer.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'bitlayer mainnet scan',
+            url: 'https://www.btrscan.com',
+        },
+    },
+});
+//# sourceMappingURL=bitlayer.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitlayerTestnet.js
+
+const bitlayerTestnet = /*#__PURE__*/ defineChain({
+    id: 200810,
+    name: 'Bitlayer Testnet',
+    nativeCurrency: {
+        name: 'BTC',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.bitlayer.org'],
+            webSocket: ['wss://testnet-ws.bitlayer.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'bitlayer testnet scan',
+            url: 'https://testnet.btrscan.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bitlayerTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitrock.js
+
+const bitrock = /*#__PURE__*/ defineChain({
+    id: 7171,
+    name: 'Bitrock Mainnet',
+    nativeCurrency: { name: 'BROCK', symbol: 'BROCK', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://brockrpc.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitrock Explorer',
+            url: 'https://explorer.bit-rock.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=bitrock.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitTorrent.js
+
+const bitTorrent = /*#__PURE__*/ defineChain({
+    id: 199,
+    name: 'BitTorrent',
+    network: 'bittorrent-chain-mainnet',
+    nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.bittorrentchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bttcscan',
+            url: 'https://bttcscan.com',
+            apiUrl: 'https://api.bttcscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 31078552,
+        },
+    },
+});
+//# sourceMappingURL=bitTorrent.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bitTorrentTestnet.js
+
+const bitTorrentTestnet = /*#__PURE__*/ defineChain({
+    id: 1028,
+    name: 'BitTorrent Chain Testnet',
+    network: 'bittorrent-chain-testnet',
+    nativeCurrency: { name: 'BitTorrent', symbol: 'BTT', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://testrpc.bittorrentchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bttcscan',
+            url: 'https://testnet.bttcscan.com',
+            apiUrl: 'https://testnet.bttcscan.com/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bitTorrentTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/blast.js
+
+
+const blast_sourceId = 1; // mainnet
+const blast = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 81457,
+    name: 'Blast',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.blast.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blastscan',
+            url: 'https://blastscan.io',
+            apiUrl: 'https://api.blastscan.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 212929,
+        },
+    },
+    sourceId: blast_sourceId,
+});
+//# sourceMappingURL=blast.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/blastSepolia.js
+
+const blastSepolia_sourceId = 11_155_111; // sepolia
+const blastSepolia = /*#__PURE__*/ defineChain({
+    id: 168_587_773,
+    name: 'Blast Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.blast.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blastscan',
+            url: 'https://sepolia.blastscan.io',
+            apiUrl: 'https://api-sepolia.blastscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 756690,
+        },
+    },
+    testnet: true,
+    sourceId: blastSepolia_sourceId,
+});
+//# sourceMappingURL=blastSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bob.js
+
+
+const bob_sourceId = 1; // mainnet
+const bob = defineChain({
+    ...chainConfig_chainConfig,
+    id: 60808,
+    name: 'BOB',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.gobob.xyz'],
+            webSocket: ['wss://rpc.gobob.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BOB Explorer',
+            url: 'https://explorer.gobob.xyz',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 23131,
+        },
+        l2OutputOracle: {
+            [bob_sourceId]: {
+                address: '0xdDa53E23f8a32640b04D7256e651C1db98dB11C1',
+                blockCreated: 4462615,
+            },
+        },
+        portal: {
+            [bob_sourceId]: {
+                address: '0x8AdeE124447435fE03e3CD24dF3f4cAE32E65a3E',
+                blockCreated: 4462615,
+            },
+        },
+    },
+    sourceId: bob_sourceId,
+});
+//# sourceMappingURL=bob.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/boba.js
+
+const boba = /*#__PURE__*/ defineChain({
+    id: 288,
+    name: 'Boba Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet.boba.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BOBAScan',
+            url: 'https://bobascan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 446859,
+        },
+    },
+});
+//# sourceMappingURL=boba.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bobaSepolia.js
+
+const bobaSepolia = /*#__PURE__*/ defineChain({
+    id: 28882,
+    name: 'Boba Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://sepolia.boba.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BOBAScan',
+            url: 'https://testnet.bobascan.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bobaSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bobSepolia.js
+
+
+const bobSepolia_sourceId = 11_155_111; // sepolia
+const bobSepolia = defineChain({
+    ...chainConfig_chainConfig,
+    id: 808813,
+    name: 'BOB Sepolia',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://bob-sepolia.rpc.gobob.xyz'],
+            webSocket: ['wss://bob-sepolia.rpc.gobob.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BOB Sepolia Explorer',
+            url: 'https://bob-sepolia.explorer.gobob.xyz',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 35677,
+        },
+        l2OutputOracle: {
+            [bobSepolia_sourceId]: {
+                address: '0x14D0069452b4AE2b250B395b8adAb771E4267d2f',
+                blockCreated: 4462615,
+            },
+        },
+        portal: {
+            [bobSepolia_sourceId]: {
+                address: '0x867B1Aa872b9C8cB5E9F7755feDC45BB24Ad0ae4',
+                blockCreated: 4462615,
+            },
+        },
+    },
+    testnet: true,
+    sourceId: bobSepolia_sourceId,
+});
+//# sourceMappingURL=bobSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/boolBetaMainnet.js
+
+const boolBetaMainnet = /*#__PURE__*/ defineChain({
+    id: 11100,
+    name: 'Bool Beta Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BOL',
+        symbol: 'BOL',
+    },
+    rpcUrls: {
+        default: { http: ['https://beta-rpc-node-http.bool.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BoolScan',
+            url: 'https://beta-mainnet.boolscan.com/',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=boolBetaMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/botanixTestnet.js
+
+const botanixTestnet = /*#__PURE__*/ defineChain({
+    id: 3636,
+    name: 'Botanix Testnet',
+    nativeCurrency: { name: 'Botanix', symbol: 'BTC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://poa-node.botanixlabs.dev'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://blockscout.botanixlabs.dev',
+            apiUrl: 'https://blockscout.botanixlabs.dev',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=botanixTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bounceBit.js
+
+const bounceBit = /*#__PURE__*/ defineChain({
+    id: 6001,
+    name: 'BounceBit Mainnet',
+    nativeCurrency: { name: 'BounceBit', symbol: 'BB', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://fullnode-mainnet.bouncebitapi.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BB Scan',
+            url: 'https://bbscan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=bounceBit.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bounceBitTestnet.js
+
+const bounceBitTestnet = /*#__PURE__*/ defineChain({
+    id: 6000,
+    name: 'BounceBit Testnet',
+    nativeCurrency: { name: 'BounceBit', symbol: 'BB', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://fullnode-testnet.bouncebitapi.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BB Scan',
+            url: 'https://testnet.bbscan.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bounceBitTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bronos.js
+
+const bronos = /*#__PURE__*/ defineChain({
+    id: 1039,
+    name: 'Bronos',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BRO',
+        symbol: 'BRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm.bronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BronoScan',
+            url: 'https://broscan.bronos.org',
+        },
+    },
+});
+//# sourceMappingURL=bronos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bronosTestnet.js
+
+const bronosTestnet = /*#__PURE__*/ defineChain({
+    id: 1038,
+    name: 'Bronos Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Bronos Coin',
+        symbol: 'tBRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm-testnet.bronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BronoScan',
+            url: 'https://tbroscan.bronos.org',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bronosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bsc.js
+
+const bsc = /*#__PURE__*/ defineChain({
+    id: 56,
+    name: 'BNB Smart Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BNB',
+        symbol: 'BNB',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.ankr.com/bsc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BscScan',
+            url: 'https://bscscan.com',
+            apiUrl: 'https://api.bscscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 15921452,
+        },
+    },
+});
+//# sourceMappingURL=bsc.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bscGreenfield.js
+
+const bscGreenfield = /*#__PURE__*/ defineChain({
+    id: 1017,
+    name: 'BNB Greenfield Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BNB',
+        symbol: 'BNB',
+    },
+    rpcUrls: {
+        default: { http: ['https://greenfield-chain.bnbchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BNB Greenfield Mainnet Scan',
+            url: 'https://greenfieldscan.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=bscGreenfield.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bscTestnet.js
+
+const bscTestnet = /*#__PURE__*/ defineChain({
+    id: 97,
+    name: 'Binance Smart Chain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BNB',
+        symbol: 'tBNB',
+    },
+    rpcUrls: {
+        default: { http: ['https://data-seed-prebsc-1-s1.bnbchain.org:8545'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'BscScan',
+            url: 'https://testnet.bscscan.com',
+            apiUrl: 'https://api-testnet.bscscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 17422483,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bscTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bsquared.js
+
+const bsquared = /*#__PURE__*/ defineChain({
+    id: 223,
+    name: 'B2',
+    nativeCurrency: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.bsquared.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://explorer.bsquared.network',
+        },
+    },
+});
+//# sourceMappingURL=bsquared.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bsquaredTestnet.js
+
+const bsquaredTestnet = /*#__PURE__*/ defineChain({
+    id: 1123,
+    name: 'B2 Testnet',
+    nativeCurrency: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.bsquared.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://testnet-explorer.bsquared.network',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bsquaredTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/btr.js
+
+const btr = /*#__PURE__*/ defineChain({
+    id: 200901,
+    name: 'Bitlayer',
+    nativeCurrency: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc.bitlayer.org',
+                'https://rpc.bitlayer-rpc.com',
+                'https://rpc.ankr.com/bitlayer',
+            ],
+            webSocket: ['wss://ws.bitlayer.org', 'wss://ws.bitlayer-rpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitlayer(BTR) Scan',
+            url: 'https://www.btrscan.com',
+        },
+    },
+});
+//# sourceMappingURL=btr.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/btrTestnet.js
+
+const btrTestnet = /*#__PURE__*/ defineChain({
+    id: 200810,
+    name: 'Bitlayer Testnet',
+    nativeCurrency: {
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.bitlayer.org'],
+            webSocket: [
+                'wss://testnet-ws.bitlayer.org',
+                'wss://testnet-ws.bitlayer-rpc.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Bitlayer(BTR) Scan',
+            url: 'https://testnet.btrscan.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=btrTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bxn.js
+
+const bxn = /*#__PURE__*/ defineChain({
+    id: 4999,
+    name: 'BlackFort Exchange Network',
+    nativeCurrency: { name: 'BlackFort Token', symbol: 'BXN', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.blackfort.network/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.blackfort.network',
+            apiUrl: 'https://explorer.blackfort.network/api',
+        },
+    },
+});
+//# sourceMappingURL=bxn.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/bxnTestnet.js
+
+const bxnTestnet = /*#__PURE__*/ defineChain({
+    id: 4777,
+    name: 'BlackFort Exchange Network Testnet',
+    nativeCurrency: {
+        name: 'BlackFort Testnet Token',
+        symbol: 'TBXN',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.blackfort.network/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://testnet-explorer.blackfort.network',
+            apiUrl: 'https://testnet-explorer.blackfort.network/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=bxnTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cannon.js
+
+const cannon = /*#__PURE__*/ defineChain({
+    id: 13_370,
+    name: 'Cannon',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['http://127.0.0.1:8545'] },
+    },
+});
+//# sourceMappingURL=cannon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/canto.js
+
+const canto = /*#__PURE__*/ defineChain({
+    id: 7_700,
+    name: 'Canto',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Canto',
+        symbol: 'CANTO',
+    },
+    rpcUrls: {
+        default: { http: ['https://canto.gravitychain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Tuber.Build (Blockscout)',
+            url: 'https://tuber.build',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 2905789,
+        },
+    },
+});
+//# sourceMappingURL=canto.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/celo/fees.js
+
+const fees = {
+    /*
+     * Estimates the fees per gas for a transaction.
+  
+     * If the transaction is to be paid in a token (feeCurrency is present) then the fees
+     * are estimated in the value of the token. Otherwise falls back to the default
+     * estimation by returning null.
+     *
+     * @param params fee estimation function parameters
+     */
+    estimateFeesPerGas: async (params) => {
+        if (!params.request?.feeCurrency)
+            return null;
+        const [gasPrice, maxPriorityFeePerGas, cel2] = await Promise.all([
+            estimateFeePerGasInFeeCurrency(params.client, params.request.feeCurrency),
+            estimateMaxPriorityFeePerGasInFeeCurrency(params.client, params.request.feeCurrency),
+            isCel2(params.client),
+        ]);
+        const maxFeePerGas = cel2
+            ? // eth_gasPrice for cel2 returns baseFeePerGas + maxPriorityFeePerGas
+                params.multiply(gasPrice - maxPriorityFeePerGas) + maxPriorityFeePerGas
+            : // eth_gasPrice for Celo L1 returns (baseFeePerGas * multiplier), where the multiplier is 2 by default.
+                gasPrice + maxPriorityFeePerGas;
+        return {
+            maxFeePerGas,
+            maxPriorityFeePerGas,
+        };
+    },
+};
+/*
+ * Estimate the fee per gas in the value of the fee token
+
+ *
+ * @param client - Client to use
+ * @param feeCurrency -  Address of a whitelisted fee token
+ * @returns The fee per gas in wei in the value of the  fee token
+ *
+ */
+async function estimateFeePerGasInFeeCurrency(client, feeCurrency) {
+    const fee = await client.request({
+        method: 'eth_gasPrice',
+        params: [feeCurrency],
+    });
+    return BigInt(fee);
+}
+/*
+ * Estimate the max priority fee per gas in the value of the fee token
+
+ *
+ * @param client - Client to use
+ * @param feeCurrency -  Address of a whitelisted fee token
+ * @returns The fee per gas in wei in the value of the  fee token
+ *
+ */
+async function estimateMaxPriorityFeePerGasInFeeCurrency(client, feeCurrency) {
+    const feesPerGas = await client.request({
+        method: 'eth_maxPriorityFeePerGas',
+        params: [feeCurrency],
+    });
+    return BigInt(feesPerGas);
+}
+async function isCel2(client) {
+    const proxyAdminAddress = '0x4200000000000000000000000000000000000018';
+    const code = await getCode(client, { address: proxyAdminAddress });
+    return Boolean(code);
+}
+//# sourceMappingURL=fees.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/celo/utils.js
+
+function utils_isEmpty(value) {
+    return (value === 0 ||
+        value === 0n ||
+        value === undefined ||
+        value === null ||
+        value === '0' ||
+        value === '' ||
+        (typeof value === 'string' &&
+            ((0,src_trim/* trim */.B)(value).toLowerCase() === '0x' ||
+                (0,src_trim/* trim */.B)(value).toLowerCase() === '0x00')));
+}
+function utils_isPresent(value) {
+    return !utils_isEmpty(value);
+}
+/** @internal */
+function isEIP1559(transaction) {
+    return (typeof transaction.maxFeePerGas !== 'undefined' &&
+        typeof transaction.maxPriorityFeePerGas !== 'undefined');
+}
+function isCIP64(transaction) {
+    /*
+     * Enable end user to force the tx to be considered as a CIP-64.
+     *
+     * The preliminary type will be determined as "eip1559" by src/utils/transaction/getTransactionType.ts
+     * and so we need the logic below to check for the specific value instead of checking if just any
+     * transaction type is provided. If that's anything else than "cip64" then we need to reevaluate the
+     * type based on the transaction fields.
+     *
+     * Modify with caution and according to https://github.com/celo-org/celo-proposals/blob/master/CIPs/cip-0064.md
+     */
+    if (transaction.type === 'cip64') {
+        return true;
+    }
+    return isEIP1559(transaction) && utils_isPresent(transaction.feeCurrency);
+}
+//# sourceMappingURL=utils.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/celo/formatters.js
+
+
+
+
+
+const celo_formatters_formatters = {
+    block: /*#__PURE__*/ defineBlock({
+        format(args) {
+            const transactions = args.transactions?.map((transaction) => {
+                if (typeof transaction === 'string')
+                    return transaction;
+                const formatted = formatTransaction(transaction);
+                return {
+                    ...formatted,
+                    ...(transaction.gatewayFee
+                        ? {
+                            gatewayFee: (0,fromHex/* hexToBigInt */.uU)(transaction.gatewayFee),
+                            gatewayFeeRecipient: transaction.gatewayFeeRecipient,
+                        }
+                        : {}),
+                    feeCurrency: transaction.feeCurrency,
+                };
+            });
+            return {
+                transactions,
+                ...(args.randomness ? { randomness: args.randomness } : {}),
+            };
+        },
+    }),
+    transaction: /*#__PURE__*/ defineTransaction({
+        format(args) {
+            if (args.type === '0x7e')
+                return {
+                    isSystemTx: args.isSystemTx,
+                    mint: args.mint ? (0,fromHex/* hexToBigInt */.uU)(args.mint) : undefined,
+                    sourceHash: args.sourceHash,
+                    type: 'deposit',
+                };
+            const transaction = { feeCurrency: args.feeCurrency };
+            if (args.type === '0x7b')
+                transaction.type = 'cip64';
+            else {
+                if (args.type === '0x7c')
+                    transaction.type = 'cip42';
+                transaction.gatewayFee = args.gatewayFee
+                    ? (0,fromHex/* hexToBigInt */.uU)(args.gatewayFee)
+                    : null;
+                transaction.gatewayFeeRecipient = args.gatewayFeeRecipient;
+            }
+            return transaction;
+        },
+    }),
+    transactionRequest: /*#__PURE__*/ (0,transactionRequest/* defineTransactionRequest */.bm)({
+        format(args) {
+            const request = {};
+            if (args.feeCurrency)
+                request.feeCurrency = args.feeCurrency;
+            if (isCIP64(args))
+                request.type = '0x7b';
+            return request;
+        },
+    }),
+};
+//# sourceMappingURL=formatters.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/celo/serializers.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+function celo_serializers_serializeTransaction(transaction, signature) {
+    if (isCIP64(transaction))
+        return serializeTransactionCIP64(transaction, signature);
+    return op_stack_serializers_serializeTransaction(transaction, signature);
+}
+const celo_serializers_serializers = {
+    transaction: celo_serializers_serializeTransaction,
+};
+function serializeTransactionCIP64(transaction, signature) {
+    assertTransactionCIP64(transaction);
+    const { chainId, gas, nonce, to, value, maxFeePerGas, maxPriorityFeePerGas, accessList, feeCurrency, data, } = transaction;
+    const serializedTransaction = [
+        (0,toHex/* toHex */.nj)(chainId),
+        nonce ? (0,toHex/* toHex */.nj)(nonce) : '0x',
+        maxPriorityFeePerGas ? (0,toHex/* toHex */.nj)(maxPriorityFeePerGas) : '0x',
+        maxFeePerGas ? (0,toHex/* toHex */.nj)(maxFeePerGas) : '0x',
+        gas ? (0,toHex/* toHex */.nj)(gas) : '0x',
+        to ?? '0x',
+        value ? (0,toHex/* toHex */.nj)(value) : '0x',
+        data ?? '0x',
+        serializeAccessList(accessList),
+        feeCurrency,
+        ...toYParitySignatureArray(transaction, signature),
+    ];
+    return (0,concat/* concatHex */.aP)([
+        '0x7b',
+        toRlp(serializedTransaction),
+    ]);
+}
+// maxFeePerGas must be less than maxUint256
+const MAX_MAX_FEE_PER_GAS = number/* maxUint256 */.Ao;
+function assertTransactionCIP42(transaction) {
+    const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to, feeCurrency, gatewayFee, gatewayFeeRecipient, } = transaction;
+    if (chainId <= 0)
+        throw new InvalidChainIdError({ chainId });
+    if (to && !isAddress(to))
+        throw new InvalidAddressError({ address: to });
+    if (gasPrice)
+        throw new BaseError('`gasPrice` is not a valid CIP-42 Transaction attribute.');
+    if (isPresent(maxFeePerGas) && maxFeePerGas > MAX_MAX_FEE_PER_GAS)
+        throw new FeeCapTooHighError({ maxFeePerGas });
+    if (isPresent(maxPriorityFeePerGas) &&
+        isPresent(maxFeePerGas) &&
+        maxPriorityFeePerGas > maxFeePerGas)
+        throw new TipAboveFeeCapError({ maxFeePerGas, maxPriorityFeePerGas });
+    if ((isPresent(gatewayFee) && isEmpty(gatewayFeeRecipient)) ||
+        (isPresent(gatewayFeeRecipient) && isEmpty(gatewayFee))) {
+        throw new BaseError('`gatewayFee` and `gatewayFeeRecipient` must be provided together.');
+    }
+    if (isPresent(feeCurrency) && !isAddress(feeCurrency)) {
+        throw new BaseError('`feeCurrency` MUST be a token address for CIP-42 transactions.');
+    }
+    if (isPresent(gatewayFeeRecipient) && !isAddress(gatewayFeeRecipient)) {
+        throw new InvalidAddressError(gatewayFeeRecipient);
+    }
+    if (isEmpty(feeCurrency) && isEmpty(gatewayFeeRecipient)) {
+        throw new BaseError('Either `feeCurrency` or `gatewayFeeRecipient` must be provided for CIP-42 transactions.');
+    }
+}
+function assertTransactionCIP64(transaction) {
+    const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to, feeCurrency, } = transaction;
+    if (chainId <= 0)
+        throw new chain/* InvalidChainIdError */.qD({ chainId });
+    if (to && !(0,address_isAddress/* isAddress */.P)(to))
+        throw new errors_address/* InvalidAddressError */.M({ address: to });
+    if (gasPrice)
+        throw new base/* BaseError */.C('`gasPrice` is not a valid CIP-64 Transaction attribute.');
+    if (utils_isPresent(maxFeePerGas) && maxFeePerGas > MAX_MAX_FEE_PER_GAS)
+        throw new node/* FeeCapTooHighError */.BG({ maxFeePerGas });
+    if (utils_isPresent(maxPriorityFeePerGas) &&
+        utils_isPresent(maxFeePerGas) &&
+        maxPriorityFeePerGas > maxFeePerGas)
+        throw new node/* TipAboveFeeCapError */.lN({ maxFeePerGas, maxPriorityFeePerGas });
+    if (utils_isPresent(feeCurrency) && !(0,address_isAddress/* isAddress */.P)(feeCurrency)) {
+        throw new base/* BaseError */.C('`feeCurrency` MUST be a token address for CIP-64 transactions.');
+    }
+    if (utils_isEmpty(feeCurrency)) {
+        throw new base/* BaseError */.C('`feeCurrency` must be provided for CIP-64 transactions.');
+    }
+}
+//# sourceMappingURL=serializers.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/celo/chainConfig.js
+
+
+
+
+const celo_chainConfig_chainConfig = {
+    contracts: contracts_contracts,
+    formatters: celo_formatters_formatters,
+    serializers: celo_serializers_serializers,
+    fees: fees,
+};
+//# sourceMappingURL=chainConfig.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/celo.js
+
+
+const celo = /*#__PURE__*/ defineChain({
+    ...celo_chainConfig_chainConfig,
+    id: 42_220,
+    name: 'Celo',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CELO',
+        symbol: 'CELO',
+    },
+    rpcUrls: {
+        default: { http: ['https://forno.celo.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Celo Explorer',
+            url: 'https://celoscan.io',
+            apiUrl: 'https://api.celoscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 13112599,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=celo.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/celoAlfajores.js
+
+
+const celoAlfajores_sourceId = 17000; // holsky
+// source https://storage.googleapis.com/cel2-rollup-files/alfajores/deployment-l1.json
+const celoAlfajores = /*#__PURE__*/ defineChain({
+    ...celo_chainConfig_chainConfig,
+    id: 44_787,
+    name: 'Alfajores',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CELO',
+        symbol: 'A-CELO',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://alfajores-forno.celo-testnet.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Celo Alfajores Explorer',
+            url: 'https://celo-alfajores.blockscout.com',
+            apiUrl: 'https://celo-alfajores.blockscout.com/api',
+        },
+    },
+    contracts: {
+        ...celo_chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 14569001,
+        },
+        portal: {
+            [celoAlfajores_sourceId]: {
+                address: '0x82527353927d8D069b3B452904c942dA149BA381',
+                blockCreated: 2411324,
+            },
+        },
+        disputeGameFactory: {
+            [celoAlfajores_sourceId]: {
+                address: '0xE28AAdcd9883746c0e5068F58f9ea06027b214cb',
+                blockCreated: 2411324,
+            },
+        },
+        l2OutputOracle: {
+            [celoAlfajores_sourceId]: {
+                address: '0x4a2635e9e4f6e45817b1D402ac4904c1d1752438',
+                blockCreated: 2411324,
+            },
+        },
+        l1StandardBridge: {
+            [celoAlfajores_sourceId]: {
+                address: '0xD1B0E0581973c9eB7f886967A606b9441A897037',
+                blockCreated: 2411324,
+            },
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=celoAlfajores.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/chang.js
+
+const chang = /*#__PURE__*/ defineChain({
+    id: 5858,
+    name: 'Chang Chain Foundation Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CTH',
+        symbol: 'CTH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.cthscan.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Chang Chain explorer',
+            url: 'https://cthscan.com',
+        },
+    },
+});
+//# sourceMappingURL=chang.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/chiliz.js
+
+const chiliz = /*#__PURE__*/ defineChain({
+    id: 88_888,
+    name: 'Chiliz Chain',
+    network: 'chiliz-chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CHZ',
+        symbol: 'CHZ',
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc.ankr.com/chiliz',
+                'https://chiliz-rpc.publicnode.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Chiliz Explorer',
+            url: 'https://scan.chiliz.com',
+            apiUrl: 'https://scan.chiliz.com/api',
+        },
+    },
+});
+//# sourceMappingURL=chiliz.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/chips.js
+
+const chips = /*#__PURE__*/ defineChain({
+    id: 2882,
+    name: 'Chips Network',
+    network: 'CHIPS',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IOTA',
+        symbol: 'IOTA',
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://node.chips.ooo/wasp/api/v1/chains/iota1pp3d3mnap3ufmgqnjsnw344sqmf5svjh26y2khnmc89sv6788y3r207a8fn/evm',
+            ],
+        },
+    },
+});
+//# sourceMappingURL=chips.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/citreaTestnet.js
+
+const citreaTestnet = /*#__PURE__*/ defineChain({
+    id: 5115,
+    name: 'Citrea Testnet',
+    nativeCurrency: { name: 'cBTC', symbol: 'cBTC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.citrea.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Citrea Explorer',
+            url: 'https://explorer.testnet.citrea.xyz',
+            apiUrl: 'https://explorer.testnet.citrea.xyz/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=citreaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/classic.js
+
+const classic = /*#__PURE__*/ defineChain({
+    id: 61,
+    name: 'Ethereum Classic',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETC',
+        symbol: 'ETC',
+    },
+    rpcUrls: {
+        default: { http: ['https://etc.rivet.link'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.com/etc/mainnet',
+        },
+    },
+});
+//# sourceMappingURL=classic.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/coinbit.js
+
+const coinbit = /*#__PURE__*/ defineChain({
+    id: 112,
+    name: 'Coinbit Mainnet',
+    nativeCurrency: { name: 'GIDR', symbol: 'GIDR', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://coinbit-rpc-mainnet.chain.sbcrypto.app'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Coinbit Explorer',
+            url: 'https://coinbit-explorer.chain.sbcrypto.app',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=coinbit.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/coinex.js
+
+const coinex = /*#__PURE__*/ defineChain({
+    id: 52,
+    name: 'CoinEx Mainnet',
+    nativeCurrency: { name: 'cet', symbol: 'cet', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.coinex.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'CoinEx Explorer',
+            url: 'https://www.coinex.net',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=coinex.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/confluxESpace.js
+
+const confluxESpace = /*#__PURE__*/ defineChain({
+    id: 1_030,
+    name: 'Conflux eSpace',
+    nativeCurrency: { name: 'Conflux', symbol: 'CFX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evm.confluxrpc.com'],
+            webSocket: ['wss://evm.confluxrpc.com/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ConfluxScan',
+            url: 'https://evm.confluxscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xEFf0078910f638cd81996cc117bccD3eDf2B072F',
+            blockCreated: 68602935,
+        },
+    },
+});
+//# sourceMappingURL=confluxESpace.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/confluxESpaceTestnet.js
+
+const confluxESpaceTestnet = /*#__PURE__*/ defineChain({
+    id: 71,
+    name: 'Conflux eSpace Testnet',
+    network: 'cfx-espace-testnet',
+    testnet: true,
+    nativeCurrency: { name: 'Conflux', symbol: 'CFX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evmtestnet.confluxrpc.com'],
+            webSocket: ['wss://evmtestnet.confluxrpc.com/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ConfluxScan',
+            url: 'https://evmtestnet.confluxscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xEFf0078910f638cd81996cc117bccD3eDf2B072F',
+            blockCreated: 117499050,
+        },
+    },
+});
+//# sourceMappingURL=confluxESpaceTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/coreDao.js
+
+const coreDao = /*#__PURE__*/ defineChain({
+    id: 1116,
+    name: 'Core Dao',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Core',
+        symbol: 'CORE',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.coredao.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'CoreDao',
+            url: 'https://scan.coredao.org',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 11_907_934,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=coreDao.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/corn.js
+
+const corn_sourceId = 1; // mainnet
+const corn = /*#__PURE__*/ defineChain({
+    id: 21_000_000,
+    name: 'Corn',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Bitcorn',
+        symbol: 'BTCN',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.ankr.com/corn_maizenet'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Corn Explorer',
+            url: 'https://cornscan.io',
+            apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/21000000/etherscan/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3228,
+        },
+    },
+    sourceId: corn_sourceId,
+});
+//# sourceMappingURL=corn.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cornTestnet.js
+
+const cornTestnet_sourceId = 11_155_111; // sepolia
+const cornTestnet = /*#__PURE__*/ defineChain({
+    id: 21_000_001,
+    name: 'Corn Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Bitcorn',
+        symbol: 'BTCN',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.ankr.com/corn_testnet'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Corn Testnet Explorer',
+            url: 'https://testnet.cornscan.io',
+            apiUrl: 'https://api.routescan.io/v2/network/testnet/evm/21000001/etherscan/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 4886,
+        },
+    },
+    testnet: true,
+    sourceId: cornTestnet_sourceId,
+});
+//# sourceMappingURL=cornTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/crab.js
+
+const crab = defineChain({
+    id: 44,
+    name: 'Crab Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Crab Network Native Token',
+        symbol: 'CRAB',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://crab-rpc.darwinia.network'],
+            webSocket: ['wss://crab-rpc.darwinia.network'],
+        },
+    },
+    blockExplorers: {
+        default: { name: 'Blockscout', url: 'https://crab-scan.darwinia.network' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 3032593,
+        },
+    },
+});
+//# sourceMappingURL=crab.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/creatorTestnet.js
+
+const creatorTestnet = defineChain({
+    id: 66665,
+    name: 'Creator',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.creatorchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: { name: 'Explorer', url: 'https://explorer.creatorchain.io' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=creatorTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cronos.js
+
+const cronos = /*#__PURE__*/ defineChain({
+    id: 25,
+    name: 'Cronos Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Cronos',
+        symbol: 'CRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm.cronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Cronos Explorer',
+            url: 'https://explorer.cronos.org',
+            apiUrl: 'https://explorer-api.cronos.org/mainnet/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1963112,
+        },
+    },
+});
+//# sourceMappingURL=cronos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cronosTestnet.js
+
+const cronosTestnet = /*#__PURE__*/ defineChain({
+    id: 338,
+    name: 'Cronos Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CRO',
+        symbol: 'tCRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm-t3.cronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Cronos Explorer',
+            url: 'https://cronos.org/explorer/testnet3',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 10191251,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=cronosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cronoszkEVM.js
+
+const cronoszkEVM = /*#__PURE__*/ defineChain({
+    id: 388,
+    name: 'Cronos zkEVM Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Cronos zkEVM CRO',
+        symbol: 'zkCRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet.zkevm.cronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Cronos zkEVM (Mainnet) Chain Explorer',
+            url: 'https://explorer.zkevm.cronos.org',
+        },
+    },
+});
+//# sourceMappingURL=cronoszkEVM.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cronoszkEVMTestnet.js
+
+const cronoszkEVMTestnet = /*#__PURE__*/ defineChain({
+    id: 282,
+    name: 'Cronos zkEVM Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Cronos zkEVM Test Coin',
+        symbol: 'zkTCRO',
+    },
+    rpcUrls: {
+        default: { http: ['https://testnet.zkevm.cronos.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Cronos zkEVM Testnet Explorer',
+            url: 'https://explorer.zkevm.cronos.org/testnet',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=cronoszkEVMTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/crossbell.js
+
+const crossbell = /*#__PURE__*/ defineChain({
+    id: 3_737,
+    name: 'Crossbell',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CSB',
+        symbol: 'CSB',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.crossbell.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'CrossScan',
+            url: 'https://scan.crossbell.io',
+            apiUrl: 'https://scan.crossbell.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 38_246_031,
+        },
+    },
+});
+//# sourceMappingURL=crossbell.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/curtis.js
+
+const curtis = /*#__PURE__*/ defineChain({
+    id: 33_111,
+    name: 'Curtis',
+    nativeCurrency: { name: 'ApeCoin', symbol: 'APE', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.curtis.apechain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Curtis Explorer',
+            url: 'https://explorer.curtis.apechain.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=curtis.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cyber.js
+
+const cyber = /*#__PURE__*/ defineChain({
+    id: 7_560,
+    name: 'Cyber',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://cyber.alt.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://cyberscan.co',
+            apiUrl: 'https://cyberscan.co/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 0,
+        },
+    },
+});
+//# sourceMappingURL=cyber.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/cyberTestnet.js
+
+const cyberTestnet = /*#__PURE__*/ defineChain({
+    id: 111_557_560,
+    name: 'Cyber Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://cyber-testnet.alt.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://testnet.cyberscan.co',
+            apiUrl: 'https://testnet.cyberscan.co/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xffc391F0018269d4758AEA1a144772E8FB99545E',
+            blockCreated: 304545,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=cyberTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dailyNetwork.js
+
+const dailyNetwork = /*#__PURE__*/ defineChain({
+    id: 824,
+    name: 'Daily Network Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Daily',
+        symbol: 'DLY',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.mainnet.dailycrypto.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Daily Mainnet Explorer',
+            url: 'https://explorer.mainnet.dailycrypto.net',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=dailyNetwork.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dailyNetworkTestnet.js
+
+const dailyNetworkTestnet = /*#__PURE__*/ defineChain({
+    id: 825,
+    name: 'Daily Network Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Daily',
+        symbol: 'DLY',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.testnet.dailycrypto.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Daily Testnet Explorer',
+            url: 'https://explorer.testnet.dailycrypto.net',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=dailyNetworkTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/darwinia.js
+
+const darwinia = /*#__PURE__*/ defineChain({
+    id: 46,
+    name: 'Darwinia Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'RING',
+        symbol: 'RING',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.darwinia.network'],
+            webSocket: ['wss://rpc.darwinia.network'],
+        },
+    },
+    blockExplorers: {
+        default: { name: 'Explorer', url: 'https://explorer.darwinia.network' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 69420,
+        },
+    },
+});
+//# sourceMappingURL=darwinia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dchain.js
+
+
+const dchain = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 2716446429837000,
+    name: 'Dchain',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://dchain-2716446429837000-1.jsonrpc.sagarpc.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Dchain Explorer',
+            url: 'https://dchain-2716446429837000-1.sagaexplorer.io',
+            apiUrl: 'https://api-dchain-2716446429837000-1.sagaexplorer.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+    },
+});
+//# sourceMappingURL=dchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dchainTestnet.js
+
+
+const dchainTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 2713017997578000,
+    name: 'Dchain Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://dchaintestnet-2713017997578000-1.jsonrpc.testnet.sagarpc.io',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Dchain Explorer',
+            url: 'https://dchaintestnet-2713017997578000-1.testnet.sagaexplorer.io',
+            apiUrl: 'https://api-dchaintestnet-2713017997578000-1.testnet.sagaexplorer.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+    },
+});
+//# sourceMappingURL=dchainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/defichainEvm.js
+
+const defichainEvm = /*#__PURE__*/ defineChain({
+    id: 1130,
+    network: 'defichain-evm',
+    name: 'DeFiChain EVM Mainnet',
+    nativeCurrency: {
+        name: 'DeFiChain',
+        symbol: 'DFI',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth.mainnet.ocean.jellyfishsdk.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DeFiScan',
+            url: 'https://meta.defiscan.live',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 137852,
+        },
+    },
+});
+//# sourceMappingURL=defichainEvm.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/defichainEvmTestnet.js
+
+const defichainEvmTestnet = /*#__PURE__*/ defineChain({
+    id: 1131,
+    network: 'defichain-evm-testnet',
+    name: 'DeFiChain EVM Testnet',
+    nativeCurrency: {
+        name: 'DeFiChain',
+        symbol: 'DFI',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth.testnet.ocean.jellyfishsdk.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DeFiScan',
+            url: 'https://meta.defiscan.live/?network=TestNet',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 156462,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=defichainEvmTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/degen.js
+
+const degen = /*#__PURE__*/ defineChain({
+    id: 666666666,
+    name: 'Degen',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Degen',
+        symbol: 'DEGEN',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.degen.tips'],
+            webSocket: ['wss://rpc.degen.tips'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Degen Chain Explorer',
+            url: 'https://explorer.degen.tips',
+            apiUrl: 'https://explorer.degen.tips/api/v2',
+        },
+    },
+});
+//# sourceMappingURL=degen.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dfk.js
+
+const dfk = /*#__PURE__*/ defineChain({
+    id: 53_935,
+    name: 'DFK Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Jewel',
+        symbol: 'JEWEL',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DFKSubnetScan',
+            url: 'https://subnets.avax.network/defi-kingdoms',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 14790551,
+        },
+    },
+});
+//# sourceMappingURL=dfk.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/diode.js
+
+const diode = /*#__PURE__*/ defineChain({
+    id: 15,
+    name: 'Diode Prenet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DIODE',
+        symbol: 'DIODE',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://prenet.diode.io:8443'],
+            webSocket: ['wss://prenet.diode.io:8443/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Diode Explorer',
+            url: 'https://diode.io/prenet',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=diode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/disChain.js
+
+const disChain = /*#__PURE__*/ defineChain({
+    id: 513100,
+    name: 'DisChain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DIS',
+        symbol: 'DIS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.dischain.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DisChain Explorer',
+            url: 'https://www.oklink.com/dis',
+        },
+    },
+});
+//# sourceMappingURL=disChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dodochainTestnet.js
+
+const dodochainTestnet = defineChain({
+    id: 53457,
+    name: 'DODOchain Testnet',
+    nativeCurrency: { decimals: 18, name: 'DODO', symbol: 'DODO' },
+    rpcUrls: {
+        default: {
+            http: ['https://dodochain-testnet.alt.technology'],
+            webSocket: ['wss://dodochain-testnet.alt.technology/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DODOchain Testnet (Sepolia) Explorer',
+            url: 'https://testnet-scan.dodochain.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=dodochainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dogechain.js
+
+const dogechain = /*#__PURE__*/ defineChain({
+    id: 2_000,
+    name: 'Dogechain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Wrapped Dogecoin',
+        symbol: 'WDOGE',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.dogechain.dog'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DogeChainExplorer',
+            url: 'https://explorer.dogechain.dog',
+            apiUrl: 'https://explorer.dogechain.dog/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x68a8609a60a008EFA633dfdec592c03B030cC508',
+            blockCreated: 25384031,
+        },
+    },
+});
+//# sourceMappingURL=dogechain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dosChain.js
+
+const dosChain = /*#__PURE__*/ defineChain({
+    id: 7979,
+    name: 'DOS Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DOS Chain',
+        symbol: 'DOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://main.doschain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DOS Chain Explorer',
+            url: 'https://doscan.io',
+            apiUrl: 'https://api.doscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 161908,
+        },
+    },
+});
+//# sourceMappingURL=dosChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dosChainTestnet.js
+
+const dosChainTestnet = /*#__PURE__*/ defineChain({
+    id: 3939,
+    name: 'DOS Chain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DOS Chain Testnet',
+        symbol: 'DOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://test.doschain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DOS Chain Testnet Explorer',
+            url: 'https://test.doscan.io',
+            apiUrl: 'https://api-test.doscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 69623,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=dosChainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dreyerxMainnet.js
+
+const dreyerxMainnet = /*#__PURE__*/ defineChain({
+    id: 23451,
+    name: 'DreyerX Mainnet',
+    nativeCurrency: {
+        name: 'DreyerX',
+        symbol: 'DRX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.dreyerx.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DreyerX Scan',
+            url: 'https://scan.dreyerx.com',
+        },
+    },
+});
+//# sourceMappingURL=dreyerxMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dreyerxTestnet.js
+
+const dreyerxTestnet = /*#__PURE__*/ defineChain({
+    id: 23452,
+    name: 'DreyerX Testnet',
+    nativeCurrency: {
+        name: 'DreyerX',
+        symbol: 'DRX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['http://testnet-rpc.dreyerx.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'DreyerX Testnet Scan',
+            url: 'https://testnet-scan.dreyerx.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=dreyerxTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dustboyIoT.js
+
+const dustboyIoT = /*#__PURE__*/ defineChain({
+    id: 555888,
+    name: 'DustBoy IoT',
+    nativeCurrency: { name: 'Ether', symbol: 'DST', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://dustboy-rpc.jibl2.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://dustboy.jibl2.com',
+            apiUrl: 'https://dustboy.jibl2.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xFFD34aa2C62B2D52E00A361e466C229788f4eD6a',
+            blockCreated: 526569,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=dustboyIoT.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/dymension.js
+
+const dymension = /*#__PURE__*/ defineChain({
+    id: 1100,
+    name: 'Dymension',
+    nativeCurrency: {
+        name: 'DYM',
+        symbol: 'DYM',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://dymension-evm-rpc.publicnode.com'],
+            webSocket: ['wss://dymension-evm-rpc.publicnode.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Dym FYI',
+            url: 'https://dym.fyi',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=dymension.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/edgeless.js
+
+const edgeless = /*#__PURE__*/ defineChain({
+    id: 2_026,
+    name: 'Edgeless Network',
+    nativeCurrency: {
+        name: 'Edgeless Wrapped ETH',
+        symbol: 'EwETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.edgeless.network/http'],
+            webSocket: ['wss://rpc.edgeless.network/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Edgeless Explorer',
+            url: 'https://explorer.edgeless.network',
+        },
+    },
+});
+//# sourceMappingURL=edgeless.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/edgelessTestnet.js
+
+const edgelessTestnet = /*#__PURE__*/ defineChain({
+    id: 202,
+    name: 'Edgeless Testnet',
+    nativeCurrency: {
+        name: 'Edgeless Wrapped ETH',
+        symbol: 'EwETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://edgeless-testnet.rpc.caldera.xyz/http'],
+            webSocket: ['wss://edgeless-testnet.rpc.caldera.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Edgeless Testnet Explorer',
+            url: 'https://testnet.explorer.edgeless.network',
+        },
+    },
+});
+//# sourceMappingURL=edgelessTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/edgeware.js
+
+const edgeware = /*#__PURE__*/ defineChain({
+    id: 2021,
+    name: 'Edgeware EdgeEVM Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Edgeware',
+        symbol: 'EDG',
+    },
+    rpcUrls: {
+        default: { http: ['https://edgeware-evm.jelliedowl.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Edgscan by Bharathcoorg',
+            url: 'https://edgscan.live',
+            apiUrl: 'https://edgscan.live/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 18117872,
+        },
+    },
+});
+//# sourceMappingURL=edgeware.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/edgewareTestnet.js
+
+const edgewareTestnet = /*#__PURE__*/ defineChain({
+    id: 2022,
+    name: 'Beresheet BereEVM Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Testnet EDG',
+        symbol: 'tEDG',
+    },
+    rpcUrls: {
+        default: { http: ['https://beresheet-evm.jelliedowl.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Edgscan by Bharathcoorg',
+            url: 'https://testnet.edgscan.live',
+            apiUrl: 'https://testnet.edgscan.live/api',
+        },
+    },
+});
+//# sourceMappingURL=edgewareTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ekta.js
+
+const ekta = /*#__PURE__*/ defineChain({
+    id: 1994,
+    name: 'Ekta',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EKTA',
+        symbol: 'EKTA',
+    },
+    rpcUrls: {
+        default: { http: ['https://main.ekta.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ektascan',
+            url: 'https://ektascan.io',
+            apiUrl: 'https://ektascan.io/api',
+        },
+    },
+});
+//# sourceMappingURL=ekta.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ektaTestnet.js
+
+const ektaTestnet = /*#__PURE__*/ defineChain({
+    id: 1004,
+    name: 'Ekta Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EKTA',
+        symbol: 'EKTA',
+    },
+    rpcUrls: {
+        default: { http: ['https://test.ekta.io:8545'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Test Ektascan',
+            url: 'https://test.ektascan.io',
+            apiUrl: 'https://test.ektascan.io/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=ektaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/elastos.js
+
+const elastos = /*#__PURE__*/ defineChain({
+    id: 20,
+    name: 'Elastos Smart Chain',
+    nativeCurrency: { name: 'ELA', symbol: 'ELA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api2.elastos.io/eth'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Elastos Explorer',
+            url: 'https://esc.elastos.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=elastos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/elastosTestnet.js
+
+const elastosTestnet = /*#__PURE__*/ defineChain({
+    id: 21,
+    name: 'Elastos Smart Chain Testnet',
+    nativeCurrency: { name: 'tELA', symbol: 'tELA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api-testnet.elastos.io/eth'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Elastos Explorer',
+            url: 'https://esc-testnet.elastos.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=elastosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/electroneum.js
+
+const electroneum = /*#__PURE__*/ defineChain({
+    id: 52014,
+    name: 'Electroneum Mainnet',
+    nativeCurrency: {
+        name: 'ETN',
+        symbol: 'ETN',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.electroneum.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Electroneum Block Explorer',
+            url: 'https://blockexplorer.electroneum.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=electroneum.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/electroneumTestnet.js
+
+const electroneumTestnet = /*#__PURE__*/ defineChain({
+    id: 5201420,
+    name: 'Electroneum Testnet',
+    nativeCurrency: {
+        name: 'ETN',
+        symbol: 'ETN',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.electroneum.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Electroneum Block Explorer',
+            url: 'https://blockexplorer.thesecurityteam.rocks',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=electroneumTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/elysiumTestnet.js
+
+
+const elysiumTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 1338,
+    name: 'Elysium Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'LAVA',
+        symbol: 'LAVA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://elysium-test-rpc.vulcanforged.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Elysium testnet explorer',
+            url: 'https://elysium-explorer.vulcanforged.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=elysiumTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/energy.js
+
+const energy = /*#__PURE__*/ defineChain({
+    id: 246,
+    name: 'Energy Mainnet',
+    nativeCurrency: { name: 'EWT', symbol: 'EWT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.energyweb.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'EnergyWeb Explorer',
+            url: 'https://explorer.energyweb.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=energy.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/enuls.js
+
+const enuls = /*#__PURE__*/ defineChain({
+    id: 119,
+    name: 'ENULS Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'NULS',
+        symbol: 'NULS',
+    },
+    rpcUrls: {
+        default: { http: ['https://evmapi2.nuls.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ENULS Explorer',
+            url: 'https://evmscan.nuls.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=enuls.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/eon.js
+
+const eon = /*#__PURE__*/ defineChain({
+    id: 7_332,
+    name: 'Horizen EON',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ZEN',
+        symbol: 'ZEN',
+    },
+    rpcUrls: {
+        default: { http: ['https://eon-rpc.horizenlabs.io/ethv1'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'EON Explorer',
+            url: 'https://eon-explorer.horizenlabs.io',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=eon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/eos.js
+
+const eos = /*#__PURE__*/ defineChain({
+    id: 17777,
+    name: 'EOS EVM',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EOS',
+        symbol: 'EOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.evm.eosnetwork.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'EOS EVM Explorer',
+            url: 'https://explorer.evm.eosnetwork.com',
+            apiUrl: 'https://explorer.evm.eosnetwork.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 7943933,
+        },
+    },
+});
+//# sourceMappingURL=eos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/eosTestnet.js
+
+const eosTestnet = /*#__PURE__*/ defineChain({
+    id: 15557,
+    name: 'EOS EVM Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EOS',
+        symbol: 'EOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.testnet.evm.eosnetwork.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'EOS EVM Testnet Explorer',
+            url: 'https://explorer.testnet.evm.eosnetwork.com',
+            apiUrl: 'https://explorer.testnet.evm.eosnetwork.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 9067940,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=eosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/etherlink.js
+
+const etherlink = /*#__PURE__*/ defineChain({
+    id: 42793,
+    name: 'Etherlink',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Tez',
+        symbol: 'XTZ',
+    },
+    rpcUrls: {
+        default: { http: ['https://node.mainnet.etherlink.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherlink',
+            url: 'https://explorer.etherlink.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 33899,
+        },
+    },
+});
+//# sourceMappingURL=etherlink.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/etherlinkTestnet.js
+
+const etherlinkTestnet = /*#__PURE__*/ defineChain({
+    id: 128123,
+    name: 'Etherlink Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Tez',
+        symbol: 'XTZ',
+    },
+    rpcUrls: {
+        default: { http: ['https://node.ghostnet.etherlink.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherlink Testnet',
+            url: 'https://testnet-explorer.etherlink.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=etherlinkTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/evmos.js
+
+const evmos = /*#__PURE__*/ defineChain({
+    id: 9_001,
+    name: 'Evmos',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Evmos',
+        symbol: 'EVMOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://eth.bd.evmos.org:8545'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Evmos Block Explorer',
+            url: 'https://escan.live',
+        },
+    },
+});
+//# sourceMappingURL=evmos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/evmosTestnet.js
+
+const evmosTestnet = /*#__PURE__*/ defineChain({
+    id: 9_000,
+    name: 'Evmos Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Evmos',
+        symbol: 'EVMOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://eth.bd.evmos.dev:8545'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Evmos Testnet Block Explorer',
+            url: 'https://evm.evmos.dev/',
+        },
+    },
+});
+//# sourceMappingURL=evmosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/excelonMainnet.js
+
+const excelonMainnet = /*#__PURE__*/ defineChain({
+    id: 22052002,
+    name: 'Excelon Mainnet',
+    network: 'XLON',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Excelon',
+        symbol: 'xlon',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://edgewallet1.xlon.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Excelon explorer',
+            url: 'https://explorer.excelon.io',
+        },
+    },
+});
+//# sourceMappingURL=excelonMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/expanse.js
+
+const expanse = /*#__PURE__*/ defineChain({
+    id: 2,
+    name: 'Expanse Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EXP',
+        symbol: 'EXP',
+    },
+    rpcUrls: {
+        default: { http: ['https://node.expanse.tech'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Expanse Explorer',
+            url: 'https://explorer.expanse.tech',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=expanse.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/exSat.js
+
+const exsat = /*#__PURE__*/ defineChain({
+    id: 7200,
+    name: 'exSat Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BTC',
+        symbol: 'BTC',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm.exsat.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'exSat Explorer',
+            url: 'https://scan.exsat.network',
+            apiUrl: 'https://scan.exsat.network/api',
+        },
+    },
+});
+//# sourceMappingURL=exSat.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/exSatTestnet.js
+
+const exsatTestnet = /*#__PURE__*/ defineChain({
+    id: 839999,
+    name: 'exSat Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BTC',
+        symbol: 'BTC',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm-tst3.exsat.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'exSat Explorer',
+            url: 'https://scan-testnet.exsat.network',
+            apiUrl: 'https://scan-testnet.exsat.network/api',
+        },
+    },
+});
+//# sourceMappingURL=exSatTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fantom.js
+
+const fantom = /*#__PURE__*/ defineChain({
+    id: 250,
+    name: 'Fantom',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Fantom',
+        symbol: 'FTM',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.ankr.com/fantom'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'FTMScan',
+            url: 'https://ftmscan.com',
+            apiUrl: 'https://api.ftmscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 33001987,
+        },
+    },
+});
+//# sourceMappingURL=fantom.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fantomSonicTestnet.js
+
+const fantomSonicTestnet = /*#__PURE__*/ defineChain({
+    id: 64_240,
+    name: 'Fantom Sonic Open Testnet',
+    network: 'fantom-sonic-testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Fantom',
+        symbol: 'FTM',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpcapi.sonic.fantom.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Fantom Sonic Open Testnet Explorer',
+            url: 'https://public-sonic.fantom.network',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=fantomSonicTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fantomTestnet.js
+
+const fantomTestnet = /*#__PURE__*/ defineChain({
+    id: 4_002,
+    name: 'Fantom Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Fantom',
+        symbol: 'FTM',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.testnet.fantom.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'FTMScan',
+            url: 'https://testnet.ftmscan.com',
+            apiUrl: 'https://testnet.ftmscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 8328688,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=fantomTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fibo.js
+
+const fibo = /*#__PURE__*/ defineChain({
+    id: 12306,
+    name: 'Fibo Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'fibo',
+        symbol: 'FIBO',
+    },
+    rpcUrls: {
+        default: { http: ['https://network.hzroc.art'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'FiboScan',
+            url: 'https://scan.fibochain.org',
+        },
+    },
+});
+//# sourceMappingURL=fibo.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/filecoin.js
+
+const filecoin = /*#__PURE__*/ defineChain({
+    id: 314,
+    name: 'Filecoin Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'filecoin',
+        symbol: 'FIL',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.node.glif.io/rpc/v1'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Filfox',
+            url: 'https://filfox.info/en',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3328594,
+        },
+    },
+});
+//# sourceMappingURL=filecoin.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/filecoinCalibration.js
+
+const filecoinCalibration = /*#__PURE__*/ defineChain({
+    id: 314_159,
+    name: 'Filecoin Calibration',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'testnet filecoin',
+        symbol: 'tFIL',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.calibration.node.glif.io/rpc/v1'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Filscan',
+            url: 'https://calibration.filscan.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=filecoinCalibration.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/filecoinHyperspace.js
+
+const filecoinHyperspace = /*#__PURE__*/ defineChain({
+    id: 314_1,
+    name: 'Filecoin Hyperspace',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'testnet filecoin',
+        symbol: 'tFIL',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.hyperspace.node.glif.io/rpc/v1'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Filfox',
+            url: 'https://hyperspace.filfox.info/en',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=filecoinHyperspace.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/5ireChain.js
+
+const fireChain = /*#__PURE__*/ defineChain({
+    id: 995,
+    name: '5ireChain',
+    nativeCurrency: { name: '5ire Token', symbol: '5IRE', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.5ire.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: '5ireChain Mainnet Explorer',
+            url: 'https://5irescan.io/',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=5ireChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/flare.js
+
+const flare = /*#__PURE__*/ defineChain({
+    id: 14,
+    name: 'Flare Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Flare',
+        symbol: 'FLR',
+    },
+    rpcUrls: {
+        default: { http: ['https://flare-api.flare.network/ext/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Flare Explorer',
+            url: 'https://flare-explorer.flare.network',
+            apiUrl: 'https://flare-explorer.flare.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3002461,
+        },
+    },
+});
+//# sourceMappingURL=flare.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/flareTestnet.js
+
+const flareTestnet = /*#__PURE__*/ defineChain({
+    id: 114,
+    name: 'Flare Testnet Coston2',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Coston2 Flare',
+        symbol: 'C2FLR',
+    },
+    rpcUrls: {
+        default: { http: ['https://coston2-api.flare.network/ext/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Coston2 Explorer',
+            url: 'https://coston2-explorer.flare.network',
+            apiUrl: 'https://coston2-explorer.flare.network/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=flareTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/flowMainnet.js
+
+const flowMainnet = /*#__PURE__*/ defineChain({
+    id: 747,
+    name: 'Flow EVM Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Flow',
+        symbol: 'FLOW',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.evm.nodes.onflow.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mainnet Explorer',
+            url: 'https://evm.flowscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 6205,
+        },
+    },
+});
+//# sourceMappingURL=flowMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/flowPreviewnet.js
+
+const flowPreviewnet = /*#__PURE__*/ defineChain({
+    id: 646,
+    name: 'Flow EVM Previewnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Flow',
+        symbol: 'FLOW',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://previewnet.evm.nodes.onflow.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Previewnet Explorer',
+            url: 'https://previewnet.flowdiver.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 6205,
+        },
+    },
+});
+//# sourceMappingURL=flowPreviewnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/flowTestnet.js
+
+const flowTestnet = /*#__PURE__*/ defineChain({
+    id: 545,
+    name: 'Flow EVM Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Flow',
+        symbol: 'FLOW',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.evm.nodes.onflow.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Flow Diver',
+            url: 'https://evm-testnet.flowscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 137518,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=flowTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fluence.js
+
+const fluence = /*#__PURE__*/ defineChain({
+    id: 9_999_999,
+    name: 'Fluence',
+    nativeCurrency: { name: 'FLT', symbol: 'FLT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mainnet.fluence.dev'],
+            webSocket: ['wss://ws.mainnet.fluence.dev'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.mainnet.fluence.dev',
+            apiUrl: 'https://blockscout.mainnet.fluence.dev/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 207583,
+        },
+    },
+});
+//# sourceMappingURL=fluence.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fluenceStage.js
+
+const fluenceStage = /*#__PURE__*/ defineChain({
+    id: 123_420_000_220,
+    name: 'Fluence Stage',
+    nativeCurrency: { name: 'tFLT', symbol: 'tFLT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.stage.fluence.dev'],
+            webSocket: ['wss://ws.stage.fluence.dev'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.stage.fluence.dev',
+            apiUrl: 'https://blockscout.stage.fluence.dev/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 83227,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=fluenceStage.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fluenceTestnet.js
+
+const fluenceTestnet = /*#__PURE__*/ defineChain({
+    id: 52_164_803,
+    name: 'Fluence Testnet',
+    nativeCurrency: { name: 'tFLT', symbol: 'tFLT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.fluence.dev'],
+            webSocket: ['wss://ws.testnet.fluence.dev'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.testnet.fluence.dev',
+            apiUrl: 'https://blockscout.testnet.fluence.dev/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 96424,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=fluenceTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/forma.js
+
+const forma = /*#__PURE__*/ defineChain({
+    id: 984122,
+    name: 'Forma',
+    network: 'forma',
+    nativeCurrency: {
+        symbol: 'TIA',
+        name: 'TIA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.forma.art'],
+            webSocket: ['wss://ws.forma.art'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Forma Explorer',
+            url: 'https://explorer.forma.art',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xd53C6FFB123F7349A32980F87faeD8FfDc9ef079',
+            blockCreated: 252705,
+        },
+    },
+});
+//# sourceMappingURL=forma.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/foundry.js
+
+const foundry = /*#__PURE__*/ defineChain({
+    id: 31_337,
+    name: 'Foundry',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['http://127.0.0.1:8545'],
+            webSocket: ['ws://127.0.0.1:8545'],
+        },
+    },
+});
+//# sourceMappingURL=foundry.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fraxtal.js
+
+
+const fraxtal_sourceId = 1; // mainnet
+const fraxtal = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 252,
+    name: 'Fraxtal',
+    nativeCurrency: { name: 'Frax Ether', symbol: 'frxETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.frax.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'fraxscan',
+            url: 'https://fraxscan.com',
+            apiUrl: 'https://api.fraxscan.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [fraxtal_sourceId]: {
+                address: '0x66CC916Ed5C6C2FA97014f7D1cD141528Ae171e4',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [fraxtal_sourceId]: {
+                address: '0x36cb65c1967A0Fb0EEE11569C51C2f2aA1Ca6f6D',
+                blockCreated: 19135323,
+            },
+        },
+        l1StandardBridge: {
+            [fraxtal_sourceId]: {
+                address: '0x34C0bD5877A5Ee7099D0f5688D65F4bB9158BDE2',
+                blockCreated: 19135323,
+            },
+        },
+    },
+    sourceId: fraxtal_sourceId,
+});
+//# sourceMappingURL=fraxtal.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fraxtalTestnet.js
+
+
+const fraxtalTestnet_sourceId = 17000; // holesky
+const fraxtalTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 2522,
+    name: 'Fraxtal Testnet',
+    nativeCurrency: { name: 'Frax Ether', symbol: 'frxETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.frax.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'fraxscan testnet',
+            url: 'https://holesky.fraxscan.com',
+            apiUrl: 'https://api-holesky.fraxscan.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [fraxtalTestnet_sourceId]: {
+                address: '0x715EA64DA13F4d0831ece4Ad3E8c1aa013167F32',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [fraxtalTestnet_sourceId]: {
+                address: '0xB9c64BfA498d5b9a8398Ed6f46eb76d90dE5505d',
+                blockCreated: 318416,
+            },
+        },
+        l1StandardBridge: {
+            [fraxtalTestnet_sourceId]: {
+                address: '0x0BaafC217162f64930909aD9f2B27125121d6332',
+                blockCreated: 318416,
+            },
+        },
+    },
+    sourceId: fraxtalTestnet_sourceId,
+});
+//# sourceMappingURL=fraxtalTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/funkiMainnet.js
+
+
+const funkiMainnet_sourceId = 1; // mainnet
+const funkiMainnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 33979,
+    name: 'Funki',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-mainnet.funkichain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Funki Mainnet Explorer',
+            url: 'https://funkiscan.io',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+    },
+    sourceId: funkiMainnet_sourceId,
+});
+//# sourceMappingURL=funkiMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/funkiSepolia.js
+
+
+const funkiSepolia_sourceId = 11_155_111; // sepolia
+const funkiSepolia = defineChain({
+    ...chainConfig_chainConfig,
+    id: 3397901,
+    network: 'funkiSepolia',
+    name: 'Funki Sepolia Sandbox',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://funki-testnet.alt.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Funki Sepolia Sandbox Explorer',
+            url: 'https://sepolia-sandbox.funkichain.com/',
+        },
+    },
+    testnet: true,
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1620204,
+        },
+    },
+    sourceId: funkiSepolia_sourceId,
+});
+//# sourceMappingURL=funkiSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fuse.js
+
+const fuse = /*#__PURE__*/ defineChain({
+    id: 122,
+    name: 'Fuse',
+    nativeCurrency: { name: 'Fuse', symbol: 'FUSE', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.fuse.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Fuse Explorer',
+            url: 'https://explorer.fuse.io',
+            apiUrl: 'https://explorer.fuse.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 16146628,
+        },
+    },
+});
+//# sourceMappingURL=fuse.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fuseSparknet.js
+
+const fuseSparknet = /*#__PURE__*/ defineChain({
+    id: 123,
+    name: 'Fuse Sparknet',
+    nativeCurrency: { name: 'Spark', symbol: 'SPARK', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.fusespark.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sparkent Explorer',
+            url: 'https://explorer.fusespark.io',
+            apiUrl: 'https://explorer.fusespark.io/api',
+        },
+    },
+});
+//# sourceMappingURL=fuseSparknet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fusion.js
+
+const fusion = /*#__PURE__*/ defineChain({
+    id: 32659,
+    name: 'Fusion Mainnet',
+    nativeCurrency: { name: 'Fusion', symbol: 'FSN', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.fusionnetwork.io'],
+            webSocket: ['wss://mainnet.fusionnetwork.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'FSNscan',
+            url: 'https://fsnscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 10441605,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=fusion.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/fusionTestnet.js
+
+const fusionTestnet = /*#__PURE__*/ defineChain({
+    id: 46688,
+    name: 'Fusion Testnet',
+    nativeCurrency: { name: 'Fusion', symbol: 'FSN', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.fusionnetwork.io'],
+            webSocket: ['wss://testnet.fusionnetwork.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'FSNscan',
+            url: 'https://testnet.fsnscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 10428309,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=fusionTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/garnet.js
+
+
+const garnet_sourceId = 17000; // Holesky testnet
+const garnet = defineChain({
+    ...chainConfig_chainConfig,
+    name: 'Garnet Testnet',
+    testnet: true,
+    id: 17069,
+    sourceId: garnet_sourceId,
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.garnetchain.com'],
+            webSocket: ['wss://rpc.garnetchain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.garnetchain.com',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [garnet_sourceId]: {
+                address: '0x57ee40586fbE286AfC75E67cb69511A6D9aF5909',
+                blockCreated: 1274684,
+            },
+        },
+        l2OutputOracle: {
+            [garnet_sourceId]: {
+                address: '0xCb8E7AC561b8EF04F2a15865e9fbc0766FEF569B',
+                blockCreated: 1274684,
+            },
+        },
+        l1StandardBridge: {
+            [garnet_sourceId]: {
+                address: '0x09bcDd311FE398F80a78BE37E489f5D440DB95DE',
+                blockCreated: 1274684,
+            },
+        },
+    },
+});
+//# sourceMappingURL=garnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/geist.js
+
+const geist = /*#__PURE__*/ defineChain({
+    id: 63157,
+    name: 'Geist Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Aavegotchi GHST Token',
+        symbol: 'GHST',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://geist-mainnet.g.alchemy.com/public'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://geist-mainnet.explorer.alchemy.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 660735,
+        },
+    },
+});
+//# sourceMappingURL=geist.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/genesys.js
+
+const genesys = /*#__PURE__*/ defineChain({
+    id: 16507,
+    name: 'Genesys Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'GSYS',
+        symbol: 'GSYS',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.genesys.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Genesys Explorer',
+            url: 'https://gchainexplorer.genesys.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=genesys.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/glideL1Protocol.js
+
+const glideL1Protocol = /*#__PURE__*/ defineChain({
+    id: 251,
+    name: 'Glide L1 Protocol XP',
+    nativeCurrency: { name: 'GLXP', symbol: 'GLXP', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-api.glideprotocol.xyz/l1-rpc'],
+            webSocket: ['wss://rpc-api.glideprotocol.xyz/l1-rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Glide Protocol Explore',
+            url: 'https://blockchain-explorer.glideprotocol.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=glideL1Protocol.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/glideL2Protocol.js
+
+const glideL2Protocol = /*#__PURE__*/ defineChain({
+    id: 253,
+    name: 'Glide L2 Protocol XP',
+    nativeCurrency: { name: 'GLXP', symbol: 'GLXP', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-api.glideprotocol.xyz/l2-rpc'],
+            webSocket: ['wss://rpc-api.glideprotocol.xyz/l2-rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Glide Protocol Explore',
+            url: 'https://blockchain-explorer.glideprotocol.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=glideL2Protocol.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/gnosis.js
+
+const gnosis = /*#__PURE__*/ defineChain({
+    id: 100,
+    name: 'Gnosis',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'xDAI',
+        symbol: 'XDAI',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.gnosischain.com'],
+            webSocket: ['wss://rpc.gnosischain.com/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Gnosisscan',
+            url: 'https://gnosisscan.io',
+            apiUrl: 'https://api.gnosisscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 21022491,
+        },
+    },
+});
+//# sourceMappingURL=gnosis.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/gnosisChiado.js
+
+const gnosisChiado = /*#__PURE__*/ defineChain({
+    id: 10_200,
+    name: 'Gnosis Chiado',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Gnosis',
+        symbol: 'xDAI',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.chiadochain.net'],
+            webSocket: ['wss://rpc.chiadochain.net/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.chiadochain.net',
+            apiUrl: 'https://blockscout.chiadochain.net/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 4967313,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=gnosisChiado.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/gobi.js
+
+const gobi = /*#__PURE__*/ defineChain({
+    id: 1_663,
+    name: 'Horizen Gobi Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Test ZEN',
+        symbol: 'tZEN',
+    },
+    rpcUrls: {
+        default: { http: ['https://gobi-testnet.horizenlabs.io/ethv1'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Gobi Explorer',
+            url: 'https://gobi-explorer.horizen.io',
+        },
+    },
+    contracts: {},
+    testnet: true,
+});
+//# sourceMappingURL=gobi.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/goChain.js
+
+const goChain = /*#__PURE__*/ defineChain({
+    id: 60,
+    name: 'GoChain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'GO',
+        symbol: 'GO',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.gochain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'GoChain Explorer',
+            url: 'https://explorer.gochain.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=goChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/godwoken.js
+
+const godwoken = /*#__PURE__*/ defineChain({
+    id: 71402,
+    name: 'Godwoken Mainnet',
+    nativeCurrency: { decimals: 18, name: 'pCKB', symbol: 'pCKB' },
+    rpcUrls: {
+        default: {
+            http: ['https://v1.mainnet.godwoken.io/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'GW Scan',
+            url: 'https://v1.gwscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 15034,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=godwoken.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/goerli.js
+
+const goerli = /*#__PURE__*/ defineChain({
+    id: 5,
+    name: 'Goerli',
+    nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.ankr.com/eth_goerli'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://goerli.etherscan.io',
+            apiUrl: 'https://api-goerli.etherscan.io/api',
+        },
+    },
+    contracts: {
+        ensRegistry: {
+            address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+        },
+        ensUniversalResolver: {
+            address: '0xfc4AC75C46C914aF5892d6d3eFFcebD7917293F1',
+            blockCreated: 10_339_206,
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 6507670,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=goerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/gravity.js
+
+const gravity = /*#__PURE__*/ defineChain({
+    id: 1625,
+    name: 'Gravity Alpha Mainnet',
+    nativeCurrency: { name: 'G', symbol: 'G', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.gravity.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Gravity Explorer',
+            url: 'https://explorer.gravity.xyz',
+            apiUrl: 'https://explorer.gravity.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xf8ac4BEB2F75d2cFFb588c63251347fdD629B92c',
+            blockCreated: 16851,
+        },
+    },
+});
+//# sourceMappingURL=gravity.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/guruNetwork.js
+
+const guruNetwork = /*#__PURE__*/ defineChain({
+    id: 260,
+    name: 'Guru Network Mainnet',
+    nativeCurrency: {
+        name: 'GURU Token',
+        symbol: 'GURU',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.gurunetwork.ai/archive/260'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Guruscan',
+            url: 'https://scan.gurunetwork.ai',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 271691,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=guruNetwork.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/guruTestnet.js
+
+const guruTestnet = /*#__PURE__*/ defineChain({
+    id: 261,
+    name: 'Guru Network Testnet',
+    nativeCurrency: {
+        name: 'tGURU Token',
+        symbol: 'tGURU',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.gurunetwork.ai/archive/261'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Guruscan',
+            url: 'https://sepolia.gurunetwork.ai',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=guruTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ham.js
+
+const ham = /*#__PURE__*/ defineChain({
+    id: 5112,
+    name: 'Ham',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ham',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.ham.fun'],
+            webSocket: ['wss://rpc.ham.fun'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ham Chain Explorer',
+            url: 'https://explorer.ham.fun',
+            apiUrl: 'https://explorer.ham.fun/api/v2',
+        },
+    },
+});
+//# sourceMappingURL=ham.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/haqqMainnet.js
+
+const haqqMainnet = /*#__PURE__*/ defineChain({
+    id: 11235,
+    name: 'HAQQ Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Islamic Coin',
+        symbol: 'ISLM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.eth.haqq.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'HAQQ Explorer',
+            url: 'https://explorer.haqq.network',
+            apiUrl: 'https://explorer.haqq.network/api',
+        },
+    },
+});
+//# sourceMappingURL=haqqMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/haqqTestedge2.js
+
+const haqqTestedge2 = /*#__PURE__*/ defineChain({
+    id: 54211,
+    name: 'HAQQ Testedge 2',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Islamic Coin',
+        symbol: 'ISLMT',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.eth.testedge2.haqq.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'HAQQ Explorer',
+            url: 'https://explorer.testedge2.haqq.network',
+            apiUrl: 'https://explorer.testedge2.haqq.network/api',
+        },
+    },
+});
+//# sourceMappingURL=haqqTestedge2.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hardhat.js
+
+const hardhat = /*#__PURE__*/ defineChain({
+    id: 31_337,
+    name: 'Hardhat',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['http://127.0.0.1:8545'] },
+    },
+});
+//# sourceMappingURL=hardhat.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/harmonyOne.js
+
+const harmonyOne = /*#__PURE__*/ defineChain({
+    id: 1_666_600_000,
+    name: 'Harmony One',
+    nativeCurrency: {
+        name: 'Harmony',
+        symbol: 'ONE',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.ankr.com/harmony'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Harmony Explorer',
+            url: 'https://explorer.harmony.one',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 24185753,
+        },
+    },
+});
+//# sourceMappingURL=harmonyOne.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hashkeyChainTestnet.js
+
+const hashkeyTestnet = /*#__PURE__*/ defineChain({
+    id: 133,
+    name: 'HashKey Chain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'HashKey EcoPoints',
+        symbol: 'HSK',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://hashkeychain-testnet.alt.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'HashKey Chain Explorer',
+            url: 'https://hashkeychain-testnet-explorer.alt.technology',
+        },
+    },
+});
+//# sourceMappingURL=hashkeyChainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hedera.js
+
+const hedera = /*#__PURE__*/ defineChain({
+    id: 295,
+    name: 'Hedera Mainnet',
+    network: 'hedera-mainnet',
+    nativeCurrency: {
+        symbol: 'HBAR',
+        name: 'HBAR',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.hashio.io/api'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Hashscan',
+            url: 'https://hashscan.io/mainnet',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=hedera.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hederaPreviewnet.js
+
+const hederaPreviewnet = /*#__PURE__*/ defineChain({
+    id: 297,
+    name: 'Hedera Previewnet',
+    network: 'hedera-previewnet',
+    nativeCurrency: {
+        symbol: 'HBAR',
+        name: 'HBAR',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://previewnet.hashio.io/api'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Hashscan',
+            url: 'https://hashscan.io/previewnet',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=hederaPreviewnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hederaTestnet.js
+
+const hederaTestnet = /*#__PURE__*/ defineChain({
+    id: 296,
+    name: 'Hedera Testnet',
+    network: 'hedera-testnet',
+    nativeCurrency: {
+        symbol: 'HBAR',
+        name: 'HBAR',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.hashio.io/api'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Hashscan',
+            url: 'https://hashscan.io/testnet',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=hederaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hela.js
+
+const hela = /*#__PURE__*/ defineChain({
+    id: 8668,
+    name: 'Hela Mainnet',
+    nativeCurrency: {
+        name: 'HLUSD',
+        symbol: 'HLUSD',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet-rpc.helachain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Hela explorer',
+            url: 'https://mainnet-blockexplorer.helachain.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=hela.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hemiSepolia.js
+
+const hemiSepolia = /*#__PURE__*/ defineChain({
+    id: 743111,
+    name: 'Hemi Sepolia',
+    network: 'Hemi Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.rpc.hemi.network/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Hemi Sepolia explorer',
+            url: 'https://testnet.explorer.hemi.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=hemiSepolia.js.map
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/holesky.js
 
 const holesky = /*#__PURE__*/ defineChain({
@@ -100270,6 +107117,1689 @@ const holesky = /*#__PURE__*/ defineChain({
     testnet: true,
 });
 //# sourceMappingURL=holesky.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hpb.js
+
+const hpb = /*#__PURE__*/ defineChain({
+    id: 269,
+    name: 'High Performance Blockchain',
+    nativeCurrency: { name: 'HPB', symbol: 'HPB', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://hpbnode.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'hpbScan',
+            url: 'https://hscan.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=hpb.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/huddle01Mainnet.js
+
+const huddle01Mainnet_sourceId = 42_161; // Arbitrum One
+const huddle01Mainnet = /*#__PURE__*/ defineChain({
+    id: 12323,
+    name: 'Huddle01 dRTC Chain',
+    nativeCurrency: {
+        name: 'Ethereum',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://huddle01.calderachain.xyz/http'],
+            webSocket: ['wss://huddle01.calderachain.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Huddle01 Caldera Explorer',
+            url: 'https://huddle01.calderaexplorer.xyz',
+            apiUrl: 'https://huddle01.calderaexplorer.xyz/api',
+        },
+    },
+    sourceId: huddle01Mainnet_sourceId,
+});
+//# sourceMappingURL=huddle01Mainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/huddle01Testnet.js
+
+const huddle01Testnet_sourceId = 421_614; // Arbitrum Sepolia
+const huddle01Testnet = /*#__PURE__*/ defineChain({
+    id: 2524852,
+    name: 'Huddle01 dRTC Chain Testnet',
+    nativeCurrency: {
+        name: 'Ethereum',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://huddle-testnet.rpc.caldera.xyz/http'],
+            webSocket: ['wss://huddle-testnet.rpc.caldera.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Huddle01 Caldera Explorer',
+            url: 'https://huddle-testnet.explorer.caldera.xyz',
+            apiUrl: 'https://huddle-testnet.explorer.caldera.xyz/api',
+        },
+    },
+    sourceId: huddle01Testnet_sourceId,
+});
+//# sourceMappingURL=huddle01Testnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/humanode.js
+
+const humanode = /*#__PURE__*/ defineChain({
+    id: 5234,
+    name: 'Humanode',
+    nativeCurrency: { name: 'HMND', symbol: 'HMND', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://explorer-rpc-http.mainnet.stages.humanode.io'],
+            webSocket: ['wss://explorer-rpc-ws.mainnet.stages.humanode.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Subscan',
+            url: 'https://humanode.subscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 4_413_097,
+        },
+    },
+});
+//# sourceMappingURL=humanode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/humanodeTestnet5.js
+
+const humanodeTestnet5 = /*#__PURE__*/ defineChain({
+    id: 14853,
+    name: 'Humanode Testnet 5',
+    nativeCurrency: { name: 'HMND', symbol: 'HMND', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://explorer-rpc-http.testnet5.stages.humanode.io'],
+            webSocket: ['wss://explorer-rpc-ws.testnet5.stages.humanode.io'],
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+    },
+});
+//# sourceMappingURL=humanodeTestnet5.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hychain.js
+
+const hychain = /*#__PURE__*/ defineChain({
+    id: 2911,
+    name: 'HYCHAIN',
+    nativeCurrency: { name: 'HYTOPIA', symbol: 'TOPIA', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.hychain.com/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'HYCHAIN Explorer',
+            url: 'https://explorer.hychain.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=hychain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/hychainTestnet.js
+
+const hychainTestnet = /*#__PURE__*/ defineChain({
+    id: 29112,
+    name: 'HYCHAIN Testnet',
+    nativeCurrency: { name: 'HYTOPIA', symbol: 'TOPIA', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.hychain.com/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'HYCHAIN Explorer',
+            url: 'https://testnet-rpc.hychain.com/http',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=hychainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/idchain.js
+
+const idchain = /*#__PURE__*/ defineChain({
+    id: 74,
+    name: 'IDChain Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'EIDI',
+        symbol: 'EIDI',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://idchain.one/rpc'],
+            webSocket: ['wss://idchain.one/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'IDChain Explorer',
+            url: 'https://explorer.idchain.one',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=idchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/immutableZkEvm.js
+
+const immutableZkEvm = /*#__PURE__*/ defineChain({
+    id: 13371,
+    name: 'Immutable zkEVM',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Immutable Coin',
+        symbol: 'IMX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.immutable.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Immutable Explorer',
+            url: 'https://explorer.immutable.com',
+            apiUrl: 'https://explorer.immutable.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x236bdA4589e44e6850f5aC6a74BfCa398a86c6c0',
+            blockCreated: 4335972,
+        },
+    },
+});
+//# sourceMappingURL=immutableZkEvm.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/immutableZkEvmTestnet.js
+
+const immutableZkEvmTestnet = /*#__PURE__*/ defineChain({
+    id: 13473,
+    name: 'Immutable zkEVM Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Immutable Coin',
+        symbol: 'IMX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.immutable.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Immutable Testnet Explorer',
+            url: 'https://explorer.testnet.immutable.com/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x2CC787Ed364600B0222361C4188308Fa8E68bA60',
+            blockCreated: 5977391,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=immutableZkEvmTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/inEVM.js
+
+const inEVM = /*#__PURE__*/ defineChain({
+    id: 2525,
+    name: 'inEVM Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Injective',
+        symbol: 'INJ',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet.rpc.inevm.com/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'inEVM Explorer',
+            url: 'https://inevm.calderaexplorer.xyz',
+            apiUrl: 'https://inevm.calderaexplorer.xyz/api/v2',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 118606,
+        },
+    },
+});
+//# sourceMappingURL=inEVM.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/initVerseGenesis.js
+
+const initVerseGenesis = /*#__PURE__*/ defineChain({
+    id: 7_234,
+    name: 'InitVerse Genesis Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'InitVerse',
+        symbol: 'INI',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc-testnet.inichain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'InitVerseGenesisScan',
+            url: 'https://genesis-testnet.iniscan.com',
+            apiUrl: 'https://explorer-testnet-api.inichain.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0cF32CBDd6c437331EA4f85ed2d881A5379B5a6F',
+            blockCreated: 16361,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=initVerseGenesis.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ink.js
+
+
+const ink_sourceId = 1; // mainnet
+const ink = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 57073,
+    name: 'Ink',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc-gel.inkonchain.com',
+                'https://rpc-qnd.inkonchain.com',
+            ],
+            webSocket: [
+                'wss://rpc-gel.inkonchain.com',
+                'wss://rpc-qnd.inkonchain.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.inkonchain.com',
+            apiUrl: 'https://explorer.inkonchain.com/api/v2',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [ink_sourceId]: {
+                address: '0x10d7b35078d3baabb96dd45a9143b94be65b12cd',
+            },
+        },
+        portal: {
+            [ink_sourceId]: {
+                address: '0x5d66c1782664115999c47c9fa5cd031f495d3e4f',
+            },
+        },
+        l1StandardBridge: {
+            [ink_sourceId]: {
+                address: '0x88ff1e5b602916615391f55854588efcbb7663f0',
+            },
+        },
+    },
+    testnet: false,
+    sourceId: ink_sourceId,
+});
+//# sourceMappingURL=ink.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/inkSepolia.js
+
+
+const inkSepolia_sourceId = 11_155_111; // sepolia
+const inkSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 763373,
+    name: 'Ink Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-gel-sepolia.inkonchain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer-sepolia.inkonchain.com/',
+            apiUrl: 'https://explorer-sepolia.inkonchain.com/api/v2',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [inkSepolia_sourceId]: {
+                address: '0x860e626c700af381133d9f4af31412a2d1db3d5d',
+            },
+        },
+        portal: {
+            [inkSepolia_sourceId]: {
+                address: '0x5c1d29c6c9c8b0800692acc95d700bcb4966a1d7',
+            },
+        },
+        l1StandardBridge: {
+            [inkSepolia_sourceId]: {
+                address: '0x33f60714bbd74d62b66d79213c348614de51901c',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: inkSepolia_sourceId,
+});
+//# sourceMappingURL=inkSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/iota.js
+
+const iota = /*#__PURE__*/ defineChain({
+    id: 8822,
+    name: 'IOTA EVM',
+    network: 'iotaevm',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IOTA',
+        symbol: 'IOTA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://json-rpc.evm.iotaledger.net'],
+            webSocket: ['wss://ws.json-rpc.evm.iotaledger.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://explorer.evm.iota.org',
+            apiUrl: 'https://explorer.evm.iota.org/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 25022,
+        },
+    },
+});
+//# sourceMappingURL=iota.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/iotaTestnet.js
+
+const iotaTestnet = /*#__PURE__*/ defineChain({
+    id: 1075,
+    name: 'IOTA EVM Testnet',
+    network: 'iotaevm-testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IOTA',
+        symbol: 'IOTA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://json-rpc.evm.testnet.iotaledger.net'],
+            webSocket: ['wss://ws.json-rpc.evm.testnet.iotaledger.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://explorer.evm.testnet.iotaledger.net',
+            apiUrl: 'https://explorer.evm.testnet.iotaledger.net/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=iotaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/iotex.js
+
+const iotex = /*#__PURE__*/ defineChain({
+    id: 4_689,
+    name: 'IoTeX',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IoTeX',
+        symbol: 'IOTX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://babel-api.mainnet.iotex.io'],
+            webSocket: ['wss://babel-api.mainnet.iotex.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'IoTeXScan',
+            url: 'https://iotexscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 22163670,
+        },
+    },
+});
+//# sourceMappingURL=iotex.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/iotexTestnet.js
+
+const iotexTestnet = /*#__PURE__*/ defineChain({
+    id: 4_690,
+    name: 'IoTeX Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IoTeX',
+        symbol: 'IOTX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://babel-api.testnet.iotex.io'],
+            webSocket: ['wss://babel-api.testnet.iotex.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'IoTeXScan',
+            url: 'https://testnet.iotexscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xb5cecD6894c6f473Ec726A176f1512399A2e355d',
+            blockCreated: 24347592,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=iotexTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/iSunCoin.js
+
+const iSunCoin = /*#__PURE__*/ defineChain({
+    id: 8017,
+    name: 'iSunCoin Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ISC',
+        symbol: 'ISC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.isuncoin.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'iSunCoin Explorer',
+            url: 'https://baifa.io/app/chains/8017',
+        },
+    },
+});
+//# sourceMappingURL=iSunCoin.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/jbc.js
+
+const jbc = /*#__PURE__*/ defineChain({
+    id: 8899,
+    name: 'JIBCHAIN L1',
+    network: 'jbc',
+    nativeCurrency: { name: 'JBC', symbol: 'JBC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-l1.jibchain.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://exp-l1.jibchain.net',
+            apiUrl: 'https://exp-l1.jibchain.net/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xc0C8C486D1466C57Efe13C2bf000d4c56F47CBdC',
+            blockCreated: 2299048,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=jbc.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/jbcTestnet.js
+
+const jbcTestnet = /*#__PURE__*/ defineChain({
+    id: 88991,
+    name: 'Jibchain Testnet',
+    nativeCurrency: { name: 'tJBC', symbol: 'tJBC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.jibchain.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://exp.testnet.jibchain.net',
+            apiUrl: 'https://exp.testnet.jibchain.net/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xa1a858ad9041B4741e620355a3F96B3c78e70ecE',
+            blockCreated: 32848,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=jbcTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/karura.js
+
+const karura = /*#__PURE__*/ defineChain({
+    id: 686,
+    name: 'Karura',
+    network: 'karura',
+    nativeCurrency: {
+        name: 'Karura',
+        symbol: 'KAR',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-rpc-karura.aca-api.network'],
+            webSocket: ['wss://eth-rpc-karura.aca-api.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Karura Blockscout',
+            url: 'https://blockscout.karura.network',
+            apiUrl: 'https://blockscout.karura.network/api',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=karura.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kakarotSepolia.js
+
+const kakarotSepolia = /*#__PURE__*/ defineChain({
+    id: 1802203764,
+    name: 'Kakarot Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia-rpc.kakarot.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kakarot Scan',
+            url: 'https://sepolia.kakarotscan.org',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=kakarotSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kakarotStarknetSepolia.js
+
+const kakarotStarknetSepolia = /*#__PURE__*/ defineChain({
+    id: 920637907288165,
+    name: 'Kakarot Starknet Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia-rpc.kakarot.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kakarot Scan',
+            url: 'https://sepolia.kakarotscan.org',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=kakarotStarknetSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kardiaChain.js
+
+const kardiaChain = /*#__PURE__*/ defineChain({
+    id: 24,
+    name: 'KardiaChain Mainnet',
+    nativeCurrency: { name: 'KAI', symbol: 'KAI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.kardiachain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'KardiaChain Explorer',
+            url: 'https://explorer.kardiachain.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=kardiaChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kava.js
+
+const kava = /*#__PURE__*/ defineChain({
+    id: 2222,
+    name: 'Kava EVM',
+    network: 'kava-mainnet',
+    nativeCurrency: {
+        name: 'Kava',
+        symbol: 'KAVA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://evm.kava.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kava EVM Explorer',
+            url: 'https://kavascan.com',
+            apiUrl: 'https://kavascan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 3661165,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=kava.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kavaTestnet.js
+
+const kavaTestnet = /*#__PURE__*/ defineChain({
+    id: 2221,
+    name: 'Kava EVM Testnet',
+    network: 'kava-testnet',
+    nativeCurrency: {
+        name: 'Kava',
+        symbol: 'KAVA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://evm.testnet.kava.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kava EVM Testnet Explorer',
+            url: 'https://testnet.kavascan.com/',
+            apiUrl: 'https://testnet.kavascan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xDf1D724A7166261eEB015418fe8c7679BBEa7fd6',
+            blockCreated: 7242179,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=kavaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kcc.js
+
+const kcc = /*#__PURE__*/ defineChain({
+    id: 321,
+    name: 'KCC Mainnet',
+    network: 'KCC Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'KCS',
+        symbol: 'KCS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://kcc-rpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: { name: 'KCC Explorer', url: 'https://explorer.kcc.io' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 11760430,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=kcc.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kinto.js
+
+const kinto = /*#__PURE__*/ defineChain({
+    id: 7887,
+    name: 'Kinto Mainnet',
+    network: 'Kinto Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.kinto.xyz/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kinto Explorer',
+            url: 'https://explorer.kinto.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=kinto.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/klaytn.js
+
+const klaytn = /*#__PURE__*/ defineChain({
+    id: 8_217,
+    name: 'Klaytn',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Klaytn',
+        symbol: 'KLAY',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-en-cypress.klaytn.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'KlaytnScope',
+            url: 'https://scope.klaytn.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 96002415,
+        },
+    },
+});
+//# sourceMappingURL=klaytn.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kaia.js
+
+const kaia = /*#__PURE__*/ defineChain({
+    id: 8_217,
+    name: 'Kaia',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Kaia',
+        symbol: 'KAIA',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-en.node.kaia.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'KaiaScan',
+            url: 'https://kaiascan.io',
+            apiUrl: 'https://api-cypress.klaytnscope.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 96002415,
+        },
+    },
+});
+//# sourceMappingURL=kaia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kairos.js
+
+const kairos = /*#__PURE__*/ defineChain({
+    id: 1_001,
+    name: 'Kairos Testnet',
+    network: 'kairos',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Kairos KAIA',
+        symbol: 'KAIA',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-en-kairos.node.kaia.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'KaiaScan',
+            url: 'https://kairos.kaiascan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 123390593,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=kairos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/klaytnBaobab.js
+
+const klaytnBaobab = /*#__PURE__*/ defineChain({
+    id: 1_001,
+    name: 'Klaytn Baobab Testnet',
+    network: 'klaytn-baobab',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Baobab Klaytn',
+        symbol: 'KLAY',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-en-baobab.klaytn.net'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'KlaytnScope',
+            url: 'https://baobab.klaytnscope.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 123390593,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=klaytnBaobab.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/koi.js
+
+const koi = defineChain({
+    id: 701,
+    name: 'Koi Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Koi Network Native Token',
+        symbol: 'KRING',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://koi-rpc.darwinia.network'],
+            webSocket: ['wss://koi-rpc.darwinia.network'],
+        },
+    },
+    blockExplorers: {
+        default: { name: 'Blockscout', url: 'https://koi-scan.darwinia.network' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 180001,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=koi.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kroma.js
+
+const kroma = /*#__PURE__*/ defineChain({
+    id: 255,
+    name: 'Kroma',
+    nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.kroma.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kroma Explorer',
+            url: 'https://blockscout.kroma.network',
+            apiUrl: 'https://blockscout.kroma.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 16054868,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=kroma.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/kromaSepolia.js
+
+const kromaSepolia = /*#__PURE__*/ defineChain({
+    id: 2358,
+    name: 'Kroma Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.sepolia.kroma.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Kroma Sepolia Explorer',
+            url: 'https://blockscout.sepolia.kroma.network',
+            apiUrl: 'https://blockscout.sepolia.kroma.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 8900914,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=kromaSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/l3x.js
+
+const l3x = /*#__PURE__*/ defineChain({
+    id: 12324,
+    name: 'L3X Protocol',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-mainnet.l3x.com'],
+            webSocket: ['wss://rpc-mainnet.l3x.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'L3X Mainnet Explorer',
+            url: 'https://explorer.l3x.com',
+            apiUrl: 'https://explorer.l3x.com/api/v2',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=l3x.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/l3xTestnet.js
+
+const l3xTestnet = /*#__PURE__*/ defineChain({
+    id: 12325,
+    name: 'L3X Protocol Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-testnet.l3x.com'],
+            webSocket: ['wss://rpc-testnet.l3x.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'L3X Testnet Explorer',
+            url: 'https://explorer-testnet.l3x.com',
+            apiUrl: 'https://explorer-testnet.l3x.com/api/v2',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=l3xTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lavita.js
+
+const lavita = /*#__PURE__*/ defineChain({
+    id: 360890,
+    name: 'LAVITA Mainnet',
+    nativeCurrency: { name: 'vTFUEL', symbol: 'vTFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://tsub360890-eth-rpc.thetatoken.org/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LAVITA Explorer',
+            url: 'https://tsub360890-explorer.thetatoken.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=lavita.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lightlinkPegasus.js
+
+const lightlinkPegasus = /*#__PURE__*/ defineChain({
+    id: 1_891,
+    name: 'LightLink Pegasus Testnet',
+    network: 'lightlink-pegasus',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://replicator.pegasus.lightlink.io/rpc/v1'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LightLink Pegasus Explorer',
+            url: 'https://pegasus.lightlink.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=lightlinkPegasus.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lightlinkPhoenix.js
+
+const lightlinkPhoenix = /*#__PURE__*/ defineChain({
+    id: 1_890,
+    name: 'LightLink Phoenix Mainnet',
+    network: 'lightlink-phoenix',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://replicator.phoenix.lightlink.io/rpc/v1'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LightLink Phoenix Explorer',
+            url: 'https://phoenix.lightlink.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=lightlinkPhoenix.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/errors/account.js
+
+class AccountNotFoundError extends base/* BaseError */.C {
+    constructor({ docsPath } = {}) {
+        super([
+            'Could not find an Account to execute with this Action.',
+            'Please provide an Account with the `account` argument on the Action, or by supplying an `account` to the Client.',
+        ].join('\n'), {
+            docsPath,
+            docsSlug: 'account',
+            name: 'AccountNotFoundError',
+        });
+    }
+}
+class AccountTypeNotSupportedError extends base/* BaseError */.C {
+    constructor({ docsPath, metaMessages, type, }) {
+        super(`Account type "${type}" is not supported.`, {
+            docsPath,
+            metaMessages,
+            name: 'AccountTypeNotSupportedError',
+        });
+    }
+}
+//# sourceMappingURL=account.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/linea/actions/estimateGas.js
+
+
+
+
+
+
+
+/**
+ * Estimates the gas and fees per gas necessary to complete a transaction without submitting it to the network.
+ *
+ * @param client - Client to use
+ * @param parameters - {@link EstimateGasParameters}
+ * @returns A gas estimate and fees per gas (in wei). {@link EstimateGasReturnType}
+ *
+ * @example
+ * import { createPublicClient, http, parseEther } from 'viem'
+ * import { linea } from 'viem/chains'
+ * import { estimateGas } from 'viem/linea'
+ *
+ * const client = createPublicClient({
+ *   chain: linea,
+ *   transport: http(),
+ * })
+ * const gasEstimate = await estimateGas(client, {
+ *   account: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
+ *   to: '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
+ *   value: 0n,
+ * })
+ */
+async function estimateGas_estimateGas(client, args) {
+    const { account: account_ = client.account } = args;
+    if (!account_)
+        throw new AccountNotFoundError();
+    const account = (0,parseAccount/* parseAccount */.J)(account_);
+    try {
+        const { accessList, blockNumber, blockTag, data, gas, gasPrice, maxFeePerGas, maxPriorityFeePerGas, nonce, to, value, ...rest } = args;
+        const blockNumberHex = blockNumber ? (0,toHex/* numberToHex */.cK)(blockNumber) : undefined;
+        const block = blockNumberHex || blockTag;
+        (0,assertRequest/* assertRequest */.c)(args);
+        const chainFormat = client.chain?.formatters?.transactionRequest?.format;
+        const format = chainFormat || transactionRequest/* formatTransactionRequest */.Bv;
+        const request = format({
+            // Pick out extra data that might exist on the chain's transaction request type.
+            ...(0,extract/* extract */.o)(rest, { format: chainFormat }),
+            from: account?.address,
+            accessList,
+            data,
+            gas,
+            gasPrice,
+            maxFeePerGas,
+            maxPriorityFeePerGas,
+            nonce,
+            to,
+            value,
+        });
+        const { baseFeePerGas, gasLimit, priorityFeePerGas } = await client.request({
+            method: 'linea_estimateGas',
+            params: block ? [request, block] : [request],
+        });
+        return {
+            baseFeePerGas: BigInt(baseFeePerGas),
+            gasLimit: BigInt(gasLimit),
+            priorityFeePerGas: BigInt(priorityFeePerGas),
+        };
+    }
+    catch (err) {
+        throw (0,getCallError/* getCallError */.d)(err, {
+            ...args,
+            account,
+            chain: client.chain,
+        });
+    }
+}
+//# sourceMappingURL=estimateGas.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/linea/chainConfig.js
+
+const linea_chainConfig_chainConfig = {
+    fees: {
+        estimateFeesPerGas: chainConfig_estimateFeesPerGas,
+        async maxPriorityFeePerGas({ block, client, request }) {
+            const response = await chainConfig_estimateFeesPerGas({
+                block,
+                client,
+                multiply: (x) => x,
+                request,
+                type: 'eip1559',
+            });
+            // Returning `null` will trigger the base `estimateMaxPriorityFeePerGas` to perform
+            // fallback mechanisms to estimate priority fee.
+            if (!response?.maxPriorityFeePerGas)
+                return null;
+            return response.maxPriorityFeePerGas;
+        },
+    },
+};
+///////////////////////////////////////////////////////////////////////////
+// Internal
+///////////////////////////////////////////////////////////////////////////
+async function chainConfig_estimateFeesPerGas({ client, multiply, request, type, }) {
+    try {
+        const response = await estimateGas_estimateGas(client, {
+            ...request,
+            account: request?.account,
+        });
+        const { priorityFeePerGas: maxPriorityFeePerGas } = response;
+        const baseFeePerGas = multiply(BigInt(response.baseFeePerGas));
+        const maxFeePerGas = baseFeePerGas + maxPriorityFeePerGas;
+        if (type === 'legacy')
+            return { gasPrice: maxFeePerGas };
+        return {
+            maxFeePerGas,
+            maxPriorityFeePerGas,
+        };
+    }
+    catch {
+        // Returning `null` will trigger the base `estimateFeesPerGas` to perform
+        // fallback mechanisms to estimate fees.
+        return null;
+    }
+}
+//# sourceMappingURL=chainConfig.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/linea.js
+
+
+const linea = /*#__PURE__*/ defineChain({
+    ...linea_chainConfig_chainConfig,
+    id: 59_144,
+    name: 'Linea Mainnet',
+    nativeCurrency: { name: 'Linea Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.linea.build'],
+            webSocket: ['wss://rpc.linea.build'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://lineascan.build',
+            apiUrl: 'https://api.lineascan.build/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 42,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=linea.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lineaGoerli.js
+
+const lineaGoerli = /*#__PURE__*/ defineChain({
+    id: 59_140,
+    name: 'Linea Goerli Testnet',
+    nativeCurrency: { name: 'Linea Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.goerli.linea.build'],
+            webSocket: ['wss://rpc.goerli.linea.build'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://goerli.lineascan.build',
+            apiUrl: 'https://api-goerli.lineascan.build/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 498623,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=lineaGoerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lineaSepolia.js
+
+
+const lineaSepolia = /*#__PURE__*/ defineChain({
+    ...linea_chainConfig_chainConfig,
+    id: 59_141,
+    name: 'Linea Sepolia Testnet',
+    nativeCurrency: { name: 'Linea Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.sepolia.linea.build'],
+            webSocket: ['wss://rpc.sepolia.linea.build'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://sepolia.lineascan.build',
+            apiUrl: 'https://api-sepolia.lineascan.build/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 227427,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=lineaSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lineaTestnet.js
+
+const lineaTestnet = /*#__PURE__*/ defineChain({
+    id: 59_140,
+    name: 'Linea Goerli Testnet',
+    nativeCurrency: { name: 'Linea Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.goerli.linea.build'],
+            webSocket: ['wss://rpc.goerli.linea.build'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://goerli.lineascan.build',
+            apiUrl: 'https://goerli.lineascan.build/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 498623,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=lineaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lisk.js
+
+
+const lisk_sourceId = 1; // mainnet
+const lisk = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 1135,
+    name: 'Lisk',
+    network: 'lisk',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.api.lisk.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://blockscout.lisk.com',
+            apiUrl: 'https://blockscout.lisk.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xA9d71E1dd7ca26F26e656E66d6AA81ed7f745bf0',
+        },
+        l2OutputOracle: {
+            [lisk_sourceId]: {
+                address: '0x113cB99283AF242Da0A0C54347667edF531Aa7d6',
+            },
+        },
+        portal: {
+            [lisk_sourceId]: {
+                address: '0x26dB93F8b8b4f7016240af62F7730979d353f9A7',
+            },
+        },
+        l1StandardBridge: {
+            [lisk_sourceId]: {
+                address: '0x2658723Bf70c7667De6B25F99fcce13A16D25d08',
+            },
+        },
+    },
+    sourceId: lisk_sourceId,
+});
+//# sourceMappingURL=lisk.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/liskSepolia.js
+
+
+const liskSepolia_sourceId = 11_155_111; // sepolia
+const liskSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 4202,
+    network: 'lisk-sepolia',
+    name: 'Lisk Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.sepolia-api.lisk.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://sepolia-blockscout.lisk.com',
+            apiUrl: 'https://sepolia-blockscout.lisk.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [liskSepolia_sourceId]: {
+                address: '0xA0E35F56C318DE1bD5D9ca6A94Fe7e37C5663348',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [liskSepolia_sourceId]: {
+                address: '0xe3d90F21490686Ec7eF37BE788E02dfC12787264',
+            },
+        },
+        l1StandardBridge: {
+            [liskSepolia_sourceId]: {
+                address: '0x1Fb30e446eA791cd1f011675E5F3f5311b70faF5',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: liskSepolia_sourceId,
+});
+//# sourceMappingURL=liskSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/localhost.js
+
+const localhost = /*#__PURE__*/ defineChain({
+    id: 1_337,
+    name: 'Localhost',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['http://127.0.0.1:8545'] },
+    },
+});
+//# sourceMappingURL=localhost.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/loop.js
+
+const loop = /*#__PURE__*/ defineChain({
+    id: 15551,
+    name: 'LoopNetwork Mainnet',
+    nativeCurrency: {
+        name: 'LOOP',
+        symbol: 'LOOP',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://api.mainnetloop.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LoopNetwork Blockchain Explorer',
+            url: 'https://explorer.mainnetloop.com/',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=loop.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lukso.js
+
+const lukso = /*#__PURE__*/ defineChain({
+    id: 42,
+    network: 'lukso',
+    name: 'LUKSO',
+    nativeCurrency: {
+        name: 'LUKSO',
+        symbol: 'LYX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mainnet.lukso.network'],
+            webSocket: ['wss://ws-rpc.mainnet.lukso.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LUKSO Mainnet Explorer',
+            url: 'https://explorer.execution.mainnet.lukso.network',
+            apiUrl: 'https://api.explorer.execution.mainnet.lukso.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 468183,
+        },
+    },
+});
+//# sourceMappingURL=lukso.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/luksoTestnet.js
+
+const luksoTestnet = /*#__PURE__*/ defineChain({
+    id: 4201,
+    name: 'LUKSO Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'LUKSO Testnet',
+        symbol: 'LYXt',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.lukso.network'],
+            webSocket: ['wss://ws-rpc.testnet.lukso.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'LUKSO Testnet Explorer',
+            url: 'https://explorer.execution.testnet.lukso.network',
+            apiUrl: 'https://api.explorer.execution.testnet.lukso.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 605348,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=luksoTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lumiaMainnet.js
+
+const lumiaMainnet = /*#__PURE__*/ defineChain({
+    id: 994873017,
+    name: 'Lumia Mainnet',
+    network: 'LumiaMainnet',
+    nativeCurrency: { name: 'Lumia', symbol: 'LUMIA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet-rpc.lumia.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Lumia Explorer',
+            url: 'https://explorer.lumia.org/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3975939,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=lumiaMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lumiaTestnet.js
+
+const lumiaTestnet = /*#__PURE__*/ defineChain({
+    id: 1952959480,
+    name: 'Lumia Testnet',
+    network: 'LumiaTestnet',
+    nativeCurrency: {
+        name: 'Lumia',
+        symbol: 'LUMIA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.lumia.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Lumia Testnet Explorer',
+            url: 'https://testnet-explorer.lumia.org/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 2235063,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=lumiaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lycan.js
+
+const lycan = /*#__PURE__*/ defineChain({
+    id: 721,
+    name: 'Lycan',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Lycan',
+        symbol: 'LYC',
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc.lycanchain.com',
+                'https://us-east.lycanchain.com',
+                'https://us-west.lycanchain.com',
+                'https://eu-north.lycanchain.com',
+                'https://eu-west.lycanchain.com',
+                'https://asia-southeast.lycanchain.com',
+            ],
+            webSocket: [
+                'wss://rpc.lycanchain.com',
+                'wss://us-east.lycanchain.com',
+                'wss://us-west.lycanchain.com',
+                'wss://eu-north.lycanchain.com',
+                'wss://eu-west.lycanchain.com',
+                'wss://asia-southeast.lycanchain.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Lycan Explorer',
+            url: 'https://explorer.lycanchain.com',
+        },
+    },
+});
+//# sourceMappingURL=lycan.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/lyra.js
+
+const lyra = /*#__PURE__*/ defineChain({
+    id: 957,
+    name: 'Lyra Chain',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.lyra.finance'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Lyra Explorer',
+            url: 'https://explorer.lyra.finance',
+            apiUrl: 'https://explorer.lyra.finance/api/v2',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1935198,
+        },
+    },
+});
+//# sourceMappingURL=lyra.js.map
 ;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mainnet.js
 
 const mainnet = /*#__PURE__*/ defineChain({
@@ -100303,12 +108833,7179 @@ const mainnet = /*#__PURE__*/ defineChain({
     },
 });
 //# sourceMappingURL=mainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mandala.js
+
+const mandala = /*#__PURE__*/ defineChain({
+    id: 595,
+    name: 'Mandala TC9',
+    network: 'mandala',
+    nativeCurrency: {
+        name: 'Mandala',
+        symbol: 'mACA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-rpc-tc9.aca-staging.network'],
+            webSocket: ['wss://eth-rpc-tc9.aca-staging.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mandala Blockscout',
+            url: 'https://blockscout.mandala.aca-staging.network',
+            apiUrl: 'https://blockscout.mandala.aca-staging.network/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mandala.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/manta.js
+
+const manta = /*#__PURE__*/ defineChain({
+    id: 169,
+    name: 'Manta Pacific Mainnet',
+    network: 'manta',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://pacific-rpc.manta.network/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Manta Explorer',
+            url: 'https://pacific-explorer.manta.network',
+            apiUrl: 'https://pacific-explorer.manta.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 332890,
+        },
+    },
+});
+//# sourceMappingURL=manta.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mantaSepoliaTestnet.js
+
+const mantaSepoliaTestnet = /*#__PURE__*/ defineChain({
+    id: 3_441_006,
+    name: 'Manta Pacific Sepolia Testnet',
+    network: 'manta-sepolia',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://pacific-rpc.sepolia-testnet.manta.network/http'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Manta Sepolia Testnet Explorer',
+            url: 'https://pacific-explorer.sepolia-testnet.manta.network',
+            apiUrl: 'https://pacific-explorer.sepolia-testnet.manta.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca54918f7B525C8df894668846506767412b53E3',
+            blockCreated: 479584,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mantaSepoliaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mantaTestnet.js
+
+const mantaTestnet = /*#__PURE__*/ defineChain({
+    id: 3_441_005,
+    name: 'Manta Pacific Testnet',
+    network: 'manta-testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://manta-testnet.calderachain.xyz/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Manta Testnet Explorer',
+            url: 'https://pacific-explorer.testnet.manta.network',
+            apiUrl: 'https://pacific-explorer.testnet.manta.network/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x211B1643b95Fe76f11eD8880EE810ABD9A4cf56C',
+            blockCreated: 419915,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mantaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mantle.js
+
+const mantle = /*#__PURE__*/ defineChain({
+    id: 5000,
+    name: 'Mantle',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MNT',
+        symbol: 'MNT',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.mantle.xyz'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mantle Explorer',
+            url: 'https://mantlescan.xyz/',
+            apiUrl: 'https://api.mantlescan.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 304717,
+        },
+    },
+});
+//# sourceMappingURL=mantle.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mantleSepoliaTestnet.js
+
+const mantleSepoliaTestnet = /*#__PURE__*/ defineChain({
+    id: 5003,
+    name: 'Mantle Sepolia Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MNT',
+        symbol: 'MNT',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.sepolia.mantle.xyz'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mantle Testnet Explorer',
+            url: 'https://explorer.sepolia.mantle.xyz/',
+            apiUrl: 'https://explorer.sepolia.mantle.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 4584012,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mantleSepoliaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mantleTestnet.js
+
+const mantleTestnet = /*#__PURE__*/ defineChain({
+    id: 5001,
+    name: 'Mantle Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MNT',
+        symbol: 'MNT',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.testnet.mantle.xyz'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mantle Testnet Explorer',
+            url: 'https://explorer.testnet.mantle.xyz',
+            apiUrl: 'https://explorer.testnet.mantle.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 561333,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mantleTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mapProtocol.js
+
+const mapProtocol = /*#__PURE__*/ defineChain({
+    id: 22776,
+    name: 'MAP Protocol',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MAPO',
+        symbol: 'MAPO',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.maplabs.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MAPO Scan',
+            url: 'https://maposcan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=mapProtocol.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/matchain.js
+
+const matchain = /*#__PURE__*/ defineChain({
+    id: 698,
+    name: 'Matchain',
+    nativeCurrency: {
+        name: 'BNB',
+        symbol: 'BNB',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.matchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Matchain Scan',
+            url: 'https://matchscan.io',
+        },
+    },
+});
+//# sourceMappingURL=matchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/matchainTestnet.js
+
+const matchainTestnet = /*#__PURE__*/ defineChain({
+    id: 699,
+    name: 'Matchain Testnet',
+    nativeCurrency: {
+        name: 'BNB',
+        symbol: 'BNB',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://testnet-rpc.matchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Matchain Scan',
+            url: 'https://testnet.matchscan.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=matchainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mchVerse.js
+
+const mchVerse = /*#__PURE__*/ defineChain({
+    id: 29548,
+    name: 'MCH Verse',
+    nativeCurrency: { name: 'Oasys', symbol: 'OAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.oasys.mycryptoheroes.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MCH Verse Explorer',
+            url: 'https://explorer.oasys.mycryptoheroes.net',
+            apiUrl: 'https://explorer.oasys.mycryptoheroes.net/api',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=mchVerse.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mekong.js
+
+const mekong = /*#__PURE__*/ defineChain({
+    id: 7078815900,
+    name: 'Mekong Pectra Devnet',
+    nativeCurrency: { name: 'eth', symbol: 'eth', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mekong.ethpandaops.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Block Explorer',
+            url: 'https://explorer.mekong.ethpandaops.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mekong.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/meld.js
+
+const meld = /*#__PURE__*/ defineChain({
+    id: 333000333,
+    name: 'Meld',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Meld',
+        symbol: 'MELD',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc-1.meld.com'] },
+    },
+    blockExplorers: {
+        default: { name: 'MELDscan', url: 'https://meldscan.io' },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x769ee5a8e82c15c1b6e358f62ac8eb6e3abe8dc5',
+            blockCreated: 360069,
+        },
+    },
+});
+//# sourceMappingURL=meld.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/merlin.js
+
+const merlin = /*#__PURE__*/ defineChain({
+    id: 4200,
+    name: 'Merlin',
+    nativeCurrency: {
+        name: 'BTC',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.merlinchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://scan.merlinchain.io',
+            apiUrl: 'https://scan.merlinchain.io/api',
+        },
+    },
+});
+//# sourceMappingURL=merlin.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metachain.js
+
+const metachain = /*#__PURE__*/ defineChain({
+    id: 571,
+    name: 'MetaChain Mainnet',
+    nativeCurrency: { name: 'Metatime Coin', symbol: 'MTC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.metatime.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MetaExplorer',
+            url: 'https://explorer.metatime.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0000000000000000000000000000000000003001',
+            blockCreated: 0,
+        },
+    },
+});
+//# sourceMappingURL=metachain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metachainIstanbul.js
+
+const metachainIstanbul = /*#__PURE__*/ defineChain({
+    id: 1_453,
+    name: 'MetaChain Istanbul',
+    nativeCurrency: { name: 'Metatime Coin', symbol: 'MTC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://istanbul-rpc.metachain.dev'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MetaExplorer',
+            url: 'https://istanbul-explorer.metachain.dev',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0000000000000000000000000000000000003001',
+            blockCreated: 0,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=metachainIstanbul.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metadium.js
+
+const metadium = /*#__PURE__*/ defineChain({
+    id: 11,
+    name: 'Metadium Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'META',
+        symbol: 'META',
+    },
+    rpcUrls: {
+        default: { http: ['https://api.metadium.com/prod'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Metadium Explorer',
+            url: 'https://explorer.metadium.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=metadium.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metalL2.js
+
+
+const metalL2_sourceId = 1; // mainnet
+const metalL2 = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 1750,
+    name: 'Metal L2',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.metall2.com'],
+            webSocket: ['wss://rpc.metall2.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://explorer.metall2.com',
+            apiUrl: 'https://explorer.metall2.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [metalL2_sourceId]: {
+                address: '0x3B1F7aDa0Fcc26B13515af752Dd07fB1CAc11426',
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 0,
+        },
+        portal: {
+            [metalL2_sourceId]: {
+                address: '0x3F37aBdE2C6b5B2ed6F8045787Df1ED1E3753956',
+            },
+        },
+        l1StandardBridge: {
+            [metalL2_sourceId]: {
+                address: '0x6d0f65D59b55B0FEC5d2d15365154DcADC140BF3',
+            },
+        },
+    },
+    sourceId: metalL2_sourceId,
+});
+//# sourceMappingURL=metalL2.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/meter.js
+
+const meter = /*#__PURE__*/ defineChain({
+    id: 82,
+    name: 'Meter',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MTR',
+        symbol: 'MTR',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.meter.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MeterScan',
+            url: 'https://scan.meter.io',
+        },
+    },
+});
+//# sourceMappingURL=meter.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/meterTestnet.js
+
+const meterTestnet = /*#__PURE__*/ defineChain({
+    id: 83,
+    name: 'Meter Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MTR',
+        symbol: 'MTR',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpctest.meter.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'MeterTestnetScan',
+            url: 'https://scan-warringstakes.meter.io',
+        },
+    },
+});
+//# sourceMappingURL=meterTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metis.js
+
+const metis = /*#__PURE__*/ defineChain({
+    id: 1_088,
+    name: 'Metis',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Metis',
+        symbol: 'METIS',
+    },
+    rpcUrls: {
+        default: { http: ['https://andromeda.metis.io/?owner=1088'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Metis Explorer',
+            url: 'https://explorer.metis.io',
+            apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/1088/etherscan/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 2338552,
+        },
+    },
+});
+//# sourceMappingURL=metis.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/metisGoerli.js
+
+const metisGoerli = /*#__PURE__*/ defineChain({
+    id: 599,
+    name: 'Metis Goerli',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Metis Goerli',
+        symbol: 'METIS',
+    },
+    rpcUrls: {
+        default: { http: ['https://goerli.gateway.metisdevops.link'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Metis Goerli Explorer',
+            url: 'https://goerli.explorer.metisdevops.link',
+            apiUrl: 'https://goerli.explorer.metisdevops.link/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1006207,
+        },
+    },
+});
+//# sourceMappingURL=metisGoerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mev.js
+
+const mev = /*#__PURE__*/ defineChain({
+    id: 7518,
+    name: 'MEVerse Chain Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MEVerse',
+        symbol: 'MEV',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.meversemainnet.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://www.meversescan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 86881340,
+        },
+    },
+});
+//# sourceMappingURL=mev.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mevTestnet.js
+
+const mevTestnet = /*#__PURE__*/ defineChain({
+    id: 4759,
+    name: 'MEVerse Chain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MEVerse',
+        symbol: 'MEV',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.meversetestnet.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://testnet.meversescan.io/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 64371115,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mevTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mint.js
+
+const mint = /*#__PURE__*/ defineChain({
+    id: 185,
+    name: 'Mint Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mintchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mintchain explorer',
+            url: 'https://explorer.mintchain.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=mint.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mintSepoliaTestnet.js
+
+const mintSepoliaTestnet = /*#__PURE__*/ defineChain({
+    id: 1686,
+    name: 'Mint Sepolia Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.mintchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mintchain Testnet explorer',
+            url: 'https://testnet-explorer.mintchain.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mintSepoliaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mitosisTestnet.js
+
+const mitosisTestnet = /*#__PURE__*/ defineChain({
+    id: 124_832,
+    name: 'Mitosis Testnet',
+    nativeCurrency: { name: 'MITO', symbol: 'MITO', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.mitosis.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Mitosis testnet explorer',
+            url: 'https://testnet.mitosiscan.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=mitosisTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/mode.js
+
+
+const mode_sourceId = 1; // mainnet
+const mode = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 34443,
+    name: 'Mode Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.mode.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Modescan',
+            url: 'https://modescan.io',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 2465882,
+        },
+        l2OutputOracle: {
+            [mode_sourceId]: {
+                address: '0x4317ba146D4933D889518a3e5E11Fe7a53199b04',
+            },
+        },
+        portal: {
+            [mode_sourceId]: {
+                address: '0x8B34b14c7c7123459Cf3076b8Cb929BE097d0C07',
+            },
+        },
+        l1StandardBridge: {
+            [mode_sourceId]: {
+                address: '0x735aDBbE72226BD52e818E7181953f42E3b0FF21',
+            },
+        },
+    },
+    sourceId: mode_sourceId,
+});
+//# sourceMappingURL=mode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/modeTestnet.js
+
+
+const modeTestnet_sourceId = 11_155_111; // sepolia
+const modeTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 919,
+    name: 'Mode Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.mode.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://sepolia.explorer.mode.network',
+            apiUrl: 'https://sepolia.explorer.mode.network/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [modeTestnet_sourceId]: {
+                address: '0x2634BD65ba27AB63811c74A63118ACb312701Bfa',
+                blockCreated: 3778393,
+            },
+        },
+        portal: {
+            [modeTestnet_sourceId]: {
+                address: '0x320e1580effF37E008F1C92700d1eBa47c1B23fD',
+                blockCreated: 3778395,
+            },
+        },
+        l1StandardBridge: {
+            [modeTestnet_sourceId]: {
+                address: '0xbC5C679879B2965296756CD959C3C739769995E2',
+                blockCreated: 3778392,
+            },
+        },
+        multicall3: {
+            address: '0xBAba8373113Fb7a68f195deF18732e01aF8eDfCF',
+            blockCreated: 3019007,
+        },
+    },
+    testnet: true,
+    sourceId: modeTestnet_sourceId,
+});
+//# sourceMappingURL=modeTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/moonbaseAlpha.js
+
+const moonbaseAlpha = /*#__PURE__*/ defineChain({
+    id: 1287,
+    name: 'Moonbase Alpha',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DEV',
+        symbol: 'DEV',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.api.moonbase.moonbeam.network'],
+            webSocket: ['wss://wss.api.moonbase.moonbeam.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Moonscan',
+            url: 'https://moonbase.moonscan.io',
+            apiUrl: 'https://moonbase.moonscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1850686,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=moonbaseAlpha.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/moonbeam.js
+
+const moonbeam = /*#__PURE__*/ defineChain({
+    id: 1284,
+    name: 'Moonbeam',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'GLMR',
+        symbol: 'GLMR',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://moonbeam.public.blastapi.io'],
+            webSocket: ['wss://moonbeam.public.blastapi.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Moonscan',
+            url: 'https://moonscan.io',
+            apiUrl: 'https://api-moonbeam.moonscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 609002,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=moonbeam.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/moonbeamDev.js
+
+const moonbeamDev = /*#__PURE__*/ defineChain({
+    id: 1281,
+    name: 'Moonbeam Development Node',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'DEV',
+        symbol: 'DEV',
+    },
+    rpcUrls: {
+        default: {
+            http: ['http://127.0.0.1:9944'],
+            webSocket: ['wss://127.0.0.1:9944'],
+        },
+    },
+});
+//# sourceMappingURL=moonbeamDev.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/moonriver.js
+
+const moonriver = /*#__PURE__*/ defineChain({
+    id: 1285,
+    name: 'Moonriver',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MOVR',
+        symbol: 'MOVR',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://moonriver.public.blastapi.io'],
+            webSocket: ['wss://moonriver.public.blastapi.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Moonscan',
+            url: 'https://moonriver.moonscan.io',
+            apiUrl: 'https://api-moonriver.moonscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1597904,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=moonriver.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/morph.js
+
+const morph = /*#__PURE__*/ defineChain({
+    id: 2818,
+    name: 'Morph',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.morphl2.io'],
+            webSocket: ['wss://rpc.morphl2.io:8443'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Morph Explorer',
+            url: 'https://explorer.morphl2.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=morph.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/morphHolesky.js
+
+const morphHolesky = /*#__PURE__*/ defineChain({
+    id: 2810,
+    name: 'Morph Holesky',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-quicknode-holesky.morphl2.io'],
+            webSocket: ['wss://rpc-quicknode-holesky.morphl2.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Morph Holesky Explorer',
+            url: 'https://explorer-holesky.morphl2.io',
+            apiUrl: 'https://explorer-api-holesky.morphl2.io/api?',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=morphHolesky.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/morphSepolia.js
+
+const morphSepolia = /*#__PURE__*/ defineChain({
+    id: 2710,
+    name: 'Morph Sepolia',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-testnet.morphl2.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Morph Testnet Explorer',
+            url: 'https://explorer-testnet.morphl2.io',
+            apiUrl: 'https://explorer-api-testnet.morphl2.io/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=morphSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/nahmii.js
+
+const nahmii = /*#__PURE__*/ defineChain({
+    id: 5551,
+    name: 'Nahmii 2 Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://l2.nahmii.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Nahmii 2 Explorer',
+            url: 'https://explorer.n2.nahmii.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=nahmii.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/nautilus.js
+
+const nautilus = /*#__PURE__*/ defineChain({
+    id: 22222,
+    name: 'Nautilus Mainnet',
+    nativeCurrency: { name: 'ZBC', symbol: 'ZBC', decimals: 9 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.nautilus.nautchain.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'NautScan',
+            url: 'https://nautscan.com',
+        },
+    },
+});
+//# sourceMappingURL=nautilus.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/neonDevnet.js
+
+const neonDevnet = /*#__PURE__*/ defineChain({
+    id: 245_022_926,
+    name: 'Neon EVM DevNet',
+    nativeCurrency: { name: 'NEON', symbol: 'NEON', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://devnet.neonevm.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Neonscan',
+            url: 'https://devnet.neonscan.org',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 205206112,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=neonDevnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/neonMainnet.js
+
+const neonMainnet = /*#__PURE__*/ defineChain({
+    id: 245_022_934,
+    network: 'neonMainnet',
+    name: 'Neon EVM MainNet',
+    nativeCurrency: { name: 'NEON', symbol: 'NEON', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://neon-proxy-mainnet.solana.p2p.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Neonscan',
+            url: 'https://neonscan.org',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 206545524,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=neonMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/neoxMainnet.js
+
+const neoxMainnet = /*#__PURE__*/ defineChain({
+    id: 47763,
+    name: 'Neo X Mainnet',
+    nativeCurrency: { name: 'Gas', symbol: 'GAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://mainnet-1.rpc.banelabs.org',
+                'https://mainnet-2.rpc.banelabs.org',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Neo X - Explorer',
+            url: 'https://xexplorer.neo.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=neoxMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/neoxT4.js
+
+const neoxT4 = /*#__PURE__*/ defineChain({
+    id: 12227332,
+    name: 'Neo X Testnet T4',
+    nativeCurrency: { name: 'Gas', symbol: 'GAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.rpc.banelabs.org/'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'neox-scan',
+            url: 'https://xt4scan.ngd.network',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=neoxT4.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/nexi.js
+
+const nexi = /*#__PURE__*/ defineChain({
+    id: 4242,
+    name: 'Nexi',
+    nativeCurrency: { name: 'Nexi', symbol: 'NEXI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.chain.nexi.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'NexiScan',
+            url: 'https://www.nexiscan.com',
+            apiUrl: 'https://www.nexiscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0277A46Cc69A57eE3A6C8c158bA874832F718B8E',
+            blockCreated: 25770160,
+        },
+    },
+});
+//# sourceMappingURL=nexi.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/nexilix.js
+
+const nexilix = /*#__PURE__*/ defineChain({
+    id: 240,
+    name: 'Nexilix Smart Chain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Nexilix',
+        symbol: 'NEXILIX',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpcurl.pos.nexilix.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'NexilixScan',
+            url: 'https://scan.nexilix.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x58381c8e2BF9d0C2C4259cA14BdA9Afe02831244',
+            blockCreated: 74448,
+        },
+    },
+});
+//# sourceMappingURL=nexilix.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/oasisTestnet.js
+
+const oasisTestnet = /*#__PURE__*/ defineChain({
+    id: 4090,
+    network: 'oasis-testnet',
+    name: 'Oasis Testnet',
+    nativeCurrency: { name: 'Fasttoken', symbol: 'FTN', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc1.oasis.bahamutchain.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ftnscan',
+            url: 'https://oasis.ftnscan.com',
+            apiUrl: 'https://oasis.ftnscan.com/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=oasisTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/oasys.js
+
+const oasys = /*#__PURE__*/ defineChain({
+    id: 248,
+    name: 'Oasys',
+    nativeCurrency: { name: 'Oasys', symbol: 'OAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mainnet.oasys.games'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'OasysScan',
+            url: 'https://scan.oasys.games',
+            apiUrl: 'https://scan.oasys.games/api',
+        },
+    },
+});
+//# sourceMappingURL=oasys.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/odysseyTestnet.js
+
+const odysseyTestnet = /*#__PURE__*/ defineChain({
+    id: 911867,
+    name: 'Odyssey Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://odyssey.ithaca.xyz'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Odyssey Explorer',
+            url: 'https://odyssey-explorer.ithaca.xyz',
+            apiUrl: 'https://odyssey-explorer.ithaca.xyz/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=odysseyTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/okc.js
+
+const okc = /*#__PURE__*/ defineChain({
+    id: 66,
+    name: 'OKC',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OKT',
+        symbol: 'OKT',
+    },
+    rpcUrls: {
+        default: { http: ['https://exchainrpc.okex.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'oklink',
+            url: 'https://www.oklink.com/okc',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 10364792,
+        },
+    },
+});
+//# sourceMappingURL=okc.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/omax.js
+
+const omax = /*#__PURE__*/ defineChain({
+    id: 311,
+    name: 'Omax Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OMAX',
+        symbol: 'OMAX',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainapi.omaxray.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Omax Explorer',
+            url: 'https://omaxscan.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=omax.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/oneWorld.js
+
+const oneWorld = /*#__PURE__*/ defineChain({
+    id: 309075,
+    name: 'One World Chain Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OWCT',
+        symbol: 'OWCT',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet-rpc.oneworldchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'One World Explorer',
+            url: 'https://mainnet.oneworldchain.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=oneWorld.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/oortmainnetDev.js
+
+const oortMainnetDev = /*#__PURE__*/ defineChain({
+    id: 9700,
+    name: 'OORT MainnetDev',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OORT',
+        symbol: 'OORT',
+    },
+    rpcUrls: {
+        default: { http: ['https://dev-rpc.oortech.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'OORT MainnetDev Explorer',
+            url: 'https://dev-scan.oortech.com',
+        },
+    },
+});
+//# sourceMappingURL=oortmainnetDev.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/opBNB.js
+
+
+const opBNB_sourceId = 56; // bsc mainnet
+const opBNB = /*#__PURE__*/ defineChain({
+    id: 204,
+    name: 'opBNB',
+    nativeCurrency: {
+        name: 'BNB',
+        symbol: 'BNB',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://opbnb-mainnet-rpc.bnbchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'opBNB (BSCScan)',
+            url: 'https://opbnb.bscscan.com',
+            apiUrl: 'https://api-opbnb.bscscan.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 512881,
+        },
+        l2OutputOracle: {
+            [opBNB_sourceId]: {
+                address: '0x153CAB79f4767E2ff862C94aa49573294B13D169',
+            },
+        },
+        portal: {
+            [opBNB_sourceId]: {
+                address: '0x1876EA7702C0ad0C6A2ae6036DE7733edfBca519',
+            },
+        },
+        l1StandardBridge: {
+            [opBNB_sourceId]: {
+                address: '0xF05F0e4362859c3331Cb9395CBC201E3Fa6757Ea',
+            },
+        },
+    },
+    sourceId: opBNB_sourceId,
+});
+//# sourceMappingURL=opBNB.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/opBNBTestnet.js
+
+
+const opBNBTestnet_sourceId = 97; // bsc testnet
+const opBNBTestnet = /*#__PURE__*/ defineChain({
+    id: 5611,
+    name: 'opBNB Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'tBNB',
+        symbol: 'tBNB',
+    },
+    rpcUrls: {
+        default: { http: ['https://opbnb-testnet-rpc.bnbchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'opbnbscan',
+            url: 'https://testnet.opbnbscan.com',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3705108,
+        },
+        l2OutputOracle: {
+            [opBNBTestnet_sourceId]: {
+                address: '0xFf2394Bb843012562f4349C6632a0EcB92fC8810',
+            },
+        },
+        portal: {
+            [opBNBTestnet_sourceId]: {
+                address: '0x4386C8ABf2009aC0c263462Da568DD9d46e52a31',
+            },
+        },
+        l1StandardBridge: {
+            [opBNBTestnet_sourceId]: {
+                address: '0x677311Fd2cCc511Bbc0f581E8d9a07B033D5E840',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: opBNBTestnet_sourceId,
+});
+//# sourceMappingURL=opBNBTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/optimism.js
+
+
+const optimism_sourceId = 1; // mainnet
+const optimism = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 10,
+    name: 'OP Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.optimism.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Optimism Explorer',
+            url: 'https://optimistic.etherscan.io',
+            apiUrl: 'https://api-optimistic.etherscan.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [optimism_sourceId]: {
+                address: '0xe5965Ab5962eDc7477C8520243A95517CD252fA9',
+            },
+        },
+        l2OutputOracle: {
+            [optimism_sourceId]: {
+                address: '0xdfe97868233d1aa22e815a266982f2cf17685a27',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 4286263,
+        },
+        portal: {
+            [optimism_sourceId]: {
+                address: '0xbEb5Fc579115071764c7423A4f12eDde41f106Ed',
+            },
+        },
+        l1StandardBridge: {
+            [optimism_sourceId]: {
+                address: '0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1',
+            },
+        },
+    },
+    sourceId: optimism_sourceId,
+});
+//# sourceMappingURL=optimism.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/optimismGoerli.js
+
+
+const optimismGoerli_sourceId = 5; // goerli
+const optimismGoerli = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 420,
+    name: 'Optimism Goerli',
+    nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://goerli.optimism.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://goerli-optimism.etherscan.io',
+            apiUrl: 'https://goerli-optimism.etherscan.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [optimismGoerli_sourceId]: {
+                address: '0xE6Dfba0953616Bacab0c9A8ecb3a9BBa77FC15c0',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 49461,
+        },
+        portal: {
+            [optimismGoerli_sourceId]: {
+                address: '0x5b47E1A08Ea6d985D6649300584e6722Ec4B1383',
+            },
+        },
+        l1StandardBridge: {
+            [optimismGoerli_sourceId]: {
+                address: '0x636Af16bf2f682dD3109e60102b8E1A089FedAa8',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: optimismGoerli_sourceId,
+});
+//# sourceMappingURL=optimismGoerli.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/optimismSepolia.js
+
+
+const optimismSepolia_sourceId = 11_155_111; // sepolia
+const optimismSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 11155420,
+    name: 'OP Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.optimism.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://optimism-sepolia.blockscout.com',
+            apiUrl: 'https://optimism-sepolia.blockscout.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [optimismSepolia_sourceId]: {
+                address: '0x05F9613aDB30026FFd634f38e5C4dFd30a197Fa1',
+            },
+        },
+        l2OutputOracle: {
+            [optimismSepolia_sourceId]: {
+                address: '0x90E9c4f8a994a250F6aEfd61CAFb4F2e895D458F',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1620204,
+        },
+        portal: {
+            [optimismSepolia_sourceId]: {
+                address: '0x16Fc5058F25648194471939df75CF27A2fdC48BC',
+            },
+        },
+        l1StandardBridge: {
+            [optimismSepolia_sourceId]: {
+                address: '0xFBb0621E0B23b5478B630BD55a5f21f67730B0F1',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: optimismSepolia_sourceId,
+});
+//# sourceMappingURL=optimismSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/optopia.js
+
+const optopia = /*#__PURE__*/ defineChain({
+    id: 62050,
+    name: 'Optopia',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc-mainnet.optopia.ai'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Optopia Explorer',
+            url: 'https://scan.optopia.ai',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=optopia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/optopiaTestnet.js
+
+const optopiaTestnet = /*#__PURE__*/ defineChain({
+    id: 62049,
+    name: 'Optopia Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc-testnet.optopia.ai'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Optopia Explorer',
+            url: 'https://scan-testnet.optopia.ai',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=optopiaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/orderly.js
+
+const orderly = /*#__PURE__*/ defineChain({
+    id: 291,
+    name: 'Orderly',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.orderly.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Orderly Explorer',
+            url: 'https://explorer.orderly.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=orderly.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/orderlySepolia.js
+
+const orderlySepolia = /*#__PURE__*/ defineChain({
+    id: 4460,
+    name: 'Orderly Sepolia',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://l2-orderly-l2-4460-sepolia-8tc3sd7dvy.t.conduit.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Orderly Explorer',
+            url: 'https://explorerl2new-orderly-l2-4460-sepolia-8tc3sd7dvy.t.conduit.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=orderlySepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/otimDevnet.js
+
+const otimDevnet = /*#__PURE__*/ defineChain({
+    id: 41144114,
+    name: 'Otim Devnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['http://devnet.otim.xyz'],
+        },
+    },
+    contracts: {
+        batchInvoker: {
+            address: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+        },
+    },
+});
+//# sourceMappingURL=otimDevnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/palm.js
+
+const palm = /*#__PURE__*/ defineChain({
+    id: 11_297_108_109,
+    name: 'Palm',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'PALM',
+        symbol: 'PALM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://palm-mainnet.public.blastapi.io'],
+            webSocket: ['wss://palm-mainnet.public.blastapi.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Chainlens',
+            url: 'https://palm.chainlens.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 15429248,
+        },
+    },
+});
+//# sourceMappingURL=palm.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/palmTestnet.js
+
+const palmTestnet = /*#__PURE__*/ defineChain({
+    id: 11_297_108_099,
+    name: 'Palm Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'PALM',
+        symbol: 'PALM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://palm-mainnet.public.blastapi.io'],
+            webSocket: ['wss://palm-mainnet.public.blastapi.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Chainlens',
+            url: 'https://palm.chainlens.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 15429248,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=palmTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/pgn.js
+
+
+const pgn_sourceId = 1; // mainnet
+const pgn = /*#__PURE__*/ defineChain({
+    id: 424,
+    network: 'pgn',
+    name: 'PGN',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.publicgoods.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PGN Explorer',
+            url: 'https://explorer.publicgoods.network',
+            apiUrl: 'https://explorer.publicgoods.network/api',
+        },
+    },
+    contracts: {
+        l2OutputOracle: {
+            [pgn_sourceId]: {
+                address: '0x9E6204F750cD866b299594e2aC9eA824E2e5f95c',
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3380209,
+        },
+        portal: {
+            [pgn_sourceId]: {
+                address: '0xb26Fd985c5959bBB382BAFdD0b879E149e48116c',
+            },
+        },
+        l1StandardBridge: {
+            [pgn_sourceId]: {
+                address: '0xD0204B9527C1bA7bD765Fa5CCD9355d38338272b',
+            },
+        },
+    },
+    formatters: formatters_formatters,
+    sourceId: pgn_sourceId,
+});
+//# sourceMappingURL=pgn.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/pgnTestnet.js
+
+
+const pgnTestnet_sourceId = 11_155_111; // sepolia
+const pgnTestnet = /*#__PURE__*/ defineChain({
+    id: 58008,
+    network: 'pgn-testnet',
+    name: 'PGN ',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.publicgoods.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PGN Testnet Explorer',
+            url: 'https://explorer.sepolia.publicgoods.network',
+            apiUrl: 'https://explorer.sepolia.publicgoods.network/api',
+        },
+    },
+    contracts: {
+        l2OutputOracle: {
+            [pgnTestnet_sourceId]: {
+                address: '0xD5bAc3152ffC25318F848B3DD5dA6C85171BaEEe',
+            },
+        },
+        portal: {
+            [pgnTestnet_sourceId]: {
+                address: '0xF04BdD5353Bb0EFF6CA60CfcC78594278eBfE179',
+            },
+        },
+        l1StandardBridge: {
+            [pgnTestnet_sourceId]: {
+                address: '0xFaE6abCAF30D23e233AC7faF747F2fC3a5a6Bfa3',
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3754925,
+        },
+    },
+    formatters: formatters_formatters,
+    sourceId: pgnTestnet_sourceId,
+    testnet: true,
+});
+//# sourceMappingURL=pgnTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/phoenix.js
+// src/chains/definitions/phoenix.ts
+
+const phoenix = /*#__PURE__*/ defineChain({
+    id: 13381,
+    name: 'Phoenix Blockchain',
+    nativeCurrency: { name: 'Phoenix', symbol: 'PHX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.phoenixplorer.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Phoenixplorer',
+            url: 'https://phoenixplorer.com',
+            apiUrl: 'https://phoenixplorer.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x498cF757a575cFF2c2Ed9f532f56Efa797f86442',
+            blockCreated: 5620192,
+        },
+    },
+});
+//# sourceMappingURL=phoenix.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/planq.js
+
+const planq = /*#__PURE__*/ defineChain({
+    id: 7070,
+    name: 'Planq Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'PLQ',
+        symbol: 'PLQ',
+    },
+    rpcUrls: {
+        default: { http: ['https://evm-rpc.planq.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Planq Explorer',
+            url: 'https://evm.planq.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=planq.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/playfiAlbireo.js
+
+
+const playfiAlbireo = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 1_612_127,
+    name: 'PlayFi Albireo Testnet',
+    network: 'albireo',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://albireo-rpc.playfi.ai'],
+            webSocket: ['wss://albireo-rpc-ws.playfi.ai/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PlayFi Albireo Explorer',
+            url: 'https://albireo-explorer.playfi.ai',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=playfiAlbireo.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/plinga.js
+
+const plinga = /*#__PURE__*/ defineChain({
+    id: 242,
+    name: 'Plinga',
+    nativeCurrency: { name: 'Plinga', symbol: 'PLINGA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpcurl.mainnet.plgchain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Plgscan',
+            url: 'https://www.plgscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0989576160f2e7092908BB9479631b901060b6e4',
+            blockCreated: 204489,
+        },
+    },
+});
+//# sourceMappingURL=plinga.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/plume.js
+
+const plume_sourceId = 1; // ethereum
+const plume = /*#__PURE__*/ defineChain({
+    id: 98_865,
+    name: 'Plume Mainnet',
+    nativeCurrency: {
+        name: 'Plume Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.plumenetwork.xyz'],
+            webSocket: ['wss://rpc.plumenetwork.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.plumenetwork.xyz',
+            apiUrl: 'https://explorer.plumenetwork.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 48_577,
+        },
+    },
+    sourceId: plume_sourceId,
+});
+//# sourceMappingURL=plume.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/plumeDevnet.js
+
+const plumeDevnet_sourceId = 11_155_111; // sepolia
+const plumeDevnet = /*#__PURE__*/ defineChain({
+    id: 98_864,
+    name: 'Plume Devnet',
+    nativeCurrency: {
+        name: 'Plume Sepolia Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://test-rpc.plumenetwork.xyz'],
+            webSocket: ['wss://test-rpc.plumenetwork.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://test-explorer.plumenetwork.xyz',
+            apiUrl: 'https://test-explorer.plumenetwork.xyz/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 481_948,
+        },
+    },
+    testnet: true,
+    sourceId: plumeDevnet_sourceId,
+});
+//# sourceMappingURL=plumeDevnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/plumeTestnet.js
+
+const plumeTestnet_sourceId = 11_155_111; // sepolia
+const plumeTestnet = /*#__PURE__*/ defineChain({
+    id: 161_221_135,
+    name: 'Plume Testnet',
+    nativeCurrency: {
+        name: 'Plume Sepolia Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.plumenetwork.xyz/http'],
+            webSocket: ['wss://testnet-rpc.plumenetwork.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://testnet-explorer.plumenetwork.xyz',
+            apiUrl: 'https://testnet-explorer.plumenetwork.xyz/api',
+        },
+    },
+    testnet: true,
+    sourceId: plumeTestnet_sourceId,
+});
+//# sourceMappingURL=plumeTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polterTestnet.js
+
+const polterTestnet = /*#__PURE__*/ defineChain({
+    id: 631571,
+    name: 'Polter Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Polter GHST',
+        symbol: 'GHST',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://geist-polter.g.alchemy.com/public'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://polter-testnet.explorer.alchemy.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 11245,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=polterTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygon.js
+
+const polygon = /*#__PURE__*/ defineChain({
+    id: 137,
+    name: 'Polygon',
+    nativeCurrency: { name: 'POL', symbol: 'POL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://polygon-rpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://polygonscan.com',
+            apiUrl: 'https://api.polygonscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 25770160,
+        },
+    },
+});
+//# sourceMappingURL=polygon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygonAmoy.js
+
+const polygonAmoy = /*#__PURE__*/ defineChain({
+    id: 80_002,
+    name: 'Polygon Amoy',
+    nativeCurrency: { name: 'POL', symbol: 'POL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-amoy.polygon.technology'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://amoy.polygonscan.com',
+            apiUrl: 'https://api-amoy.polygonscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 3127388,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=polygonAmoy.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygonMumbai.js
+
+const polygonMumbai = /*#__PURE__*/ defineChain({
+    id: 80_001,
+    name: 'Polygon Mumbai',
+    nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.ankr.com/polygon_mumbai'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://mumbai.polygonscan.com',
+            apiUrl: 'https://api-testnet.polygonscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 25770160,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=polygonMumbai.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygonZkEvm.js
+
+const polygonZkEvm = /*#__PURE__*/ defineChain({
+    id: 1101,
+    name: 'Polygon zkEVM',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://zkevm-rpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://zkevm.polygonscan.com',
+            apiUrl: 'https://api-zkevm.polygonscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 57746,
+        },
+    },
+});
+//# sourceMappingURL=polygonZkEvm.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygonZkEvmCardona.js
+
+const polygonZkEvmCardona = /*#__PURE__*/ defineChain({
+    id: 2442,
+    name: 'Polygon zkEVM Cardona',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.cardona.zkevm-rpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://cardona-zkevm.polygonscan.com',
+            apiUrl: 'https://cardona-zkevm.polygonscan.com/api',
+        },
+    },
+    testnet: true,
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 114091,
+        },
+    },
+});
+//# sourceMappingURL=polygonZkEvmCardona.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/polygonZkEvmTestnet.js
+
+const polygonZkEvmTestnet = /*#__PURE__*/ defineChain({
+    id: 1442,
+    name: 'Polygon zkEVM Testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.public.zkevm-test.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PolygonScan',
+            url: 'https://testnet-zkevm.polygonscan.com',
+            apiUrl: 'https://testnet-zkevm.polygonscan.com/api',
+        },
+    },
+    testnet: true,
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 525686,
+        },
+    },
+});
+//# sourceMappingURL=polygonZkEvmTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/pulsechain.js
+
+const pulsechain = /*#__PURE__*/ defineChain({
+    id: 369,
+    name: 'PulseChain',
+    nativeCurrency: { name: 'Pulse', symbol: 'PLS', decimals: 18 },
+    testnet: false,
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.pulsechain.com'],
+            webSocket: ['wss://ws.pulsechain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PulseScan',
+            url: 'https://scan.pulsechain.com',
+            apiUrl: 'https://api.scan.pulsechain.com/api',
+        },
+    },
+    contracts: {
+        ensRegistry: {
+            address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 14353601,
+        },
+    },
+});
+//# sourceMappingURL=pulsechain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/pulsechainV4.js
+
+const pulsechainV4 = /*#__PURE__*/ defineChain({
+    id: 943,
+    name: 'PulseChain V4',
+    testnet: true,
+    nativeCurrency: { name: 'V4 Pulse', symbol: 'v4PLS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.v4.testnet.pulsechain.com'],
+            webSocket: ['wss://ws.v4.testnet.pulsechain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'PulseScan',
+            url: 'https://scan.v4.testnet.pulsechain.com',
+            apiUrl: 'https://scan.v4.testnet.pulsechain.com/api',
+        },
+    },
+    contracts: {
+        ensRegistry: {
+            address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 14353601,
+        },
+    },
+});
+//# sourceMappingURL=pulsechainV4.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ql1.js
+
+const ql1 = /*#__PURE__*/ defineChain({
+    id: 766,
+    name: 'QL1',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'QOM',
+        symbol: 'QOM',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.qom.one'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ql1 Explorer',
+            url: 'https://scan.qom.one',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x7A52370716ea730585884F5BDB0f6E60C39b8C64',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=ql1.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/qMainnet.js
+
+const qMainnet = /*#__PURE__*/ defineChain({
+    id: 35441,
+    name: 'Q Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Q',
+        symbol: 'Q',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.q.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Q Mainnet Explorer',
+            url: 'https://explorer.q.org',
+            apiUrl: 'https://explorer.q.org/api',
+        },
+    },
+});
+//# sourceMappingURL=qMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/qTestnet.js
+
+const qTestnet = /*#__PURE__*/ defineChain({
+    id: 35443,
+    name: 'Q Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Q',
+        symbol: 'Q',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.qtestnet.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Q Testnet Explorer',
+            url: 'https://explorer.qtestnet.org',
+            apiUrl: 'https://explorer.qtestnet.org/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=qTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/real.js
+
+const real = /*#__PURE__*/ defineChain({
+    id: 111188,
+    name: 're.al',
+    nativeCurrency: {
+        name: 'reETH',
+        decimals: 18,
+        symbol: 'reETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://real.drpc.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 're.al Explorer',
+            url: 'https://explorer.re.al',
+            apiUrl: 'https://explorer.re.al/api/v2',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 695,
+        },
+    },
+});
+//# sourceMappingURL=real.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/redbellyMainnet.js
+
+const redbellyMainnet = /*#__PURE__*/ defineChain({
+    id: 151,
+    name: 'Redbelly Network Mainnet',
+    nativeCurrency: {
+        name: 'Redbelly Native Coin',
+        symbol: 'RBNT',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://governors.mainnet.redbelly.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Routescan',
+            url: 'https://redbelly.routescan.io',
+            apiUrl: 'https://api.routescan.io/v2/network/mainnet/evm/151/etherscan/api',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=redbellyMainnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/redbellyTestnet.js
+
+const redbellyTestnet = /*#__PURE__*/ defineChain({
+    id: 153,
+    name: 'Redbelly Network Testnet',
+    nativeCurrency: {
+        name: 'Redbelly Native Coin',
+        symbol: 'RBNT',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://governors.testnet.redbelly.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Routescan',
+            url: 'https://redbelly.testnet.routescan.io',
+            apiUrl: 'https://api.routescan.io/v2/network/testnet/evm/153_2/etherscan/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=redbellyTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/redstone.js
+
+
+const redstone_sourceId = 1; // Ethereum mainnet
+const redstone = defineChain({
+    ...chainConfig_chainConfig,
+    name: 'Redstone',
+    id: 690,
+    sourceId: redstone_sourceId,
+    nativeCurrency: { decimals: 18, name: 'Ether', symbol: 'ETH' },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.redstonechain.com'],
+            webSocket: ['wss://rpc.redstonechain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.redstone.xyz',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [redstone_sourceId]: {
+                address: '0xC7bCb0e8839a28A1cFadd1CF716de9016CdA51ae',
+                blockCreated: 19578329,
+            },
+        },
+        l2OutputOracle: {
+            [redstone_sourceId]: {
+                address: '0xa426A052f657AEEefc298b3B5c35a470e4739d69',
+                blockCreated: 19578337,
+            },
+        },
+        l1StandardBridge: {
+            [redstone_sourceId]: {
+                address: '0xc473ca7E02af24c129c2eEf51F2aDf0411c1Df69',
+                blockCreated: 19578331,
+            },
+        },
+    },
+});
+//# sourceMappingURL=redstone.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rei.js
+
+const rei = /*#__PURE__*/ defineChain({
+    id: 47805,
+    name: 'REI Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'REI',
+        symbol: 'REI',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.rei.network'],
+            webSocket: ['wss://rpc.rei.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'REI Scan',
+            url: 'https://scan.rei.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=rei.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/reyaNetwork.js
+
+const reyaNetwork = /*#__PURE__*/ defineChain({
+    id: 1729,
+    name: 'Reya Network',
+    nativeCurrency: { decimals: 18, name: 'Ether', symbol: 'ETH' },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.reya.network'],
+            webSocket: ['wss://ws.reya.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Reya Network Explorer',
+            url: 'https://explorer.reya.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=reyaNetwork.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rivalz.js
+
+const rivalz = /*#__PURE__*/ defineChain({
+    id: 753,
+    name: 'Rivalz',
+    nativeCurrency: { decimals: 18, name: 'Ether', symbol: 'ETH' },
+    rpcUrls: {
+        default: {
+            http: ['https://rivalz.calderachain.xyz/http'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Rivalz Caldera Explorer',
+            url: 'https://rivalz.calderaexplorer.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=rivalz.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rollux.js
+
+const rollux = /*#__PURE__*/ defineChain({
+    id: 570,
+    name: 'Rollux Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Syscoin',
+        symbol: 'SYS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.rollux.com'],
+            webSocket: ['wss://rpc.rollux.com/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RolluxExplorer',
+            url: 'https://explorer.rollux.com',
+            apiUrl: 'https://explorer.rollux.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 119222,
+        },
+    },
+});
+//# sourceMappingURL=rollux.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rolluxTestnet.js
+
+const rolluxTestnet = /*#__PURE__*/ defineChain({
+    id: 57000,
+    name: 'Rollux Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Syscoin',
+        symbol: 'SYS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-tanenbaum.rollux.com/'],
+            webSocket: ['wss://rpc-tanenbaum.rollux.com/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RolluxTestnetExplorer',
+            url: 'https://rollux.tanenbaum.io',
+            apiUrl: 'https://rollux.tanenbaum.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1813675,
+        },
+    },
+});
+//# sourceMappingURL=rolluxTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ronin.js
+
+const ronin = /*#__PURE__*/ defineChain({
+    id: 2020,
+    name: 'Ronin',
+    nativeCurrency: { name: 'RON', symbol: 'RON', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.roninchain.com/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ronin Explorer',
+            url: 'https://app.roninchain.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 26023535,
+        },
+    },
+});
+//# sourceMappingURL=ronin.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/root.js
+
+const root = /*#__PURE__*/ defineChain({
+    id: 7668,
+    name: 'The Root Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'XRP',
+        symbol: 'XRP',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://root.rootnet.live/archive'],
+            webSocket: ['wss://root.rootnet.live/archive/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Rootscan',
+            url: 'https://rootscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xc9C2E2429AeC354916c476B30d729deDdC94988d',
+            blockCreated: 9218338,
+        },
+    },
+});
+//# sourceMappingURL=root.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rootPorcini.js
+
+const rootPorcini = /*#__PURE__*/ defineChain({
+    id: 7672,
+    name: 'The Root Network - Porcini',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'XRP',
+        symbol: 'XRP',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://porcini.rootnet.app/archive'],
+            webSocket: ['wss://porcini.rootnet.app/archive/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Rootscan',
+            url: 'https://porcini.rootscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xc9C2E2429AeC354916c476B30d729deDdC94988d',
+            blockCreated: 10555692,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=rootPorcini.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rootstock.js
+
+const rootstock = /*#__PURE__*/ defineChain({
+    id: 30,
+    name: 'Rootstock Mainnet',
+    network: 'rootstock',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Rootstock Bitcoin',
+        symbol: 'RBTC',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-node.rsk.co'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RSK Explorer',
+            url: 'https://explorer.rsk.co',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 4249540,
+        },
+    },
+});
+//# sourceMappingURL=rootstock.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rootstockTestnet.js
+
+const rootstockTestnet = /*#__PURE__*/ defineChain({
+    id: 31,
+    name: 'Rootstock Testnet',
+    network: 'rootstock',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Rootstock Bitcoin',
+        symbol: 'tRBTC',
+    },
+    rpcUrls: {
+        default: { http: ['https://public-node.testnet.rsk.co'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RSK Explorer',
+            url: 'https://explorer.testnet.rootstock.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=rootstockTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rss3.js
+
+
+const rss3_sourceId = 1; // mainnet
+const rss3 = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 12_553,
+    name: 'RSS3 VSL Mainnet',
+    nativeCurrency: { name: 'RSS3', symbol: 'RSS3', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.rss3.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RSS3 VSL Mainnet Scan',
+            url: 'https://scan.rss3.io',
+            apiUrl: 'https://scan.rss3.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [rss3_sourceId]: {
+                address: '0xE6f24d2C32B3109B18ed33cF08eFb490b1e09C10',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 14193,
+        },
+        portal: {
+            [rss3_sourceId]: {
+                address: '0x6A12432491bbbE8d3babf75F759766774C778Db4',
+                blockCreated: 19387057,
+            },
+        },
+        l1StandardBridge: {
+            [rss3_sourceId]: {
+                address: '0x4cbab69108Aa72151EDa5A3c164eA86845f18438',
+            },
+        },
+    },
+    sourceId: rss3_sourceId,
+});
+//# sourceMappingURL=rss3.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/rss3Sepolia.js
+
+
+const rss3Sepolia_sourceId = 11_155_111; // sepolia
+const rss3Sepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 2_331,
+    name: 'RSS3 VSL Sepolia Testnet',
+    nativeCurrency: { name: 'RSS3', symbol: 'RSS3', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.rss3.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'RSS3 VSL Sepolia Testnet Scan',
+            url: 'https://scan.testnet.rss3.io',
+            apiUrl: 'https://scan.testnet.rss3.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [rss3Sepolia_sourceId]: {
+                address: '0xDb5c46C3Eaa6Ed6aE8b2379785DF7dd029C0dC81',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 55697,
+        },
+        portal: {
+            [rss3Sepolia_sourceId]: {
+                address: '0xcBD77E8E1E7F06B25baDe67142cdE82652Da7b57',
+                blockCreated: 5345035,
+            },
+        },
+        l1StandardBridge: {
+            [rss3Sepolia_sourceId]: {
+                address: '0xdDD29bb63B0839FB1cE0eE439Ff027738595D07B',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: rss3Sepolia_sourceId,
+});
+//# sourceMappingURL=rss3Sepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/saakuru.js
+
+const saakuru = /*#__PURE__*/ defineChain({
+    id: 7225878,
+    name: 'Saakuru Mainnet',
+    nativeCurrency: { name: 'OAS', symbol: 'OAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.saakuru.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Saakuru Explorer',
+            url: 'https://explorer.saakuru.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=saakuru.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/saga.js
+
+const saga = /*#__PURE__*/ defineChain({
+    id: 5464,
+    name: 'Saga',
+    network: 'saga',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'gas',
+        symbol: 'GAS',
+    },
+    rpcUrls: {
+        default: { http: ['http://sagaevm-5464-1.jsonrpc.sagarpc.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Saga Explorer',
+            url: 'https://sagaevm-5464-1.sagaexplorer.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x864DDc9B50B9A0dF676d826c9B9EDe9F8913a160',
+            blockCreated: 467530,
+        },
+    },
+});
+//# sourceMappingURL=saga.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/saigon.js
+
+const saigon = /*#__PURE__*/ defineChain({
+    id: 2021,
+    name: 'Saigon Testnet',
+    nativeCurrency: { name: 'RON', symbol: 'RON', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://saigon-testnet.roninchain.com/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Saigon Explorer',
+            url: 'https://saigon-app.roninchain.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 18736871,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=saigon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sanko.js
+
+const sanko = /*#__PURE__*/ defineChain({
+    id: 1996,
+    name: 'Sanko',
+    nativeCurrency: { name: 'DMT', symbol: 'DMT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.sanko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sanko Explorer',
+            url: 'https://explorer.sanko.xyz',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 37,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=sanko.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sapphire.js
+
+const sapphire = /*#__PURE__*/ defineChain({
+    id: 23294,
+    name: 'Oasis Sapphire',
+    network: 'sapphire',
+    nativeCurrency: { name: 'Sapphire Rose', symbol: 'ROSE', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sapphire.oasis.io'],
+            webSocket: ['wss://sapphire.oasis.io/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Oasis Explorer',
+            url: 'https://explorer.oasis.io/mainnet/sapphire',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 734531,
+        },
+    },
+});
+//# sourceMappingURL=sapphire.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sapphireTestnet.js
+
+const sapphireTestnet = /*#__PURE__*/ defineChain({
+    id: 23295,
+    name: 'Oasis Sapphire Testnet',
+    network: 'sapphire-testnet',
+    nativeCurrency: { name: 'Sapphire Test Rose', symbol: 'TEST', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.sapphire.oasis.dev'],
+            webSocket: ['wss://testnet.sapphire.oasis.dev/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Oasis Explorer',
+            url: 'https://explorer.oasis.io/testnet/sapphire',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=sapphireTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/satoshivm.js
+
+const satoshiVM = /*#__PURE__*/ defineChain({
+    id: 3109,
+    name: 'SatoshiVM Alpha Mainnet',
+    nativeCurrency: {
+        name: 'BTC',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://alpha-rpc-node-http.svmscan.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://svmscan.io',
+            apiUrl: 'https://svmscan.io/api',
+        },
+    },
+});
+//# sourceMappingURL=satoshivm.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/satoshivmTestnet.js
+
+const satoshiVMTestnet = /*#__PURE__*/ defineChain({
+    id: 3110,
+    name: 'SatoshiVM Testnet',
+    nativeCurrency: {
+        name: 'BTC',
+        symbol: 'BTC',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://test-rpc-node-http.svmscan.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://testnet.svmscan.io',
+            apiUrl: 'https://testnet.svmscan.io/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=satoshivmTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/scroll.js
+
+const scroll_scroll = /*#__PURE__*/ defineChain({
+    id: 534_352,
+    name: 'Scroll',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.scroll.io'],
+            webSocket: ['wss://wss-rpc.scroll.io/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Scrollscan',
+            url: 'https://scrollscan.com',
+            apiUrl: 'https://api.scrollscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 14,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=scroll.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/scrollSepolia.js
+
+const scrollSepolia = /*#__PURE__*/ defineChain({
+    id: 534_351,
+    name: 'Scroll Sepolia',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia-rpc.scroll.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Scrollscan',
+            url: 'https://sepolia.scrollscan.com',
+            apiUrl: 'https://api-sepolia.scrollscan.com/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 9473,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=scrollSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sei.js
+
+const sei = /*#__PURE__*/ defineChain({
+    id: 1329,
+    name: 'Sei Network',
+    nativeCurrency: { name: 'Sei', symbol: 'SEI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evm-rpc.sei-apis.com/'],
+            webSocket: ['wss://evm-ws.sei-apis.com/'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Seitrace',
+            url: 'https://seitrace.com',
+            apiUrl: 'https://seitrace.com/pacific-1/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        },
+    },
+});
+//# sourceMappingURL=sei.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/seiDevnet.js
+
+const seiDevnet = /*#__PURE__*/ defineChain({
+    id: 713_715,
+    name: 'Sei Devnet',
+    nativeCurrency: { name: 'Sei', symbol: 'SEI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evm-rpc-arctic-1.sei-apis.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Seitrace',
+            url: 'https://seitrace.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=seiDevnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/seiTestnet.js
+
+const seiTestnet = /*#__PURE__*/ defineChain({
+    id: 1328,
+    name: 'Sei Testnet',
+    nativeCurrency: { name: 'Sei', symbol: 'SEI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evm-rpc-testnet.sei-apis.com'],
+            webSocket: ['wss://evm-ws-testnet.sei-apis.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Seitrace',
+            url: 'https://seitrace.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=seiTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sepolia.js
+
+const sepolia = /*#__PURE__*/ defineChain({
+    id: 11_155_111,
+    name: 'Sepolia',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.drpc.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://sepolia.etherscan.io',
+            apiUrl: 'https://api-sepolia.etherscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 751532,
+        },
+        ensRegistry: { address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e' },
+        ensUniversalResolver: {
+            address: '0xc8Af999e38273D658BE1b921b88A9Ddf005769cC',
+            blockCreated: 5_317_080,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=sepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shape.js
+
+
+const shape_sourceId = 1; // mainnet
+const shape = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 360,
+    name: 'Shape',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.shape.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'shapescan',
+            url: 'https://shapescan.xyz',
+            apiUrl: 'https://shapescan.xyz/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [shape_sourceId]: {
+                address: '0x6Ef8c69CfE4635d866e3E02732068022c06e724D',
+                blockCreated: 20369940,
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1,
+        },
+        portal: {
+            [shape_sourceId]: {
+                address: '0xEB06fFa16011B5628BaB98E29776361c83741dd3',
+                blockCreated: 20369933,
+            },
+        },
+        l1StandardBridge: {
+            [shape_sourceId]: {
+                address: '0x62Edd5f4930Ea92dCa3fB81689bDD9b9d076b57B',
+                blockCreated: 20369935,
+            },
+        },
+    },
+    sourceId: shape_sourceId,
+});
+//# sourceMappingURL=shape.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shapeSepolia.js
+
+
+const shapeSepolia_sourceId = 11_155_111; // sepolia
+const shapeSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 11_011,
+    name: 'Shape Sepolia Testnet',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.shape.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://explorer-sepolia.shape.network/',
+            apiUrl: 'https://explorer-sepolia.shape.network/api/v2',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 1,
+        },
+    },
+    testnet: true,
+    sourceId: shapeSepolia_sourceId,
+});
+//# sourceMappingURL=shapeSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shardeumSphinx.js
+
+const shardeumSphinx = /*#__PURE__*/ defineChain({
+    id: 8082,
+    name: 'Shardeum Sphinx',
+    nativeCurrency: { name: 'SHARDEUM', symbol: 'SHM', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sphinx.shardeum.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Shardeum Explorer',
+            url: 'https://explorer-sphinx.shardeum.org',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=shardeumSphinx.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shibarium.js
+
+const shibarium = /*#__PURE__*/ defineChain({
+    id: 109,
+    name: 'Shibarium',
+    network: 'shibarium',
+    nativeCurrency: { name: 'Bone', symbol: 'BONE', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.shibrpc.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://shibariumscan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x864Bf681ADD6052395188A89101A1B37d3B4C961',
+            blockCreated: 265900,
+        },
+    },
+});
+//# sourceMappingURL=shibarium.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shibariumTestnet.js
+
+const shibariumTestnet = /*#__PURE__*/ defineChain({
+    id: 157,
+    name: 'Puppynet Shibarium',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Bone',
+        symbol: 'BONE',
+    },
+    rpcUrls: {
+        default: { http: ['https://puppynet.shibrpc.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://puppyscan.shib.io',
+            apiUrl: 'https://puppyscan.shib.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xA4029b74FBA366c926eDFA7Dd10B21C621170a4c',
+            blockCreated: 3035769,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=shibariumTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shiden.js
+
+const shiden = /*#__PURE__*/ defineChain({
+    id: 336,
+    name: 'Shiden',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'SDN',
+        symbol: 'SDN',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://shiden.public.blastapi.io'],
+            webSocket: ['wss://shiden-rpc.dwellir.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Shiden Scan',
+            url: 'https://shiden.subscan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=shiden.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shimmer.js
+
+const shimmer = /*#__PURE__*/ defineChain({
+    id: 148,
+    name: 'Shimmer',
+    network: 'shimmer',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Shimmer',
+        symbol: 'SMR',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://json-rpc.evm.shimmer.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Shimmer Network Explorer',
+            url: 'https://explorer.evm.shimmer.network',
+            apiUrl: 'https://explorer.evm.shimmer.network/api',
+        },
+    },
+});
+//# sourceMappingURL=shimmer.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/shimmerTestnet.js
+
+const shimmerTestnet = /*#__PURE__*/ defineChain({
+    id: 1073,
+    name: 'Shimmer Testnet',
+    network: 'shimmer-testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Shimmer',
+        symbol: 'SMR',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://json-rpc.evm.testnet.shimmer.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Shimmer Network Explorer',
+            url: 'https://explorer.evm.testnet.shimmer.network',
+            apiUrl: 'https://explorer.evm.testnet.shimmer.network/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=shimmerTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/silicon.js
+
+const silicon = /*#__PURE__*/ defineChain({
+    id: 2355,
+    name: 'Silicon zkEVM',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc.silicon.network',
+                'https://silicon-mainnet.nodeinfra.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SiliconScope',
+            url: 'https://scope.silicon.network',
+        },
+    },
+});
+//# sourceMappingURL=silicon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/siliconSepolia.js
+
+const siliconSepolia = /*#__PURE__*/ defineChain({
+    id: 1722641160,
+    name: 'Silicon Sepolia zkEVM',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://rpc-sepolia.silicon.network',
+                'https://silicon-testnet.nodeinfra.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SiliconSepoliaScope',
+            url: 'https://scope-sepolia.silicon.network',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=siliconSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sixProtocol.js
+
+const sixProtocol = /*#__PURE__*/ defineChain({
+    id: 98,
+    name: 'Six Protocol',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'SIX',
+        symbol: 'SIX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sixnet-rpc-evm.sixprotocol.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Six Protocol Scan',
+            url: 'https://sixscan.io/sixnet',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=sixProtocol.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/brawl.js
+
+const skaleBlockBrawlers = /*#__PURE__*/ defineChain({
+    id: 391_845_894,
+    name: 'SKALE | Block Brawlers',
+    nativeCurrency: { name: 'BRAWL', symbol: 'BRAWL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/frayed-decent-antares'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/frayed-decent-antares'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://frayed-decent-antares.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=brawl.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/calypso.js
+
+const skaleCalypso = /*#__PURE__*/ defineChain({
+    id: 1_564_830_818,
+    name: 'SKALE | Calypso NFT Hub',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/honorable-steel-rasalhague'],
+            webSocket: [
+                'wss://mainnet.skalenodes.com/v1/ws/honorable-steel-rasalhague',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://honorable-steel-rasalhague.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3107626,
+        },
+    },
+});
+//# sourceMappingURL=calypso.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/calypsoTestnet.js
+
+const skaleCalypsoTestnet = /*#__PURE__*/ defineChain({
+    id: 974_399_131,
+    name: 'SKALE Calypso Testnet',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.skalenodes.com/v1/giant-half-dual-testnet'],
+            webSocket: ['wss://testnet.skalenodes.com/v1/ws/giant-half-dual-testnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://giant-half-dual-testnet.explorer.testnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 103_220,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=calypsoTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/cryptoBlades.js
+
+const skaleCryptoBlades = /*#__PURE__*/ defineChain({
+    id: 1_026_062_157,
+    name: 'SKALE | CryptoBlades',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/affectionate-immediate-pollux'],
+            webSocket: [
+                'wss://mainnet.skalenodes.com/v1/ws/affectionate-immediate-pollux',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://affectionate-immediate-pollux.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=cryptoBlades.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/cryptoColosseum.js
+
+const skaleCryptoColosseum = /*#__PURE__*/ defineChain({
+    id: 1_032_942_172,
+    name: 'SKALE | Crypto Colosseum',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/haunting-devoted-deneb'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/haunting-devoted-deneb'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://haunting-devoted-deneb.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=cryptoColosseum.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/europa.js
+
+const skaleEuropa = /*#__PURE__*/ defineChain({
+    id: 2_046_399_126,
+    name: 'SKALE | Europa Liquidity Hub',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/elated-tan-skat'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/elated-tan-skat'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://elated-tan-skat.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 3113495,
+        },
+    },
+});
+//# sourceMappingURL=europa.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/europaTestnet.js
+
+const skaleEuropaTestnet = /*#__PURE__*/ defineChain({
+    id: 1_444_673_419,
+    name: 'SKALE Europa Testnet',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.skalenodes.com/v1/juicy-low-small-testnet'],
+            webSocket: ['wss://testnet.skalenodes.com/v1/ws/juicy-low-small-testnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://juicy-low-small-testnet.explorer.testnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 110_858,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=europaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/exorde.js
+
+const skaleExorde = /*#__PURE__*/ defineChain({
+    id: 2_139_927_552,
+    name: 'SKALE | Exorde',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/light-vast-diphda'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/light-vast-diphda'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://light-vast-diphda.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=exorde.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/humanProtocol.js
+
+const skaleHumanProtocol = /*#__PURE__*/ defineChain({
+    id: 1_273_227_453,
+    name: 'SKALE | Human Protocol',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/wan-red-ain'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/wan-red-ain'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://wan-red-ain.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=humanProtocol.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/nebula.js
+
+const skaleNebula = /*#__PURE__*/ defineChain({
+    id: 1_482_601_649,
+    name: 'SKALE | Nebula Gaming Hub',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/green-giddy-denebola'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/green-giddy-denebola'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://green-giddy-denebola.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 2372986,
+        },
+    },
+});
+//# sourceMappingURL=nebula.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/nebulaTestnet.js
+
+const skaleNebulaTestnet = /*#__PURE__*/ defineChain({
+    id: 37_084_624,
+    name: 'SKALE Nebula Testnet',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.skalenodes.com/v1/lanky-ill-funny-testnet'],
+            webSocket: ['wss://testnet.skalenodes.com/v1/ws/lanky-ill-funny-testnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://lanky-ill-funny-testnet.explorer.testnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 105_141,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=nebulaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/razor.js
+
+const skaleRazor = /*#__PURE__*/ defineChain({
+    id: 278_611_351,
+    name: 'SKALE | Razor Network',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/turbulent-unique-scheat'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/turbulent-unique-scheat'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://turbulent-unique-scheat.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {},
+});
+//# sourceMappingURL=razor.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/titan.js
+
+const skaleTitan = /*#__PURE__*/ defineChain({
+    id: 1_350_216_234,
+    name: 'SKALE | Titan Community Hub',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.skalenodes.com/v1/parallel-stormy-spica'],
+            webSocket: ['wss://mainnet.skalenodes.com/v1/ws/parallel-stormy-spica'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://parallel-stormy-spica.explorer.mainnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 2076458,
+        },
+    },
+});
+//# sourceMappingURL=titan.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/skale/titanTestnet.js
+
+const skaleTitanTestnet = /*#__PURE__*/ defineChain({
+    id: 1_020_352_220,
+    name: 'SKALE Titan Hub',
+    nativeCurrency: { name: 'sFUEL', symbol: 'sFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.skalenodes.com/v1/aware-fake-trim-testnet'],
+            webSocket: ['wss://testnet.skalenodes.com/v1/ws/aware-fake-trim-testnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SKALE Explorer',
+            url: 'https://aware-fake-trim-testnet.explorer.testnet.skalenodes.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 104_072,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=titanTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sketchpad.js
+
+const sketchpad = /*#__PURE__*/ defineChain({
+    id: 984123,
+    name: 'Forma Sketchpad',
+    network: 'sketchpad',
+    nativeCurrency: {
+        symbol: 'TIA',
+        name: 'TIA',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.sketchpad-1.forma.art'],
+            webSocket: ['wss://ws.sketchpad-1.forma.art'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sketchpad Explorer',
+            url: 'https://explorer.sketchpad-1.forma.art',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=sketchpad.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/snax.js
+
+
+const snax_sourceId = 1; // mainnet
+const snax = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 2192,
+    network: 'snaxchain-mainnet',
+    name: 'SnaxChain',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.snaxchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Snax Explorer',
+            url: 'https://explorer.snaxchain.io',
+            apiUrl: 'https://explorer.snaxchain.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [snax_sourceId]: {
+                address: '0x472562Fcf26D6b2793f8E0b0fB660ba0E5e08A46',
+            },
+        },
+        l2OutputOracle: {
+            [snax_sourceId]: {
+                address: '0x2172e492Fc807F5d5645D0E3543f139ECF539294',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [snax_sourceId]: {
+                address: '0x79f446D024d74D0Bb6E699C131c703463c5D65E9',
+            },
+        },
+        l1StandardBridge: {
+            [snax_sourceId]: {
+                address: '0x6534Bdb6b5c060d3e6aa833433333135eFE8E0aA',
+            },
+        },
+    },
+    sourceId: snax_sourceId,
+});
+//# sourceMappingURL=snax.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/snaxTestnet.js
+
+
+const snaxTestnet_sourceId = 11_155_111; // sepolia
+const snaxTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 13001,
+    network: 'snaxchain-testnet',
+    name: 'SnaxChain Testnet',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.snaxchain.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Snax Explorer',
+            url: 'https://testnet-explorer.snaxchain.io',
+            apiUrl: 'https://testnet-explorer.snaxchain.io/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [snaxTestnet_sourceId]: {
+                address: '0x206a75d89d45F146C54020F132FF93bEDD09f55E',
+            },
+        },
+        l2OutputOracle: {
+            [snaxTestnet_sourceId]: {
+                address: '0x60e3A368a4cdCEf85ffB964e372726F56A46221e',
+            },
+        },
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+        },
+        portal: {
+            [snaxTestnet_sourceId]: {
+                address: '0xb5afdd0E8dDF081Ef90e8A3e0c7b5798e66E954E',
+            },
+        },
+        l1StandardBridge: {
+            [snaxTestnet_sourceId]: {
+                address: '0xbd37E1a59D4C00C9A46F75018dffd84061bC5f74',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: snaxTestnet_sourceId,
+});
+//# sourceMappingURL=snaxTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/soneiumMinato.js
+
+
+const soneiumMinato_sourceId = 11_155_111; // sepolia
+const soneiumMinato = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 1946,
+    name: 'Soneium Minato Testnet',
+    nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.minato.soneium.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://soneium-minato.blockscout.com',
+            apiUrl: 'https://soneium-minato.blockscout.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [soneiumMinato_sourceId]: {
+                address: '0xB3Ad2c38E6e0640d7ce6aA952AB3A60E81bf7a01',
+            },
+        },
+        l2OutputOracle: {
+            [soneiumMinato_sourceId]: {
+                address: '0x710e5286C746eC38beeB7538d0146f60D27be343',
+            },
+        },
+        portal: {
+            [soneiumMinato_sourceId]: {
+                address: '0x65ea1489741A5D72fFdD8e6485B216bBdcC15Af3',
+                blockCreated: 6466136,
+            },
+        },
+        l1StandardBridge: {
+            [soneiumMinato_sourceId]: {
+                address: '0x5f5a404A5edabcDD80DB05E8e54A78c9EBF000C2',
+                blockCreated: 6466136,
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1,
+        },
+    },
+    testnet: true,
+    sourceId: soneiumMinato_sourceId,
+});
+//# sourceMappingURL=soneiumMinato.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sonic.js
+
+const sonic = /*#__PURE__*/ defineChain({
+    id: 146,
+    name: 'Sonic',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Sonic',
+        symbol: 'S',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.soniclabs.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sonic Explorer',
+            url: 'https://sonicscan.org/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 60,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=sonic.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sonicTestnet.js
+
+const sonicTestnet = /*#__PURE__*/ defineChain({
+    id: 64_165,
+    name: 'Sonic Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Sonic',
+        symbol: 'S',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.testnet.soniclabs.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sonic Testnet Explorer',
+            url: 'https://testnet.soniclabs.com/',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=sonicTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/songbird.js
+
+const songbird = /*#__PURE__*/ defineChain({
+    id: 19,
+    name: 'Songbird Canary-Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Songbird',
+        symbol: 'SGB',
+    },
+    rpcUrls: {
+        default: { http: ['https://songbird-api.flare.network/ext/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Songbird Explorer',
+            url: 'https://songbird-explorer.flare.network',
+            apiUrl: 'https://songbird-explorer.flare.network/api',
+        },
+    },
+});
+//# sourceMappingURL=songbird.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/songbirdTestnet.js
+
+const songbirdTestnet = /*#__PURE__*/ defineChain({
+    id: 16,
+    name: 'Songbird Testnet Coston',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Coston Flare',
+        symbol: 'CFLR',
+    },
+    rpcUrls: {
+        default: { http: ['https://coston-api.flare.network/ext/C/rpc'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Coston Explorer',
+            url: 'https://coston-explorer.flare.network',
+            apiUrl: 'https://coston-explorer.flare.network/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=songbirdTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sophon.js
+
+
+const sophon = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 50104,
+    name: 'Sophon',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Sophon',
+        symbol: 'SOPH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.sophon.xyz'],
+            webSocket: ['wss://rpc.sophon.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sophon Block Explorer',
+            url: 'https://explorer.sophon.xyz',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x5f4867441d2416cA88B1b3fd38f21811680CD2C8',
+            blockCreated: 116,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=sophon.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/sophonTestnet.js
+
+
+const sophonTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 531_050_104,
+    name: 'Sophon Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Sophon',
+        symbol: 'SOPH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.sophon.xyz'],
+            webSocket: ['wss://rpc.testnet.sophon.xyz/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Sophon Block Explorer',
+            url: 'https://explorer.testnet.sophon.xyz',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x83c04d112adedA2C6D9037bb6ecb42E7f0b108Af',
+            blockCreated: 15_642,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=sophonTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/spicy.js
+
+const spicy = /*#__PURE__*/ defineChain({
+    id: 88_882,
+    name: 'Chiliz Spicy Testnet',
+    network: 'chiliz-spicy-Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'CHZ',
+        symbol: 'CHZ',
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://spicy-rpc.chiliz.com',
+                'https://chiliz-spicy-rpc.publicnode.com',
+            ],
+            webSocket: [
+                'wss://spicy-rpc-ws.chiliz.com',
+                'wss://chiliz-spicy-rpc.publicnode.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Chiliz Explorer',
+            url: 'http://spicy-explorer.chiliz.com',
+            apiUrl: 'http://spicy-explorer.chiliz.com/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=spicy.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/step.js
+
+const step = /*#__PURE__*/ defineChain({
+    id: 1234,
+    name: 'Step Network',
+    nativeCurrency: { name: 'FITFI', symbol: 'FITFI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.step.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Step Scan',
+            url: 'https://stepscan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=step.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/storyOdyssey.js
+
+const storyOdyssey = /*#__PURE__*/ defineChain({
+    id: 1516,
+    name: 'Story Odyssey',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IP',
+        symbol: 'IP',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.odyssey.storyrpc.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Story Odyssey Explorer',
+            url: 'https://odyssey.storyscan.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=storyOdyssey.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/storyTestnet.js
+
+const storyTestnet = /*#__PURE__*/ defineChain({
+    id: 1513,
+    name: 'Story Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'IP',
+        symbol: 'IP',
+    },
+    rpcUrls: {
+        default: { http: ['https://testnet.storyrpc.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Story Testnet Explorer',
+            url: 'https://testnet.storyscan.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=storyTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/stratis.js
+
+const stratis = /*#__PURE__*/ defineChain({
+    id: 105105,
+    name: 'Stratis Mainnet',
+    network: 'stratis',
+    nativeCurrency: {
+        name: 'Stratis',
+        symbol: 'STRAX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.stratisevm.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Stratis Explorer',
+            url: 'https://explorer.stratisevm.com',
+        },
+    },
+});
+//# sourceMappingURL=stratis.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/superlumio.js
+
+const superlumio = /*#__PURE__*/ defineChain({
+    id: 8866,
+    name: 'SuperLumio',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.lumio.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Lumio explorer',
+            url: 'https://explorer.lumio.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=superlumio.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/superposition.js
+
+const superposition = /*#__PURE__*/ defineChain({
+    id: 55244,
+    name: 'Superposition',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc.superposition.so'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Superposition Explorer',
+            url: 'https://explorer.superposition.so',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 39,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=superposition.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/superseed.js
+
+
+const superseed_sourceId = 1; // mainnet
+const superseed = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 5330,
+    name: 'Superseed',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.superseed.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Superseed Explorer',
+            url: 'https://explorer.superseed.xyz',
+            apiUrl: 'https://explorer.superseed.xyz/api/v2',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        disputeGameFactory: {
+            [superseed_sourceId]: {
+                address: '0x8b097CF1f9BbD9cbFD0DD561858a1FCbC8857Be0',
+                blockCreated: 20737481,
+            },
+        },
+        l2OutputOracle: {
+            [superseed_sourceId]: {
+                address: '0x693A0F8854F458D282DE3C5b69E8eE5EEE8aA949',
+                blockCreated: 20737481,
+            },
+        },
+        portal: {
+            [superseed_sourceId]: {
+                address: '0x2c2150aa5c75A24fB93d4fD2F2a895D618054f07',
+                blockCreated: 20737481,
+            },
+        },
+        l1StandardBridge: {
+            [superseed_sourceId]: {
+                address: '0x8b0576E39F1233679109F9b40cFcC2a7E0901Ede',
+                blockCreated: 20737481,
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        },
+    },
+    sourceId: superseed_sourceId,
+});
+//# sourceMappingURL=superseed.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/superseedSepolia.js
+
+
+const superseedSepolia_sourceId = 11155111; // sepolia
+const superseedSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 53302,
+    name: 'Superseed Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.superseed.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Superseed Sepolia Explorer',
+            url: 'https://sepolia-explorer.superseed.xyz',
+            apiUrl: 'https://sepolia-explorer.superseed.xyz/api/v2',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        },
+        portal: {
+            [superseedSepolia_sourceId]: {
+                address: '0x7A0db8C51432d2C3eb4e8f360a2EeB26FF2809fB',
+                blockCreated: 5523438,
+            },
+        },
+        l1StandardBridge: {
+            [superseedSepolia_sourceId]: {
+                address: '0x2B227A603fAAdB3De0ED050b63ADD232B5f2c28C',
+                blockCreated: 5523442,
+            },
+        },
+    },
+    testnet: true,
+    sourceId: superseedSepolia_sourceId,
+});
+//# sourceMappingURL=superseedSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/swan.js
+
+const swan = /*#__PURE__*/ defineChain({
+    id: 254,
+    name: 'Swan Chain Mainnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://mainnet-rpc.swanchain.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Swan Explorer',
+            url: 'https://swanscan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=swan.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/swanProximaTestnet.js
+
+const swanProximaTestnet = /*#__PURE__*/ defineChain({
+    id: 20241133,
+    name: 'Swan Proxima Testnet',
+    nativeCurrency: { name: 'Swan Ether', symbol: 'sETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://rpc-proxima.swanchain.io	'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Swan Explorer',
+            url: 'https://proxima-explorer.swanchain.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=swanProximaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/swanSaturnTestnet.js
+
+const swanSaturnTestnet = /*#__PURE__*/ defineChain({
+    id: 2024,
+    name: 'Swan Saturn Testnet',
+    nativeCurrency: { name: 'Swan Ether', symbol: 'sETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://saturn-rpc.swanchain.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Swan Explorer',
+            url: 'https://saturn-explorer.swanchain.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=swanSaturnTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/swissdlt.js
+
+const swissdlt = /*#__PURE__*/ defineChain({
+    id: 94,
+    name: 'SwissDLT Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'BCTS',
+        symbol: 'BCTS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.swissdlt.ch'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SwissDLT Explorer',
+            url: 'https://explorer.swissdlt.ch',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=swissdlt.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/syscoin.js
+
+const syscoin = /*#__PURE__*/ defineChain({
+    id: 57,
+    name: 'Syscoin Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Syscoin',
+        symbol: 'SYS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.syscoin.org'],
+            webSocket: ['wss://rpc.syscoin.org/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SyscoinExplorer',
+            url: 'https://explorer.syscoin.org',
+            apiUrl: 'https://explorer.syscoin.org/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 287139,
+        },
+    },
+});
+//# sourceMappingURL=syscoin.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/syscoinTestnet.js
+
+const syscoinTestnet = /*#__PURE__*/ defineChain({
+    id: 5700,
+    name: 'Syscoin Tanenbaum Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Syscoin',
+        symbol: 'SYS',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.tanenbaum.io'],
+            webSocket: ['wss://rpc.tanenbaum.io/wss'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'SyscoinTestnetExplorer',
+            url: 'https://tanenbaum.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 271288,
+        },
+    },
+});
+//# sourceMappingURL=syscoinTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taiko.js
+
+const taiko = /*#__PURE__*/ defineChain({
+    id: 167000,
+    name: 'Taiko Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mainnet.taiko.xyz'],
+            webSocket: ['wss://ws.mainnet.taiko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Taikoscan',
+            url: 'https://taikoscan.io',
+            apiUrl: 'https://api.taikoscan.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcb2436774C3e191c85056d248EF4260ce5f27A9D',
+        },
+    },
+});
+//# sourceMappingURL=taiko.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taikoHekla.js
+
+const taikoHekla = /*#__PURE__*/ defineChain({
+    id: 167_009,
+    name: 'Taiko Hekla L2',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.hekla.taiko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Taikoscan',
+            url: 'https://hekla.taikoscan.network',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 59757,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=taikoHekla.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taikoJolnir.js
+
+const taikoJolnir = /*#__PURE__*/ defineChain({
+    id: 167007,
+    name: 'Taiko Jolnir (Alpha-5 Testnet)',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.jolnir.taiko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://explorer.jolnir.taiko.xyz',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 732706,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=taikoJolnir.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taikoKatla.js
+
+const taikoKatla = /*#__PURE__*/ defineChain({
+    id: 167008,
+    name: 'Taiko Katla (Alpha-6 Testnet)',
+    network: 'tko-katla',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.katla.taiko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://explorer.katla.taiko.xyz',
+        },
+    },
+});
+//# sourceMappingURL=taikoKatla.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taikoTestnetSepolia.js
+
+const taikoTestnetSepolia = /*#__PURE__*/ defineChain({
+    id: 167005,
+    name: 'Taiko (Alpha-3 Testnet)',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.test.taiko.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'blockscout',
+            url: 'https://explorer.test.taiko.xyz',
+        },
+    },
+});
+//# sourceMappingURL=taikoTestnetSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taraxa.js
+
+const taraxa = /*#__PURE__*/ defineChain({
+    id: 841,
+    name: 'Taraxa Mainnet',
+    nativeCurrency: { name: 'Tara', symbol: 'TARA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.mainnet.taraxa.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Taraxa Explorer',
+            url: 'https://explorer.mainnet.taraxa.io',
+        },
+    },
+});
+//# sourceMappingURL=taraxa.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/taraxaTestnet.js
+
+const taraxaTestnet = /*#__PURE__*/ defineChain({
+    id: 842,
+    name: 'Taraxa Testnet',
+    nativeCurrency: { name: 'Tara', symbol: 'TARA', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.taraxa.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Taraxa Explorer',
+            url: 'https://explorer.testnet.taraxa.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=taraxaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/telcoinTestnet.js
+
+const telcoinTestnet = /*#__PURE__*/ defineChain({
+    id: 2017,
+    name: 'Telcoin Adiri Testnet',
+    nativeCurrency: { name: 'Telcoin', symbol: 'TEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.telcoin.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'telscan',
+            url: 'https://telscan.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=telcoinTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/telos.js
+
+const telos = /*#__PURE__*/ defineChain({
+    id: 40,
+    name: 'Telos',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Telos',
+        symbol: 'TLOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://mainnet.telos.net/evm'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Teloscan',
+            url: 'https://www.teloscan.io/',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 246530709,
+        },
+    },
+});
+//# sourceMappingURL=telos.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/telosTestnet.js
+
+const telosTestnet = /*#__PURE__*/ defineChain({
+    id: 41,
+    name: 'Telos',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Telos',
+        symbol: 'TLOS',
+    },
+    rpcUrls: {
+        default: { http: ['https://testnet.telos.net/evm'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Teloscan (testnet)',
+            url: 'https://testnet.teloscan.io/',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=telosTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/tenet.js
+
+const tenet = /*#__PURE__*/ defineChain({
+    id: 1559,
+    name: 'Tenet',
+    network: 'tenet-mainnet',
+    nativeCurrency: {
+        name: 'TENET',
+        symbol: 'TENET',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.tenet.org'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'TenetScan Mainnet',
+            url: 'https://tenetscan.io',
+            apiUrl: 'https://tenetscan.io/api',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=tenet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ternoa.js
+
+const ternoa = /*#__PURE__*/ defineChain({
+    id: 752025,
+    name: 'Ternoa',
+    nativeCurrency: { name: 'Capsule Coin', symbol: 'CAPS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-mainnet.zkevm.ternoa.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ternoa Explorer',
+            url: 'https://explorer-mainnet.zkevm.ternoa.network',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=ternoa.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/thaiChain.js
+
+const thaiChain = /*#__PURE__*/ defineChain({
+    id: 7,
+    name: 'ThaiChain',
+    nativeCurrency: { name: 'TCH', symbol: 'TCH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.thaichain.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://exp.thaichain.org',
+            apiUrl: 'https://exp.thaichain.org/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0DaD6130e832c21719C5CE3bae93454E16A84826',
+            blockCreated: 4806386,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=thaiChain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/that.js
+
+const that = /*#__PURE__*/ defineChain({
+    id: 8428,
+    name: 'THAT Mainnet',
+    nativeCurrency: { name: 'THAT', symbol: 'THAT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.thatchain.io/mainnet'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://that.blockscout.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=that.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/theta.js
+
+const theta = /*#__PURE__*/ defineChain({
+    id: 361,
+    name: 'Theta Mainnet',
+    nativeCurrency: { name: 'TFUEL', symbol: 'TFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-rpc-api.thetatoken.org/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Theta Explorer',
+            url: 'https://explorer.thetatoken.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=theta.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/thetaTestnet.js
+
+const thetaTestnet = /*#__PURE__*/ defineChain({
+    id: 365,
+    name: 'Theta Testnet',
+    nativeCurrency: { name: 'TFUEL', symbol: 'TFUEL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://eth-rpc-api-testnet.thetatoken.org/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Theta Explorer',
+            url: 'https://testnet-explorer.thetatoken.org',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=thetaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/thunderCore.js
+
+const thunderCore = /*#__PURE__*/ defineChain({
+    id: 108,
+    name: 'ThunderCore Mainnet',
+    nativeCurrency: { name: 'TT', symbol: 'TT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet-rpc.thundercore.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ThunderCore Explorer',
+            url: 'https://explorer-mainnet.thundercore.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 0,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=thunderCore.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/thunderTestnet.js
+
+const thunderTestnet = /*#__PURE__*/ defineChain({
+    id: 997,
+    name: '5ireChain Thunder Testnet',
+    nativeCurrency: { name: '5ire Token', symbol: '5IRE', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.5ire.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: '5ireChain Thunder Explorer',
+            url: 'https://testnet.5irescan.io/',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=thunderTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/tiktrixTestnet.js
+
+const tiktrixTestnet = /*#__PURE__*/ defineChain({
+    id: 62092,
+    name: 'TikTrix Testnet',
+    nativeCurrency: {
+        name: 'tTTX',
+        symbol: 'tTTX',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://tiktrix-rpc.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'TikTrix Testnet Explorer',
+            url: 'https://tiktrix.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=tiktrixTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/tomb.js
+
+const tomb = /*#__PURE__*/ defineChain({
+    id: 6969,
+    name: 'Tomb Mainnet',
+    nativeCurrency: { name: 'TOMB', symbol: 'TOMB', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.tombchain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Tomb Explorer',
+            url: 'https://tombscout.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=tomb.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/treasure.js
+
+
+const treasure = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 61_166,
+    name: 'Treasure',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MAGIC',
+        symbol: 'MAGIC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.treasure.lol'],
+            webSocket: ['wss://rpc.treasure.lol/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Treasure Block Explorer',
+            url: 'https://treasurescan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x2e29fe39496a56856D8698bD43e1dF4D0CE6266a',
+            blockCreated: 101,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=treasure.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/treasureTopaz.js
+
+
+const treasureTopaz = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 978_658,
+    name: 'Treasure Topaz Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'MAGIC',
+        symbol: 'MAGIC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.topaz.treasure.lol'],
+            webSocket: ['wss://rpc.topaz.treasure.lol/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Treasure Topaz Block Explorer',
+            url: 'https://topaz.treasurescan.io',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
+            blockCreated: 108112,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=treasureTopaz.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/tron.js
+
+const tron = /*#__PURE__*/ defineChain({
+    id: 728126428,
+    name: 'Tron',
+    nativeCurrency: { name: 'TRON', symbol: 'TRX', decimals: 6 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.trongrid.io/jsonrpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Tronscan',
+            url: 'https://tronscan.org',
+            apiUrl: 'https://apilist.tronscanapi.com/api',
+        },
+    },
+});
+//# sourceMappingURL=tron.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ubiq.js
+
+const ubiq = /*#__PURE__*/ defineChain({
+    id: 8,
+    name: 'Ubiq Mainnet',
+    nativeCurrency: { name: 'UBQ', symbol: 'UBQ', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://pyrus2.ubiqscan.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ubiq Scan',
+            url: 'https://ubiqscan.io',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=ubiq.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ultron.js
+
+const ultron = /*#__PURE__*/ defineChain({
+    id: 1231,
+    name: 'Ultron Mainnet',
+    nativeCurrency: { name: 'ULX', symbol: 'ULX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://ultron-rpc.net'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ultron Scan',
+            url: 'https://ulxscan.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=ultron.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/ultronTestnet.js
+
+const ultronTestnet = /*#__PURE__*/ defineChain({
+    id: 1230,
+    name: 'Ultron Testnet',
+    nativeCurrency: { name: 'ULX', symbol: 'ULX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://ultron-dev.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ultron Scan',
+            url: 'https://explorer.ultron-dev.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=ultronTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/unichainSepolia.js
+
+
+const unichainSepolia_sourceId = 11_155_111; // sepolia
+const unichainSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 1301,
+    name: 'Unichain Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.unichain.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Uniscan',
+            url: 'https://sepolia.uniscan.xyz',
+            apiUrl: 'https://api-sepolia.uniscan.xyz/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 0,
+        },
+        portal: {
+            [unichainSepolia_sourceId]: {
+                address: '0x0d83dab629f0e0F9d36c0Cbc89B69a489f0751bD',
+            },
+        },
+        l1StandardBridge: {
+            [unichainSepolia_sourceId]: {
+                address: '0xea58fcA6849d79EAd1f26608855c2D6407d54Ce2',
+            },
+        },
+        disputeGameFactory: {
+            [unichainSepolia_sourceId]: {
+                address: '0xeff73e5aa3B9AEC32c659Aa3E00444d20a84394b',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: unichainSepolia_sourceId,
+});
+//# sourceMappingURL=unichainSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/unique.js
+
+const unique = /*#__PURE__*/ defineChain({
+    id: 8880,
+    name: 'Unique Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'UNQ',
+        symbol: 'UNQ',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.unique.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Unique Subscan',
+            url: 'https://unique.subscan.io/',
+        },
+    },
+});
+//# sourceMappingURL=unique.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/uniqueOpal.js
+
+const uniqueOpal = /*#__PURE__*/ defineChain({
+    id: 8882,
+    name: 'Opal Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OPL',
+        symbol: 'OPL',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc-opal.unique.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Opal Subscan',
+            url: 'https://opal.subscan.io/',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=uniqueOpal.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/uniqueQuartz.js
+
+const uniqueQuartz = /*#__PURE__*/ defineChain({
+    id: 8881,
+    name: 'Quartz Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'QTZ',
+        symbol: 'QTZ',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc-quartz.unique.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Quartz Subscan',
+            url: 'https://quartz.subscan.io/',
+        },
+    },
+});
+//# sourceMappingURL=uniqueQuartz.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/unreal.js
+
+const unreal = /*#__PURE__*/ defineChain({
+    id: 18233,
+    name: 'Unreal',
+    nativeCurrency: {
+        name: 'reETH',
+        decimals: 18,
+        symbol: 'reETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.unreal-orbit.gelato.digital'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Unreal Explorer',
+            url: 'https://unreal.blockscout.com',
+            apiUrl: 'https://unreal.blockscout.com/api/v2',
+        },
+    },
+    testnet: true,
+    contracts: {
+        multicall3: {
+            address: '0x8b6B0e60D8CD84898Ea8b981065A12F876eA5677',
+            blockCreated: 1745,
+        },
+    },
+});
+//# sourceMappingURL=unreal.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/vanar.js
+
+const vanar = /*#__PURE__*/ defineChain({
+    id: 2040,
+    name: 'Vanar Mainnet',
+    nativeCurrency: { name: 'VANRY', symbol: 'VANRY', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.vanarchain.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Vanar Mainnet Explorer',
+            url: 'https://explorer.vanarchain.com/',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=vanar.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/vechain.js
+
+const vechain = /*#__PURE__*/ defineChain({
+    id: 100009,
+    name: 'Vechain',
+    nativeCurrency: { name: 'VeChain', symbol: 'VET', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.vechain.org'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Vechain Explorer',
+            url: 'https://explore.vechain.org',
+        },
+        vechainStats: {
+            name: 'Vechain Stats',
+            url: 'https://vechainstats.com',
+        },
+    },
+});
+//# sourceMappingURL=vechain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/velas.js
+
+const velas = /*#__PURE__*/ defineChain({
+    id: 106,
+    name: 'Velas EVM Mainnet',
+    nativeCurrency: { name: 'VLX', symbol: 'VLX', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://evmexplorer.velas.com/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Velas Explorer',
+            url: 'https://evmexplorer.velas.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 55883577,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=velas.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/viction.js
+
+const viction = /*#__PURE__*/ defineChain({
+    id: 88,
+    name: 'Viction',
+    nativeCurrency: { name: 'Viction', symbol: 'VIC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.viction.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'VIC Scan',
+            url: 'https://vicscan.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=viction.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/victionTestnet.js
+
+const victionTestnet = /*#__PURE__*/ defineChain({
+    id: 89,
+    name: 'Viction Testnet',
+    nativeCurrency: { name: 'Viction', symbol: 'VIC', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc-testnet.viction.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'VIC Scan',
+            url: 'https://testnet.vicscan.xyz',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 12170179,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=victionTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/vision.js
+
+const vision = /*#__PURE__*/ defineChain({
+    id: 888888,
+    name: 'Vision',
+    nativeCurrency: { name: 'VISION', symbol: 'VS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://infragrid.v.network/ethereum/compatible'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Vision Scan',
+            url: 'https://visionscan.org',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=vision.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/visionTestnet.js
+
+const visionTestnet = /*#__PURE__*/ defineChain({
+    id: 666666,
+    name: 'Vision Testnet',
+    nativeCurrency: { name: 'VISION', symbol: 'VS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://vpioneer.infragrid.v.network/ethereum/compatible'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Vision Scan',
+            url: 'https://visionscan.org/?chain=vpioneer',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=visionTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/wanchain.js
+
+const wanchain = /*#__PURE__*/ defineChain({
+    id: 888,
+    name: 'Wanchain',
+    nativeCurrency: { name: 'WANCHAIN', symbol: 'WAN', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://gwan-ssl.wandevs.org:56891',
+                'https://gwan2-ssl.wandevs.org',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'WanScan',
+            url: 'https://wanscan.org',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcDF6A1566e78EB4594c86Fe73Fcdc82429e97fbB',
+            blockCreated: 25312390,
+        },
+    },
+});
+//# sourceMappingURL=wanchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/wanchainTestnet.js
+
+const wanchainTestnet = /*#__PURE__*/ defineChain({
+    id: 999,
+    name: 'Wanchain Testnet',
+    nativeCurrency: { name: 'WANCHAIN', symbol: 'WANt', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://gwan-ssl.wandevs.org:46891'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'WanScanTest',
+            url: 'https://wanscan.org',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x11c89bF4496c39FB80535Ffb4c92715839CC5324',
+            blockCreated: 24743448,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=wanchainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/weavevmAlphanet.js
+
+const weaveVMAlphanet = /*#__PURE__*/ defineChain({
+    id: 9496,
+    name: 'WeaveVM Alphanet',
+    nativeCurrency: { name: 'Testnet WeaveVM', symbol: 'tWVM', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://testnet-rpc.wvm.dev'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'WeaveVM Alphanet Explorer',
+            url: 'https://explorer.wvm.dev',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=weavevmAlphanet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/wemix.js
+
+const wemix = /*#__PURE__*/ defineChain({
+    id: 1111,
+    name: 'WEMIX',
+    network: 'wemix-mainnet',
+    nativeCurrency: { name: 'WEMIX', symbol: 'WEMIX', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://api.wemix.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'wemixExplorer',
+            url: 'https://explorer.wemix.com',
+        },
+    },
+});
+//# sourceMappingURL=wemix.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/wemixTestnet.js
+
+const wemixTestnet = /*#__PURE__*/ defineChain({
+    id: 1112,
+    name: 'WEMIX Testnet',
+    network: 'wemix-testnet',
+    nativeCurrency: { name: 'WEMIX', symbol: 'tWEMIX', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://api.test.wemix.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'wemixExplorer',
+            url: 'https://testnet.wemixscan.com',
+            apiUrl: 'https://testnet.wemixscan.com/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=wemixTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/worldchain.js
+
+
+const worldchain_sourceId = 1; // mainnet
+const worldchain = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 480,
+    name: 'World Chain',
+    network: 'worldchain',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://worldchain-mainnet.g.alchemy.com/public'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Worldscan',
+            url: 'https://worldscan.org',
+            apiUrl: 'https://api.worldscan.org/api',
+        },
+        blockscout: {
+            name: 'Blockscout',
+            url: 'https://worldchain-mainnet.explorer.alchemy.com',
+            apiUrl: 'https://worldchain-mainnet.explorer.alchemy.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 0,
+        },
+        disputeGameFactory: {
+            [worldchain_sourceId]: {
+                address: '0x0E90dCAFBC242D2C861A20Bb20EC8E7182965a52',
+            },
+        },
+        l2OutputOracle: {
+            [worldchain_sourceId]: {
+                address: '0x19A6d1E9034596196295CF148509796978343c5D',
+            },
+        },
+        portal: {
+            [worldchain_sourceId]: {
+                address: '0xd5ec14a83B7d95BE1E2Ac12523e2dEE12Cbeea6C',
+            },
+        },
+        l1StandardBridge: {
+            [worldchain_sourceId]: {
+                address: '0x470458C91978D2d929704489Ad730DC3E3001113',
+            },
+        },
+    },
+    testnet: false,
+    sourceId: worldchain_sourceId,
+});
+//# sourceMappingURL=worldchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/worldchainSepolia.js
+
+
+const worldchainSepolia_sourceId = 11_155_111; // sepolia
+const worldchainSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 4801,
+    name: 'World Chain Sepolia',
+    network: 'worldchain-sepolia',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: { http: ['https://worldchain-sepolia.g.alchemy.com/public'] },
+        public: { http: ['https://worldchain-sepolia.g.alchemy.com/public'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Worldscan Sepolia',
+            url: 'https://sepolia.worldscan.org',
+        },
+        blockscout: {
+            name: 'Blockscout',
+            url: 'https://worldchain-sepolia.explorer.alchemy.com',
+            apiUrl: 'https://worldchain-sepolia.explorer.alchemy.com/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 0,
+        },
+        disputeGameFactory: {
+            [worldchainSepolia_sourceId]: {
+                address: '0x8cF97Ee616C986a070F5020d973b456D0120C253',
+            },
+        },
+        l2OutputOracle: {
+            [worldchainSepolia_sourceId]: {
+                address: '0xc8886f8BAb6Eaeb215aDB5f1c686BF699248300e',
+            },
+        },
+        portal: {
+            [worldchainSepolia_sourceId]: {
+                address: '0xFf6EBa109271fe6d4237EeeD4bAb1dD9A77dD1A4',
+            },
+        },
+        l1StandardBridge: {
+            [worldchainSepolia_sourceId]: {
+                address: '0xd7DF54b3989855eb66497301a4aAEc33Dbb3F8DE',
+            },
+        },
+    },
+    testnet: true,
+    sourceId: worldchainSepolia_sourceId,
+});
+//# sourceMappingURL=worldchainSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/worldLand.js
+
+const worldLand = /*#__PURE__*/ defineChain({
+    id: 103,
+    name: 'WorldLand Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'WLC',
+        symbol: 'WLC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://seoul.worldland.foundation'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'WorldLand Scan',
+            url: 'https://scan.worldland.foundation',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=worldLand.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xai.js
+
+const xai = /*#__PURE__*/ defineChain({
+    id: 660279,
+    name: 'Xai Mainnet',
+    nativeCurrency: { name: 'Xai', symbol: 'XAI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://xai-chain.net/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://explorer.xai-chain.net',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 222549,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=xai.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xaiTestnet.js
+
+const xaiTestnet = /*#__PURE__*/ defineChain({
+    id: 37714555429,
+    name: 'Xai Testnet',
+    nativeCurrency: { name: 'sXai', symbol: 'sXAI', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-v2.xai-chain.net/rpc'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://testnet-explorer-v2.xai-chain.net',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=xaiTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xdc.js
+
+const xdc = /*#__PURE__*/ defineChain({
+    id: 50,
+    name: 'XinFin Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'XDC',
+        symbol: 'XDC',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.xdcrpc.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'XDCScan',
+            url: 'https://xdcscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0x0B1795ccA8E4eC4df02346a082df54D437F8D9aF',
+            blockCreated: 75884020,
+        },
+    },
+});
+//# sourceMappingURL=xdc.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xdcTestnet.js
+
+const xdcTestnet = /*#__PURE__*/ defineChain({
+    id: 51,
+    name: 'Apothem Network',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'TXDC',
+        symbol: 'TXDC',
+    },
+    rpcUrls: {
+        default: { http: ['https://erpc.apothem.network'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'XDCScan',
+            url: 'https://testnet.xdcscan.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 59765389,
+        },
+    },
+});
+//# sourceMappingURL=xdcTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xLayer.js
+
+const xLayer = /*#__PURE__*/ defineChain({
+    id: 196,
+    name: 'X Layer Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OKB',
+        symbol: 'OKB',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.xlayer.tech'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'OKLink',
+            url: 'https://www.oklink.com/xlayer',
+            apiUrl: 'https://www.oklink.com/api/v5/explorer/xlayer/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 47416,
+        },
+    },
+});
+//# sourceMappingURL=xLayer.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xLayerTestnet.js
+
+const xLayerTestnet = /*#__PURE__*/ defineChain({
+    id: 195,
+    name: 'X1 Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'OKB',
+        symbol: 'OKB',
+    },
+    rpcUrls: {
+        default: { http: ['https://xlayertestrpc.okx.com'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'OKLink',
+            url: 'https://www.oklink.com/xlayer-test',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 624344,
+        },
+    },
+    testnet: true,
+});
+
+//# sourceMappingURL=xLayerTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xrOne.js
+
+const xrOne = /*#__PURE__*/ defineChain({
+    id: 273,
+    name: 'XR One',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'XR',
+        symbol: 'XR',
+    },
+    rpcUrls: {
+        default: { http: ['https://xr-one.calderachain.xyz/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://xr-one.calderaexplorer.xyz',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=xrOne.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/xrSepolia.js
+
+const xrSepolia = /*#__PURE__*/ defineChain({
+    id: 2730,
+    name: 'XR Sepolia',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'tXR',
+        symbol: 'tXR',
+    },
+    rpcUrls: {
+        default: { http: ['https://xr-sepolia-testnet.rpc.caldera.xyz/http'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'https://xr-sepolia-testnet.explorer.caldera.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=xrSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/yooldoVerse.js
+
+const yooldoVerse = /*#__PURE__*/ defineChain({
+    id: 50_005,
+    name: 'Yooldo Verse',
+    nativeCurrency: { name: 'OAS', symbol: 'OAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.yooldo-verse.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Yooldo Verse Explorer',
+            url: 'https://explorer.yooldo-verse.xyz',
+        },
+    },
+});
+//# sourceMappingURL=yooldoVerse.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/yooldoVerseTestnet.js
+
+const yooldoVerseTestnet = /*#__PURE__*/ defineChain({
+    id: 50_006,
+    name: 'Yooldo Verse Testnet',
+    nativeCurrency: { name: 'OAS', symbol: 'OAS', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.testnet.yooldo-verse.xyz'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Yooldo Verse Testnet Explorer',
+            url: 'https://explorer.testnet.yooldo-verse.xyz',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=yooldoVerseTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zenchainTestnet.js
+
+const zenchainTestnet = /*#__PURE__*/ defineChain({
+    id: 8408,
+    name: 'Zenchain Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ZCX',
+        symbol: 'ZCX',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://zenchain-testnet.api.onfinality.io/public'],
+            webSocket: ['wss://zenchain-testnet.api.onfinality.io/public-ws'],
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 230019,
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Zentrace',
+            url: 'https://zentrace.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zenchainTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zeniq.js
+
+const zeniq = /*#__PURE__*/ defineChain({
+    id: 383414847825,
+    name: 'Zeniq Mainnet',
+    nativeCurrency: { name: 'ZENIQ', symbol: 'ZENIQ', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.zeniq.network'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Zeniq Explorer',
+            url: 'https://zeniqscan.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=zeniq.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zetachain.js
+
+const zetachain = /*#__PURE__*/ defineChain({
+    id: 7000,
+    name: 'ZetaChain',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Zeta',
+        symbol: 'ZETA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://zetachain-evm.blockpi.network/v1/rpc/public'],
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 1632781,
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ZetaScan',
+            url: 'https://explorer.zetachain.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=zetachain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zetachainAthensTestnet.js
+
+const zetachainAthensTestnet = /*#__PURE__*/ defineChain({
+    id: 7001,
+    name: 'ZetaChain Athens Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Zeta',
+        symbol: 'aZETA',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://zetachain-athens-evm.blockpi.network/v1/rpc/public'],
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 2715217,
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ZetaScan',
+            url: 'https://athens.explorer.zetachain.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zetachainAthensTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zhejiang.js
+
+const zhejiang = /*#__PURE__*/ defineChain({
+    id: 1_337_803,
+    name: 'Zhejiang',
+    nativeCurrency: { name: 'Zhejiang Ether', symbol: 'ZhejETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.zhejiang.ethpandaops.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Beaconchain',
+            url: 'https://zhejiang.beaconcha.in',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zhejiang.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zilliqa.js
+
+const zilliqa = /*#__PURE__*/ defineChain({
+    id: 32769,
+    name: 'Zilliqa',
+    network: 'zilliqa',
+    nativeCurrency: { name: 'Zilliqa', symbol: 'ZIL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://api.zilliqa.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ethernal',
+            url: 'https://evmx.zilliqa.com',
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=zilliqa.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zilliqaTestnet.js
+
+const zilliqaTestnet = /*#__PURE__*/ defineChain({
+    id: 33101,
+    name: 'Zilliqa Testnet',
+    network: 'zilliqa-testnet',
+    nativeCurrency: { name: 'Zilliqa', symbol: 'ZIL', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://dev-api.zilliqa.com'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Ethernal',
+            url: 'https://evmx.testnet.zilliqa.com',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zilliqaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zircuit.js
+
+
+const zircuit_sourceId = 1; // ethereum mainnet
+const zircuit = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 48900,
+    name: 'Zircuit Mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://zircuit1-mainnet.p2pify.com',
+                'https://zircuit1-mainnet.liquify.com',
+                'https://zircuit-mainnet.drpc.org',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Zircuit Explorer',
+            url: 'https://explorer.zircuit.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+        },
+        l2OutputOracle: {
+            [zircuit_sourceId]: {
+                address: '0x92Ef6Af472b39F1b363da45E35530c24619245A4',
+            },
+        },
+        portal: {
+            [zircuit_sourceId]: {
+                address: '0x17bfAfA932d2e23Bd9B909Fd5B4D2e2a27043fb1',
+            },
+        },
+        l1StandardBridge: {
+            [zircuit_sourceId]: {
+                address: '0x386B76D9cA5F5Fb150B6BFB35CF5379B22B26dd8',
+            },
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=zircuit.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zircuitTestnet.js
+
+
+const zircuitTestnet_sourceId = 11_155_111; // sepolia
+const zircuitTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 48899,
+    name: 'Zircuit Testnet',
+    nativeCurrency: { name: 'ETH', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: [
+                'https://zircuit1-testnet.p2pify.com',
+                'https://zircuit1-testnet.liquify.com',
+            ],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Zircuit Testnet Explorer',
+            url: 'https://explorer.testnet.zircuit.com',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 6040287,
+        },
+        l2OutputOracle: {
+            [zircuitTestnet_sourceId]: {
+                address: '0x740C2dac453aEf7140809F80b72bf0e647af8148',
+            },
+        },
+        portal: {
+            [zircuitTestnet_sourceId]: {
+                address: '0x787f1C8c5924178689E0560a43D848bF8E54b23e',
+            },
+        },
+        l1StandardBridge: {
+            [zircuitTestnet_sourceId]: {
+                address: '0x0545c5fe980098C16fcD0eCB5E79753afa6d9af9',
+            },
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zircuitTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zkFair.js
+
+const zkFair = /*#__PURE__*/ defineChain({
+    id: 42766,
+    name: 'ZKFair Mainnet',
+    network: 'zkfair-mainnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'USD Coin',
+        symbol: 'USDC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.zkfair.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'zkFair Explorer',
+            url: 'https://scan.zkfair.io',
+            apiUrl: 'https://scan.zkfair.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xca11bde05977b3631167028862be2a173976ca11',
+            blockCreated: 6090959,
+        },
+    },
+    testnet: false,
+});
+//# sourceMappingURL=zkFair.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zkFairTestnet.js
+
+const zkFairTestnet = /*#__PURE__*/ defineChain({
+    id: 43851,
+    name: 'ZKFair Testnet',
+    network: 'zkfair-testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'USD Coin',
+        symbol: 'USDC',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet-rpc.zkfair.io'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'zkFair Explorer',
+            url: 'https://testnet-scan.zkfair.io',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zkFairTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zkLinkNova.js
+
+const zkLinkNova = /*#__PURE__*/ defineChain({
+    id: 810180,
+    name: 'zkLink Nova',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://rpc.zklink.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'zkLink Nova Block Explorer',
+            url: 'https://explorer.zklink.io',
+        },
+    },
+});
+//# sourceMappingURL=zkLinkNova.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zkLinkNovaSepoliaTestnet.js
+
+const zkLinkNovaSepoliaTestnet = /*#__PURE__*/ defineChain({
+    id: 810181,
+    name: 'zkLink Nova Sepolia Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'ETH',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: { http: ['https://sepolia.rpc.zklink.io'] },
+    },
+    blockExplorers: {
+        default: {
+            name: 'zkLink Nova Block Explorer',
+            url: 'https://sepolia.explorer.zklink.io',
+        },
+    },
+});
+//# sourceMappingURL=zkLinkNovaSepoliaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksync.js
+
+
+const zksync = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 324,
+    name: 'ZKsync Era',
+    network: 'zksync-era',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://mainnet.era.zksync.io'],
+            webSocket: ['wss://mainnet.era.zksync.io/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://era.zksync.network/',
+            apiUrl: 'https://api-era.zksync.network/api',
+        },
+        native: {
+            name: 'ZKsync Explorer',
+            url: 'https://explorer.zksync.io/',
+            apiUrl: 'https://block-explorer-api.mainnet.zksync.io/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
+        },
+        universalSignatureVerifier: {
+            address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+            blockCreated: 45659388,
+        },
+    },
+});
+//# sourceMappingURL=zksync.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncInMemoryNode.js
+
+
+const zksyncInMemoryNode = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 260,
+    name: 'ZKsync InMemory Node',
+    network: 'zksync-in-memory-node',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['http://localhost:8011'],
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncInMemoryNode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncLocalCustomHyperchain.js
+
+
+// The local hyperchain setup: https://github.com/matter-labs/local-setup/blob/main/zk-chains-docker-compose.yml
+const zksyncLocalCustomHyperchain = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 272,
+    name: 'ZKsync CLI Local Custom Hyperchain',
+    nativeCurrency: { name: 'BAT', symbol: 'BAT', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['http://localhost:15200'],
+            webSocket: ['ws://localhost:15201'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ZKsync explorer',
+            url: 'http://localhost:15005/',
+            apiUrl: 'http://localhost:15005/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncLocalCustomHyperchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncLocalHyperchain.js
+
+
+// The local hyperchain setup: https://github.com/matter-labs/local-setup/blob/main/zk-chains-docker-compose.yml
+const zksyncLocalHyperchain = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 270,
+    name: 'ZKsync CLI Local Hyperchain',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['http://localhost:15100'],
+            webSocket: ['ws://localhost:15101'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'ZKsync explorer',
+            url: 'http://localhost:15005/',
+            apiUrl: 'http://localhost:15005/api',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncLocalHyperchain.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncLocalHyperchainL1.js
+
+// The local hyperchain setup: https://github.com/matter-labs/local-setup/blob/main/zk-chains-docker-compose.yml
+const zksyncLocalHyperchainL1 = /*#__PURE__*/ defineChain({
+    id: 9,
+    name: 'ZKsync CLI Local Hyperchain L1',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['http://localhost:15045'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Blockscout',
+            url: 'http://localhost:15001/',
+            apiUrl: 'http://localhost:15001/api/v2',
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncLocalHyperchainL1.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncLocalNode.js
+
+
+const zksyncLocalNode = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 270,
+    name: 'ZKsync CLI Local Node',
+    network: 'zksync-cli-local-node',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['http://localhost:3050'],
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncLocalNode.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zksyncSepoliaTestnet.js
+
+
+const zksyncSepoliaTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig,
+    id: 300,
+    name: 'ZKsync Sepolia Testnet',
+    network: 'zksync-sepolia-testnet',
+    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.era.zksync.dev'],
+            webSocket: ['wss://sepolia.era.zksync.dev/ws'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Etherscan',
+            url: 'https://sepolia-era.zksync.network/',
+            apiUrl: 'https://api-sepolia-era.zksync.network/api',
+        },
+        native: {
+            name: 'ZKsync Explorer',
+            url: 'https://sepolia.explorer.zksync.io/',
+            blockExplorerApi: 'https://block-explorer-api.sepolia.zksync.dev/api',
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: '0xF9cda624FBC7e059355ce98a31693d299FACd963',
+        },
+        universalSignatureVerifier: {
+            address: '0xfB688330379976DA81eB64Fe4BF50d7401763B9C',
+            blockCreated: 3855712,
+        },
+    },
+    testnet: true,
+});
+//# sourceMappingURL=zksyncSepoliaTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zora.js
+
+
+const zora_sourceId = 1; // mainnet
+const zora = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 7777777,
+    name: 'Zora',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://rpc.zora.energy'],
+            webSocket: ['wss://rpc.zora.energy'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://explorer.zora.energy',
+            apiUrl: 'https://explorer.zora.energy/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [zora_sourceId]: {
+                address: '0x9E6204F750cD866b299594e2aC9eA824E2e5f95c',
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 5882,
+        },
+        portal: {
+            [zora_sourceId]: {
+                address: '0x1a0ad011913A150f69f6A19DF447A0CfD9551054',
+            },
+        },
+        l1StandardBridge: {
+            [zora_sourceId]: {
+                address: '0x3e2Ea9B92B7E48A52296fD261dc26fd995284631',
+            },
+        },
+    },
+    sourceId: zora_sourceId,
+});
+//# sourceMappingURL=zora.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zoraSepolia.js
+
+
+const zoraSepolia_sourceId = 11_155_111; // sepolia
+const zoraSepolia = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 999999999,
+    name: 'Zora Sepolia',
+    network: 'zora-sepolia',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Zora Sepolia',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://sepolia.rpc.zora.energy'],
+            webSocket: ['wss://sepolia.rpc.zora.energy'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Zora Sepolia Explorer',
+            url: 'https://sepolia.explorer.zora.energy/',
+            apiUrl: 'https://sepolia.explorer.zora.energy/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        l2OutputOracle: {
+            [zoraSepolia_sourceId]: {
+                address: '0x2615B481Bd3E5A1C0C7Ca3Da1bdc663E8615Ade9',
+            },
+        },
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 83160,
+        },
+        portal: {
+            [zoraSepolia_sourceId]: {
+                address: '0xeffE2C6cA9Ab797D418f0D91eA60807713f3536f',
+            },
+        },
+        l1StandardBridge: {
+            [zoraSepolia_sourceId]: {
+                address: '0x5376f1D543dcbB5BD416c56C189e4cB7399fCcCB',
+            },
+        },
+    },
+    sourceId: zoraSepolia_sourceId,
+    testnet: true,
+});
+//# sourceMappingURL=zoraSepolia.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/definitions/zoraTestnet.js
+
+
+const zoraTestnet_sourceId = 5; // goerli
+const zoraTestnet = /*#__PURE__*/ defineChain({
+    ...chainConfig_chainConfig,
+    id: 999,
+    name: 'Zora Goerli Testnet',
+    nativeCurrency: {
+        decimals: 18,
+        name: 'Zora Goerli',
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        default: {
+            http: ['https://testnet.rpc.zora.energy'],
+            webSocket: ['wss://testnet.rpc.zora.energy'],
+        },
+    },
+    blockExplorers: {
+        default: {
+            name: 'Explorer',
+            url: 'https://testnet.explorer.zora.energy',
+            apiUrl: 'https://testnet.explorer.zora.energy/api',
+        },
+    },
+    contracts: {
+        ...chainConfig_chainConfig.contracts,
+        multicall3: {
+            address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+            blockCreated: 189123,
+        },
+        portal: {
+            [zoraTestnet_sourceId]: {
+                address: '0xDb9F51790365e7dc196e7D072728df39Be958ACe',
+            },
+        },
+    },
+    sourceId: zoraTestnet_sourceId,
+    testnet: true,
+});
+//# sourceMappingURL=zoraTestnet.js.map
+;// CONCATENATED MODULE: ./node_modules/viem/_esm/chains/index.js
+// biome-ignore lint/performance/noBarrelFile: entrypoint module
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** @deprecated Use `sonicTestnet` instead. */
+
+
+
+
+
+
+
+
+
+
+/** @deprecated */
+
+
+
+
+
+
+/** @deprecated Use `anvil` instead. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** @deprecated Use `kakarotStarknetSepolia` instead. */
+
+
+
+
+
+
+
+/** @deprecated Use `kaia` instead. */
+
+
+
+/** @deprecated Use `kairos` instead. */
+
+
+
+
+
+
+
+
+
+
+/** @deprecated Use `lineaSepolia` instead. */
+
+
+/** @deprecated Use `lineaSepolia` instead. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** @deprecated Use `plumeDevnet` instead. */
+
+
+
+
+
+
+
+/** @deprecated Use `polygonZkEvmCardona` instead. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+;// CONCATENATED MODULE: ./src/scripts/blockchain.ts
+
+
+
+const getChain = () => {
+    const chainId = +getInput("chain-id", { required: true });
+    const chain = Object.values(chains_namespaceObject).find(({ id }) => id === chainId);
+    if (!chain) {
+        throw new Error(`Chain with id ${chainId} is not supported`);
+    }
+    return chain;
+};
+const blockchain_createClient = () => {
+    const rpcUrl = getInput("rpc-url") || undefined;
+    return createPublicClient({ chain: getChain(), transport: http(rpcUrl) });
+};
+
 ;// CONCATENATED MODULE: ./src/scripts/validate-entity.ts
 
 
 
-
-const chains = [holesky, mainnet];
 const isEntityAbi = [
     {
         inputs: [{ internalType: "address", name: "entity_", type: "address" }],
@@ -100333,13 +116030,8 @@ const entityMetaMap = {
     },
 };
 const validateEntity = async ({ entityType, entityId, }) => {
-    const rpcUrl = getInput("rpc-url") || undefined;
-    const chainId = +getInput("chain-id", { required: true });
-    const chain = chains.find(({ id }) => id === chainId);
-    if (!chain) {
-        throw new Error(`Chain with id ${chainId} is not supported`);
-    }
-    const client = createPublicClient({ chain, transport: http(rpcUrl) });
+    const chain = getChain();
+    const client = blockchain_createClient();
     const entityAddress = entityId;
     const entityMeta = entityMetaMap[entityType];
     if (!entityMeta) {
@@ -100357,7 +116049,44 @@ const validateEntity = async ({ entityType, entityId, }) => {
     }
 };
 
+;// CONCATENATED MODULE: ./src/scripts/validate-collateral.ts
+
+
+
+
+
+const collateralAbi = [
+    {
+        inputs: [],
+        name: "collateral",
+        outputs: [{ internalType: "address", name: "", type: "address" }],
+        stateMutability: "view",
+        type: "function",
+    },
+];
+const validateCollateral = async (vaultAddress) => {
+    const chain = getChain();
+    const client = blockchain_createClient();
+    const tokenAddress = await client.readContract({
+        address: vaultAddress,
+        abi: collateralAbi,
+        functionName: "collateral",
+    });
+    if (!tokenAddress) {
+        await addComment(invalidVault(vaultAddress, chain.name));
+        throw new Error(`Contract \`${vaultAddress}\` is not a valid Vault on ${chain.name} network.`);
+    }
+    const tokenInfoExists = await promises_default().stat(external_path_default().join("tokens", tokenAddress))
+        .then((stats) => stats.isDirectory())
+        .catch(() => false);
+    if (!tokenInfoExists) {
+        await addComment(noVaultTokenInfo(tokenAddress));
+        throw new Error(`Information for the vault collateral \`${tokenAddress}\` is not found in the repository.`);
+    }
+};
+
 ;// CONCATENATED MODULE: ./src/main.ts
+
 
 
 
@@ -100374,6 +116103,7 @@ const main = async () => {
         validateEntity(entity),
         entity.metadata && validateMetadata(entity.metadata),
         entity.logo && validateLogo(entity.logo),
+        entity.entityType === "vaults" && validateCollateral(entity.entityId),
     ]);
     const errors = result
         .map((r) => r && r.status === "rejected" && r.reason.message)

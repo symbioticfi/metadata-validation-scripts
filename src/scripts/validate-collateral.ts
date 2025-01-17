@@ -39,13 +39,6 @@ export const validateCollateral = async (vaultAddress: string) => {
     .then((stats) => stats.isDirectory())
     .catch(() => false);
 
-  console.log(`Vault collateral`, {
-    vaultAddress,
-    tokenAddress,
-    tokenPath: path.join("tokens", tokenAddress),
-    tokenInfoExists,
-  });
-
   if (!tokenInfoExists) {
     await github.addComment(messages.noVaultTokenInfo(tokenAddress));
 
