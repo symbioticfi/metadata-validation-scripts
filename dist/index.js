@@ -92019,7 +92019,7 @@ const onlyOneEntityPerPr = (dirs) => `It is not allowed to change more than one 
   **Entities:**
   ${dirs.map((file) => `- ${file}`).join("\n")}
 `;
-const noInfoJson = () => `The entity folder should have \`info.json\` file. ${contributionGuidelines}`;
+const noInfoJson = (dir) => `The entity folder \`${dir}\` should have \`info.json\` file. ${contributionGuidelines}`;
 const invalidInfoJson = () => `The \`info.json\` file is invalid. ${contributionGuidelines}`;
 const invalidLogo = (path, errors) => `The logo image is invalid. ${contributionGuidelines}
 
@@ -92031,7 +92031,7 @@ const invalidVault = (address, chain) => `Contract \`${address}\` is not a valid
 const noVaultTokenInfo = (tokenAddress) => `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
-const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
+const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example","externalLink"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"curatorName":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
 ;// CONCATENATED MODULE: ./src/scripts/validate-metadata.ts
 
 
@@ -92158,7 +92158,10 @@ async function validateFs(changedFiles) {
     const [entityDir] = entityDirs;
     const entityType = external_path_default().basename(external_path_default().dirname(entityDir));
     const entityId = external_path_default().basename(entityDir);
-    const existingFiles = await external_fs_default().promises.readdir(entityDir);
+    const existingFiles = await external_fs_default().promises
+        .readdir(entityDir)
+        .catch(() => []);
+    const entityDirExists = existingFiles.length > 0;
     const [metadataPath, logoPath] = allowedFiles.map((name) => {
         return existingFiles.includes(name)
             ? external_path_default().join(entityDir, name)
@@ -92170,11 +92173,15 @@ async function validateFs(changedFiles) {
     /**
      * Validate that metadata present in the entity folder.
      */
-    if (!metadataPath) {
-        await addComment(noInfoJson());
+    if (entityDirExists && !metadataPath) {
+        await addComment(noInfoJson(entityDir));
         throw new Error("`info.json` is not found in the entity folder");
     }
-    const result = { entityId, entityType };
+    const result = {
+        entityId,
+        entityType,
+        isDeleted: !entityDirExists,
+    };
     /**
      * Add metadata to result only if the file was changed and exists.
      */
@@ -116097,6 +116104,12 @@ const main = async () => {
     });
     const files = inputFiles.split(" ").filter(Boolean);
     const entity = await validateFs(files);
+    /**
+     * Skip the rest of the validation if the entity is deleted
+     */
+    if (entity.isDeleted) {
+        return;
+    }
     const result = await Promise.allSettled([
         validateEntity(entity),
         entity.metadata && validateMetadata(entity.metadata),
