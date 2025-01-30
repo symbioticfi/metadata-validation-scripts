@@ -28,6 +28,9 @@ inputs:
   rpc-url:
     description: Blockchain RPC URL to use for on-chain validation
     required: false
+  upstream-checkout-path:
+    description: Path to the upstream repository checkout folder
+    required: false
 
 # Define your outputs here.
 outputs:
