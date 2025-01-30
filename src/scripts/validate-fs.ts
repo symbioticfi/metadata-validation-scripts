@@ -11,6 +11,7 @@ export type EntityType = (typeof allowedTypes)[number];
 export type FsValidationResult = {
   metadata?: string;
   logo?: string;
+  isDeleted?: boolean;
   entityId: string;
   entityType: EntityType;
 };
@@ -66,7 +67,11 @@ export async function validateFs(
   const entityType = path.basename(path.dirname(entityDir)) as EntityType;
   const entityId = path.basename(entityDir);
 
-  const existingFiles = await fs.promises.readdir(entityDir);
+  const existingFiles: string[] = await fs.promises
+    .readdir(entityDir)
+    .catch(() => []);
+
+  const entityDirExists = existingFiles.length > 0;
   const [metadataPath, logoPath] = allowedFiles.map((name) => {
     return existingFiles.includes(name)
       ? path.join(entityDir, name)
@@ -80,13 +85,17 @@ export async function validateFs(
   /**
    * Validate that metadata present in the entity folder.
    */
-  if (!metadataPath) {
-    await github.addComment(messages.noInfoJson());
+  if (entityDirExists && !metadataPath) {
+    await github.addComment(messages.noInfoJson(entityDir));
 
     throw new Error("`info.json` is not found in the entity folder");
   }
 
-  const result: FsValidationResult = { entityId, entityType };
+  const result: FsValidationResult = {
+    entityId,
+    entityType,
+    isDeleted: !entityDirExists,
+  };
 
   /**
    * Add metadata to result only if the file was changed and exists.

@@ -16,8 +16,8 @@ export const onlyOneEntityPerPr = (dirs: string[]) =>
   ${dirs.map((file) => `- ${file}`).join("\n")}
 `;
 
-export const noInfoJson = () =>
-  `The entity folder should have \`info.json\` file. ${contributionGuidelines}`;
+export const noInfoJson = (dir: string) =>
+  `The entity folder \`${dir}\` should have \`info.json\` file. ${contributionGuidelines}`;
 
 export const invalidInfoJson = () =>
   `The \`info.json\` file is invalid. ${contributionGuidelines}`;

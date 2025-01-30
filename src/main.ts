@@ -15,6 +15,13 @@ const main = async () => {
   const files = inputFiles.split(" ").filter(Boolean);
   const entity = await validateFs(files);
 
+  /**
+   * Skip the rest of the validation if the entity is deleted
+   */
+  if (entity.isDeleted) {
+    return;
+  }
+
   const result = await Promise.allSettled([
     validateEntity(entity),
     entity.metadata && validateMetadata(entity.metadata),
