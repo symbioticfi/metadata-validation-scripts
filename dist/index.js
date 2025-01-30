@@ -116054,6 +116054,7 @@ const validateEntity = async ({ entityType, entityId, }) => {
 
 
 
+
 const collateralAbi = [
     {
         inputs: [],
@@ -116066,6 +116067,9 @@ const collateralAbi = [
 const validateCollateral = async (vaultAddress) => {
     const chain = getChain();
     const client = blockchain_createClient();
+    const upstreamDir = getInput("upstream-checkout-path", {
+        required: false,
+    });
     const tokenAddress = await client.readContract({
         address: vaultAddress,
         abi: collateralAbi,
@@ -116075,7 +116079,8 @@ const validateCollateral = async (vaultAddress) => {
         await addComment(invalidVault(vaultAddress, chain.name));
         throw new Error(`Contract \`${vaultAddress}\` is not a valid Vault on ${chain.name} network.`);
     }
-    const dirItems = await promises_default().readdir("tokens");
+    const tokensDir = upstreamDir ? external_path_.join(upstreamDir, "tokens") : "tokens";
+    const dirItems = await promises_default().readdir(tokensDir);
     const tokenInfoExists = dirItems.some((item) => item.toLowerCase() === tokenAddress.toLowerCase());
     if (!tokenInfoExists) {
         await addComment(noVaultTokenInfo(tokenAddress));

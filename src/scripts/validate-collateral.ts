@@ -4,6 +4,7 @@ import fs from "fs/promises";
 
 import * as github from "./github";
 import * as messages from "./messages";
+import * as path from "path";
 
 const collateralAbi = [
   {
@@ -18,6 +19,9 @@ const collateralAbi = [
 export const validateCollateral = async (vaultAddress: string) => {
   const chain = getChain();
   const client = createClient();
+  const upstreamDir = github.getInput("upstream-checkout-path", {
+    required: false,
+  });
 
   const tokenAddress = await client.readContract({
     address: vaultAddress as Address,
@@ -33,7 +37,8 @@ export const validateCollateral = async (vaultAddress: string) => {
     );
   }
 
-  const dirItems = await fs.readdir("tokens");
+  const tokensDir = upstreamDir ? path.join(upstreamDir, "tokens") : "tokens";
+  const dirItems = await fs.readdir(tokensDir);
   const tokenInfoExists = dirItems.some(
     (item) => item.toLowerCase() === tokenAddress.toLowerCase(),
   );
