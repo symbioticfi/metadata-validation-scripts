@@ -42,3 +42,20 @@ export const invalidVault = (address: string, chain: string) =>
 
 export const noVaultTokenInfo = (tokenAddress: string) =>
   `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
+
+export const invalidRewardsType = (address: string, type: string) =>
+  `Rewards contract \`${address}\` has invalid type \`${type}\`. Expected type is \`defaultStakingRewardsV2\`. ${contributionGuidelines}`;
+
+export const rewardsNotFromFactory = (
+  address: string,
+  factoryAddress: string,
+  chain: string,
+) =>
+  `Rewards contract \`${address}\` is not deployed by the rewards factory \`${factoryAddress}\` on ${chain} network. ${contributionGuidelines}`;
+
+export const rewardsVaultMismatch = (
+  rewardsAddress: string,
+  actualVault: string,
+  expectedVault: string,
+) =>
+  `Rewards contract \`${rewardsAddress}\` is associated with vault \`${actualVault}\`, but expected \`${expectedVault}\`. ${contributionGuidelines}`;

@@ -50,6 +50,22 @@
 
     "permitVersion": {
       "type": "string"
+    },
+
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": ["address", "type"]
+      }
     }
   },
 
