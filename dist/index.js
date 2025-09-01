@@ -92029,9 +92029,12 @@ const invalidLogo = (path, errors) => `The logo image is invalid. ${contribution
 const notRegisteredEntity = (label, address, chain, registryContract) => `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
 const invalidVault = (address, chain) => `Contract \`${address}\` is not a valid Vault on ${chain} network. ${contributionGuidelines}`;
 const noVaultTokenInfo = (tokenAddress) => `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
+const invalidRewardsType = (address, type) => `Rewards contract \`${address}\` has invalid type \`${type}\`. Expected type is \`defaultStakingRewardsV2\`. ${contributionGuidelines}`;
+const rewardsNotFromFactory = (address, factoryAddress, chain) => `Rewards contract \`${address}\` is not deployed by the rewards factory \`${factoryAddress}\` on ${chain} network. ${contributionGuidelines}`;
+const rewardsVaultMismatch = (rewardsAddress, actualVault, expectedVault) => `Rewards contract \`${rewardsAddress}\` is associated with vault \`${actualVault}\`, but expected \`${expectedVault}\`. ${contributionGuidelines}`;
 
 ;// CONCATENATED MODULE: ./src/scripts/schemas/info.json
-const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example","externalLink"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"curatorName":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"}},"required":["name","tags","links"]}');
+const info_namespaceObject = /*#__PURE__*/JSON.parse('{"type":"object","properties":{"name":{"type":"string"},"tags":{"type":"array","items":{"type":"string"}},"links":{"type":"array","items":{"type":"object","properties":{"type":{"type":"string","enum":["website","explorer","docs","example","externalLink"]},"name":{"type":"string"},"url":{"type":"string","format":"uri"}},"required":["type","name","url"]}},"cmcId":{"type":"string"},"curatorName":{"type":"string"},"permitName":{"type":"string"},"permitVersion":{"type":"string"},"rewards":{"type":"array","items":{"type":"object","properties":{"address":{"type":"string"},"type":{"type":"string"}},"required":["address","type"]}}},"required":["name","tags","links"]}');
 ;// CONCATENATED MODULE: ./src/scripts/validate-metadata.ts
 
 
@@ -116095,7 +116098,72 @@ const validateCollateral = async (vaultAddress) => {
     }
 };
 
+;// CONCATENATED MODULE: ./src/scripts/validate-rewards.ts
+
+
+
+
+const validate_rewards_isEntityAbi = [
+    {
+        inputs: [{ internalType: "address", name: "entity_", type: "address" }],
+        name: "isEntity",
+        outputs: [{ internalType: "bool", name: "", type: "bool" }],
+        stateMutability: "view",
+        type: "function",
+    },
+];
+const vaultAbi = [
+    {
+        inputs: [],
+        name: "VAULT",
+        outputs: [{ internalType: "address", name: "", type: "address" }],
+        stateMutability: "view",
+        type: "function",
+    },
+];
+const validateRewards = async (metadataPath, vaultAddress) => {
+    const chain = getChain();
+    const client = blockchain_createClient();
+    const rewardsFactory = getInput("rewards-factory", {
+        required: false,
+    });
+    if (!rewardsFactory) {
+        return;
+    }
+    const metadataContent = await promises_namespaceObject.readFile(metadataPath, "utf8");
+    const metadata = JSON.parse(metadataContent);
+    if (!metadata.rewards || metadata.rewards.length === 0) {
+        return;
+    }
+    for (const reward of metadata.rewards) {
+        if (reward.type !== "defaultStakingRewardsV2") {
+            await addComment(invalidRewardsType(reward.address, reward.type));
+            throw new Error(`Rewards contract \`${reward.address}\` has invalid type \`${reward.type}\`. Expected: defaultStakingRewardsV2`);
+        }
+        const isEntity = await client.readContract({
+            address: rewardsFactory,
+            abi: validate_rewards_isEntityAbi,
+            functionName: "isEntity",
+            args: [reward.address],
+        });
+        if (!isEntity) {
+            await addComment(rewardsNotFromFactory(reward.address, rewardsFactory, chain.name));
+            throw new Error(`Rewards contract \`${reward.address}\` is not deployed by the rewards factory \`${rewardsFactory}\` on ${chain.name} network`);
+        }
+        const rewardsVault = await client.readContract({
+            address: reward.address,
+            abi: vaultAbi,
+            functionName: "VAULT",
+        });
+        if (rewardsVault.toLowerCase() !== vaultAddress.toLowerCase()) {
+            await addComment(rewardsVaultMismatch(reward.address, rewardsVault, vaultAddress));
+            throw new Error(`Rewards contract \`${reward.address}\` is associated with vault \`${rewardsVault}\`, but expected \`${vaultAddress}\``);
+        }
+    }
+};
+
 ;// CONCATENATED MODULE: ./src/main.ts
+
 
 
 
@@ -116120,6 +116188,9 @@ const main = async () => {
         entity.metadata && validateMetadata(entity.metadata),
         entity.logo && validateLogo(entity.logo),
         entity.entityType === "vaults" && validateCollateral(entity.entityId),
+        entity.entityType === "vaults" &&
+            entity.metadata &&
+            validateRewards(entity.metadata, entity.entityId),
     ]);
     const errors = result
         .map((r) => r && r.status === "rejected" && r.reason.message)

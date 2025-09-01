@@ -31,6 +31,9 @@ inputs:
   upstream-checkout-path:
     description: Path to the upstream repository checkout folder
     required: false
+  rewards-factory:
+    description: Rewards factory contract address to use for rewards validation
+    required: false
 
 # Define your outputs here.
 outputs:
