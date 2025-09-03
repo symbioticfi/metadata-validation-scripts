@@ -1,0 +1,28 @@
+version: 2
+updates:
+  # Enable version updates for github-actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    assignees:
+      - sergey-symbiotic
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Disable version updates for npm dependencies
+    open-pull-requests-limit: 0
+    assignees:
+      - sergey-symbiotic
+    # ignore eslint
+    ignore:
+      - dependency-name: "eslint"
+      - dependency-name: "eslint-*"
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
