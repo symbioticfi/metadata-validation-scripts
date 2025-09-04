@@ -10,8 +10,14 @@ jobs:
       contents:  write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository to get info from
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # pin@v5.0.0
+
+      - name: Checkout metadata-validation-scripts
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # pin@v5.0.0
+        with:
+          repository: symbioticfi/metadata-validation-scripts
+          path: metadata-validation-scripts
 
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # pin@v4.4.0
@@ -22,7 +28,9 @@ jobs:
         run: npm install tsx @actions/core @actions/github
 
       - name: Generate
-        run: npx tsx .github/workflows/scripts/extract-metadata.ts
+        run: |
+          cd metadata-validation-scripts
+          npx tsx metadata-validation-scripts/.github/workflows/scripts/extract-metadata.ts
 
       - name: Release latest full info
         uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8  # pin@v2.3.2
