@@ -40,7 +40,7 @@
       "type": "string"
     },
 
-    "curatorName": {
+    "curatorId": {
       "type": "string"
     },
 
