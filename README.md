@@ -69,7 +69,7 @@ jobs:
 
 ### Development and release
 
-- Node.js 20+ is required.
+- Node.js 22+ is required.
 - Build bundled action: `npm run bundle`
 - Commit the generated `dist/` and push to `main` to publish the new version.
 
