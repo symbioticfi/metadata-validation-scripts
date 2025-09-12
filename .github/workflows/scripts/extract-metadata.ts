@@ -1,7 +1,7 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { pathToFileURL } from 'url';
-import * as github from '@actions/github';
+import * as github from "@actions/github";
+import fs from "fs/promises";
+import path from "path";
+import { pathToFileURL } from "url";
 
 type Info = Partial<{
     name: string;
@@ -23,7 +23,7 @@ type Info = Partial<{
             type: string;
             name: string;
             url: string;
-        }
+        },
     ];
 }>;
 
@@ -33,18 +33,18 @@ type Entity = {
 };
 
 enum DIRECTORIES {
-    VAULTS = 'vaults',
-    TOKENS = 'tokens',
-    NETWORKS = 'networks',
-    OPERATORS = 'operators',
-    POINTS = 'points',
-    CURATORS = 'curators'
+    VAULTS = "vaults",
+    TOKENS = "tokens",
+    NETWORKS = "networks",
+    OPERATORS = "operators",
+    POINTS = "points",
+    CURATORS = "curators",
 }
 
 type Template = Record<DIRECTORIES, Record<string, Entity>>;
 
 async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
-    const repoPath = [github.context.repo.owner, github.context.repo.repo].join('/');
+    const repoPath = [github.context.repo.owner, github.context.repo.repo].join("/");
     const result = Object.values(DIRECTORIES).reduce<Template>((acc, curr) => {
         acc[curr] = {};
 
@@ -57,8 +57,8 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
             for (const subdir of subdirs) {
                 const entityPath = path.join(dir, subdir);
                 try {
-                    const infoPath = path.join(entityPath, 'info.json');
-                    const logoPath = path.join(entityPath, 'logo.png');
+                    const infoPath = path.join(entityPath, "info.json");
+                    const logoPath = path.join(entityPath, "logo.png");
 
                     const infoUrl = pathToFileURL(infoPath).href;
                     const module = await import(infoUrl);
@@ -78,16 +78,16 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
 
                     result[dir as DIRECTORIES][subdir] = entity;
                 } catch (error) {
-                    console.error('Error processing entity in ' + entityPath, error);
+                    console.error("Error processing entity in " + entityPath, error);
                 }
             }
         } catch (error) {
-            console.error('Error reading directory ' + dir, error);
+            console.error("Error reading directory " + dir, error);
         }
     }
 
-    const filePath = path.join(process.cwd(), 'full-info.json');
-    await fs.writeFile(filePath, JSON.stringify(result, null, '\t'), 'utf8');
+    const filePath = path.join(process.cwd(), "full-info.json");
+    await fs.writeFile(filePath, JSON.stringify(result, null, "\t"), "utf8");
 }
 
 grabEntitiesInfo(Object.values(DIRECTORIES));
