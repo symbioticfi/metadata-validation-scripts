@@ -35,17 +35,17 @@
     "image-js": "^1.0.0",
     "json-source-map": "^0.6.1",
     "sharp": "^0.34.3",
-    "viem": "^2.37.3"
+    "viem": "^2.37.5"
   },
   "devDependencies": {
     "@eslint/compat": "^1.3.2",
-    "@github/local-action": "^5.2.0",
+    "@github/local-action": "^6.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.1",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
     "@vercel/ncc": "^0.38.3",
-    "eslint": "^9.34.0",
+    "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
