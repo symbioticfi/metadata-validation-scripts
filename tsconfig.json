@@ -3,6 +3,7 @@
   "extends": "./tsconfig.base.json",
 
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "./dist"
   },
 
