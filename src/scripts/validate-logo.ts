@@ -9,8 +9,8 @@ export async function validateLogo(logoPath: string) {
     const errors: string[] = [];
     const { size } = await fs.stat(logoPath);
 
-    if (size > 1024 * 1024) {
-        errors.push("The image is too large. The maximum size is 1MB");
+    if (size > 1024 * 100) {
+        errors.push("The image is too large. The maximum size is 100KB");
     }
 
     if (path.extname(logoPath) !== ".png") {
