@@ -5,7 +5,7 @@ import * as github from "./github";
 import * as messages from "./messages";
 
 const addressRegex = /^0x[a-fA-F0-9]{40}$/;
-const allowedTypes = ["vaults", "operators", "networks", "tokens"] as const;
+const allowedTypes = ["vaults", "operators", "networks", "tokens", "curators"] as const;
 const allowedFiles = ["info.json", "logo.png"];
 
 export type EntityType = (typeof allowedTypes)[number];
