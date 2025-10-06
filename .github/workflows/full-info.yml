@@ -31,7 +31,7 @@ jobs:
         run: npx tsx metadata-validation-scripts/.github/workflows/scripts/extract-metadata.ts
 
       - name: Release latest full info
-        uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8  # pin@v2.3.2
+        uses: softprops/action-gh-release@62c96d0c4e8a889135c1f3a25910db8dbe0e85f7  # pin@v2.3.4
         with:
           name: latest
           tag_name: latest
