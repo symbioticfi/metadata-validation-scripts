@@ -1,15 +1,20 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 
 import * as github from "./github";
 import * as messages from "./messages";
 
-const addressRegex = /^0x[a-fA-F0-9]{40}$/;
-const allowedTypes = ["vaults", "operators", "networks", "tokens", "curators"] as const;
+const onChainTypes = ["vaults", "operators", "networks", "tokens"];
+const offChainTypes = ["points", "curators"];
+
+const allowedTypes = [...onChainTypes, ...offChainTypes];
 const allowedFiles = ["info.json", "logo.png"];
 
+const addressRegex = /^0x[a-fA-F0-9]{40}$/;
+const nameRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 export type EntityType = (typeof allowedTypes)[number];
-export type FsValidationResult = {
+export type Entity = {
     metadata?: string;
     logo?: string;
     isDeleted?: boolean;
@@ -20,18 +25,25 @@ export type FsValidationResult = {
 const isValidEntity = (entityType: string): entityType is EntityType =>
     allowedTypes.includes(entityType as EntityType);
 
-export async function validateFs(changedFiles: string[]): Promise<FsValidationResult> {
+export async function validateFs(changedFiles: string[]): Promise<Entity> {
     const notAllowed = new Set<string>();
     const entityDirs = new Set<string>();
 
     for (const filePath of changedFiles) {
         const dir = path.dirname(filePath);
-        const [type, address, fileName] = filePath.split(path.sep);
+        const [type, identifier, fileName] = filePath.split(path.sep);
 
-        const isValid =
-            isValidEntity(type) && addressRegex.test(address) && allowedFiles.includes(fileName);
+        if (!isValidEntity(type) || !allowedFiles.includes(fileName)) {
+            notAllowed.add(filePath);
 
-        if (isValid) {
+            continue;
+        }
+
+        const isValidIdentifier = onChainTypes.includes(type)
+            ? addressRegex.test(identifier)
+            : nameRegex.test(identifier);
+
+        if (isValidIdentifier) {
             entityDirs.add(dir);
         } else {
             notAllowed.add(filePath);
@@ -64,7 +76,7 @@ export async function validateFs(changedFiles: string[]): Promise<FsValidationRe
     const entityType = path.basename(path.dirname(entityDir)) as EntityType;
     const entityId = path.basename(entityDir);
 
-    const existingFiles: string[] = await fs.promises.readdir(entityDir).catch(() => []);
+    const existingFiles: string[] = await fs.readdir(entityDir).catch(() => []);
 
     const entityDirExists = existingFiles.length > 0;
     const [metadataPath, logoPath] = allowedFiles.map((name) => {
@@ -84,7 +96,7 @@ export async function validateFs(changedFiles: string[]): Promise<FsValidationRe
         throw new Error("`info.json` is not found in the entity folder");
     }
 
-    const result: FsValidationResult = {
+    const result: Entity = {
         entityId,
         entityType,
         isDeleted: !entityDirExists,

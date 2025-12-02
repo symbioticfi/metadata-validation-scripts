@@ -4,6 +4,7 @@ import { Address } from "viem";
 import { createClient, getChain } from "./blockchain";
 import * as github from "./github";
 import * as messages from "./messages";
+import { Entity } from "./validate-fs";
 
 export type RewardsContract = {
     address: string;
@@ -35,7 +36,15 @@ const vaultAbi = [
     },
 ] as const;
 
-export const validateRewards = async (metadataPath: string, vaultAddress: string) => {
+export const validateRewards = async ({
+    entityId: vaultAddress,
+    metadata: metadataPath,
+    entityType,
+}: Entity) => {
+    if (!metadataPath || entityType !== "vaults") {
+        return;
+    }
+
     const chain = getChain();
     const client = createClient();
     const rewardsFactory = github.getInput("rewards-factory", {

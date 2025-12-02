@@ -3,7 +3,7 @@ import { Address } from "viem";
 import { createClient, getChain } from "./blockchain";
 import * as github from "./github";
 import * as messages from "./messages";
-import { EntityType, FsValidationResult } from "./validate-fs";
+import { Entity, EntityType } from "./validate-fs";
 
 type EntityMeta = {
     contract: string;
@@ -37,9 +37,7 @@ const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
     },
 };
 
-export const validateEntity = async ({ entityType, entityId }: FsValidationResult) => {
-    const chain = getChain();
-    const client = createClient();
+export const validateEntity = async ({ entityType, entityId }: Entity) => {
     const entityAddress = entityId as Address;
     const entityMeta = entityMetaMap[entityType];
 
@@ -47,6 +45,8 @@ export const validateEntity = async ({ entityType, entityId }: FsValidationResul
         return;
     }
 
+    const chain = getChain();
+    const client = createClient();
     const isEntity = await client.readContract({
         address: entityMeta.contract as Address,
         abi: isEntityAbi,
@@ -58,7 +58,7 @@ export const validateEntity = async ({ entityType, entityId }: FsValidationResul
         await github.addComment(
             messages.notRegisteredEntity(
                 entityMeta.label,
-                entityId,
+                entityAddress,
                 chain.name,
                 entityMeta.contract,
             ),
