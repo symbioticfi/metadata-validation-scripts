@@ -19,8 +19,6 @@ const isLocalRun = process.env.LOCAL_ACTION_RUN === "true";
 export const repoPath = [github.context.repo.owner, github.context.repo.repo].join("/");
 export const getInput = core.getInput;
 
-console.log("Workspace", core.getState("LOCAL_ACTION_WORKSPACE"));
-
 const getIssueNumber = () => {
     const inputNumber = getInput("issue", {
         required: true,
