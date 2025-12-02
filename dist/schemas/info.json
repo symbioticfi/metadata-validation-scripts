@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["website", "explorer", "docs", "example", "externalLink"]
+          },
+
+          "name": {
+            "type": "string"
+          },
+
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+
+        "required": ["type", "name", "url"]
+      }
+    },
+
+    "cmcId": {
+      "type": "string"
+    },
+
+    "curatorId": {
+      "type": "string"
+    },
+
+    "permitName": {
+      "type": "string"
+    },
+
+    "permitVersion": {
+      "type": "string"
+    },
+
+    "rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": ["address", "type"]
+      }
+    }
+  },
+
+  "required": ["name", "tags", "links"]
+}

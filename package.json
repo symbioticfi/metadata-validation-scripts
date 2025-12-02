@@ -1,50 +1,50 @@
 {
-  "name": "symbiotic-validator",
-  "description": "Symbiotic Validator",
-  "version": "0.0.0",
-  "author": "Symbiotic",
-  "type": "module",
-  "private": true,
-  "homepage": "https://github.com/symbioticfi/metadata-validation-scripts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/symbioticfi/metadata-validation-scripts.git"
-  },
-  "keywords": [
-    "symbiotic"
-  ],
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "scripts": {
-    "bundle": "npm run package",
-    "lint": "eslint .",
-    "local-action": "local-action . src/main.ts .env",
-    "package": "ncc build src/index.ts -o dist",
-    "package:watch": "npm run package -- --watch"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.1",
-    "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1",
-    "image-js": "^1.0.0",
-    "json-source-map": "^0.6.1",
-    "viem": "^2.37.5"
-  },
-  "devDependencies": {
-    "@symbiotic/eslint-config": "0.1.9",
-    "@symbiotic/prettier-config": "^0.0.4",
-    "@github/local-action": "^6.0.0",
-    "@types/node": "^24.3.1",
-    "@vercel/ncc": "^0.38.3",
-    "eslint": "9.35.0",
-    "prettier": "3.6.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
-  }
+    "name": "symbiotic-validator",
+    "description": "Symbiotic Validator",
+    "version": "0.0.0",
+    "author": "Symbiotic",
+    "type": "module",
+    "private": true,
+    "homepage": "https://github.com/symbioticfi/metadata-validation-scripts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/symbioticfi/metadata-validation-scripts.git"
+    },
+    "keywords": [
+        "symbiotic"
+    ],
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "scripts": {
+        "bundle": "npm run package",
+        "lint": "eslint .",
+        "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
+        "package": "ncc build src/index.ts -o dist",
+        "package:watch": "npm run package -- --watch"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@actions/core": "^1.11.1",
+        "@actions/github": "^6.0.1",
+        "ajv": "^8.17.1",
+        "ajv-formats": "^3.0.1",
+        "image-js": "^1.0.0",
+        "json-source-map": "^0.6.1",
+        "viem": "^2.37.5"
+    },
+    "devDependencies": {
+        "@symbiotic/eslint-config": "0.1.9",
+        "@symbiotic/prettier-config": "^0.0.4",
+        "@github/local-action": "^6.0.0",
+        "@types/node": "^24.3.1",
+        "@vercel/ncc": "^0.38.3",
+        "eslint": "9.35.0",
+        "prettier": "3.6.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.2"
+    }
 }

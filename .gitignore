@@ -102,4 +102,6 @@ __tests__/runner/*
 *.code-workspace
 .vscode
 
-vaults/
+# Local action workspace
+metadata/*
+!metadata/.gitkeep

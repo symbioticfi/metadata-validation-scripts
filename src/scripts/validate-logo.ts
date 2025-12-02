@@ -4,8 +4,13 @@ import * as path from "path";
 
 import * as github from "./github";
 import * as messages from "./messages";
+import { Entity } from "./validate-fs";
 
-export async function validateLogo(logoPath: string) {
+export async function validateLogo({ logo: logoPath }: Entity) {
+    if (!logoPath) {
+        return;
+    }
+
     const errors: string[] = [];
     const { size } = await fs.stat(logoPath);
 
