@@ -120,7 +120,7 @@ The local action run is configured to use the `metadata/` directory as the sourc
 
     ```bash
     INPUT_FILES="vaults/0xabc.../info.json vaults/0xabc.../logo.png"
-    INPUT_CHAIN-ID="17000"  # Holesky testnet, or "1" for mainnet
+    INPUT_CHAIN-ID="560048"  # Hoodi testnet, or "1" for mainnet
     INPUT_VAULT-REGISTRY="0x407a039d94948484d356efb765b3c74382a050b4"
     INPUT_OPERATOR-REGISTRY="0x6f75a4fff97326a00e52662d82ea4fde86a2c548"
     INPUT_NETWORK-REGISTRY="0x7d03b7343bf8d5cec7c0c27ece084a20113d15c9"
