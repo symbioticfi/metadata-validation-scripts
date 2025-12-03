@@ -4,7 +4,7 @@
 
 This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
-**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `@vercel/ncc`. **Always run `npm run bundle` after code changes** and commit `dist/` to publish.
+**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
 
 ## Entity Structure & Validation Pipeline
 
@@ -24,7 +24,7 @@ All validations run in **parallel** via `Promise.allSettled()` to collect all er
 
 1. **File System** (`validate-fs.ts`): Validates directory structure, ensures **one entity per PR** (critical constraint)
 2. **Entity Registry** (`validate-entity.ts`): Checks on-chain registry using `isEntity()` contract call (skipped for off-chain entities: `points`, `curators`)
-3. **Metadata Schema** (`validate-metadata.ts`): Validates `info.json` against type-specific schemas (`schemas/{entityType}.json` or fallback to `schemas/info.json`)
+3. **Metadata Schema** (`validate-metadata.ts`): Validates `info.json` against type-specific schemas imported from `schemas/index.ts` (bundled at compile time)
 4. **Logo** (`validate-logo.ts`): Enforces 256x256 PNG, max 100KB
 5. **Collateral** (`validate-collateral.ts`): For vaults only, validates collateral token exists in repo
 6. **Rewards** (`validate-rewards.ts`): For vaults with `rewards` in metadata, validates contracts via `rewards-factory` registry
@@ -170,14 +170,19 @@ The local action run is configured to use the `metadata/` directory as the sourc
 
 1. Add type to `allowedTypes` in `validate-fs.ts` (either `onChainTypes` or `offChainTypes`)
 2. Create schema: `src/scripts/schemas/{entityType}.json` (optional, falls back to `info.json`)
-3. Add registry metadata to `entityMetaMap` in `validate-entity.ts` (if on-chain)
-4. Add action input for registry contract in `action.yml` (if on-chain)
+3. Import schema in `src/scripts/schemas/index.ts` and add to `schemaMap` if it differs from default
+4. Add registry metadata to `entityMetaMap` in `validate-entity.ts` (if on-chain)
+5. Add action input for registry contract in `action.yml` (if on-chain)
 
 ### Schema Validation with Line Numbers
 
+Schemas are bundled at compile time via `src/scripts/schemas/index.ts`:
+
 ```typescript
+import { getSchema } from "./schemas";
 import { parse } from "json-source-map";
 
+const schema = getSchema(entityType); // Returns bundled JSON schema
 const { data: metadata, pointers: lineMap } = parse(metadataContent);
 // Validate metadata...
 const line = lineMap[error.instancePath]?.value?.line || 1;
@@ -196,13 +201,15 @@ await github.addReview({
 
 **Why Promise.allSettled?** Collect all validation errors in one pass instead of failing fast, providing better UX for contributors.
 
-**Why single dist file?** GitHub Actions require self-contained JavaScript. `@vercel/ncc` bundles TypeScript + dependencies into `dist/index.js`.
+**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.js`.
 
 **Why viem over ethers?** Modern, tree-shakeable, better TypeScript support, built-in chain configs.
 
 **Why json-source-map?** Enables precise error reporting at exact JSON line numbers for PR review comments.
 
 **Why upstream-checkout-path?** Allows validating cross-references (e.g., vault collateral tokens) against both PR changes and existing repo state.
+
+**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.js` bundle is completely self-contained.
 
 ## Dependencies Reference
 
@@ -211,5 +218,5 @@ await github.addReview({
 - **ajv, ajv-formats**: JSON Schema validation with format validators (uri, date, etc.)
 - **image-js**: Image processing for logo validation (size, dimensions, format)
 - **json-source-map**: Maps JSON paths to source locations for error reporting
-- **@vercel/ncc**: Bundles TypeScript + dependencies into single `dist/index.js`
+- **tsup**: Bundles TypeScript + dependencies into single `dist/index.js`
 - **@github/local-action**: Local GitHub Action runner for development

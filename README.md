@@ -2,7 +2,7 @@
 
 A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
 
-The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `@vercel/ncc`.
+The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
 
 ### Entities Metadata Structure
 
@@ -29,7 +29,7 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 - [`src/scripts/github.ts`](src/scripts/github.ts) - PR comment and review posting
 - [`src/scripts/messages.ts`](src/scripts/messages.ts) - Error message templates
 
-**Technologies**: TypeScript, viem (Ethereum client), ajv (JSON schema), image-js (logo validation), json-source-map (error line numbers)
+**Technologies**: TypeScript, tsup (bundler), viem (Ethereum client), ajv (JSON schema), image-js (logo validation), json-source-map (error line numbers)
 
 ### Validation Pipeline
 

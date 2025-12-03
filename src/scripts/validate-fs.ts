@@ -4,8 +4,8 @@ import path from "path";
 import * as github from "./github";
 import * as messages from "./messages";
 
-const onChainTypes = ["vaults", "operators", "networks", "tokens"];
-const offChainTypes = ["points", "curators"];
+const onChainTypes = ["vaults", "operators", "networks", "tokens"] as const;
+const offChainTypes = ["points", "curators"] as const;
 
 const allowedTypes = [...onChainTypes, ...offChainTypes];
 const allowedFiles = ["info.json", "logo.png"];
@@ -13,6 +13,7 @@ const allowedFiles = ["info.json", "logo.png"];
 const addressRegex = /^0x[a-fA-F0-9]{40}$/;
 const nameRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+type OnChainEntityType = (typeof onChainTypes)[number];
 export type EntityType = (typeof allowedTypes)[number];
 export type Entity = {
     metadata?: string;
@@ -22,8 +23,7 @@ export type Entity = {
     entityType: EntityType;
 };
 
-const isValidEntity = (entityType: string): entityType is EntityType =>
-    allowedTypes.includes(entityType as EntityType);
+const isValidEntity = (entityType: string) => allowedTypes.includes(entityType as EntityType);
 
 export async function validateFs(changedFiles: string[]): Promise<Entity> {
     const notAllowed = new Set<string>();
@@ -39,7 +39,7 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
             continue;
         }
 
-        const isValidIdentifier = onChainTypes.includes(type)
+        const isValidIdentifier = onChainTypes.includes(type as OnChainEntityType)
             ? addressRegex.test(identifier)
             : nameRegex.test(identifier);
 

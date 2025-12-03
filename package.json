@@ -23,9 +23,8 @@
         "bundle": "npm run package",
         "lint": "eslint .",
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
-        "package": "ncc build src/index.ts -o dist",
-        "prepackage": "rm -rf dist",
-        "package:watch": "npm run package -- --watch"
+        "package": "tsup",
+        "package:watch": "tsup --watch"
     },
     "license": "MIT",
     "dependencies": {
@@ -38,14 +37,14 @@
         "viem": "^2.37.5"
     },
     "devDependencies": {
+        "@github/local-action": "^6.0.0",
         "@symbiotic/eslint-config": "0.1.9",
         "@symbiotic/prettier-config": "^0.0.4",
-        "@github/local-action": "^6.0.0",
         "@types/node": "^24.3.1",
-        "@vercel/ncc": "^0.38.3",
         "eslint": "9.35.0",
         "prettier": "3.6.2",
         "ts-node": "^10.9.2",
+        "tsup": "^8.5.1",
         "typescript": "^5.9.2"
     }
 }
