@@ -14,7 +14,7 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - name: PR Agent action step
+      - name: Qodo
         id: pragent
         uses: qodo-ai/pr-agent@d36ad319f7fb0049205017405a71275c41599587   # pin@v0.31
         env:
