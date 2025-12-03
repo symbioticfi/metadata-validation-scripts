@@ -6,7 +6,7 @@ export default defineConfig({
     noExternal: [/.*/], // Bundle all dependencies
     target: "node24",
     clean: true,
-    minify: false,
+    minify: true,
     treeshake: true,
     outExtension: () => ({
         js: ".js", // Output as .js instead of .cjs for GitHub Actions compatibility
