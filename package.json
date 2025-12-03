@@ -24,6 +24,7 @@
         "lint": "eslint .",
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
         "package": "ncc build src/index.ts -o dist",
+        "prepackage": "rm -rf dist",
         "package:watch": "npm run package -- --watch"
     },
     "license": "MIT",
