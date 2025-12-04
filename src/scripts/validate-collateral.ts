@@ -5,6 +5,7 @@ import { Address } from "viem";
 import { createClient, getChain } from "./blockchain";
 import * as github from "./github";
 import * as messages from "./messages";
+import { Entity } from "./validate-fs";
 
 const collateralAbi = [
     {
@@ -16,7 +17,11 @@ const collateralAbi = [
     },
 ] as const;
 
-export const validateCollateral = async (vaultAddress: string) => {
+export const validateCollateral = async ({ entityType, entityId: vaultAddress }: Entity) => {
+    if (entityType !== "vaults") {
+        return;
+    }
+
     const chain = getChain();
     const client = createClient();
     const upstreamDir = github.getInput("upstream-checkout-path", {

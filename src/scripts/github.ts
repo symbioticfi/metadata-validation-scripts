@@ -17,7 +17,6 @@ let octokit: ReturnType<typeof github.getOctokit>;
 const isLocalRun = process.env.LOCAL_ACTION_RUN === "true";
 
 export const repoPath = [github.context.repo.owner, github.context.repo.repo].join("/");
-
 export const getInput = core.getInput;
 
 const getIssueNumber = () => {

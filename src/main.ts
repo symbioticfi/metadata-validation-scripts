@@ -24,12 +24,10 @@ const main = async () => {
 
     const result = await Promise.allSettled([
         validateEntity(entity),
-        entity.metadata && validateMetadata(entity.metadata),
-        entity.logo && validateLogo(entity.logo),
-        entity.entityType === "vaults" && validateCollateral(entity.entityId),
-        entity.entityType === "vaults" &&
-            entity.metadata &&
-            validateRewards(entity.metadata, entity.entityId),
+        validateMetadata(entity),
+        validateLogo(entity),
+        validateCollateral(entity),
+        validateRewards(entity),
     ]);
 
     const errors = result

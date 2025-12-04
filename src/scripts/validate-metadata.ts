@@ -6,7 +6,8 @@ import { parse } from "json-source-map";
 
 import * as github from "./github";
 import * as messages from "./messages";
-import metadataSchema from "./schemas/info.json";
+import { getSchema } from "./schemas";
+import { Entity } from "./validate-fs";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {
@@ -21,14 +22,19 @@ const normalizeErrors = (error: ErrorObject, lineMap: any) => {
     };
 };
 
-export async function validateMetadata(metadataPath: string) {
+export async function validateMetadata({ entityType, metadata: metadataPath }: Entity) {
+    if (!metadataPath) {
+        return;
+    }
+
+    const schema = getSchema(entityType);
     const metadataContent = await fs.readFile(metadataPath, "utf8");
     const { data: metadata, pointers: lineMap } = parse(metadataContent);
 
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
 
-    ajv.validate(metadataSchema, metadata);
+    ajv.validate(schema, metadata);
 
     const errors =
         ajv.errors?.map((error: ErrorObject) => normalizeErrors(error, lineMap)).filter(Boolean) ||
