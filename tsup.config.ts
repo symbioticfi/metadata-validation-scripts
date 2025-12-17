@@ -8,7 +8,5 @@ export default defineConfig({
     clean: true,
     minify: true,
     treeshake: true,
-    outExtension: () => ({
-        js: ".js", // Output as .js instead of .cjs for GitHub Actions compatibility
-    }),
+    splitting: false,
 });
