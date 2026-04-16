@@ -1,4 +1,5 @@
 import type { EntityType } from "../validate-fs";
+import adapters from "./adapters.json";
 import curators from "./curators.json";
 import defaultSchema from "./info.json";
 import points from "./points.json";
@@ -9,6 +10,7 @@ import points from "./points.json";
 const schemaMap: Partial<Record<EntityType, object>> = {
     points,
     curators,
+    adapters,
 };
 
 /**
