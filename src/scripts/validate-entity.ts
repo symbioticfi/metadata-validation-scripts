@@ -35,6 +35,11 @@ const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
         label: "Operator",
         contract: github.getInput("operator-registry", { required: true }),
     },
+
+    adapters: {
+        label: "Adapter",
+        contract: github.getInput("adapter-registry", { required: true }),
+    },
 };
 
 export const validateEntity = async ({ entityType, entityId }: Entity) => {

@@ -4,7 +4,7 @@ import path from "path";
 import * as github from "./github";
 import * as messages from "./messages";
 
-const onChainTypes = ["vaults", "operators", "networks", "tokens"] as const;
+const onChainTypes = ["vaults", "operators", "networks", "tokens", "adapters"] as const;
 const offChainTypes = ["points", "curators"] as const;
 
 const allowedTypes = [...onChainTypes, ...offChainTypes];

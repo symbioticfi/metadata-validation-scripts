@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
+This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators, adapters). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
 **Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
 
@@ -11,7 +11,7 @@ This is a GitHub Action that validates metadata changes in Symbiotic ecosystem r
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`
+    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`
     - Off-chain (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
@@ -37,7 +37,7 @@ All validations run in **parallel** via `Promise.allSettled()` to collect all er
 
 - Uses `viem` for Ethereum interactions (not ethers)
 - Chain determined by `chain-id` input, RPC from `rpc-url` or viem's default public RPCs
-- Registry contracts accessed via action inputs: `vault-registry`, `operator-registry`, `network-registry`
+- Registry contracts accessed via action inputs: `vault-registry`, `operator-registry`, `network-registry`, `adapter-registry`
 
 **Contract interaction patterns**:
 
@@ -124,6 +124,7 @@ The local action run is configured to use the `metadata/` directory as the sourc
     INPUT_VAULT-REGISTRY="0x407a039d94948484d356efb765b3c74382a050b4"
     INPUT_OPERATOR-REGISTRY="0x6f75a4fff97326a00e52662d82ea4fde86a2c548"
     INPUT_NETWORK-REGISTRY="0x7d03b7343bf8d5cec7c0c27ece084a20113d15c9"
+    INPUT_ADAPTER-REGISTRY="0xF33339BD72A512777E0FbF5817003E47A4a9ab66"
     ```
 
 3. **Run the action** using the configured environment:

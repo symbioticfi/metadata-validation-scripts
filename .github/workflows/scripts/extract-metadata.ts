@@ -39,6 +39,7 @@ enum DIRECTORIES {
     OPERATORS = "operators",
     POINTS = "points",
     CURATORS = "curators",
+    ADAPTERS = "adapters",
 }
 
 type Template = Record<DIRECTORIES, Record<string, Entity>>;
