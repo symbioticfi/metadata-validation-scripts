@@ -23,6 +23,7 @@
     "scripts": {
         "bundle": "pnpm run package",
         "lint": "eslint .",
+        "format": "prettier --write .",
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
         "package": "tsup",
         "package:watch": "tsup --watch",
