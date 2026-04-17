@@ -4,12 +4,12 @@ Thank you for contributing! This guide covers the development workflow.
 
 ## Prerequisites
 
-- **Node.js** 22+ (see `.nvmrc`)
-- **npm** as the package manager
+- **Node.js** 24+ (see `.nvmrc`)
+- **pnpm** as the package manager
 
 ```bash
 nvm use
-npm install
+pnpm install
 ```
 
 ## Development Workflow
@@ -36,7 +36,7 @@ Linting and formatting (ESLint + Prettier) run automatically on commit via lint-
 You can also run the linter manually:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ### 3. Test Locally
@@ -83,13 +83,13 @@ INPUT_ADAPTER-REGISTRY="0xF33339BD72A512777E0FbF5817003E47A4a9ab66"
 **Run the action:**
 
 ```bash
-npm run local-action
+pnpm run local-action
 ```
 
 Use **watch mode** for auto-rebundling during development:
 
 ```bash
-npm run package:watch
+pnpm run package:watch
 ```
 
 ### 4. Bundle for Distribution
@@ -97,7 +97,7 @@ npm run package:watch
 The `dist/` directory **must be committed** — GitHub Actions runs the bundled file directly.
 
 ```bash
-npm run bundle
+pnpm run bundle
 git add dist/
 ```
 
@@ -128,8 +128,8 @@ DEV-123 Add adapter registry validation
 
 ## Pull Request Checklist
 
-- [ ] Lint passes (`npm run lint`)
-- [ ] Tested locally with `npm run local-action`
-- [ ] Bundled distribution is up to date (`npm run bundle`, `dist/` committed)
+- [ ] Lint passes (`pnpm run lint`)
+- [ ] Tested locally with `pnpm run local-action`
+- [ ] Bundled distribution is up to date (`pnpm run bundle`, `dist/` committed)
 - [ ] Commit messages follow Conventional Commits with task ID scope
 - [ ] Documentation updated (if applicable)

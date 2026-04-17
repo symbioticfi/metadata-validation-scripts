@@ -14,27 +14,27 @@ A GitHub Action that validates metadata changes in [Symbiotic](https://symbiotic
 ## Prerequisites
 
 - **Node.js** — see `.nvmrc` for the required version
-- **npm** — package manager
+- **pnpm** — package manager
 
 ## Getting Started
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Copy environment variables
 cp .env.template .env
 
 # Run the action locally
-npm run local-action
+pnpm run local-action
 ```
 
 ## Available Scripts
 
-- `npm run bundle` — Bundle the action for distribution
-- `npm run lint` — Run ESLint
-- `npm run local-action` — Run the action locally
-- `npm run package:watch` — Watch mode for auto-rebundling
+- `pnpm run bundle` — Bundle the action for distribution
+- `pnpm run lint` — Run ESLint
+- `pnpm run local-action` — Run the action locally
+- `pnpm run package:watch` — Watch mode for auto-rebundling
 
 ## Usage
 

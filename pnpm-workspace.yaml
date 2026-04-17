@@ -1,0 +1,2 @@
+configDependencies:
+  '@symbiotic/pnpm-plugin-defaults': 0.2.2+sha512-fg17gVvGNbS95zjMgoWYv+rcV77CFP+3ofop0T8yMjw9X77nmRMrFGnXJmNMVJPM1Ktr8fo6JMJGMBb6Zn8wmA==
