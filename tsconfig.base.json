@@ -1,24 +1,25 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "rootDir": ".",
-    "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "declarationMap": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["ES2022"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "newLine": "lf",
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "pretty": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "target": "ES2022"
-  }
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "rootDir": ".",
+        "allowSyntheticDefaultImports": true,
+        "declaration": false,
+        "declarationMap": false,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["ES2022"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "newLine": "lf",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "pretty": true,
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "target": "ES2022"
+    }
 }

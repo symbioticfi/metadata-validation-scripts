@@ -26,7 +26,8 @@
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
         "package": "tsup",
         "package:watch": "tsup --watch",
-        "prepare": "husky"
+        "prepare": "husky",
+        "typecheck": "tsc --noEmit"
     },
     "license": "MIT",
     "dependencies": {
