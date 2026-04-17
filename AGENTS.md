@@ -1,19 +1,25 @@
 # AI Agent Guidelines
 
-## Purpose
+## Required Reading
 
-This document defines how AI assistants (GitHub Copilot, Cursor, ChatGPT, Claude, etc.) should operate when contributing to the Symbiotic Metadata Validator project.
+Read the project documentation before making changes:
 
-## Source of Truth
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — Project structure, validation pipeline, design decisions, extension patterns
+- [CONTRIBUTING.md](./CONTRIBUTING.md) — Development workflow, local testing, build & release
 
-All AI agents **must read and follow**  
-[`./.github/copilot-instructions.md`](./.github/copilot-instructions.md)  
-before generating or modifying any code.
+## Key Rules
 
-This file contains the complete, authoritative rules and conventions for the project.
-**Nothing overrides the instructions defined there.**
+- **Package manager**: pnpm only (NOT npm or yarn)
+- **Ethereum library**: `viem` only (NOT ethers)
+- **Error pattern**: Always call `github.addComment()` before throwing errors
+- **Schemas**: Bundled at compile time via `resolveJsonModule` — never loaded at runtime
+- **All dependencies** must be bundleable into a single `dist/index.cjs` file
 
-## Summary
+## Validation
 
-- Follow `copilot-instructions.md` strictly.
-- Use `README.md` only for high-level understanding.
+MANDATORY before completing any task — run in order:
+
+1. **Lint**: `pnpm run lint` (must pass)
+2. **Type check**: `pnpm run typecheck` (must pass)
+3. **Bundle**: `pnpm run bundle` (must succeed)
+4. **Local Testing**: Test both passing and failing scenarios with `pnpm run local-action`
