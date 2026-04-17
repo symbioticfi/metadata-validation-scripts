@@ -35,6 +35,7 @@ pnpm run local-action
 - `pnpm run lint` — Run ESLint
 - `pnpm run local-action` — Run the action locally
 - `pnpm run package:watch` — Watch mode for auto-rebundling
+- `pnpm run typecheck` — Type-check the codebase (no emit)
 
 ## Usage
 

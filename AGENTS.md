@@ -20,5 +20,6 @@ Read the project documentation before making changes:
 MANDATORY before completing any task — run in order:
 
 1. **Lint**: `pnpm run lint` (must pass)
-2. **Bundle**: `pnpm run bundle` (must succeed)
-3. **Local Testing**: Test both passing and failing scenarios with `pnpm run local-action`
+2. **Type check**: `pnpm run typecheck` (must pass)
+3. **Bundle**: `pnpm run bundle` (must succeed)
+4. **Local Testing**: Test both passing and failing scenarios with `pnpm run local-action`

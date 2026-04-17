@@ -39,6 +39,12 @@ You can also run the linter manually:
 pnpm run lint
 ```
 
+You can also run the type checker manually:
+
+```bash
+pnpm run typecheck
+```
+
 ### 3. Test Locally
 
 There is no automated test suite. Test changes by running the action locally.
@@ -129,6 +135,7 @@ DEV-123 Add adapter registry validation
 ## Pull Request Checklist
 
 - [ ] Lint passes (`pnpm run lint`)
+- [ ] Type check passes (`pnpm run typecheck`)
 - [ ] Tested locally with `pnpm run local-action`
 - [ ] Bundled distribution is up to date (`pnpm run bundle`, `dist/` committed)
 - [ ] Commit messages follow Conventional Commits with task ID scope
