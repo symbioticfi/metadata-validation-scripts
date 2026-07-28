@@ -25,7 +25,8 @@
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
         "package": "tsup",
         "package:watch": "tsup --watch",
-        "prepare": "husky"
+        "prepare": "husky",
+        "test": "node --disable-warning=ExperimentalWarning --test test/get-vault-token-address.test.mjs"
     },
     "license": "MIT",
     "dependencies": {
