@@ -3,19 +3,10 @@ import * as path from "path";
 import { Address } from "viem";
 
 import { createClient, getChain } from "./blockchain";
+import { getVaultTokenAddress } from "./get-vault-token-address";
 import * as github from "./github";
 import * as messages from "./messages";
 import { Entity } from "./validate-fs";
-
-const collateralAbi = [
-    {
-        inputs: [],
-        name: "collateral",
-        outputs: [{ internalType: "address", name: "", type: "address" }],
-        stateMutability: "view",
-        type: "function",
-    },
-] as const;
 
 export const validateCollateral = async ({ entityType, entityId: vaultAddress }: Entity) => {
     if (entityType !== "vaults") {
@@ -28,11 +19,7 @@ export const validateCollateral = async ({ entityType, entityId: vaultAddress }:
         required: false,
     });
 
-    const tokenAddress = await client.readContract({
-        address: vaultAddress as Address,
-        abi: collateralAbi,
-        functionName: "collateral",
-    });
+    const tokenAddress = await getVaultTokenAddress(client, vaultAddress as Address);
 
     if (!tokenAddress) {
         await github.addComment(messages.invalidVault(vaultAddress, chain.name));
