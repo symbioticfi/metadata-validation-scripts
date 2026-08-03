@@ -36,16 +36,16 @@
         "ajv-formats": "^3.0.1",
         "image-js": "^1.2.0",
         "json-source-map": "^0.6.1",
-        "viem": "^2.41.2"
+        "viem": "^2.55.10"
     },
     "devDependencies": {
-        "@github/local-action": "^6.0.2",
+        "@github/local-action": "^7.0.1",
         "@symbiotic/eslint-config": "0.5.1",
         "@symbiotic/prettier-config": "^0.0.4",
         "@types/node": "^24.10.1",
         "eslint": "9.39.1",
         "husky": "^9.1.7",
-        "lint-staged": "^16.2.7",
+        "lint-staged": "^16.4.0",
         "prettier": "3.7.4",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
