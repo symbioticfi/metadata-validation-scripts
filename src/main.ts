@@ -31,7 +31,8 @@ const main = async () => {
     ]);
 
     const errors = result
-        .map((r) => r && r.status === "rejected" && r.reason.message)
+        .filter((validation): validation is PromiseRejectedResult => validation.status === "rejected")
+        .map(({ reason }) => (reason instanceof Error ? reason.message : String(reason)))
         .filter(Boolean);
 
     if (errors.length) {

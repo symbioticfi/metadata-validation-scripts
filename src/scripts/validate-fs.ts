@@ -30,10 +30,16 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
     const entityDirs = new Set<string>();
 
     for (const filePath of changedFiles) {
-        const dir = path.dirname(filePath);
-        const [type, identifier, fileName] = filePath.split(path.sep);
+        const normalizedFilePath = filePath.replaceAll("\\", "/");
+        const segments = normalizedFilePath.split("/");
+        const [type, identifier, fileName] = segments;
 
-        if (!isValidEntity(type) || !allowedFiles.includes(fileName)) {
+        if (
+            segments.length !== 3 ||
+            !isValidEntity(type) ||
+            !identifier ||
+            !allowedFiles.includes(fileName)
+        ) {
             notAllowed.add(filePath);
 
             continue;
@@ -44,7 +50,7 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
             : nameRegex.test(identifier);
 
         if (isValidIdentifier) {
-            entityDirs.add(dir);
+            entityDirs.add(path.join(type, identifier));
         } else {
             notAllowed.add(filePath);
         }
@@ -72,9 +78,16 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
         throw new Error("Several entities are changed in one pull request");
     }
 
-    const [entityDir] = entityDirs;
+    const entityDir = [...entityDirs][0];
+    if (!entityDir) {
+        await github.addComment(messages.noEntityChanges());
+
+        throw new Error("No valid entity files were provided");
+    }
+
     const entityType = path.basename(path.dirname(entityDir)) as EntityType;
     const entityId = path.basename(entityDir);
+    const normalizedEntityPath = `${entityType}/${entityId}`;
 
     const existingFiles: string[] = await fs.readdir(entityDir).catch(() => []);
 
@@ -84,7 +97,11 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
     });
 
     const [isMetadataChanged, isLogoChanged] = allowedFiles.map((name) => {
-        return changedFiles.some((file) => path.basename(file) === name);
+        const expectedPath = `${normalizedEntityPath}/${name}`;
+
+        return changedFiles.some(
+            (file) => file.replaceAll("\\", "/") === expectedPath,
+        );
     });
 
     /**

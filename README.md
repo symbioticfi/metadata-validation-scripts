@@ -1,8 +1,8 @@
 ## Symbiotic Metadata Validator
 
-A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
+A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, adapters, curators, points). It enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
 
-The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ### Entities Metadata Structure
 
@@ -10,8 +10,9 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 **Entity types:**
 
-- **On-chain** (require registry validation): `vaults`, `operators`, `networks`, `tokens`
-- **Off-chain** (no registry check): `points`, `curators`
+- **On-chain identifiers**: `vaults`, `operators`, `networks`, `tokens`, `adapters`
+- **Registry validation**: `vaults`, `operators`, `networks`, `adapters`
+- **Off-chain identifiers** (no registry check): `points`, `curators`
 
 ### Architecture
 
@@ -46,7 +47,8 @@ Validation skips remaining steps if entity is deleted.
 
 ### Inputs
 
-- `files` (required): Comma/space-separated list of changed files to validate.
+- `files` (required): Space-separated list of changed files to validate.
+
 - `issue` (required): Issue/PR number to comment on (e.g., `${{ github.event.pull_request.number }}`).
 - `token` (required): `GITHUB_TOKEN` for commenting.
 - `vault-registry` (required): Vaults registry contract address.
@@ -87,7 +89,8 @@ jobs:
                 id: changes
 
             - name: Run validator
-                uses: symbioticfi/metadata-validation-scripts@main
+                uses: symbioticfi/metadata-validation-scripts@a21a6f01a2b6c5fda769e0c7c0b55d79172568f6 # pin@main (audited commit)
+
                 with:
                     files: ${{ steps.changes.outputs.all_changed_files }}
                     issue: ${{ github.event.pull_request.number }}

@@ -1,5 +1,5 @@
 import * as fs from "fs/promises";
-import { Address } from "viem";
+import { Address, isAddress } from "viem";
 
 import { createClient, getChain } from "./blockchain";
 import * as github from "./github";
@@ -55,14 +55,27 @@ export const validateRewards = async ({
         return;
     }
 
-    const metadataContent = await fs.readFile(metadataPath, "utf8");
-    const metadata: MetadataWithRewards = JSON.parse(metadataContent);
+    let metadata: MetadataWithRewards;
+    try {
+        const metadataContent = await fs.readFile(metadataPath, "utf8");
+        metadata = JSON.parse(metadataContent) as MetadataWithRewards;
+    } catch (error) {
+        await github.addComment(messages.invalidInfoJson());
 
-    if (!metadata.rewards || metadata.rewards.length === 0) {
+        throw new Error("The `info.json` file contains invalid JSON", { cause: error });
+    }
+
+    if (!Array.isArray(metadata.rewards) || metadata.rewards.length === 0) {
         return;
     }
 
     for (const reward of metadata.rewards) {
+        if (!reward || !isAddress(reward.address)) {
+            await github.addComment(messages.invalidRewardsAddress(String(reward?.address)));
+
+            throw new Error(`Rewards contract address \`${String(reward?.address)}\` is invalid`);
+        }
+
         if (reward.type !== "defaultStakingRewardsV2") {
             await github.addComment(messages.invalidRewardsType(reward.address, reward.type));
 

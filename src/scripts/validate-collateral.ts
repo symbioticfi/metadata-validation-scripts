@@ -19,7 +19,14 @@ export const validateCollateral = async ({ entityType, entityId: vaultAddress }:
         required: false,
     });
 
-    const tokenAddress = await getVaultTokenAddress(client, vaultAddress as Address);
+    let tokenAddress: Address | undefined;
+    try {
+        tokenAddress = await getVaultTokenAddress(client, vaultAddress as Address);
+    } catch (error) {
+        await github.addComment(messages.invalidVault(vaultAddress, chain.name));
+
+        throw new Error(`Failed to read vault collateral for \`${vaultAddress}\``, { cause: error });
+    }
 
     if (!tokenAddress) {
         await github.addComment(messages.invalidVault(vaultAddress, chain.name));
@@ -30,7 +37,17 @@ export const validateCollateral = async ({ entityType, entityId: vaultAddress }:
     }
 
     const tokensDir = upstreamDir ? path.join(upstreamDir, "tokens") : "tokens";
-    const dirItems = await fs.readdir(tokensDir);
+    let dirItems: string[];
+    try {
+        dirItems = await fs.readdir(tokensDir);
+    } catch (error) {
+        await github.addComment(messages.noVaultTokenInfo(tokenAddress));
+
+        throw new Error(`Unable to read the token metadata directory \`${tokensDir}\``, {
+            cause: error,
+        });
+    }
+
     const tokenInfoExists = dirItems.some(
         (item) => item.toLowerCase() === tokenAddress.toLowerCase(),
     );

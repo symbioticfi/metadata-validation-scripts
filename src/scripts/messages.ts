@@ -16,10 +16,16 @@ export const onlyOneEntityPerPr = (dirs: string[]) =>
   ${dirs.map((file) => `- ${file}`).join("\n")}
 `;
 
+export const noEntityChanges = () =>
+    `No valid entity metadata files were found in the pull request. ${contributionGuidelines}`;
+
 export const noInfoJson = (dir: string) =>
     `The entity folder \`${dir}\` should have \`info.json\` file. ${contributionGuidelines}`;
 
 export const invalidInfoJson = () => `The \`info.json\` file is invalid. ${contributionGuidelines}`;
+
+export const unreadableInfoJson = (path: string) =>
+    `The \`info.json\` file at \`${path}\` could not be read. ${contributionGuidelines}`;
 
 export const invalidLogo = (path: string, errors: string[]) =>
     `The logo image is invalid. ${contributionGuidelines}
@@ -41,6 +47,9 @@ export const invalidVault = (address: string, chain: string) =>
 
 export const noVaultTokenInfo = (tokenAddress: string) =>
     `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
+
+export const invalidRewardsAddress = (address: string) =>
+    `Rewards contract address \`${address}\` is not a valid Ethereum address. ${contributionGuidelines}`;
 
 export const invalidRewardsType = (address: string, type: string) =>
     `Rewards contract \`${address}\` has invalid type \`${type}\`. Expected type is \`defaultStakingRewardsV2\`. ${contributionGuidelines}`;
