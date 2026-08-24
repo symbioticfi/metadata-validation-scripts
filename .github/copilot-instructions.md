@@ -4,15 +4,16 @@
 
 This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators, adapters). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
-**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ## Entity Structure & Validation Pipeline
 
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`
-    - Off-chain (no registry check): `points`, `curators`
+    - On-chain identifiers: `vaults`, `operators`, `networks`, `tokens`, `adapters`
+    - Registry validation: `vaults`, `operators`, `networks`, `adapters`
+    - Off-chain identifiers (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
@@ -23,7 +24,7 @@ The codebase validates entities organized as: `{entityType}/{address}/{info.json
 All validations run in **parallel** via `Promise.allSettled()` to collect all errors before failing:
 
 1. **File System** (`validate-fs.ts`): Validates directory structure, ensures **one entity per PR** (critical constraint)
-2. **Entity Registry** (`validate-entity.ts`): Checks on-chain registry using `isEntity()` contract call (skipped for off-chain entities: `points`, `curators`)
+2. **Entity Registry** (`validate-entity.ts`): Checks on-chain registry using `isEntity()` contract calls for `vaults`, `operators`, `networks`, and `adapters` (skipped for `tokens`, `points`, and `curators` because no token-registry input is defined)
 3. **Metadata Schema** (`validate-metadata.ts`): Validates `info.json` against type-specific schemas imported from `schemas/index.ts` (bundled at compile time)
 4. **Logo** (`validate-logo.ts`): Enforces 256x256 PNG, max 100KB
 5. **Collateral** (`validate-collateral.ts`): For vaults only, validates collateral token exists in repo
@@ -116,7 +117,7 @@ The local action run is configured to use the `metadata/` directory as the sourc
     INPUT_FILES="points/symbiotic/info.json points/symbiotic/logo.png"
     ```
 
-    **On-chain entities** (vaults/operators/networks/tokens):
+    **Registry-validated entities** (vaults/operators/networks/adapters):
 
     ```bash
     INPUT_FILES="vaults/0xabc.../info.json vaults/0xabc.../logo.png"
@@ -186,7 +187,7 @@ import { parse } from "json-source-map";
 const schema = getSchema(entityType); // Returns bundled JSON schema
 const { data: metadata, pointers: lineMap } = parse(metadataContent);
 // Validate metadata...
-const line = lineMap[error.instancePath]?.value?.line || 1;
+    const line = lineMap[error.instancePath]?.value?.line ?? 0;
 
 await github.addReview({
     body: "Schema validation failed",
@@ -210,7 +211,7 @@ await github.addReview({
 
 **Why upstream-checkout-path?** Allows validating cross-references (e.g., vault collateral tokens) against both PR changes and existing repo state.
 
-**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.js` bundle is completely self-contained.
+**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.cjs` bundle is completely self-contained.
 
 ## Dependencies Reference
 

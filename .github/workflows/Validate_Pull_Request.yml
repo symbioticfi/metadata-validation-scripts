@@ -1,13 +1,13 @@
 name: Validate Pull Request
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
 jobs:
   qodo:
-    if: ${{ github.event.sender.type != 'Bot' }}
+    if: ${{ github.event.sender.type != 'Bot' && github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: PR Agent action step
         id: pragent
-        uses: qodo-ai/pr-agent@0b0c175f6a0ae73f75bfb12a0eecb440a216a891   # pin@v0.33
+        uses: qodo-ai/pr-agent@0b0c175f6a0ae73f75bfb12a0eecb440a216a891 # pin@v0.33
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
