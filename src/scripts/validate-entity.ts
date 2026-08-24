@@ -6,7 +6,7 @@ import * as messages from "./messages";
 import { Entity, EntityType } from "./validate-fs";
 
 type EntityMeta = {
-    contract: string;
+    registryInput: string;
     label: string;
 };
 
@@ -23,22 +23,19 @@ const isEntityAbi = [
 const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
     vaults: {
         label: "Vault",
-        contract: github.getInput("vault-registry", { required: true }),
+        registryInput: "vault-registry",
     },
-
     networks: {
         label: "Network",
-        contract: github.getInput("network-registry", { required: true }),
+        registryInput: "network-registry",
     },
-
     operators: {
         label: "Operator",
-        contract: github.getInput("operator-registry", { required: true }),
+        registryInput: "operator-registry",
     },
-
     adapters: {
         label: "Adapter",
-        contract: github.getInput("adapter-registry", { required: true }),
+        registryInput: "adapter-registry",
     },
 };
 
@@ -52,8 +49,9 @@ export const validateEntity = async ({ entityType, entityId }: Entity) => {
 
     const chain = getChain();
     const client = createClient();
+    const registryContract = github.getInput(entityMeta.registryInput, { required: true });
     const isEntity = await client.readContract({
-        address: entityMeta.contract as Address,
+        address: registryContract as Address,
         abi: isEntityAbi,
         functionName: "isEntity",
         args: [entityAddress],
@@ -65,12 +63,12 @@ export const validateEntity = async ({ entityType, entityId }: Entity) => {
                 entityMeta.label,
                 entityAddress,
                 chain.name,
-                entityMeta.contract,
+                registryContract,
             ),
         );
 
         throw new Error(
-            `${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${entityMeta.contract}\`)`,
+            `${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${registryContract}\`)`,
         );
     }
 };

@@ -9,12 +9,20 @@ import * as messages from "./messages";
 import { getSchema } from "./schemas";
 import { Entity } from "./validate-fs";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const normalizeErrors = (error: ErrorObject, lineMap: any) => {
+type JsonSourceMap = Record<
+    string,
+    {
+        value?: {
+            line: number;
+        };
+    }
+>;
+
+const normalizeErrors = (error: ErrorObject, lineMap: JsonSourceMap) => {
     const { instancePath, message, params } = error;
     const allowedValues = params?.allowedValues ? `: ${params.allowedValues.join(", ")}` : "";
-    const line = lineMap[instancePath]?.value?.line || 1;
-    const capMessage = message && message.charAt(0).toUpperCase() + message.slice(1);
+    const line = lineMap[instancePath]?.value?.line ?? 0;
+    const capMessage = message ? message.charAt(0).toUpperCase() + message.slice(1) : "Invalid value";
 
     return {
         line: line + 1,
@@ -28,13 +36,39 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
     }
 
     const schema = getSchema(entityType);
-    const metadataContent = await fs.readFile(metadataPath, "utf8");
-    const { data: metadata, pointers: lineMap } = parse(metadataContent);
+    let metadataContent: string;
+
+    try {
+        metadataContent = await fs.readFile(metadataPath, "utf8");
+    } catch (error) {
+        await github.addComment(messages.unreadableInfoJson(metadataPath));
+
+        throw new Error("The `info.json` file could not be read", { cause: error });
+    }
+
+    let metadata: unknown;
+    let lineMap: JsonSourceMap;
+
+    try {
+        const parsed = parse(metadataContent) as {
+            data: unknown;
+            pointers: JsonSourceMap;
+        };
+        metadata = parsed.data;
+        lineMap = parsed.pointers;
+    } catch (error) {
+        await github.addComment(messages.invalidInfoJson());
+
+        throw new Error("The `info.json` file contains invalid JSON", { cause: error });
+    }
 
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
 
-    ajv.validate(schema, metadata);
+    const valid = ajv.validate(schema, metadata);
+    if (valid) {
+        return;
+    }
 
     const errors =
         ajv.errors?.map((error: ErrorObject) => normalizeErrors(error, lineMap)).filter(Boolean) ||
@@ -49,7 +83,7 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
                 body: message,
             })),
         });
-
-        throw new Error("The `info.json` file is invalid");
     }
+
+    throw new Error("The `info.json` file is invalid");
 }

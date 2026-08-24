@@ -92,8 +92,7 @@ export const run = async (command: () => Promise<void>) => {
     try {
         await command();
     } catch (error) {
-        if (error instanceof Error) {
-            core.setFailed(error.message);
-        }
+        const message = error instanceof Error ? error.message : String(error);
+        core.setFailed(message);
     }
 };
