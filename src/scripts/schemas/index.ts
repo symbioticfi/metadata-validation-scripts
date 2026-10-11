@@ -2,6 +2,7 @@ import type { EntityType } from "../validate-fs";
 import adapters from "./adapters.json";
 import curators from "./curators.json";
 import defaultSchema from "./info.json";
+import merkleAdapters from "./merkle-adapters.json";
 import points from "./points.json";
 
 /**
@@ -11,6 +12,7 @@ const schemaMap: Partial<Record<EntityType, object>> = {
     points,
     curators,
     adapters,
+    "merkle-adapters": merkleAdapters,
 };
 
 /**

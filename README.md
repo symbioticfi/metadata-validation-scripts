@@ -1,6 +1,6 @@
 ## Symbiotic Metadata Validator
 
-A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
+A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, adapters, merkle-adapters, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
 
 The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
 
@@ -10,8 +10,32 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 **Entity types:**
 
-- **On-chain** (require registry validation): `vaults`, `operators`, `networks`, `tokens`
+- **Address-based**: `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`. All except `tokens` require registry validation.
 - **Off-chain** (no registry check): `points`, `curators`
+
+### Merkle Adapter Metadata
+
+Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
+
+The JSON object maps lowercase protocol or RWA names to arrays of vault, pool, or market identifiers. Use underscores between words and an empty array when no specific targets are needed:
+
+```json
+{
+    "aa_falconxusdc": [],
+    "mglobal": [],
+    "morpho_vaultv2": [
+        "0x1111111111111111111111111111111111111111",
+        "0x2222222222222222222222222222222222222222"
+    ],
+    "morpho_blue": ["0x1111111111111111111111111111111111111111111111111111111111111111"],
+    "aave_v3": ["0x3333333333333333333333333333333333333333"],
+    "euler": ["0x4444444444444444444444444444444444444444"]
+}
+```
+
+These targets are illustrative. Target values must be 20-byte EVM addresses or 32-byte market IDs, with no duplicates in an array. Names are extensible; an empty object declares no integrations. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
+
+The full-info workflow includes these entries under `"merkle-adapters"`, using the existing `{ "info": ... }` wrapper without a logo.
 
 ### Architecture
 
@@ -52,6 +76,7 @@ Validation skips remaining steps if entity is deleted.
 - `vault-registry` (required): Vaults registry contract address.
 - `operator-registry` (required): Operators registry contract address.
 - `network-registry` (required): Networks registry contract address.
+- `adapter-registry` (required): Adapter registry contract address for `adapters` and `merkle-adapters`.
 - `chain-id` (required): Chain ID for on-chain validation.
 - `rpc-url` (optional): RPC URL for on-chain validation.
 - `upstream-checkout-path` (optional): Path to upstream repo checkout.

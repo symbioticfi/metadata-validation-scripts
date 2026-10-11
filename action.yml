@@ -23,7 +23,7 @@ inputs:
     description: Networks registry contract address to use for on-chain validation
     required: true
   adapter-registry:
-    description: Adapter registry contract address to use for on-chain validation
+    description: Adapter registry contract address to validate adapters and merkle-adapters
     required: true
   chain-id:
     description: Blockchain chain ID to use for on-chain validation

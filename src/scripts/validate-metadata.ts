@@ -12,8 +12,16 @@ import { Entity } from "./validate-fs";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {
     const { instancePath, message, params } = error;
+    const propertyName = error.propertyName ?? params.propertyName;
     const allowedValues = params?.allowedValues ? `: ${params.allowedValues.join(", ")}` : "";
-    const line = lineMap[instancePath]?.value?.line || 1;
+    const propertyPath =
+        typeof propertyName === "string"
+            ? `${instancePath}/${propertyName.replace(/~/g, "~0").replace(/\//g, "~1")}`
+            : undefined;
+    const line =
+        (propertyPath ? lineMap[propertyPath]?.key?.line : undefined) ??
+        lineMap[instancePath]?.value?.line ??
+        0;
     const capMessage = message && message.charAt(0).toUpperCase() + message.slice(1);
 
     return {
@@ -29,7 +37,17 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
     const schema = getSchema(entityType);
     const metadataContent = await fs.readFile(metadataPath, "utf8");
-    const { data: metadata, pointers: lineMap } = parse(metadataContent);
+    let parsed: ReturnType<typeof parse>;
+
+    try {
+        parsed = parse(metadataContent);
+    } catch {
+        await github.addComment(messages.invalidInfoJson());
+
+        throw new Error("The `info.json` file is not valid JSON");
+    }
+
+    const { data: metadata, pointers: lineMap } = parsed;
 
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);

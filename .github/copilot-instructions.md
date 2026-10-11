@@ -11,12 +11,13 @@ This is a GitHub Action that validates metadata changes in Symbiotic ecosystem r
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`
+    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`
     - Off-chain (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
-- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`)
+- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`). `merkle-adapters` folders contain only a regular `info.json` file; logos and other files are rejected.
+- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` maps lowercase protocol/RWA names (underscores allowed) to arrays of EVM addresses or bytes32 market IDs. Empty arrays represent name-only entries. Registration uses the existing `adapter-registry` input.
 
 ### Validation Flow (src/main.ts)
 

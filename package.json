@@ -26,7 +26,7 @@
         "package": "tsup",
         "package:watch": "tsup --watch",
         "prepare": "husky",
-        "test": "node --disable-warning=ExperimentalWarning --test test/get-vault-token-address.test.mjs"
+        "test": "npm run bundle && node --disable-warning=ExperimentalWarning --test test/*.test.mjs"
     },
     "license": "MIT",
     "dependencies": {

@@ -1,7 +1,6 @@
 import * as github from "@actions/github";
 import fs from "fs/promises";
 import path from "path";
-import { pathToFileURL } from "url";
 
 type Info = Partial<{
     name: string;
@@ -28,7 +27,7 @@ type Info = Partial<{
 }>;
 
 type Entity = {
-    info: Info;
+    info: Info | Record<string, string[]>;
     logo?: string;
 };
 
@@ -40,6 +39,7 @@ enum DIRECTORIES {
     POINTS = "points",
     CURATORS = "curators",
     ADAPTERS = "adapters",
+    MERKLE_ADAPTERS = "merkle-adapters",
 }
 
 type Template = Record<DIRECTORIES, Record<string, Entity>>;
@@ -61,9 +61,7 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
                     const infoPath = path.join(entityPath, "info.json");
                     const logoPath = path.join(entityPath, "logo.png");
 
-                    const infoUrl = pathToFileURL(infoPath).href;
-                    const module = await import(infoUrl);
-                    const info: Info = module.default;
+                    const info: Entity["info"] = JSON.parse(await fs.readFile(infoPath, "utf8"));
                     const entity: Entity = { info };
 
                     const hasLogo = await fs
@@ -71,7 +69,7 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
                         .then((stats) => stats.isFile())
                         .catch(() => false);
 
-                    if (hasLogo) {
+                    if (hasLogo && dir !== DIRECTORIES.MERKLE_ADAPTERS) {
                         const logoUrl = `https://raw.githubusercontent.com/${repoPath}/main/${entityPath}/logo.png`;
 
                         entity.logo = logoUrl;

@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "description": "Protocol and RWA names mapped to optional vault, pool, or market identifiers.",
+    "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+    "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+            "type": "string",
+            "pattern": "^0x(?:[a-fA-F0-9]{40}|[a-fA-F0-9]{64})$"
+        }
+    }
+}
