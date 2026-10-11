@@ -16,6 +16,7 @@ const registry = "0x2222222222222222222222222222222222222222";
 const vault = "0x3333333333333333333333333333333333333333";
 const marketId = `0x${"ab".repeat(32)}`;
 const metadataPath = `merkle-adapters/${adapter}/info.json`;
+const emptyInfo = { protocols: [] };
 
 const execute = (args, options) =>
     new Promise((resolve) => {
@@ -83,12 +84,14 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     await f.write(
         metadataPath,
         JSON.stringify({
-            aa_falconxusdc: [],
-            mglobal: [],
-            morpho_vaultv2: [vault, adapter],
-            morpho_blue: [marketId],
-            aave_v3: [vault],
-            euler: [vault],
+            protocols: [
+                { protocol: "aa_falconxusdc", addresses: [] },
+                { protocol: "mglobal", addresses: [] },
+                { protocol: "morpho_vaultv2", addresses: [vault, adapter] },
+                { protocol: "morpho_blue", addresses: [marketId] },
+                { protocol: "aave_v3", addresses: [vault] },
+                { protocol: "euler", addresses: [vault] },
+            ],
         }),
     );
     const result = await f.run();
@@ -101,24 +104,38 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
 
 test("empty metadata declares no integrations", async (t) => {
     const f = await fixture(t);
-    await f.write(metadataPath, "{}");
+    await f.write(metadataPath, JSON.stringify(emptyInfo));
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
 });
 
 test("schema rejects malformed metadata with PR feedback", async (t) => {
+    const info = (entry) => ({ protocols: [entry] });
     const cases = [
-        ["boolean entry", { mglobal: true }],
-        ["string entry", { mglobal: vault }],
-        ["null entry", { mglobal: null }],
-        ["uppercase name", { mGLOBAL: [] }],
-        ["hyphenated name", { "morpho-vaultv2": [] }],
-        ["empty name", { "": [] }],
-        ["short address", { morpho_vaultv2: ["0x123"] }],
-        ["non-hex address", { morpho_vaultv2: [`0x${"z".repeat(40)}`] }],
-        ["number target", { morpho_blue: [123] }],
-        ["duplicate targets", { morpho_vaultv2: [vault, vault] }],
+        ["boolean addresses", info({ protocol: "mglobal", addresses: true })],
+        ["string addresses", info({ protocol: "mglobal", addresses: vault })],
+        ["null addresses", info({ protocol: "mglobal", addresses: null })],
+        ["uppercase name", info({ protocol: "mGLOBAL", addresses: [] })],
+        ["hyphenated name", info({ protocol: "morpho-vaultv2", addresses: [] })],
+        ["empty name", info({ protocol: "", addresses: [] })],
+        ["short address", info({ protocol: "morpho_vaultv2", addresses: ["0x123"] })],
+        [
+            "non-hex address",
+            info({ protocol: "morpho_vaultv2", addresses: [`0x${"z".repeat(40)}`] }),
+        ],
+        ["number target", info({ protocol: "morpho_blue", addresses: [123] })],
+        ["duplicate targets", info({ protocol: "morpho_vaultv2", addresses: [vault, vault] })],
         ["array root", []],
+        ["missing protocols", {}],
+        ["legacy flat map", { mglobal: [] }],
+        ["extra root field", { protocols: [], extra: [] }],
+        ["protocols must be an array", { protocols: {} }],
+        ["entry must be an object", { protocols: ["mglobal"] }],
+        ["missing protocol name", info({ addresses: [] })],
+        ["missing addresses", info({ protocol: "mglobal" })],
+        ["singular address field", info({ protocol: "mglobal", address: [] })],
+        ["extra entry field", info({ protocol: "mglobal", addresses: [], extra: true })],
+        ["protocol must be a string", info({ protocol: 123, addresses: [] })],
     ];
 
     for (const [name, metadata] of cases) {
@@ -133,9 +150,12 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
     }
 });
 
-test("invalid protocol names are reported on their key line", async (t) => {
+test("invalid protocol names are reported on their value line", async (t) => {
     const f = await fixture(t);
-    await f.write(metadataPath, '{\n    "mglobal": [],\n    "Invalid_Name": []\n}\n');
+    await f.write(
+        metadataPath,
+        '{\n    "protocols": [{\n        "protocol": "Invalid_Name",\n        "addresses": []\n    }]\n}\n',
+    );
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /line: 3/);
@@ -173,7 +193,7 @@ test("folders accept only info.json at the adapter address", async (t) => {
 
 test("pre-existing logos are rejected when only metadata changes", async (t) => {
     const f = await fixture(t);
-    await f.write(metadataPath, "{}");
+    await f.write(metadataPath, JSON.stringify(emptyInfo));
     await f.write(`merkle-adapters/${adapter}/logo.png`, "not a logo");
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
@@ -204,7 +224,7 @@ test("multiple adapter folders are rejected", async (t) => {
 test("unregistered adapter is rejected with a PR comment", async (t) => {
     const f = await fixture(t);
     f.state.registered = false;
-    await f.write(metadataPath, "{}");
+    await f.write(metadataPath, JSON.stringify(emptyInfo));
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /not registered in adapter registry/);
@@ -231,7 +251,7 @@ test("ordinary adapters retain metadata, registry, and logo behavior", async (t)
     assert.equal(result.code, 0, result.output);
     assert.equal(f.calls.length, 1);
 
-    await f.write(legacyPath, JSON.stringify({ mglobal: [] }));
+    await f.write(legacyPath, JSON.stringify(emptyInfo));
     const invalid = await f.run([legacyPath]);
     assert.equal(invalid.code, 1, invalid.output);
     assert.match(invalid.output, /Add review/);
@@ -240,10 +260,12 @@ test("ordinary adapters retain metadata, registry, and logo behavior", async (t)
 test("full-info export preserves integration arrays and omits Merkle logos", async (t) => {
     const f = await fixture(t);
     const info = {
-        aa_falconxusdc: [],
-        mglobal: [],
-        morpho_vaultv2: [vault],
-        morpho_blue: [marketId],
+        protocols: [
+            { protocol: "aa_falconxusdc", addresses: [] },
+            { protocol: "mglobal", addresses: [] },
+            { protocol: "morpho_vaultv2", addresses: [vault] },
+            { protocol: "morpho_blue", addresses: [marketId] },
+        ],
     };
     const legacyInfo = { name: "Adapter", description: "Example", links: [] };
     await f.write(metadataPath, JSON.stringify(info));

@@ -12,7 +12,7 @@ import { Entity } from "./validate-fs";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {
     const { instancePath, message, params } = error;
-    const propertyName = error.propertyName ?? params.propertyName;
+    const propertyName = error.propertyName ?? params.propertyName ?? params.additionalProperty;
     const allowedValues = params?.allowedValues ? `: ${params.allowedValues.join(", ")}` : "";
     const propertyPath =
         typeof propertyName === "string"

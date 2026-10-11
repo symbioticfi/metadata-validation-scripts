@@ -17,23 +17,31 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
 
-The JSON object maps lowercase protocol or RWA names to arrays of vault, pool, or market identifiers. Use underscores between words and an empty array when no specific targets are needed:
+The JSON object contains a `protocols` array. Each entry has a lowercase protocol or RWA name and an `addresses` array of vault, pool, or market identifiers. Use underscores between words and an empty `addresses` array when no specific targets are needed:
 
 ```json
 {
-    "aa_falconxusdc": [],
-    "mglobal": [],
-    "morpho_vaultv2": [
-        "0x1111111111111111111111111111111111111111",
-        "0x2222222222222222222222222222222222222222"
-    ],
-    "morpho_blue": ["0x1111111111111111111111111111111111111111111111111111111111111111"],
-    "aave_v3": ["0x3333333333333333333333333333333333333333"],
-    "euler": ["0x4444444444444444444444444444444444444444"]
+    "protocols": [
+        { "protocol": "aa_falconxusdc", "addresses": [] },
+        { "protocol": "mglobal", "addresses": [] },
+        {
+            "protocol": "morpho_vaultv2",
+            "addresses": [
+                "0x1111111111111111111111111111111111111111",
+                "0x2222222222222222222222222222222222222222"
+            ]
+        },
+        {
+            "protocol": "morpho_blue",
+            "addresses": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
+        },
+        { "protocol": "aave_v3", "addresses": ["0x3333333333333333333333333333333333333333"] },
+        { "protocol": "euler", "addresses": ["0x4444444444444444444444444444444444444444"] }
+    ]
 }
 ```
 
-These targets are illustrative. Target values must be 20-byte EVM addresses or 32-byte market IDs, with no duplicates in an array. Names are extensible; an empty object declares no integrations. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
+These targets are illustrative. Target values must be 20-byte EVM addresses or 32-byte market IDs, with no duplicates in an `addresses` array. Names are extensible; `{ "protocols": [] }` declares no integrations. Both `protocol` and `addresses` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
 
 The full-info workflow includes these entries under `"merkle-adapters"`, using the existing `{ "info": ... }` wrapper without a logo.
 
