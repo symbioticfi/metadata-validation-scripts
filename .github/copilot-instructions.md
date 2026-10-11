@@ -4,7 +4,7 @@
 
 This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators, adapters). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
-**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ## Entity Structure & Validation Pipeline
 
@@ -203,7 +203,7 @@ await github.addReview({
 
 **Why Promise.allSettled?** Collect all validation errors in one pass instead of failing fast, providing better UX for contributors.
 
-**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.js`.
+**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.cjs`.
 
 **Why viem over ethers?** Modern, tree-shakeable, better TypeScript support, built-in chain configs.
 
@@ -211,7 +211,7 @@ await github.addReview({
 
 **Why upstream-checkout-path?** Allows validating cross-references (e.g., vault collateral tokens) against both PR changes and existing repo state.
 
-**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.js` bundle is completely self-contained.
+**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.cjs` bundle is completely self-contained.
 
 ## Dependencies Reference
 
@@ -220,5 +220,5 @@ await github.addReview({
 - **ajv, ajv-formats**: JSON Schema validation with format validators (uri, date, etc.)
 - **image-js**: Image processing for logo validation (size, dimensions, format)
 - **json-source-map**: Maps JSON paths to source locations for error reporting
-- **tsup**: Bundles TypeScript + dependencies into single `dist/index.js`
+- **tsup**: Bundles TypeScript + dependencies into single `dist/index.cjs`
 - **@github/local-action**: Local GitHub Action runner for development

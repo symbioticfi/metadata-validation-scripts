@@ -1,11 +1,14 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
+import { randomBytes } from "node:crypto";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+
+import { encodePng, Image } from "image-js";
 
 const actionPath = fileURLToPath(new URL("../dist/index.cjs", import.meta.url));
 const extractorPath = fileURLToPath(
@@ -49,6 +52,7 @@ async function fixture(t) {
     t.after(() => rm(cwd, { recursive: true, force: true }));
 
     const calls = [];
+    const githubCalls = [];
     const state = { registered: true };
     const server = createServer(async (request, response) => {
         let body = "";
@@ -56,6 +60,12 @@ async function fixture(t) {
             body += chunk;
         }
         const call = JSON.parse(body);
+        if (request.url.startsWith("/repos/")) {
+            githubCalls.push({ method: request.method, url: request.url, body: call });
+            response.writeHead(201, { "content-type": "application/json" });
+            response.end(JSON.stringify({ id: 1 }));
+            return;
+        }
         calls.push(call);
         response.setHeader("content-type", "application/json");
         response.end(
@@ -72,6 +82,7 @@ async function fixture(t) {
     const env = {
         ...process.env,
         GITHUB_REPOSITORY: "symbioticfi/metadata-mainnet",
+        GITHUB_API_URL: `http://127.0.0.1:${server.address().port}`,
         LOCAL_ACTION_RUN: "true",
         INPUT_ISSUE: "1",
         INPUT_TOKEN: "local-test",
@@ -86,6 +97,7 @@ async function fixture(t) {
     return {
         cwd,
         calls,
+        githubCalls,
         state,
         write: async (file, content) => {
             const fullPath = path.join(cwd, file);
@@ -419,6 +431,68 @@ test("ordinary adapters retain metadata, registry, and logo behavior", async (t)
     const invalid = await f.run([legacyPath]);
     assert.equal(invalid.code, 1, invalid.output);
     assert.match(invalid.output, /Add review/);
+});
+
+test("updated image decoder accepts a 256x256 PNG", async (t) => {
+    const f = await fixture(t);
+    const infoPath = `adapters/${adapter}/info.json`;
+    const logoPath = `adapters/${adapter}/logo.png`;
+    await f.write(infoPath, JSON.stringify({ name: "Adapter", description: "Example", links: [] }));
+    await f.write(logoPath, encodePng(new Image(256, 256)));
+    const result = await f.run([logoPath]);
+    assert.equal(result.code, 0, result.output);
+});
+
+test("updated image decoder retains dimension and file-size rejection", async (t) => {
+    const cases = [
+        [new Image(64, 256), /Current size is 64x256/],
+        [new Image(256, 64), /Current size is 256x64/],
+        [new Image(256, 256, { data: randomBytes(256 * 256 * 3) }), /maximum size is 100KB/],
+    ];
+    for (const [image, error] of cases) {
+        await t.test(error.source, async (context) => {
+            const f = await fixture(context);
+            const infoPath = `adapters/${adapter}/info.json`;
+            const logoPath = `adapters/${adapter}/logo.png`;
+            await f.write(
+                infoPath,
+                JSON.stringify({ name: "Adapter", description: "Example", links: [] }),
+            );
+            await f.write(logoPath, encodePng(image));
+            const result = await f.run([logoPath]);
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add Comment/);
+            assert.match(result.output, error);
+        });
+    }
+});
+
+test("updated Actions SDK sends inline schema feedback through the GitHub API", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({ protocols: [{ protocol: "mglobal", ids: [vault] }] }),
+    );
+    const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
+    assert.equal(result.code, 1, result.output);
+    assert.equal(f.githubCalls.length, 1);
+    assert.equal(f.githubCalls[0].method, "POST");
+    assert.equal(f.githubCalls[0].url, "/repos/symbioticfi/metadata-mainnet/pulls/1/reviews");
+    assert.equal(f.githubCalls[0].body.event, "COMMENT");
+    assert.equal(f.githubCalls[0].body.comments[0].path, metadataPath);
+    assert.equal(f.githubCalls[0].body.comments[0].line, 1);
+});
+
+test("updated Actions SDK sends registry errors through the GitHub API", async (t) => {
+    const f = await fixture(t);
+    f.state.registered = false;
+    await f.write(metadataPath, JSON.stringify(emptyInfo));
+    const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
+    assert.equal(result.code, 1, result.output);
+    assert.equal(f.githubCalls.length, 1);
+    assert.equal(f.githubCalls[0].method, "POST");
+    assert.equal(f.githubCalls[0].url, "/repos/symbioticfi/metadata-mainnet/issues/1/comments");
+    assert.match(f.githubCalls[0].body.body, /not registered/);
 });
 
 test("full-info export preserves integration arrays and omits Merkle logos", async (t) => {

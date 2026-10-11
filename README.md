@@ -2,7 +2,7 @@
 
 A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, adapters, merkle-adapters, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
 
-The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ### Entities Metadata Structure
 
@@ -207,4 +207,8 @@ When `LOCAL_ACTION_RUN=true`, PR comments are logged to console instead of posti
 
 3. **Create a PR** to merge into `main` (protected branch)
 
-**Requirements**: Node.js 22+
+**Requirements**: Node.js 24+ (the action runtime is Node.js 24).
+
+Run `npm ci` to install the locked dependencies. The project `.npmrc` directs the shared `@symbiotic` lint and formatting packages to their registry; public packages use npm's registry.
+
+Use `npm run lint`, `npm run typecheck`, and `npm test` before committing. Type checking uses TypeScript 7 through the `@typescript/native` alias. The `typescript` dependency aliases Microsoft's TypeScript 6 compatibility package so ESLint and build tools can still use the compiler API. The `esbuild` and `undici` overrides keep the build and local runner on patched releases.
