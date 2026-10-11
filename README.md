@@ -41,7 +41,9 @@ The JSON object contains a `protocols` array. Each entry has a lowercase protoco
 }
 ```
 
-These targets are illustrative. Target values must be 20-byte EVM addresses or 32-byte market IDs, with no duplicates in an `addresses` array. Names are extensible; `{ "protocols": [] }` declares no integrations. Both `protocol` and `addresses` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
+These targets are illustrative. Allowed names and address requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresAddresses: true` need at least one identifier: `addressType: "address"` accepts 20-byte EVM addresses; `addressType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `addresses: []`. Unknown names, duplicate targets, and identifiers of the wrong type are rejected. Add new integrations to the allowlist before using their names in metadata.
+
+The [protocol inventory](docs/merkle-protocol-allowlist.md) lists every collected integration, its target semantics, research sources, and current coverage limits. `{ "protocols": [] }` declares no integrations. Both `protocol` and `addresses` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
 
 The full-info workflow includes these entries under `"merkle-adapters"`, using the existing `{ "info": ... }` wrapper without a logo.
 

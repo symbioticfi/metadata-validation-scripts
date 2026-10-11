@@ -2,7 +2,7 @@ import type { EntityType } from "../validate-fs";
 import adapters from "./adapters.json";
 import curators from "./curators.json";
 import defaultSchema from "./info.json";
-import merkleAdapters from "./merkle-adapters.json";
+import merkleAdapters from "./merkle-adapters";
 import points from "./points.json";
 
 /**

@@ -17,7 +17,7 @@ The codebase validates entities organized as: `{entityType}/{address}/{info.json
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
 - **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`). `merkle-adapters` folders contain only a regular `info.json` file; logos and other files are rejected.
-- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` contains a `protocols` array of `{protocol, addresses}` objects. Protocol/RWA names are lowercase (underscores allowed); `addresses` contains EVM addresses or bytes32 market IDs, and an empty array represents a name-only entry. Registration uses the existing `adapter-registry` input.
+- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` contains a `protocols` array of `{protocol, addresses}` objects. Allowed names and address requirements come from `src/scripts/config/merkle-protocols.json`, imported at compile time. Entries requiring addresses must contain at least one identifier of the configured type (20-byte EVM address or bytes32 market ID); name-only entries require an empty array. Registration uses the existing `adapter-registry` input. Research sources and coverage limits are recorded in `docs/merkle-protocol-allowlist.md`.
 
 ### Validation Flow (src/main.ts)
 

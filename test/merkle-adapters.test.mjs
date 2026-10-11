@@ -17,6 +17,20 @@ const vault = "0x3333333333333333333333333333333333333333";
 const marketId = `0x${"ab".repeat(32)}`;
 const metadataPath = `merkle-adapters/${adapter}/info.json`;
 const emptyInfo = { protocols: [] };
+const allowlist = JSON.parse(
+    await readFile(new URL("../src/scripts/config/merkle-protocols.json", import.meta.url), "utf8"),
+);
+const targetProtocols = [
+    "aave_v3",
+    "aave_v4",
+    "erc4626",
+    "euler",
+    "liquid_lane_connector",
+    "morpho_blue",
+    "morpho_midnight",
+    "morpho_vaultv2",
+    "three_f",
+];
 
 const execute = (args, options) =>
     new Promise((resolve) => {
@@ -109,6 +123,53 @@ test("empty metadata declares no integrations", async (t) => {
     assert.equal(result.code, 0, result.output);
 });
 
+test("bundled allowlist accepts every collected protocol and product", async (t) => {
+    assert.equal(Object.keys(allowlist).length, 66);
+    assert.deepEqual(
+        Object.keys(allowlist)
+            .filter((protocol) => allowlist[protocol].requiresAddresses)
+            .sort(),
+        targetProtocols,
+    );
+    for (const [protocol, rule] of Object.entries(allowlist)) {
+        assert.match(protocol, /^[a-z0-9]+(?:_[a-z0-9]+)*$/);
+        assert.equal(typeof rule.requiresAddresses, "boolean");
+        assert.ok(["none", "address", "bytes32"].includes(rule.addressType));
+        assert.equal(rule.requiresAddresses, rule.addressType !== "none");
+    }
+
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            protocols: Object.entries(allowlist).map(([protocol, rule]) => ({
+                protocol,
+                addresses: rule.requiresAddresses
+                    ? [rule.addressType === "bytes32" ? marketId : vault]
+                    : [],
+            })),
+        }),
+    );
+    const result = await f.run();
+    assert.equal(result.code, 0, result.output);
+});
+
+test("target-based integrations require at least one identifier", async (t) => {
+    for (const protocol of targetProtocols) {
+        await t.test(protocol, async (context) => {
+            const f = await fixture(context);
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol, addresses: [] }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+            assert.match(result.output, /fewer than 1 items/);
+        });
+    }
+});
+
 test("schema rejects malformed metadata with PR feedback", async (t) => {
     const info = (entry) => ({ protocols: [entry] });
     const cases = [
@@ -116,6 +177,7 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
         ["string addresses", info({ protocol: "mglobal", addresses: vault })],
         ["null addresses", info({ protocol: "mglobal", addresses: null })],
         ["uppercase name", info({ protocol: "mGLOBAL", addresses: [] })],
+        ["unknown lowercase name", info({ protocol: "unknown_protocol", addresses: [] })],
         ["hyphenated name", info({ protocol: "morpho-vaultv2", addresses: [] })],
         ["empty name", info({ protocol: "", addresses: [] })],
         ["short address", info({ protocol: "morpho_vaultv2", addresses: ["0x123"] })],
@@ -124,6 +186,18 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
             info({ protocol: "morpho_vaultv2", addresses: [`0x${"z".repeat(40)}`] }),
         ],
         ["number target", info({ protocol: "morpho_blue", addresses: [123] })],
+        [
+            "vault cannot use a market ID",
+            info({ protocol: "morpho_vaultv2", addresses: [marketId] }),
+        ],
+        ["pool cannot use a market ID", info({ protocol: "aave_v3", addresses: [marketId] })],
+        ["Blue requires a market ID", info({ protocol: "morpho_blue", addresses: [vault] })],
+        [
+            "Midnight requires a market ID",
+            info({ protocol: "morpho_midnight", addresses: [vault] }),
+        ],
+        ["named product has no targets", info({ protocol: "mglobal", addresses: [vault] })],
+        ["global integration has no targets", info({ protocol: "cow_swap", addresses: [vault] })],
         ["duplicate targets", info({ protocol: "morpho_vaultv2", addresses: [vault, vault] })],
         ["array root", []],
         ["missing protocols", {}],
