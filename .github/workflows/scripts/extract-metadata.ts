@@ -27,7 +27,7 @@ type Info = Partial<{
 }>;
 
 type MerkleAdapterInfo = {
-    protocols: { protocol: string; addresses: string[] }[];
+    protocols: { protocol: string; ids: string[] }[];
 };
 
 type Entity = {

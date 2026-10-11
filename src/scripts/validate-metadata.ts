@@ -35,7 +35,12 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
         return;
     }
 
-    const schema = getSchema(entityType);
+    const schema = getSchema(
+        entityType,
+        entityType === "merkle-adapters"
+            ? +github.getInput("chain-id", { required: true })
+            : undefined,
+    );
     const metadataContent = await fs.readFile(metadataPath, "utf8");
     let parsed: ReturnType<typeof parse>;
 

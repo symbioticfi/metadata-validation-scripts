@@ -11,7 +11,7 @@
                         "type": "string",
                         "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
                     },
-                    "addresses": {
+                    "ids": {
                         "type": "array",
                         "uniqueItems": true,
                         "items": {
@@ -20,7 +20,7 @@
                         }
                     }
                 },
-                "required": ["protocol", "addresses"],
+                "required": ["protocol", "ids"],
                 "additionalProperties": false
             }
         }

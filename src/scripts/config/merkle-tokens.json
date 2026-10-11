@@ -1,0 +1,13 @@
+{
+    "1": {
+        "lbtc": "0x8236a87084f8b84306f72007f36f2618a5634494",
+        "wbtc": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "unibtc": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+        "weeth": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+        "weth": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "wsteth": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+        "usdt": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "usds": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+        "usdc": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    }
+}

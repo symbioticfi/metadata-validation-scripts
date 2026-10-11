@@ -17,33 +17,42 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
 
-The JSON object contains a `protocols` array. Each entry has a lowercase protocol or RWA name and an `addresses` array of vault, pool, or market identifiers. Use underscores between words and an empty `addresses` array when no specific targets are needed:
+The JSON object contains a `protocols` array. Each entry has a lowercase portfolio protocol or product name and an `ids` array of vault, pool, market, or common-token identifiers. Use underscores between words and an empty `ids` array when no specific targets are needed:
 
 ```json
 {
     "protocols": [
-        { "protocol": "aa_falconxusdc", "addresses": [] },
-        { "protocol": "mglobal", "addresses": [] },
+        { "protocol": "aa_falconxusdc", "ids": [] },
+        { "protocol": "mglobal", "ids": [] },
         {
             "protocol": "morpho_vaultv2",
-            "addresses": [
+            "ids": [
                 "0x1111111111111111111111111111111111111111",
                 "0x2222222222222222222222222222222222222222"
             ]
         },
         {
             "protocol": "morpho_blue",
-            "addresses": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
+            "ids": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
         },
-        { "protocol": "aave_v3", "addresses": ["0x3333333333333333333333333333333333333333"] },
-        { "protocol": "euler", "addresses": ["0x4444444444444444444444444444444444444444"] }
+        { "protocol": "aave_v3", "ids": ["0x3333333333333333333333333333333333333333"] },
+        { "protocol": "euler", "ids": ["0x4444444444444444444444444444444444444444"] },
+        {
+            "protocol": "tokens",
+            "ids": [
+                "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+            ]
+        }
     ]
 }
 ```
 
-These targets are illustrative. Allowed names and address requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresAddresses: true` need at least one identifier: `addressType: "address"` accepts 20-byte EVM addresses; `addressType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `addresses: []`. Unknown names, duplicate targets, and identifiers of the wrong type are rejected. Add new integrations to the allowlist before using their names in metadata.
+The vault/pool/market targets above are illustrative. Allowed portfolio names and ID requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresIds: true` need at least one identifier: `idType: "address"` accepts 20-byte EVM addresses; `idType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `ids: []`. Unknown names, duplicate values, and identifiers of the wrong type are rejected. Add new integrations to the allowlist before using their names in metadata.
 
-The [protocol inventory](docs/merkle-protocol-allowlist.md) lists every collected integration, its target semantics, research sources, and current coverage limits. `{ "protocols": [] }` declares no integrations. Both `protocol` and `addresses` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
+For `tokens`, list selected common-token addresses in `ids`, using a nonempty subset of LBTC, WBTC, uniBTC, weETH, WETH, wstETH, USDT, USDS, and USDC. The validator checks membership in [`src/scripts/config/merkle-tokens.json`](src/scripts/config/merkle-tokens.json) for the action's `chain-id`, accepting either lowercase or mixed-case hex addresses. The initial token allowlist covers Ethereum mainnet (`1`); other chains need an explicit allowlist. Token symbols and arbitrary contracts are rejected.
+
+The [protocol inventory](docs/merkle-protocol-allowlist.md) lists every collected integration, its target semantics, research sources, and current coverage limits. `{ "protocols": [] }` declares no integrations. Both `protocol` and `ids` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
 
 The full-info workflow includes these entries under `"merkle-adapters"`, using the existing `{ "info": ... }` wrapper without a logo.
 
