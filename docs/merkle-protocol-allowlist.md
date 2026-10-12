@@ -24,19 +24,22 @@ List every selected portfolio target. For Blue and Midnight, use market IDs rath
 
 ## Common tokens
 
-The `tokens` entry declares a nonempty subset of the nine allowed token addresses. Symbols such as `"usdc"` are not valid IDs. Matching accepts lowercase, checksum, and uppercase hex spelling. Allowlist membership is scoped by the action's `chain-id`; the initial allowlist covers Ethereum mainnet (`1`). A `tokens` entry on another chain is rejected until that chain has an explicit local allowlist.
+The `tokens` entry declares a nonempty subset of the twelve allowed token addresses. Symbols such as `"usdc"` are not valid IDs. Matching accepts lowercase, checksum, and uppercase hex spelling. Allowlist membership is scoped by the action's `chain-id`; the initial allowlist covers Ethereum mainnet (`1`). A `tokens` entry on another chain is rejected until that chain has an explicit local allowlist.
 
-| Token  | Ethereum address                             | Address source                                                                                                                                          |
-| ------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LBTC   | `0x8236a87084f8b84306f72007f36f2618a5634494` | [Lombard contracts](https://docs.lombard.finance/learn/transparency/smart-contracts)                                                                    |
-| WBTC   | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| uniBTC | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` | [Bedrock contracts](https://docs.bedrock.technology/security/smart-contracts/unibtc)                                                                    |
-| weETH  | `0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee` | [NAV product catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/rwa/catalog.go)   |
-| WETH   | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| wstETH | `0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| USDT   | `0xdac17f958d2ee523a2206206994597c13d831ec7` | [Tether contracts](https://tether.to/en/supported-protocols/)                                                                                           |
-| USDS   | `0xdc035d45d973e3ec169d2276ddab16f1e407384f` | [Sky contracts](https://developers.skyeco.com/guides/skylink/usds-ethereum-solana-bridge/)                                                              |
-| USDC   | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` | [Circle contracts](https://developers.circle.com/stablecoins/usdc-contract-addresses)                                                                   |
+| Token   | Ethereum address                             | Address source                                                                                                                                          |
+| ------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LBTC    | `0x8236a87084f8b84306f72007f36f2618a5634494` | [Lombard contracts](https://docs.lombard.finance/learn/transparency/smart-contracts)                                                                    |
+| WBTC    | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
+| uniBTC  | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` | [Bedrock contracts](https://docs.bedrock.technology/security/smart-contracts/unibtc)                                                                    |
+| weETH   | `0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee` | [NAV product catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/rwa/catalog.go)   |
+| WETH    | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
+| wstETH  | `0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
+| USDT    | `0xdac17f958d2ee523a2206206994597c13d831ec7` | [Tether contracts](https://tether.to/en/supported-protocols/)                                                                                           |
+| USDS    | `0xdc035d45d973e3ec169d2276ddab16f1e407384f` | [Sky contracts](https://developers.skyeco.com/guides/skylink/usds-ethereum-solana-bridge/)                                                              |
+| USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` | [Circle contracts](https://developers.circle.com/stablecoins/usdc-contract-addresses)                                                                   |
+| tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` | [Treehouse key addresses](https://docs.treehouse.finance/protocol/tasset/key-addresses)                                                                 |
+| SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` | [Solv contract addresses](https://docs.solv.finance/developer-guide/contracts)                                                                          |
+| PAXG    | `0x45804880de22913dafe09f4980848ece6ecbaf78` | [Paxos Gold contracts](https://github.com/paxosglobal/paxos-gold-contract)                                                                              |
 
 ## Named products requiring empty arrays
 

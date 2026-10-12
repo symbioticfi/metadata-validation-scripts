@@ -178,10 +178,13 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the nine common Ethereum token addresses", async (t) => {
+test("tokens accepts exactly the twelve common Ethereum token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
         "lbtc",
+        "paxg",
+        "solvbtc",
+        "teth",
         "unibtc",
         "usdc",
         "usds",
@@ -191,7 +194,7 @@ test("tokens accepts exactly the nine common Ethereum token addresses", async (t
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 9);
+    assert.equal(new Set(tokenIds).size, 12);
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -212,6 +215,9 @@ test("token address matching accepts checksum and uppercase hex spelling", async
                     ids: [
                         "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
                         "0x" + tokenAllowlist["1"].weth.slice(2).toUpperCase(),
+                        "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
+                        "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
+                        "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
                     ],
                 },
             ],
@@ -225,7 +231,7 @@ test("token addresses cannot be reused on a chain without a token allowlist", as
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        JSON.stringify({ protocols: [{ protocol: "tokens", ids: [usdc] }] }),
+        JSON.stringify({ protocols: [{ protocol: "tokens", ids: tokenIds }] }),
     );
     const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
     assert.equal(result.code, 1, result.output);
