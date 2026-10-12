@@ -1,8 +1,8 @@
 ## Symbiotic Metadata Validator
 
-A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
+A GitHub Action that validates metadata changes for Symbiotic ecosystem entities (vaults, operators, networks, tokens, adapters, merkle-adapters, curators, points). Enforces file structure, JSON schema compliance, logo requirements, and on-chain registry state validation via RPC calls.
 
-The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ### Entities Metadata Structure
 
@@ -10,8 +10,51 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 **Entity types:**
 
-- **On-chain** (require registry validation): `vaults`, `operators`, `networks`, `tokens`
+- **Address-based**: `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`. All except `tokens` require registry validation.
 - **Off-chain** (no registry check): `points`, `curators`
+
+### Merkle Adapter Metadata
+
+Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
+
+The JSON object contains a `protocols` array. Each entry has a lowercase portfolio protocol or product name and an `ids` array of vault, pool, market, or common-token identifiers. Use underscores between words and an empty `ids` array when no specific targets are needed:
+
+```json
+{
+    "protocols": [
+        { "protocol": "aa_falconxusdc", "ids": [] },
+        { "protocol": "mglobal", "ids": [] },
+        {
+            "protocol": "morpho_vaultv2",
+            "ids": [
+                "0x1111111111111111111111111111111111111111",
+                "0x2222222222222222222222222222222222222222"
+            ]
+        },
+        {
+            "protocol": "morpho_blue",
+            "ids": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
+        },
+        { "protocol": "aave_v3", "ids": ["0x3333333333333333333333333333333333333333"] },
+        { "protocol": "euler", "ids": ["0x4444444444444444444444444444444444444444"] },
+        {
+            "protocol": "tokens",
+            "ids": [
+                "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+            ]
+        }
+    ]
+}
+```
+
+The vault/pool/market targets above are illustrative. Allowed portfolio names and ID requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresIds: true` need at least one identifier: `idType: "address"` accepts 20-byte EVM addresses; `idType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `ids: []`. Unknown names, duplicate values, and identifiers of the wrong type are rejected. Add new integrations to the allowlist before using their names in metadata.
+
+For `tokens`, list selected common-token addresses in `ids`, using a nonempty subset of LBTC, WBTC, uniBTC, weETH, WETH, wstETH, USDT, USDS, USDC, tETH, SolvBTC, and PAXG. The validator checks membership in [`src/scripts/config/merkle-tokens.json`](src/scripts/config/merkle-tokens.json) for the action's `chain-id`, accepting either lowercase or mixed-case hex addresses. The initial token allowlist covers Ethereum mainnet (`1`); other chains need an explicit allowlist. Token symbols and arbitrary contracts are rejected.
+
+The [protocol inventory](docs/merkle-protocol-allowlist.md) lists every collected integration, its target semantics, research sources, and current coverage limits. `{ "protocols": [] }` declares no integrations. Both `protocol` and `ids` are required in each entry; extra fields are rejected. This is descriptive metadata: it does not grant Merkle permissions or validate targets on-chain. The existing one-entity-per-PR rule applies.
+
+The full-info workflow includes these entries under `"merkle-adapters"`, using the existing `{ "info": ... }` wrapper without a logo.
 
 ### Architecture
 
@@ -52,6 +95,7 @@ Validation skips remaining steps if entity is deleted.
 - `vault-registry` (required): Vaults registry contract address.
 - `operator-registry` (required): Operators registry contract address.
 - `network-registry` (required): Networks registry contract address.
+- `adapter-registry` (required): Adapter registry contract address for `adapters` and `merkle-adapters`.
 - `chain-id` (required): Chain ID for on-chain validation.
 - `rpc-url` (optional): RPC URL for on-chain validation.
 - `upstream-checkout-path` (optional): Path to upstream repo checkout.
@@ -163,4 +207,8 @@ When `LOCAL_ACTION_RUN=true`, PR comments are logged to console instead of posti
 
 3. **Create a PR** to merge into `main` (protected branch)
 
-**Requirements**: Node.js 22+
+**Requirements**: Node.js 24+ (the action runtime is Node.js 24).
+
+Run `npm ci` to install the locked dependencies. The project `.npmrc` directs the shared `@symbiotic` lint and formatting packages to their registry; public packages use npm's registry.
+
+Use `npm run lint`, `npm run typecheck`, and `npm test` before committing. Type checking uses TypeScript 7 through the `@typescript/native` alias. The `typescript` dependency aliases Microsoft's TypeScript 6 compatibility package so ESLint and build tools can still use the compiler API. The `esbuild` and `undici` overrides keep the build and local runner on patched releases.

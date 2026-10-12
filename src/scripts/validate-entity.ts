@@ -20,6 +20,11 @@ const isEntityAbi = [
     },
 ] as const;
 
+const adapterMeta: EntityMeta = {
+    label: "Adapter",
+    contract: github.getInput("adapter-registry", { required: true }),
+};
+
 const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
     vaults: {
         label: "Vault",
@@ -36,10 +41,9 @@ const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
         contract: github.getInput("operator-registry", { required: true }),
     },
 
-    adapters: {
-        label: "Adapter",
-        contract: github.getInput("adapter-registry", { required: true }),
-    },
+    adapters: adapterMeta,
+
+    "merkle-adapters": adapterMeta,
 };
 
 export const validateEntity = async ({ entityType, entityId }: Entity) => {

@@ -4,19 +4,20 @@
 
 This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators, adapters). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
-**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ## Entity Structure & Validation Pipeline
 
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`
+    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`
     - Off-chain (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
-- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`)
+- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`). `merkle-adapters` folders contain only a regular `info.json` file; logos and other files are rejected.
+- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` contains a `protocols` array of `{protocol, ids}` objects. Allowed portfolio names, `requiresIds`, and `idType` come from `src/scripts/config/merkle-protocols.json`, imported at compile time. Entries requiring IDs must contain at least one identifier of the configured type (20-byte EVM address or bytes32 market ID); name-only entries require an empty array. The `tokens` entry additionally validates IDs against the chain-specific `src/scripts/config/merkle-tokens.json`, accepting hex case variations; initially only Ethereum mainnet is allowlisted. Execution/reward plumbing and redundant underlying products have no separate portfolio entries. Registration uses the existing `adapter-registry` input. Research sources and coverage limits are recorded in `docs/merkle-protocol-allowlist.md`.
 
 ### Validation Flow (src/main.ts)
 
@@ -202,7 +203,7 @@ await github.addReview({
 
 **Why Promise.allSettled?** Collect all validation errors in one pass instead of failing fast, providing better UX for contributors.
 
-**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.js`.
+**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.cjs`.
 
 **Why viem over ethers?** Modern, tree-shakeable, better TypeScript support, built-in chain configs.
 
@@ -210,7 +211,7 @@ await github.addReview({
 
 **Why upstream-checkout-path?** Allows validating cross-references (e.g., vault collateral tokens) against both PR changes and existing repo state.
 
-**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.js` bundle is completely self-contained.
+**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.cjs` bundle is completely self-contained.
 
 ## Dependencies Reference
 
@@ -219,5 +220,5 @@ await github.addReview({
 - **ajv, ajv-formats**: JSON Schema validation with format validators (uri, date, etc.)
 - **image-js**: Image processing for logo validation (size, dimensions, format)
 - **json-source-map**: Maps JSON paths to source locations for error reporting
-- **tsup**: Bundles TypeScript + dependencies into single `dist/index.js`
+- **tsup**: Bundles TypeScript + dependencies into single `dist/index.cjs`
 - **@github/local-action**: Local GitHub Action runner for development
