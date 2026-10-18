@@ -28,17 +28,52 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
-const targetProtocols = [
-    "aave_v3",
-    "aave_v4",
-    "erc4626",
-    "euler",
-    "morpho_blue",
-    "morpho_midnight",
-    "morpho_vaultv2",
-    "three_f",
-    "tokens",
-];
+const targetProtocols = ["aave_v3", "aave_v4", "euler", "morpho_blue", "morpho_vaultv2", "tokens"];
+const namedProducts = {
+    midas: [
+        "carrytradeusdtryleverage",
+        "stockmarkettrbasistrade",
+        "mapollo",
+        "mbasis",
+        "mbtc",
+        "medge",
+        "mevusd",
+        "mfarm",
+        "mfone",
+        "mglobal",
+        "mhyper",
+        "mhyperbtc",
+        "mhypereth",
+        "mm1usd",
+        "mmev",
+        "mrox",
+        "mre7btc",
+        "mre7yield",
+        "msl",
+        "mtbill",
+        "mevbtc",
+        "msyrupusd",
+        "msyrupusdp",
+    ],
+    centrifuge: ["acrdx", "hyb", "jaaa", "jtrsy", "dejaaa", "dejtrsy"],
+    pareto: [
+        "aa_falconxusdc",
+        "bb_falconxusdc",
+        "aa_fasanara",
+        "bb_fasanara",
+        "aa_bastion",
+        "bb_bastion",
+        "aa_adaptivefrontier",
+        "bb_adaptivefrontier",
+        "aa_rockawayx",
+        "bb_rockawayx",
+        "aa_abraxas",
+        "bb_abraxas",
+    ],
+    hastra: ["prime", "auto", "wylds"],
+    openeden: ["hybond", "tbill"],
+    noon: ["susn", "usn"],
+};
 
 const execute = (args, options) =>
     new Promise((resolve) => {
@@ -145,7 +180,10 @@ test("empty metadata declares no integrations", async (t) => {
 });
 
 test("bundled allowlist accepts every collected protocol and product", async (t) => {
-    assert.equal(Object.keys(allowlist).length, 59);
+    assert.deepEqual(
+        Object.keys(allowlist).sort(),
+        [...targetProtocols, "three_f", "ember", ...Object.values(namedProducts).flat()].sort(),
+    );
     assert.deepEqual(
         Object.keys(allowlist)
             .filter((protocol) => allowlist[protocol].requiresIds)
@@ -178,23 +216,26 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the twelve common Ethereum token addresses", async (t) => {
+test("tokens accepts exactly the fifteen NAV wallet token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
+        "cbbtc",
+        "dai",
         "lbtc",
         "paxg",
+        "pyusd",
         "solvbtc",
+        "tbtc",
         "teth",
-        "unibtc",
         "usdc",
-        "usds",
+        "usde",
         "usdt",
         "wbtc",
         "weeth",
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 12);
+    assert.equal(new Set(tokenIds).size, 15);
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -239,9 +280,28 @@ test("token addresses cannot be reused on a chain without a token allowlist", as
     assert.match(result.output, /info.json.*invalid/);
 });
 
-test("redundant products and execution-only integrations are no longer allowlisted", async (t) => {
+test("unsupported products and execution-only integrations are not allowlisted", async (t) => {
     for (const protocol of [
-        "wylds",
+        "acred",
+        "beqty",
+        "buidl",
+        "decrdx",
+        "derive_v3",
+        "dusd",
+        "erc4626",
+        "hinc",
+        "liusd13w",
+        "liusd4w",
+        "morpho_midnight",
+        "said",
+        "spkcc",
+        "stac",
+        "sthusd",
+        "susd3",
+        "uscc",
+        "vbill",
+        "pplus",
+        "pareto_receipt",
         "usd3",
         "weeth",
         "wsteth",
@@ -257,6 +317,26 @@ test("redundant products and execution-only integrations are no longer allowlist
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
             assert.match(result.output, /allowed values/);
+        });
+    }
+});
+
+test("unpriced tokens are rejected even when their addresses are valid", async (t) => {
+    for (const token of [
+        "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568", // uniBTC
+        "0xdc035d45d973e3ec169d2276ddab16f1e407384f", // USDS
+        "0x58d97b57bb95320f9a05dc918aef65434969c2b2", // MORPHO
+        "0xd9fcd98c322942075a5c3860693e9f4f03aae07b", // EUL
+    ]) {
+        await t.test(token, async (context) => {
+            const f = await fixture(context);
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol: "tokens", ids: [token] }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
         });
     }
 });
@@ -290,9 +370,9 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
         ["vault cannot use a market ID", info({ protocol: "morpho_vaultv2", ids: [marketId] })],
         ["pool cannot use a market ID", info({ protocol: "aave_v3", ids: [marketId] })],
         ["Blue requires a market ID", info({ protocol: "morpho_blue", ids: [vault] })],
-        ["Midnight requires a market ID", info({ protocol: "morpho_midnight", ids: [vault] })],
         ["named product has no targets", info({ protocol: "mglobal", ids: [vault] })],
-        ["discovered integration has no targets", info({ protocol: "derive_v3", ids: [vault] })],
+        ["3F discovers requests without supplied IDs", info({ protocol: "three_f", ids: [vault] })],
+        ["Ember uses the canonical PPLUS binding", info({ protocol: "ember", ids: [vault] })],
         ["unlisted token contract", info({ protocol: "tokens", ids: [vault] })],
         ["token symbol is not an ID", info({ protocol: "tokens", ids: ["usdc"] })],
         ["token cannot use a market ID", info({ protocol: "tokens", ids: [marketId] })],

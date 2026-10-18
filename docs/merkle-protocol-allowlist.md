@@ -1,91 +1,98 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 59 portfolio metadata names: nine protocol integrations, the special `tokens` entry, and 49 named products. Each metadata entry is `{protocol, ids}`. `requiresIds` determines whether `ids` must contain at least one identifier or must be empty; `idType` selects `address` (20 bytes), `bytes32` (32 bytes), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 56 metadata names: five integrations requiring target IDs, two integrations with fixed bindings, the `tokens` entry, and 48 named RWA products. Each entry is `{protocol, ids}`. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), or `none`.
 
-The validator imports both this config and [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json) into its bundle. The inventory covers current and planned portfolio integrations found in contract helpers, Curator branches, redemption contracts, and NAV catalogs. Admission does not establish deployment, issuer enrollment, execution permissions, available liquidity, or complete NAV coverage.
+This inventory is synchronized with the merged Merkle adapter NAV runtime at [`3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81`](https://github.com/symbioticfi/merkle-adapter-nav/commit/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81), reviewed on 19 October 2026. Sources:
 
-## Protocols requiring IDs
+- [Registered runtime readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/usecase/valuation/live.go).
+- [Wallet token/pricing catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/prices/catalog.go).
+- [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/rwa/catalog.go).
+- [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/docs/supported-assets.md).
 
-| Metadata name     | `idType`  | What to put in `ids`                                                      | Source boundary                                                                                   |
-| ----------------- | --------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `aave_v3`         | `address` | Pool contracts                                                            | Curator supply/borrow permissions; liquidity and health helpers                                   |
-| `aave_v4`         | `address` | Spoke contracts                                                           | Contract liquidity helper and NAV reader; no served Curator V4 compiler in the researched catalog |
-| `erc4626`         | `address` | Vault contracts                                                           | Generic Curator vault permission, including vaults without a dedicated metadata name              |
-| `euler`           | `address` | Collateral and debt EVaults used by the strategy                          | Curator vault/borrowing permissions and health helper                                             |
-| `morpho_blue`     | `bytes32` | Market IDs                                                                | Curator `morpho_market` permission and health helper                                              |
-| `morpho_midnight` | `bytes32` | Market IDs                                                                | Maturity-aware health helper; no served Curator compiler in the researched catalog                |
-| `morpho_vaultv2`  | `address` | Vault V2 contracts                                                        | Curator ERC-4626 permission, dedicated liquidity helper, and NAV reader                           |
-| `three_f`         | `address` | 3F request contracts identifying the PT/YT positions                      | Curator mint/burn permission; policy and factory bindings remain in execution configuration       |
-| `tokens`          | `address` | Selected common-token contract addresses from the chain's local allowlist | Exact allowlist membership is validated in addition to address format                             |
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The NAV workflow at this revision still reads its own configuration; consuming a metadata commit is separate runtime work.
 
-List every selected portfolio target. For Blue and Midnight, use market IDs rather than the protocol deployment address. Morpho Vault V1 can be described through `erc4626`; it has no dedicated NAV reader in the researched scope. Reserve IDs, recipients, policies, and execution bounds remain in execution configuration.
+## Integrations and target IDs
 
-`derive_v3` requires `ids: []`: the configured Derive deployment discovers individually owned subaccounts and beneficial vault shares. Numeric subaccount/vault API IDs remain in the Derive execution configuration.
+| Metadata name    | `idType`  | `ids` and runtime scope                                                                                                                                                            |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `aave_v3`        | `address` | Pool contracts. Runtime covers the catalogued Ethereum/Core, Ether.fi, Lido and Horizon pools.                                                                                     |
+| `aave_v4`        | `address` | Spoke contracts. Runtime covers twelve catalogued user-position spokes, excluding treasury and tokenization-only spokes.                                                           |
+| `euler`          | `address` | Collateral and debt EVaults used by the strategy. Runtime discovers owned accounts at the pinned block and attests canonical factory membership.                                   |
+| `morpho_blue`    | `bytes32` | Market IDs. Runtime reads the configured universe and validates immutable market parameters against each ID.                                                                       |
+| `morpho_vaultv2` | `address` | Vault V2 contracts. Runtime reads the explicitly configured vault universe; Vault V1 is excluded.                                                                                  |
+| `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied. |
+| `ember`          | `none`    | Empty array. Canonical PPLUS vault `0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe`, including held shares and owner withdrawal requests. `pplus` is not a protocol name.              |
+| `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                      |
 
-## Common tokens
+Target-ID validation checks format, not deployed contract identity or membership in NAV's fixed Aave catalogue. Morpho Blue and V2 universes must also be configured in the NAV workflow. Reserve IDs, recipients, policies and execution bounds belong to execution configuration.
 
-The `tokens` entry declares a nonempty subset of the twelve allowed token addresses. Symbols such as `"usdc"` are not valid IDs. Matching accepts lowercase, checksum, and uppercase hex spelling. Allowlist membership is scoped by the action's `chain-id`; the initial allowlist covers Ethereum mainnet (`1`). A `tokens` entry on another chain is rejected until that chain has an explicit local allowlist.
+Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/ember/ember.go).
 
-| Token   | Ethereum address                             | Address source                                                                                                                                          |
-| ------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| LBTC    | `0x8236a87084f8b84306f72007f36f2618a5634494` | [Lombard contracts](https://docs.lombard.finance/learn/transparency/smart-contracts)                                                                    |
-| WBTC    | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| uniBTC  | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` | [Bedrock contracts](https://docs.bedrock.technology/security/smart-contracts/unibtc)                                                                    |
-| weETH   | `0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee` | [NAV product catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/rwa/catalog.go)   |
-| WETH    | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| wstETH  | `0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0` | [NAV wallet catalog](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/prices/catalog.go) |
-| USDT    | `0xdac17f958d2ee523a2206206994597c13d831ec7` | [Tether contracts](https://tether.to/en/supported-protocols/)                                                                                           |
-| USDS    | `0xdc035d45d973e3ec169d2276ddab16f1e407384f` | [Sky contracts](https://developers.skyeco.com/guides/skylink/usds-ethereum-solana-bridge/)                                                              |
-| USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` | [Circle contracts](https://developers.circle.com/stablecoins/usdc-contract-addresses)                                                                   |
-| tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` | [Treehouse key addresses](https://docs.treehouse.finance/protocol/tasset/key-addresses)                                                                 |
-| SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` | [Solv contract addresses](https://docs.solv.finance/developer-guide/contracts)                                                                          |
-| PAXG    | `0x45804880de22913dafe09f4980848ece6ecbaf78` | [Paxos Gold contracts](https://github.com/paxosglobal/paxos-gold-contract)                                                                              |
+## Wallet tokens
 
-## Named products requiring empty arrays
+`tokens.ids` accepts exactly these 15 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
 
-These names identify canonical products in the researched Ethereum catalog. Their token and issuer bindings do not need to be repeated in each adapter's metadata. Each requires `ids: []`.
+| Token   | Ethereum address                             |
+| ------- | -------------------------------------------- |
+| cbBTC   | `0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf` |
+| DAI     | `0x6b175474e89094c44da98b954eedeac495271d0f` |
+| LBTC    | `0x8236a87084f8b84306f72007f36f2618a5634494` |
+| PAXG    | `0x45804880de22913dafe09f4980848ece6ecbaf78` |
+| PYUSD   | `0x6c3ea9036406852006290770bedfcaba0e23a0e8` |
+| SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` |
+| tBTC    | `0x18084fba666a33d37592fa2633fd49a74dd93a88` |
+| tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` |
+| USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` |
+| USDe    | `0x4c9edd5852cd905f086c759e8383e09bff1e68b3` |
+| USDT    | `0xdac17f958d2ee523a2206206994597c13d831ec7` |
+| WBTC    | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` |
+| weETH   | `0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee` |
+| WETH    | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` |
+| wstETH  | `0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0` |
 
-| Family              | Allowlisted names                                                                                                                                                                                                                                                              |
+weETH and wstETH remain tokens; there are no EtherFi or Lido protocol entries. Aave's Ether.fi and Lido pools remain part of Aave. tETH and weETH use the runtime's reviewed holdings conversion routes.
+
+## RWA products
+
+Each of these 48 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+
+| Family              | Metadata names                                                                                                                                                                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Midas (23)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mevusd`, `mfarm`, `mfone`, `mglobal`, `mhyper`, `mhyperbtc`, `mhypereth`, `mm1usd`, `mmev`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `mevbtc`, `msyrupusd`, `msyrupusdp` |
-| Centrifuge (7)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `decrdx`, `dejaaa`, `dejtrsy`                                                                                                                                                                                                                 |
-| Pareto (1)          | `aa_falconxusdc`                                                                                                                                                                                                                                                               |
-| Hastra / Figure (2) | `prime`, `auto`                                                                                                                                                                                                                                                                |
-| OpenEden (1)        | `hybond`                                                                                                                                                                                                                                                                       |
-| Securitize (5)      | `hinc`, `stac`, `vbill`, `acred`, `buidl`                                                                                                                                                                                                                                      |
-| Makina (1)          | `dusd`                                                                                                                                                                                                                                                                         |
-| Spiko (1)           | `spkcc`                                                                                                                                                                                                                                                                        |
-| Superstate (1)      | `uscc`                                                                                                                                                                                                                                                                         |
-| 3Jane (1)           | `susd3`                                                                                                                                                                                                                                                                        |
-| GAIB (1)            | `said`                                                                                                                                                                                                                                                                         |
-| Noon (1)            | `susn`                                                                                                                                                                                                                                                                         |
-| Theo (1)            | `sthusd`                                                                                                                                                                                                                                                                       |
-| InfiniFi (2)        | `liusd4w`, `liusd13w`                                                                                                                                                                                                                                                          |
-| Backed / DigiFT (1) | `beqty`                                                                                                                                                                                                                                                                        |
+| Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                                                           |
+| Pareto (12)         | `aa_falconxusdc`, `bb_falconxusdc`, `aa_fasanara`, `bb_fasanara`, `aa_bastion`, `bb_bastion`, `aa_adaptivefrontier`, `bb_adaptivefrontier`, `aa_rockawayx`, `bb_rockawayx`, `aa_abraxas`, `bb_abraxas`                                                                         |
+| Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                                                                       |
+| OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                                                              |
+| Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                                                                  |
 
-Names use lowercase contract/catalog symbols. `mfone` corresponds to `mF-ONE`, `mm1usd` to `mM1-USD`, and `aa_falconxusdc` to the adapters/NAV `AA_FalconX` product displayed as `AA_FalconXUSDC` in Curator. Alternate spellings are not aliases in validation.
+`mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. The existing `aa_falconxusdc` spelling is retained for NAV's `AA_FalconX`; `bb_falconxusdc` follows the same convention for `BB_FalconX`. Other Pareto names are the lowercase NAV catalogue symbols.
 
-Portfolio simplification:
+PRIME/AUTO use the Hastra staking snapshot. Independently held wYLDS uses the separate Hastra yield snapshot, so `wylds` has its own entry. Likewise HYBOND/TBILL and sUSN/USN use independent snapshot lenses and product accounting.
 
-- `wylds` is covered by `prime`/`auto`, whose Figure redemption path includes held wYLDS and its requests; it has no separate entry.
-- `usd3` is covered by `susd3`, whose redemption path includes held USD3 and subsequent USDC; it has no separate entry.
-- `weeth` and `wsteth` appear only as addresses under `tokens`.
-- Payout currencies `AID`, `USN`, `thUSD`, and `iUSD`, plus the auxiliary `ParetoReceipt`, remain part of their product accounting rather than separate metadata entries.
-- Centrifuge share classes, Midas products, and InfiniFi lock terms retain separate names because they have separate product/contract bindings. A shared underlying currency or issuer does not make one product encompass another.
-- `liquid_lane_connector`, `liquid_lane_redeem`, `cow_swap`, and `merkl` are execution/reward plumbing rather than separate portfolio entries and are rejected as protocol names.
+The six auxiliary Pareto receipt tokens remain within their respective AA/BB product accounting, covering all 54 active RWA token rows without requiring receipt declarations:
 
-The 49 named products are the original 49 redemption-account products minus `usd3`, `weeth`, and `wsteth`, plus supplementary products `hybond`, `hinc`, and `buidl`.
+| Pareto product   | Receipt token                                |
+| ---------------- | -------------------------------------------- |
+| FalconX          | `0x17e9ab2992dfecbe779a06a92a6cdb9fe6aeeef3` |
+| Fasanara         | `0xc35d078092872ec1f2ae82bcd6f0b6b89f0850de` |
+| Bastion          | `0x06975bb418effb0029fe278a6fa15b92bb97496f` |
+| AdaptiveFrontier | `0xa30be796fb2babf9228359e86a041c14e29f86fc` |
+| RockawayX        | `0x3fc0265e92eeafed0ccd9f8621764ce0981882ce` |
+| Abraxas          | `0xe7e13f902ea13e6eaaa4ed9a2de5898436d12cbf` |
 
-Coverage differs by product. Selected issuer routes appear in Curator; other names come from redemption contracts or NAV catalogs. Securitize redemption discovery/pricing remains unresolved. `beqty` is a planned name: its issuer exit is blocked/unproven in the recorded fork matrix and its NAV lacks approved USD pricing. Allowlist admission does not enable a strategy.
+Abraxas includes deprecated outstanding rights. Metadata admission does not imply the issuer accepts new deposits. Payout currencies and pending mint/redemption rights are handled by the relevant product reader.
 
-No dedicated Pendle, Uniswap, Curve, Balancer, or AMM liquidity-provision route appears in the researched Merkle compiler catalog. Generic `manage()` capability does not establish dedicated integrations for them.
+## Rewards and excluded scope
 
-## Research sources
+Merkl is automatic shared reward accounting, rather than a separate portfolio position declaration. Its reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits tokens supported by the wallet or active RWA valuers; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. USDC rewards remain admitted, including when USDC is the vault denomination. `merkl`, `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names. See [reward scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/docs/reward-coverage.md).
 
-Reviewed on 11 October 2026 using the local sibling repositories. Links pin the source revisions:
+Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V3 are absent from the selected runtime. An internal wrapper conversion routine does not admit arbitrary vaults. Securitize is removed. The 14 deferred RWA tokens in the pinned NAV documentation are also outside the active reader and have no metadata entries here.
 
-- **Adapters, `2b9868f1d06ce61adadc94a489a2938ef3b6f285`:** [automation integration boundaries](https://github.com/symbioticfi/adapters/blob/2b9868f1d06ce61adadc94a489a2938ef3b6f285/docs/MERKLE-AUTOMATION-STRATEGIES.md), [redemption matrix](https://github.com/symbioticfi/adapters/blob/2b9868f1d06ce61adadc94a489a2938ef3b6f285/docs/RECIPE-REDEMPTIONS.md), [redemption-account contracts](https://github.com/symbioticfi/adapters/tree/2b9868f1d06ce61adadc94a489a2938ef3b6f285/src/contracts/ll-adapter/tokens-to-redeem), and [liquidity/health interfaces](https://github.com/symbioticfi/adapters/tree/2b9868f1d06ce61adadc94a489a2938ef3b6f285/src/interfaces/merkle-adapter/automations).
-- **Curator frontend, `NO-TASK-merkle-adapter` at `8846071a67b6bdaeb7e26bb080f0e7dc64fa8890`:** [portfolio/RWA catalog](https://github.com/symbioticfi/curator-frontend/blob/8846071a67b6bdaeb7e26bb080f0e7dc64fa8890/src/shared/api/chain-queries/merkle-portfolio/catalog.ts) and [issuer route names](https://github.com/symbioticfi/curator-frontend/blob/8846071a67b6bdaeb7e26bb080f0e7dc64fa8890/src/shared/lib/merkle-tree/rwaCatalog.ts).
-- **Curator frontend, `NO-TASK-merkle-hybrid-improve` at `e2d98bb2a64fd92ea75f8c1d878ec22c7781d4b5`:** [permission catalog fixture](https://github.com/symbioticfi/curator-frontend/blob/e2d98bb2a64fd92ea75f8c1d878ec22c7781d4b5/src/shared/api/http-queries/merkle-permissions/__fixtures__/catalog.json).
-- **Curator backend, `NO-TASK-merkle-rewrite` at `bc1a9bb6b09b48b165b66b7fbc1f65d3176dc9e4`:** [permission type inventory](https://github.com/symbioticfi/curator-backend/blob/bc1a9bb6b09b48b165b66b7fbc1f65d3176dc9e4/src/domains/merkle/catalog/index.ts), [issuer routes](https://github.com/symbioticfi/curator-backend/blob/bc1a9bb6b09b48b165b66b7fbc1f65d3176dc9e4/src/domains/merkle/catalog/types/rwa-routes.ts), and [Derive target/ID semantics](https://github.com/symbioticfi/curator-backend/blob/bc1a9bb6b09b48b165b66b7fbc1f65d3176dc9e4/src/domains/merkle/catalog/types/derive.ts).
-- **Merkle adapter NAV (`chainlink-nav` checkout), `NO-TASK-derive-v3-nav` at `1ac3d19b6411ea77ab4771069bd1c8184687b1ca`:** [58-token catalog and protocol readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/docs/supported-assets.md), [pinned 49-product redemption manifest](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/internal/client/rwa/testdata/tokens-to-redeem.json), and [Derive discovery](https://github.com/symbioticfi/merkle-adapter-nav/blob/1ac3d19b6411ea77ab4771069bd1c8184687b1ca/docs/derive-v3.md).
+## Corrections from the previous inventory
+
+- Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the eleven missing Pareto AA/BB tranches. All 23 Midas products already matched.
+- Changed `three_f` from required request addresses to empty IDs, matching automatic request discovery.
+- Removed `erc4626`, `morpho_midnight` and `derive_v3`, which lack runtime discovery readers.
+- Removed Securitize's `acred`, `buidl`, `hinc`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.
+- Added wallet tokens cbBTC, DAI, PYUSD, tBTC and USDe; removed uniBTC and USDS, which lack supported runtime pricing.
+- Replaced research across divergent branches and planned integrations with the merged runtime revision above. Format-only target checks and the separate NAV configuration remain explicit boundaries.
