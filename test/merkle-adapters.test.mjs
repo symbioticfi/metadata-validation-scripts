@@ -216,7 +216,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the fifteen NAV wallet token addresses", async (t) => {
+test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
         "cbbtc",
@@ -227,15 +227,17 @@ test("tokens accepts exactly the fifteen NAV wallet token addresses", async (t) 
         "solvbtc",
         "tbtc",
         "teth",
+        "unibtc",
         "usdc",
         "usde",
+        "usds",
         "usdt",
         "wbtc",
         "weeth",
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 15);
+    assert.equal(new Set(tokenIds).size, 17);
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -259,6 +261,8 @@ test("token address matching accepts checksum and uppercase hex spelling", async
                         "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
                         "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
                         "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
+                        "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568",
+                        "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
                     ],
                 },
             ],
@@ -323,8 +327,6 @@ test("unsupported products and execution-only integrations are not allowlisted",
 
 test("unpriced tokens are rejected even when their addresses are valid", async (t) => {
     for (const token of [
-        "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568", // uniBTC
-        "0xdc035d45d973e3ec169d2276ddab16f1e407384f", // USDS
         "0x58d97b57bb95320f9a05dc918aef65434969c2b2", // MORPHO
         "0xd9fcd98c322942075a5c3860693e9f4f03aae07b", // EUL
     ]) {

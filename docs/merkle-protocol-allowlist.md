@@ -2,12 +2,12 @@
 
 [`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 56 metadata names: five integrations requiring target IDs, two integrations with fixed bindings, the `tokens` entry, and 48 named RWA products. Each entry is `{protocol, ids}`. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), or `none`.
 
-This inventory is synchronized with the merged Merkle adapter NAV runtime at [`3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81`](https://github.com/symbioticfi/merkle-adapter-nav/commit/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81), reviewed on 19 October 2026. Sources:
+This inventory is synchronized with the Merkle adapter NAV runtime at [`eeeaf0a8295e0c99eee89172d8a1a07f41c49efd`](https://github.com/symbioticfi/merkle-adapter-nav/commit/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd), reviewed on 19 October 2026. This includes the uniBTC/USDS pricing addition on top of merged master. Sources:
 
-- [Registered runtime readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/usecase/valuation/live.go).
-- [Wallet token/pricing catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/prices/catalog.go).
-- [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/rwa/catalog.go).
-- [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/docs/supported-assets.md).
+- [Registered runtime readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/usecase/valuation/live.go).
+- [Wallet token/pricing catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/prices/catalog.go).
+- [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/rwa/catalog.go).
+- [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/supported-assets.md).
 
 Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The NAV workflow at this revision still reads its own configuration; consuming a metadata commit is separate runtime work.
 
@@ -26,11 +26,11 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 
 Target-ID validation checks format, not deployed contract identity or membership in NAV's fixed Aave catalogue. Morpho Blue and V2 universes must also be configured in the NAV workflow. Reserve IDs, recipients, policies and execution bounds belong to execution configuration.
 
-Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/internal/client/ember/ember.go).
+Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/ember/ember.go).
 
 ## Wallet tokens
 
-`tokens.ids` accepts exactly these 15 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
+`tokens.ids` accepts exactly these 17 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
 
 | Token   | Ethereum address                             |
 | ------- | -------------------------------------------- |
@@ -42,13 +42,17 @@ Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-na
 | SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` |
 | tBTC    | `0x18084fba666a33d37592fa2633fd49a74dd93a88` |
 | tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` |
+| uniBTC  | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` |
 | USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` |
 | USDe    | `0x4c9edd5852cd905f086c759e8383e09bff1e68b3` |
+| USDS    | `0xdc035d45d973e3ec169d2276ddab16f1e407384f` |
 | USDT    | `0xdac17f958d2ee523a2206206994597c13d831ec7` |
 | WBTC    | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` |
 | weETH   | `0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee` |
 | WETH    | `0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2` |
 | wstETH  | `0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0` |
+
+uniBTC uses the reviewed Chainlink uniBTC/BTC exchange rate multiplied by BTC/USD. USDS uses the reviewed Chainlink USDS/USD feed. These follow the normal NAV round and freshness checks; neither token relies on assumed parity. Both remain ordinary tokens, including supported Merkl rewards.
 
 weETH and wstETH remain tokens; there are no EtherFi or Lido protocol entries. Aave's Ether.fi and Lido pools remain part of Aave. tETH and weETH use the runtime's reviewed holdings conversion routes.
 
@@ -84,7 +88,7 @@ Abraxas includes deprecated outstanding rights. Metadata admission does not impl
 
 ## Rewards and excluded scope
 
-Merkl is automatic shared reward accounting, rather than a separate portfolio position declaration. Its reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits tokens supported by the wallet or active RWA valuers; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. USDC rewards remain admitted, including when USDC is the vault denomination. `merkl`, `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names. See [reward scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/3c539fc2f5f4b9cd4c9a3c60e230d56d6b147b81/docs/reward-coverage.md).
+Merkl is automatic shared reward accounting, rather than a separate portfolio position declaration. Its reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits tokens supported by the wallet or active RWA valuers; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. USDC rewards remain admitted, including when USDC is the vault denomination. `merkl`, `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names. See [reward scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/reward-coverage.md).
 
 Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V3 are absent from the selected runtime. An internal wrapper conversion routine does not admit arbitrary vaults. Securitize is removed. The 14 deferred RWA tokens in the pinned NAV documentation are also outside the active reader and have no metadata entries here.
 
@@ -94,5 +98,5 @@ Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V
 - Changed `three_f` from required request addresses to empty IDs, matching automatic request discovery.
 - Removed `erc4626`, `morpho_midnight` and `derive_v3`, which lack runtime discovery readers.
 - Removed Securitize's `acred`, `buidl`, `hinc`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.
-- Added wallet tokens cbBTC, DAI, PYUSD, tBTC and USDe; removed uniBTC and USDS, which lack supported runtime pricing.
-- Replaced research across divergent branches and planned integrations with the merged runtime revision above. Format-only target checks and the separate NAV configuration remain explicit boundaries.
+- Added wallet tokens cbBTC, DAI, PYUSD, tBTC and USDe. uniBTC and USDS remain admitted, with explicit NAV price routes added for both.
+- Replaced research across divergent branches and planned integrations with the pinned runtime revision above. Format-only target checks and the separate NAV configuration remain explicit boundaries.
