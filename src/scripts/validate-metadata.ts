@@ -76,7 +76,11 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
             seenProtocols.add(entry.protocol);
 
-            if (["aave_v4", "euler", "morpho_blue", "morpho_vaultv2"].includes(entry.protocol)) {
+            if (
+                ["aave_v4", "ember", "euler", "morpho_blue", "morpho_vaultv2"].includes(
+                    entry.protocol,
+                )
+            ) {
                 const seenIds = new Set<string>();
                 for (const [idIndex, id] of entry.ids.entries()) {
                     const normalized = id.toLowerCase();

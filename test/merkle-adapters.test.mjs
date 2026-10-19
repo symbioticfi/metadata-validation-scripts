@@ -28,7 +28,15 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
-const targetProtocols = ["aave_v3", "aave_v4", "euler", "morpho_blue", "morpho_vaultv2", "tokens"];
+const targetProtocols = [
+    "aave_v3",
+    "aave_v4",
+    "ember",
+    "euler",
+    "morpho_blue",
+    "morpho_vaultv2",
+    "tokens",
+];
 const namedProducts = {
     midas: [
         "carrytradeusdtryleverage",
@@ -182,7 +190,7 @@ test("empty metadata declares no integrations", async (t) => {
 test("bundled allowlist accepts every collected protocol and product", async (t) => {
     assert.deepEqual(
         Object.keys(allowlist).sort(),
-        [...targetProtocols, "three_f", "ember", ...Object.values(namedProducts).flat()].sort(),
+        [...targetProtocols, "three_f", ...Object.values(namedProducts).flat()].sort(),
     );
     assert.deepEqual(
         Object.keys(allowlist)
@@ -844,5 +852,118 @@ test("Aave metadata rejects aliases, omitted or invalid IDs, and subaccounts", a
         const result = await f.run();
         assert.equal(result.code, 1, JSON.stringify(entry) + result.output);
         assert.match(result.output, /info.json.*invalid/);
+    }
+});
+
+test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => {
+    const cases = [
+        {
+            name: "ember_lower",
+            valid: true,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+        },
+        {
+            name: "ember_mixed",
+            valid: true,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}',
+        },
+        {
+            name: "ember_omitted",
+            valid: true,
+            raw: '{"protocols":[]}',
+        },
+        {
+            name: "ember_unknown",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0x1111111111111111111111111111111111111111"]}]}',
+        },
+        {
+            name: "ember_zero",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0x0000000000000000000000000000000000000000"]}]}',
+        },
+        {
+            name: "ember_nonaddress",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["PPLUS"]}]}',
+        },
+        {
+            name: "ember_short",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0x1234"]}]}',
+        },
+        {
+            name: "ember_bytes32",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xabababababababababababababababababababababababababababababababab"]}]}',
+        },
+        {
+            name: "ember_duplicate",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+        },
+        {
+            name: "ember_case_duplicate",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}',
+        },
+        {
+            name: "ember_empty",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":[]}]}',
+        },
+        {
+            name: "ember_null",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":null}]}',
+        },
+        {
+            name: "ember_wrong_type",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}',
+        },
+        {
+            name: "ember_nonstring",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":[1]}]}',
+        },
+        {
+            name: "ember_missing",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember"}]}',
+        },
+        {
+            name: "ember_subaccounts_empty",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[]}]}',
+        },
+        {
+            name: "ember_subaccounts_null",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":null}]}',
+        },
+        {
+            name: "ember_subaccounts_populated",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[0]}]}',
+        },
+        {
+            name: "ember_unknown_field",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"vault":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}',
+        },
+        {
+            name: "ember_duplicate_protocol",
+            valid: false,
+            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]},{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+        },
+    ];
+    for (const row of cases) {
+        await t.test(row.name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, row.raw);
+            const result = await f.run();
+            assert.equal(result.code, row.valid ? 0 : 1, result.output);
+        });
     }
 });

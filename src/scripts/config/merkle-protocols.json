@@ -43,8 +43,9 @@
         "idType": "none"
     },
     "ember": {
-        "requiresIds": false,
-        "idType": "none"
+        "requiresIds": true,
+        "idType": "address",
+        "allowedIds": ["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]
     },
     "aa_abraxas": {
         "requiresIds": false,
