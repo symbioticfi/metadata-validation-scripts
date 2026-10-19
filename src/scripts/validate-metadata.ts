@@ -57,11 +57,46 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
 
-    ajv.validate(schema, metadata);
+    const schemaValid = ajv.validate(schema, metadata);
+    const validationErrors: ErrorObject[] = [...(ajv.errors ?? [])];
 
-    const errors =
-        ajv.errors?.map((error: ErrorObject) => normalizeErrors(error, lineMap)).filter(Boolean) ||
-        [];
+    if (schemaValid && entityType === "merkle-adapters") {
+        const { protocols } = metadata as { protocols: { protocol: string; ids: string[] }[] };
+        const seenProtocols = new Set<string>();
+        for (const [index, entry] of protocols.entries()) {
+            if (seenProtocols.has(entry.protocol)) {
+                validationErrors.push({
+                    keyword: "uniqueProtocol",
+                    instancePath: `/protocols/${index}/protocol`,
+                    schemaPath: "",
+                    params: {},
+                    message: "must not repeat a portfolio protocol",
+                });
+            }
+
+            seenProtocols.add(entry.protocol);
+
+            if (entry.protocol === "euler") {
+                const seenVaults = new Set<string>();
+                for (const [idIndex, id] of entry.ids.entries()) {
+                    const address = id.toLowerCase();
+                    if (seenVaults.has(address)) {
+                        validationErrors.push({
+                            keyword: "uniqueEulerVault",
+                            instancePath: `/protocols/${index}/ids/${idIndex}`,
+                            schemaPath: "",
+                            params: {},
+                            message: "must not repeat an Euler vault address ignoring hex case",
+                        });
+                    }
+
+                    seenVaults.add(address);
+                }
+            }
+        }
+    }
+
+    const errors = validationErrors.map((error) => normalizeErrors(error, lineMap));
 
     if (errors.length) {
         await github.addReview({

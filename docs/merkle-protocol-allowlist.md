@@ -1,6 +1,6 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 56 metadata names: five integrations requiring target IDs, two integrations with fixed bindings, the `tokens` entry, and 48 named RWA products. Each entry is `{protocol, ids}`. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 56 metadata names: five integrations requiring target IDs, two integrations with fixed bindings, the `tokens` entry, and 48 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), or `none`.
 
 This inventory is synchronized with the Merkle adapter NAV runtime at [`eeeaf0a8295e0c99eee89172d8a1a07f41c49efd`](https://github.com/symbioticfi/merkle-adapter-nav/commit/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd), reviewed on 19 October 2026. This includes the uniBTC/USDS pricing addition on top of merged master. Sources:
 
@@ -9,7 +9,7 @@ This inventory is synchronized with the Merkle adapter NAV runtime at [`eeeaf0a8
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The NAV workflow at this revision still reads its own configuration; consuming a metadata commit is separate runtime work.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Euler account scope and offline metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
 
 ## Integrations and target IDs
 
@@ -17,16 +17,51 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `aave_v3`        | `address` | Pool contracts. Runtime covers the catalogued Ethereum/Core, Ether.fi, Lido and Horizon pools.                                                                                     |
 | `aave_v4`        | `address` | Spoke contracts. Runtime covers twelve catalogued user-position spokes, excluding treasury and tokenization-only spokes.                                                           |
-| `euler`          | `address` | Collateral and debt EVaults used by the strategy. Runtime discovers owned accounts at the pinned block and attests canonical factory membership.                                   |
-| `morpho_blue`    | `bytes32` | Market IDs. Runtime reads the configured universe and validates immutable market parameters against each ID.                                                                       |
-| `morpho_vaultv2` | `address` | Vault V2 contracts. Runtime reads the explicitly configured vault universe; Vault V1 is excluded.                                                                                  |
+| `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership. |
+| `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                  |
+| `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                               |
 | `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied. |
 | `ember`          | `none`    | Empty array. Canonical PPLUS vault `0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe`, including held shares and owner withdrawal requests. `pplus` is not a protocol name.              |
 | `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                      |
 
-Target-ID validation checks format, not deployed contract identity or membership in NAV's fixed Aave catalogue. Morpho Blue and V2 universes must also be configured in the NAV workflow. Reserve IDs, recipients, policies and execution bounds belong to execution configuration.
+Target-ID validation checks format, not deployed contract identity or membership in NAV's fixed Aave catalogue. In pending NAV PR 22, Euler and Morpho universes come from the embedded metadata snapshot prepared below. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/ember/ember.go).
+
+## Euler scope and offline NAV preparation
+
+The adapter's `merkle-adapters/<adapter-address>/info.json` declares EVaults and account offsets together:
+
+```json
+{
+    "protocols": [
+        {
+            "protocol": "euler",
+            "ids": ["0x4444444444444444444444444444444444444444"],
+            "subaccounts": [0, 1]
+        }
+    ]
+}
+```
+
+The EVault above is illustrative. `subaccounts` is required only for Euler and is rejected on other entries. Its values are unique integers from 0 through 255. Offset 0 is the exact address returned by the adapter's pinned `account()` read; offset `n` is `address(uint160(account()) ^ uint160(n))`. This is XOR with the owner address, not replacement of its last byte. For example, an account ending in `0x7c` and offset 1 derive an account ending in `0x7d`. The metadata folder identifies the adapter, not this position-owning account. See the [official Euler derivation and ownership documentation](https://docs.euler.finance/build/evc/integration-guide/).
+
+Euler IDs must be nonzero addresses and unique ignoring hex case. Every EVault is paired with every offset, and every pair must be checked for both supply and debt. Their product must be at most 48. Additional recognized enabled collateral also consumes the NAV collector's 48-pair limit; overflow fails the entire run. Both Morpho lists retain their separate limit of 16 IDs.
+
+List the full retained valuation scope, including markets and subaccounts that still hold shares or debt after permissions or strategy configuration change. A current permission list cannot establish that a removed position has settled. Omitting Euler or a Morpho entry explicitly excludes that integration from its configured scope; an empty `protocols` array excludes both. Pending NAV PR 22 uses metadata only for these dynamic market lists: other declarations are validated but do not alter its fixed Aave, wallet or RWA catalogue admission. Metadata validation cannot prove that the declaration is complete for arbitrary assets. NAV still verifies canonical factory membership, EVC ownership and native quantities at its finalized block; an in-scope read or valuation failure fails the run.
+
+Pending NAV PR 22 prepares a trusted operator configuration offline from a local metadata Git repository. From the NAV checkout, use:
+
+```sh
+python3 scripts/prepare_metadata_config.py \
+    --base-config nav/config.json \
+    --metadata-repo /path/to/metadata-mainnet \
+    --metadata-commit <full-40-hex-commit> \
+    --adapter <adapter-address> \
+    --out /path/to/prepared-config.json
+```
+
+Replace the angle-bracket values before running the command. Preparation reads the committed Git object for that adapter's exact `info.json`, rather than uncommitted working files or a mutable `latest/full-info.json` release. It embeds `metadata` with `repository`, `commit`, `adapter`, `chainId` and `protocols`, bound to the configured adapter. NAV uses this embedded Euler and Morpho scope without runtime GitHub or metadata HTTP requests. The pinned commit records provenance; it does not attest onchain amounts or prove inventory completeness. No production adapter dataset is supplied here: a contributor must provide the actual retained scope in the metadata repository.
 
 ## Wallet tokens
 

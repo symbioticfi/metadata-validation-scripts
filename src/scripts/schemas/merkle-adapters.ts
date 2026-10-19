@@ -37,6 +37,10 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                     ? {
                           type: "array",
                           minItems: 1,
+                          ...(protocol === "euler" ? { maxItems: 48 } : {}),
+                          ...(protocol === "morpho_blue" || protocol === "morpho_vaultv2"
+                              ? { maxItems: 16 }
+                              : {}),
                           items:
                               protocol === "tokens"
                                   ? tokenSchema
@@ -45,11 +49,37 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                                         pattern:
                                             rule.idType === "bytes32"
                                                 ? "^0x[a-fA-F0-9]{64}$"
-                                                : "^0x[a-fA-F0-9]{40}$",
+                                                : protocol === "euler"
+                                                  ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
+                                                  : "^0x[a-fA-F0-9]{40}$",
                                     },
                       }
                     : { type: "array", maxItems: 0 },
+                subaccounts: protocol === "euler" ? entry.properties.subaccounts : false,
             },
+            ...(protocol === "euler"
+                ? {
+                      required: ["subaccounts"],
+                      // With N markets, at most floor(48 / N) accounts fit the collector.
+                      allOf: Array.from({ length: 47 }, (_, index) => {
+                          const markets = index + 2;
+
+                          return {
+                              if: {
+                                  properties: { ids: { type: "array", minItems: markets } },
+                              },
+                              then: {
+                                  properties: {
+                                      subaccounts: {
+                                          type: "array",
+                                          maxItems: Math.floor(48 / markets),
+                                      },
+                                  },
+                              },
+                          };
+                      }),
+                  }
+                : {}),
         },
     }));
 

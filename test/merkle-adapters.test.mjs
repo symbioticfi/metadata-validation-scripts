@@ -159,7 +159,7 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
                 { protocol: "morpho_vaultv2", ids: [vault, adapter] },
                 { protocol: "morpho_blue", ids: [marketId] },
                 { protocol: "aave_v3", ids: [vault] },
-                { protocol: "euler", ids: [vault] },
+                { protocol: "euler", ids: [vault], subaccounts: [0, 1] },
                 { protocol: "tokens", ids: [usdc] },
             ],
         }),
@@ -209,6 +209,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
                         : rule.requiresIds
                           ? [rule.idType === "bytes32" ? marketId : vault]
                           : [],
+                ...(protocol === "euler" ? { subaccounts: [0] } : {}),
             })),
         }),
     );
@@ -347,13 +348,173 @@ test("target-based integrations require at least one identifier", async (t) => {
     for (const protocol of targetProtocols) {
         await t.test(protocol, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: [] }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    protocols: [
+                        {
+                            protocol,
+                            ids: [],
+                            ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                        },
+                    ],
+                }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
             assert.match(result.output, /fewer than 1 items/);
         });
     }
+});
+
+test("Euler accepts explicit owner and XOR subaccount offsets through 255", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({ protocols: [{ protocol: "euler", ids: [vault], subaccounts: [0, 255] }] }),
+    );
+    const result = await f.run();
+    assert.equal(result.code, 0, result.output);
+});
+
+test("Euler rejects invalid or missing account scope with inline feedback", async (t) => {
+    const cases = [
+        ["missing", undefined],
+        ["null", null],
+        ["empty", []],
+        ["duplicate", [0, 0]],
+        ["fractional", [0.5]],
+        ["negative", [-1]],
+        ["256", [256]],
+        ["string offset", ["1"]],
+        ["boolean offset", [true]],
+        ["null offset", [null]],
+        ["non-array", 0],
+    ];
+    for (const [name, subaccounts] of cases) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol: "euler", ids: [vault], subaccounts }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("other protocols reject Euler subaccount scope", async (t) => {
+    for (const protocol of ["mglobal", "tokens", "aave_v3", "morpho_blue", "morpho_vaultv2"]) {
+        await t.test(protocol, async (context) => {
+            const f = await fixture(context);
+            const ids =
+                protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc];
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol, ids, subaccounts: [0] }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("Euler rejects zero and case-duplicate vault addresses", async (t) => {
+    for (const [name, ids] of [
+        ["zero", [`0x${"0".repeat(40)}`]],
+        ["case duplicate", [usdc, `0x${usdc.slice(2).toUpperCase()}`]],
+    ]) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol: "euler", ids, subaccounts: [0] }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("Euler bounds the market and subaccount product at 48 pairs", async (t) => {
+    for (const [markets, accounts, code] of [
+        [48, 1, 0],
+        [1, 48, 0],
+        [6, 8, 0],
+        [7, 7, 1],
+    ]) {
+        await t.test(`${markets} markets by ${accounts} subaccounts`, async (context) => {
+            const f = await fixture(context);
+            const ids = Array.from(
+                { length: markets },
+                (_, i) => `0x${(i + 1).toString(16).padStart(40, "0")}`,
+            );
+            const subaccounts = Array.from({ length: accounts }, (_, i) => i);
+            await f.write(
+                metadataPath,
+                JSON.stringify({ protocols: [{ protocol: "euler", ids, subaccounts }] }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, code, result.output);
+            if (code) assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("portfolio protocols cannot be declared twice", async (t) => {
+    for (const protocol of ["euler", "morpho_blue", "morpho_vaultv2", "tokens", "mglobal"]) {
+        await t.test(protocol, async (context) => {
+            const f = await fixture(context);
+            const entry = {
+                protocol,
+                ids: protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc],
+                ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+            };
+            await f.write(metadataPath, JSON.stringify({ protocols: [entry, entry] }));
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("Morpho metadata keeps the 16-market runtime bounds", async (t) => {
+    for (const protocol of ["morpho_blue", "morpho_vaultv2"]) {
+        for (const [count, code] of [
+            [16, 0],
+            [17, 1],
+        ]) {
+            await t.test(`${protocol}: ${count} ids`, async (context) => {
+                const f = await fixture(context);
+                const width = protocol === "morpho_blue" ? 64 : 40;
+                const ids = Array.from(
+                    { length: count },
+                    (_, i) => `0x${(i + 1).toString(16).padStart(width, "0")}`,
+                );
+                await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+                const result = await f.run();
+                assert.equal(result.code, code, result.output);
+                if (code) assert.match(result.output, /Add review/);
+            });
+        }
+    }
+});
+
+test("duplicate protocol errors retain the second protocol value line", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        '{\n  "protocols": [\n    {"protocol": "mglobal", "ids": []},\n    {"protocol": "mglobal", "ids": []}\n  ]\n}\n',
+    );
+    const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
+    assert.equal(result.code, 1, result.output);
+    assert.equal(f.githubCalls.length, 1);
+    assert.equal(f.githubCalls[0].body.comments[0].line, 4);
 });
 
 test("schema rejects malformed metadata with PR feedback", async (t) => {
@@ -591,6 +752,7 @@ test("full-info export preserves integration arrays and omits Merkle logos", asy
             { protocol: "mglobal", ids: [] },
             { protocol: "morpho_vaultv2", ids: [vault] },
             { protocol: "morpho_blue", ids: [marketId] },
+            { protocol: "euler", ids: [vault], subaccounts: [0, 255] },
             { protocol: "tokens", ids: [usdc] },
         ],
     };
