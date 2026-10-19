@@ -9,7 +9,7 @@ This inventory is synchronized with the Merkle adapter NAV runtime at [`eeeaf0a8
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Euler account scope and offline metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Euler account scope and metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
 
 ## Integrations and target IDs
 
@@ -28,7 +28,7 @@ Target-ID validation checks format, not deployed contract identity or membership
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/ember/ember.go).
 
-## Euler scope and offline NAV preparation
+## Euler scope and NAV preparation
 
 The adapter's `merkle-adapters/<adapter-address>/info.json` declares EVaults and account offsets together:
 
@@ -50,18 +50,17 @@ Euler IDs must be nonzero addresses and unique ignoring hex case. Every EVault i
 
 List the full retained valuation scope, including markets and subaccounts that still hold shares or debt after permissions or strategy configuration change. A current permission list cannot establish that a removed position has settled. Omitting Euler or a Morpho entry explicitly excludes that integration from its configured scope; an empty `protocols` array excludes both. Pending NAV PR 22 uses metadata only for these dynamic market lists: other declarations are validated but do not alter its fixed Aave, wallet or RWA catalogue admission. Metadata validation cannot prove that the declaration is complete for arbitrary assets. NAV still verifies canonical factory membership, EVC ownership and native quantities at its finalized block; an in-scope read or valuation failure fails the run.
 
-Pending NAV PR 22 prepares a trusted operator configuration offline from a local metadata Git repository. From the NAV checkout, use:
+Pending NAV PR 22 prepares a trusted operator configuration on the host. Required environment variables select the chain and exact metadata commit. `CHAIN_ID` maps to hardcoded canonical repositories: `1` selects [`symbioticfi/metadata-mainnet`](https://github.com/symbioticfi/metadata-mainnet), and `560048` maps to [`symbioticfi/metadata-hoodi`](https://github.com/symbioticfi/metadata-hoodi). Preparation and runtime currently accept only `CHAIN_ID=1` because the admitted readers are mainnet-only; the Hoodi mapping does not enable that chain. From the NAV checkout, use:
 
 ```sh
-python3 scripts/prepare_metadata_config.py \
+CHAIN_ID=1 METADATA_COMMIT=FULL_40_HEX_SHA \
+    python3 scripts/prepare_metadata_config.py \
     --base-config nav/config.json \
-    --metadata-repo /path/to/metadata-mainnet \
-    --metadata-commit <full-40-hex-commit> \
-    --adapter <adapter-address> \
+    --adapter ADDRESS \
     --out /path/to/prepared-config.json
 ```
 
-Replace the angle-bracket values before running the command. Preparation reads the committed Git object for that adapter's exact `info.json`, rather than uncommitted working files or a mutable `latest/full-info.json` release. It embeds `metadata` with `repository`, `commit`, `adapter`, `chainId` and `protocols`, bound to the configured adapter. NAV uses this embedded Euler and Morpho scope without runtime GitHub or metadata HTTP requests. The pinned commit records provenance; it does not attest onchain amounts or prove inventory completeness. No production adapter dataset is supplied here: a contributor must provide the actual retained scope in the metadata repository.
+Replace `FULL_40_HEX_SHA` with the full 40-hex commit ID and `ADDRESS` with the adapter address before running the command. Preparation requires network access: it fetches that exact commit from the selected canonical repository into a temporary host Git store and reads the committed object for the adapter's exact `info.json`. There is no latest fallback. It generates a deterministic configuration containing `metadata` with `repository`, `commit`, `adapter`, `chainId` and `protocols`, bound to the configured adapter. Both native CLI and CRE consume this generated snapshot without runtime GitHub or metadata HTTP requests. The pinned commit records provenance; it does not attest onchain amounts or prove inventory completeness. No production adapter dataset is supplied here: a contributor must provide the actual retained scope in the metadata repository.
 
 ## Wallet tokens
 
