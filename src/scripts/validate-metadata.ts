@@ -76,21 +76,21 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
             seenProtocols.add(entry.protocol);
 
-            if (entry.protocol === "euler") {
-                const seenVaults = new Set<string>();
+            if (["euler", "morpho_blue", "morpho_vaultv2"].includes(entry.protocol)) {
+                const seenIds = new Set<string>();
                 for (const [idIndex, id] of entry.ids.entries()) {
-                    const address = id.toLowerCase();
-                    if (seenVaults.has(address)) {
+                    const normalized = id.toLowerCase();
+                    if (seenIds.has(normalized)) {
                         validationErrors.push({
-                            keyword: "uniqueEulerVault",
+                            keyword: "uniqueMarketId",
                             instancePath: `/protocols/${index}/ids/${idIndex}`,
                             schemaPath: "",
                             params: {},
-                            message: "must not repeat an Euler vault address ignoring hex case",
+                            message: "must not repeat a market identifier ignoring hex case",
                         });
                     }
 
-                    seenVaults.add(address);
+                    seenIds.add(normalized);
                 }
             }
         }

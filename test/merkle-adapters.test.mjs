@@ -505,6 +505,23 @@ test("Morpho metadata keeps the 16-market runtime bounds", async (t) => {
     }
 });
 
+test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
+    for (const [protocol, name, ids] of [
+        ["morpho_blue", "zero", [`0x${"0".repeat(64)}`]],
+        ["morpho_blue", "case duplicate", [marketId, `0x${marketId.slice(2).toUpperCase()}`]],
+        ["morpho_vaultv2", "zero", [`0x${"0".repeat(40)}`]],
+        ["morpho_vaultv2", "case duplicate", [usdc, `0x${usdc.slice(2).toUpperCase()}`]],
+    ]) {
+        await t.test(`${protocol}: ${name}`, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add review/);
+        });
+    }
+});
+
 test("duplicate protocol errors retain the second protocol value line", async (t) => {
     const f = await fixture(t);
     await f.write(

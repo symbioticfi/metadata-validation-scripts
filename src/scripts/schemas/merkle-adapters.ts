@@ -48,8 +48,9 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                                         type: "string",
                                         pattern:
                                             rule.idType === "bytes32"
-                                                ? "^0x[a-fA-F0-9]{64}$"
-                                                : protocol === "euler"
+                                                ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
+                                                : protocol === "euler" ||
+                                                    protocol === "morpho_vaultv2"
                                                   ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
                                                   : "^0x[a-fA-F0-9]{40}$",
                                     },
