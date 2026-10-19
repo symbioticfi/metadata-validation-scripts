@@ -38,22 +38,30 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                           type: "array",
                           minItems: 1,
                           ...(protocol === "euler" ? { maxItems: 48 } : {}),
+                          ...("allowedIds" in rule ? { maxItems: rule.allowedIds.length } : {}),
                           ...(protocol === "morpho_blue" || protocol === "morpho_vaultv2"
                               ? { maxItems: 16 }
                               : {}),
                           items:
                               protocol === "tokens"
                                   ? tokenSchema
-                                  : {
-                                        type: "string",
-                                        pattern:
-                                            rule.idType === "bytes32"
-                                                ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
-                                                : protocol === "euler" ||
-                                                    protocol === "morpho_vaultv2"
-                                                  ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
-                                                  : "^0x[a-fA-F0-9]{40}$",
-                                    },
+                                  : "allowedIds" in rule
+                                    ? rule.idType === "name"
+                                        ? { type: "string", enum: rule.allowedIds }
+                                        : {
+                                              type: "string",
+                                              pattern: `^0x(?:${rule.allowedIds.map((address) => address.slice(2).replace(/[a-f]/g, (character) => `[${character}${character.toUpperCase()}]`)).join("|")})$`,
+                                          }
+                                    : {
+                                          type: "string",
+                                          pattern:
+                                              rule.idType === "bytes32"
+                                                  ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
+                                                  : protocol === "euler" ||
+                                                      protocol === "morpho_vaultv2"
+                                                    ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
+                                                    : "^0x[a-fA-F0-9]{40}$",
+                                      },
                       }
                     : { type: "array", maxItems: 0 },
                 subaccounts: protocol === "euler" ? entry.properties.subaccounts : false,

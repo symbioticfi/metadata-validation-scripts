@@ -158,7 +158,7 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
                 { protocol: "mglobal", ids: [] },
                 { protocol: "morpho_vaultv2", ids: [vault, adapter] },
                 { protocol: "morpho_blue", ids: [marketId] },
-                { protocol: "aave_v3", ids: [vault] },
+                { protocol: "aave_v3", ids: ["core"] },
                 { protocol: "euler", ids: [vault], subaccounts: [0, 1] },
                 { protocol: "tokens", ids: [usdc] },
             ],
@@ -193,7 +193,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     for (const [protocol, rule] of Object.entries(allowlist)) {
         assert.match(protocol, /^[a-z0-9]+(?:_[a-z0-9]+)*$/);
         assert.equal(typeof rule.requiresIds, "boolean");
-        assert.ok(["none", "address", "bytes32"].includes(rule.idType));
+        assert.ok(["none", "address", "bytes32", "name"].includes(rule.idType));
         assert.equal(rule.requiresIds, rule.idType !== "none");
     }
 
@@ -207,7 +207,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
                     protocol === "tokens"
                         ? tokenIds
                         : rule.requiresIds
-                          ? [rule.idType === "bytes32" ? marketId : vault]
+                          ? [rule.allowedIds?.[0] ?? (rule.idType === "bytes32" ? marketId : vault)]
                           : [],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
             })),
@@ -784,4 +784,65 @@ test("full-info export preserves integration arrays and omits Merkle logos", asy
     assert.deepEqual(output["merkle-adapters"][adapter], { info });
     assert.deepEqual(output.adapters[adapter].info, legacyInfo);
     assert.match(output.adapters[adapter].logo, /\/adapters\/0x[0-9a-f]{40}\/logo\.png$/);
+});
+
+const aaveV3Ids = ["core", "etherfi", "lido", "horizon"];
+const aaveV4Ids = [
+    "0x973a023a77420ba610f06b3858ad991df6d85a08",
+    "0x58131e79531cab1d52301228d1f7b842f26b9649",
+    "0xba1b3d55d249692b669a164024a838309b7508af",
+    "0xd8b93635b8c6d0ff98cbe90b5988e3f2d1cd9da1",
+    "0x65407b940966954b23dfa3caa5c0702bb42984dc",
+    "0x7ec68b5695e803e98a21a9a05d744f28b0a7753d",
+    "0x94e7a5dcbe816e498b89ab752661904e2f56c485",
+    "0x956d8e0a89cfa3744428c4641b5a53b56167a7f9",
+    "0xbf10bdfe177de0336afd7fccf80a904e15386219",
+    "0x3131fe68c4722e726fe6b2819ed68e514395b9a4",
+    "0xe1900480ac69f0b296841cd01cc37546d92f35cd",
+    "0x774b9655413c34809c1f1b16b654465a89ebe989",
+];
+
+test("Aave metadata admits only reviewed market names and user-position spokes", async (t) => {
+    const f = await fixture(t);
+    for (const protocols of [
+        [{ protocol: "aave_v3", ids: ["core", "horizon"] }],
+        [{ protocol: "aave_v3", ids: aaveV3Ids }],
+        [{ protocol: "aave_v4", ids: aaveV4Ids }],
+        [{ protocol: "aave_v4", ids: ["0x" + aaveV4Ids[0].slice(2).toUpperCase()] }],
+    ]) {
+        await f.write(metadataPath, JSON.stringify({ protocols }));
+        const result = await f.run();
+        assert.equal(result.code, 0, result.output);
+    }
+    assert.deepEqual(allowlist.aave_v3.allowedIds, aaveV3Ids);
+    assert.deepEqual(allowlist.aave_v4.allowedIds, aaveV4Ids);
+});
+
+test("Aave metadata rejects aliases, omitted or invalid IDs, and subaccounts", async (t) => {
+    const f = await fixture(t);
+    const cases = [
+        { protocol: "aave_v3", ids: [vault] },
+        { protocol: "aave_v3", ids: ["ethereum"] },
+        { protocol: "aave_v3", ids: ["Core"] },
+        { protocol: "aave_v3", ids: ["core", "core"] },
+        { protocol: "aave_v4", ids: [aaveV4Ids[0], "0x" + aaveV4Ids[0].slice(2).toUpperCase()] },
+        { protocol: "aave_v4", ids: [vault] },
+        { protocol: "aave_v4", ids: ["0xB9B0b8616f6Bf6841972a52058132BE08d723155"] },
+        { protocol: "aave_v4", ids: ["0x" + "0".repeat(40)] },
+        // A V3 pool is not a V4 ISpoke user-position deployment.
+        { protocol: "aave_v4", ids: ["0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2"] },
+        ...["aave_v3", "aave_v4"].flatMap((protocol) => [
+            { protocol },
+            { protocol, ids: [] },
+            { protocol, ids: null },
+            { protocol, ids: "core" },
+            { protocol, ids: [protocol === "aave_v3" ? "core" : aaveV4Ids[0]], subaccounts: [0] },
+        ]),
+    ];
+    for (const entry of cases) {
+        await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
+        const result = await f.run();
+        assert.equal(result.code, 1, JSON.stringify(entry) + result.output);
+        assert.match(result.output, /info.json.*invalid/);
+    }
 });
