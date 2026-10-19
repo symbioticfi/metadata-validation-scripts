@@ -163,6 +163,10 @@
         "requiresIds": false,
         "idType": "none"
     },
+    "mglo": {
+        "requiresIds": false,
+        "idType": "none"
+    },
     "mglobal": {
         "requiresIds": false,
         "idType": "none"

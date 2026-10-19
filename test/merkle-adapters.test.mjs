@@ -48,6 +48,7 @@ const namedProducts = {
         "mevusd",
         "mfarm",
         "mfone",
+        "mglo",
         "mglobal",
         "mhyper",
         "mhyperbtc",

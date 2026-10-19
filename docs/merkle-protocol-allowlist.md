@@ -1,13 +1,13 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 56 metadata names: six integrations requiring target IDs, one integration with a fixed binding, the `tokens` entry, and 48 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 57 metadata names: six integrations requiring target IDs, one integration with a fixed binding, the `tokens` entry, and 49 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
 
-The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [`eeeaf0a8295e0c99eee89172d8a1a07f41c49efd`](https://github.com/symbioticfi/merkle-adapter-nav/commit/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd), reviewed on 19 October 2026. This includes the uniBTC/USDS pricing addition on top of merged master. Sources:
+The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [`8d2f071764ff0dcbc83081578aae7eee29a97658`](https://github.com/symbioticfi/merkle-adapter-nav/commit/8d2f071764ff0dcbc83081578aae7eee29a97658), reviewed on 19 October 2026. The mGLO source bindings are pinned to this commit. The ordinary wallet-token inventory also retains the separately reviewed uniBTC/USDS admission. Sources:
 
-- [Registered runtime readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/usecase/valuation/live.go).
-- [Wallet token/pricing catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/prices/catalog.go).
-- [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/rwa/catalog.go).
-- [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/supported-assets.md).
+- [Registered runtime readers](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/usecase/valuation/live.go).
+- [Wallet token/pricing catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/prices/catalog.go).
+- [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/rwa/catalog.go).
+- [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/docs/supported-assets.md).
 
 Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Aave and Ember selection semantics, Euler account scope and metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
 
@@ -26,7 +26,7 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 
 Target-ID validation checks format and any explicit `allowedIds` membership; it does not attest deployed contract identity. In pending NAV PR 22, Aave, Euler, Morpho and Ember scopes come from the embedded metadata snapshot prepared below. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
-Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/internal/client/ember/ember.go).
+Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/ember/ember.go).
 
 ## Euler scope and NAV preparation
 
@@ -92,22 +92,22 @@ weETH and wstETH remain tokens; there are no EtherFi or Lido protocol entries. A
 
 ## RWA products
 
-Each of these 48 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+Each of these 49 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
 
-| Family              | Metadata names                                                                                                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Midas (23)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mevusd`, `mfarm`, `mfone`, `mglobal`, `mhyper`, `mhyperbtc`, `mhypereth`, `mm1usd`, `mmev`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `mevbtc`, `msyrupusd`, `msyrupusdp` |
-| Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                                                           |
-| Pareto (12)         | `aa_falconxusdc`, `bb_falconxusdc`, `aa_fasanara`, `bb_fasanara`, `aa_bastion`, `bb_bastion`, `aa_adaptivefrontier`, `bb_adaptivefrontier`, `aa_rockawayx`, `bb_rockawayx`, `aa_abraxas`, `bb_abraxas`                                                                         |
-| Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                                                                       |
-| OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                                                              |
-| Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                                                                  |
+| Family              | Metadata names                                                                                                                                                                                                                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Midas (24)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mevusd`, `mfarm`, `mfone`, `mglo`, `mglobal`, `mhyper`, `mhyperbtc`, `mhypereth`, `mm1usd`, `mmev`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `mevbtc`, `msyrupusd`, `msyrupusdp` |
+| Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                                                                   |
+| Pareto (12)         | `aa_falconxusdc`, `bb_falconxusdc`, `aa_fasanara`, `bb_fasanara`, `aa_bastion`, `bb_bastion`, `aa_adaptivefrontier`, `bb_adaptivefrontier`, `aa_rockawayx`, `bb_rockawayx`, `aa_abraxas`, `bb_abraxas`                                                                                 |
+| Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                                                                               |
+| OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                                                                      |
+| Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                                                                          |
 
 `mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. The existing `aa_falconxusdc` spelling is retained for NAV's `AA_FalconX`; `bb_falconxusdc` follows the same convention for `BB_FalconX`. Other Pareto names are the lowercase NAV catalogue symbols.
 
 PRIME/AUTO use the Hastra staking snapshot. Independently held wYLDS uses the separate Hastra yield snapshot, so `wylds` has its own entry. Likewise HYBOND/TBILL and sUSN/USN use independent snapshot lenses and product accounting.
 
-The six auxiliary Pareto receipt tokens remain within their respective AA/BB product accounting, covering all 54 active RWA token rows without requiring receipt declarations:
+The six auxiliary Pareto receipt tokens remain within their respective AA/BB product accounting, covering all 55 active RWA token rows without requiring receipt declarations:
 
 | Pareto product   | Receipt token                                |
 | ---------------- | -------------------------------------------- |
@@ -122,7 +122,7 @@ Abraxas includes deprecated outstanding rights. Metadata admission does not impl
 
 ## Rewards and excluded scope
 
-Merkl is automatic shared reward accounting, rather than a separate portfolio position declaration. Its reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits tokens supported by the wallet or active RWA valuers; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. USDC rewards remain admitted, including when USDC is the vault denomination. `merkl`, `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names. See [reward scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/eeeaf0a8295e0c99eee89172d8a1a07f41c49efd/docs/reward-coverage.md).
+Merkl is automatic shared reward accounting, rather than a separate portfolio position declaration. Its reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits tokens supported by the wallet or active RWA valuers; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. USDC rewards remain admitted, including when USDC is the vault denomination. `merkl`, `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names. See [reward scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/docs/reward-coverage.md).
 
 Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V3 are absent from the selected runtime. An internal wrapper conversion routine does not admit arbitrary vaults. Securitize is removed. The 14 deferred RWA tokens in the pinned NAV documentation are also outside the active reader and have no metadata entries here.
 
@@ -140,3 +140,5 @@ Aave V3 and V4 declarations select runtime deployments. Omitting either version 
 ## Ember vault selection
 
 Use `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` to select PPLUS. This singleton admission selects the existing NAV reader; it does not enable generic Ember-vault accounting. Empty, null, omitted, malformed, zero, duplicate or unsupported IDs are rejected. Omit the entire entry for exclusion. Selected held shares, pending withdrawals, fees and required-read failures keep their existing accounting; no blacklist status is acquired.
+
+`mglo` declares Ethereum mGLO (`0x1dd91a111606382b77a917633ed90feaf25e0f76`) as its own Midas product with `ids: []`. It is outside the ordinary wallet-token list. Held mGLO uses raw issuer NAV; standard claims retain the consumer's documented Midas escrow policy. Instant-redemption holdbacks are outside admitted accounting scope.
