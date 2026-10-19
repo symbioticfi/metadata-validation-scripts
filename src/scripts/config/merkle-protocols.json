@@ -1,0 +1,246 @@
+{
+    "tokens": {
+        "requiresIds": true,
+        "idType": "address"
+    },
+    "aave_v3": {
+        "requiresIds": true,
+        "idType": "name",
+        "allowedIds": ["core", "etherfi", "lido", "horizon"]
+    },
+    "aave_v4": {
+        "requiresIds": true,
+        "idType": "address",
+        "allowedIds": [
+            "0x973a023a77420ba610f06b3858ad991df6d85a08",
+            "0x58131e79531cab1d52301228d1f7b842f26b9649",
+            "0xba1b3d55d249692b669a164024a838309b7508af",
+            "0xd8b93635b8c6d0ff98cbe90b5988e3f2d1cd9da1",
+            "0x65407b940966954b23dfa3caa5c0702bb42984dc",
+            "0x7ec68b5695e803e98a21a9a05d744f28b0a7753d",
+            "0x94e7a5dcbe816e498b89ab752661904e2f56c485",
+            "0x956d8e0a89cfa3744428c4641b5a53b56167a7f9",
+            "0xbf10bdfe177de0336afd7fccf80a904e15386219",
+            "0x3131fe68c4722e726fe6b2819ed68e514395b9a4",
+            "0xe1900480ac69f0b296841cd01cc37546d92f35cd",
+            "0x774b9655413c34809c1f1b16b654465a89ebe989"
+        ]
+    },
+    "euler": {
+        "requiresIds": true,
+        "idType": "address"
+    },
+    "morpho_blue": {
+        "requiresIds": true,
+        "idType": "bytes32"
+    },
+    "morpho_vaultv2": {
+        "requiresIds": true,
+        "idType": "address"
+    },
+    "three_f": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "ember": {
+        "requiresIds": true,
+        "idType": "address",
+        "allowedIds": ["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]
+    },
+    "aa_abraxas": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "aa_adaptivefrontier": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "aa_bastion": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "aa_falconxusdc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "aa_fasanara": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "aa_rockawayx": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "acrdx": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "auto": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_abraxas": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_adaptivefrontier": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_bastion": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_falconxusdc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_fasanara": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "bb_rockawayx": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "carrytradeusdtryleverage": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "dejaaa": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "dejtrsy": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "hyb": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "hybond": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "jaaa": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "jtrsy": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mapollo": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mbasis": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mbtc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "medge": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mevbtc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mevusd": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mfarm": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mfone": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mglo": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mglobal": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mhyper": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mhyperbtc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mhypereth": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mm1usd": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mmev": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mre7btc": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mre7yield": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mrox": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "msl": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "msyrupusd": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "msyrupusdp": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "mtbill": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "prime": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "stockmarkettrbasistrade": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "susn": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "tbill": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "usn": {
+        "requiresIds": false,
+        "idType": "none"
+    },
+    "wylds": {
+        "requiresIds": false,
+        "idType": "none"
+    }
+}
