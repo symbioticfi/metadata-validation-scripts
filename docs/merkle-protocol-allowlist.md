@@ -183,3 +183,32 @@ validator configuration and is not an additional field in an adapter's `info.jso
 The synchronous vault extension covers canonical MetaMorpho V1.1 shares, including Grove × Steakhouse USDC High Yield. Grove's current V2 vault uses `morpho_vaultv2`. Its canonical factory binding comes from the [official Morpho SDK registry](https://github.com/morpho-org/sdks/blob/main/packages/morpho-ts/src/addresses.ts); factory membership and `MORPHO()` are checked at the snapshot block. Yearn admission is limited to the Ethereum Katana pre-deposit USDC, USDT and WETH vaults, with exact native asset bindings and `apiVersion() == "3.0.4"`. These are Ethereum vault shares, not claims to positions on the Katana chain. See [Yearn deployment addresses](https://docs.yearn.fi/developers/addresses/v3-contracts) and the [official USDC vault page](https://powerglove.yearn.fi/vaults/1/0xF470EB50B4a60c9b069F7Fd6032532B8F5cC014d).
 
 `upshift_pool` admits only the reviewed native upUSDC loan pool `0x80e1048ede66ec4c364b4f22c8768fc657ff6a42`. It includes current held shares and net claims in the dated withdrawal escrow; it does not admit Upshift's separate multi-asset receipt-vault generations. The native collector scans bounded dates from the pool's on-chain deployment and reconciles all dated global shares with `globalLiabilityShares`, so a changed current withdrawal lag cannot hide older future claims. Missing or out-of-bound inventory fails the run. Other Upshift products need their own reviewed source and complete owner lifecycle.
+
+Flux selects only the canonical mainnet Comptroller
+`0x95af143a021df745bc78e845b54591c53a8b3a51`; NAV enumerates all five reviewed
+markets. Supplied fTokens reconstruct the exact current native exchange rate.
+Nonzero debt with a stale accrual checkpoint fails closed because individual
+borrow principal/index checkpoints have no public getter; this declaration
+does not admit approximate rescaling. ONDO rewards remain outside pricing.
+
+Dolomite selects only Ethereum DolomiteMargin
+`0x003ca23fd5f0ca87d01f6ec6cd14a8ae60c2b97d`. Its required `accountNumbers`
+contains 1–16 unique uint256 decimal strings, including `"0"` when applicable.
+JSON numbers, leading zeros, signs, exponent notation, overflow and duplicate
+numbers are rejected. Every other protocol forbids this field. The reader
+requires all nonzero balance markets in each declared account and bounds the
+complete transcript at 32 markets per account and 64 total pairs. Underlying
+isolation receipts still need an approved independent pricing route.
+
+`accountable` admits at most 16 open-term vault addresses, subsequently
+attested to the two canonical strategy-vault factories by the native reader.
+Fixed-term vaults remain excluded because their owner interest entitlement
+cannot be acquired through the necessary public getters. `cap_minting`
+selects the singleton canonical cUSD address and includes its canonical
+staked token lifecycle. `strata_junior` selects only the reviewed jrUSDe and
+jrNUSD deployments. These declarations never expand generic wallet or
+ERC-4626 price admission.
+
+`frax_usdc_custodian` selects only the reviewed Ethereum frxUSD USDC
+custodian `0x4f95c5ba0c7c69fb2f9340e190ccee890b3bd87c`. It does not admit
+cross-chain bridge or custodian deployments.

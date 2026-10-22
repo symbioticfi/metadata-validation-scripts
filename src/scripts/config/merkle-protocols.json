@@ -354,5 +354,46 @@
     "allowedIds": [
       "0x4e41488c19cd35eb4de3083fc3e204854c75c86a"
     ]
+  },
+  "flux": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0x95af143a021df745bc78e845b54591c53a8b3a51"
+    ]
+  },
+  "dolomite": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0x003ca23fd5f0ca87d01f6ec6cd14a8ae60c2b97d"
+    ]
+  },
+  "cap_minting": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0xcccc62962d17b8914c62d74ffb843d73b2a3cccc"
+    ]
+  },
+  "accountable": {
+    "requiresIds": true,
+    "idType": "address",
+    "maxIds": 16
+  },
+  "strata_junior": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0xc58d044404d8b14e953c115e67823784dea53d8f",
+      "0xfc807058a352b61aeef6a38e2d0fc3990225e772"
+    ]
+  },
+  "frax_usdc_custodian": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0x4f95c5ba0c7c69fb2f9340e190ccee890b3bd87c"
+    ]
   }
 }

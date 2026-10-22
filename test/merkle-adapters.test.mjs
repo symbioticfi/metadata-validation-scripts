@@ -29,6 +29,12 @@ const tokenAllowlist = JSON.parse(
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 const newVenueProtocols = [
+    "frax_usdc_custodian",
+    "flux",
+    "dolomite",
+    "accountable",
+    "cap_minting",
+    "strata_junior",
     "fluid_lending",
     "gearbox_pool",
     "compound_v3",
@@ -236,6 +242,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
                           ? [rule.allowedIds?.[0] ?? (rule.idType === "bytes32" ? marketId : vault)]
                           : [],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
             })),
         }),
     );
@@ -382,6 +389,7 @@ test("target-based integrations require at least one identifier", async (t) => {
                             protocol,
                             ids: [],
                             ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
                         },
                     ],
                 }),
@@ -500,6 +508,7 @@ test("portfolio protocols cannot be declared twice", async (t) => {
                 protocol,
                 ids: protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
             };
             await f.write(metadataPath, JSON.stringify({ protocols: [entry, entry] }));
             const result = await f.run();
@@ -522,7 +531,18 @@ test("Morpho metadata keeps the 16-market runtime bounds", async (t) => {
                     { length: count },
                     (_, i) => `0x${(i + 1).toString(16).padStart(width, "0")}`,
                 );
-                await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+                await f.write(
+                    metadataPath,
+                    JSON.stringify({
+                        protocols: [
+                            {
+                                protocol,
+                                ids,
+                                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                            },
+                        ],
+                    }),
+                );
                 const result = await f.run();
                 assert.equal(result.code, code, result.output);
                 if (code) assert.match(result.output, /Add review/);
@@ -540,7 +560,18 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     ]) {
         await t.test(`${protocol}: ${name}`, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    protocols: [
+                        {
+                            protocol,
+                            ids,
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                        },
+                    ],
+                }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
@@ -996,7 +1027,18 @@ test("venue declarations retain native address scope and bounded inventory", asy
                 { length: rule.maxIds },
                 (_, i) => `0x${(i + 1).toString(16).padStart(40, "0")}`,
             );
-        await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+        await f.write(
+            metadataPath,
+            JSON.stringify({
+                protocols: [
+                    {
+                        protocol,
+                        ids,
+                        ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                    },
+                ],
+            }),
+        );
         const accepted = await f.run();
         assert.equal(accepted.code, 0, `${protocol}: ${accepted.output}`);
         const invalid = [
@@ -1006,7 +1048,18 @@ test("venue declarations retain native address scope and bounded inventory", asy
             [ids[0], "0x" + ids[0].slice(2).toUpperCase()],
         ];
         for (const badIds of invalid) {
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: badIds }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    protocols: [
+                        {
+                            protocol,
+                            ids: badIds,
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                        },
+                    ],
+                }),
+            );
             const rejected = await f.run();
             assert.equal(rejected.code, 1, `${protocol}: ${JSON.stringify(badIds)}`);
         }
@@ -1016,4 +1069,40 @@ test("venue declarations retain native address scope and bounded inventory", asy
         );
         assert.equal((await f.run()).code, 1, `${protocol} must reject Euler subaccounts`);
     }
+});
+
+test("Dolomite preserves exact uint256 account-number scope", async (t) => {
+    const f = await fixture(t);
+    const ids = allowlist.dolomite.allowedIds;
+    const max = (2n ** 256n - 1n).toString();
+    for (const [accountNumbers, expected] of [
+        [["0", "256", max], 0],
+        [undefined, 1],
+        [null, 1],
+        [[], 1],
+        [[0], 1],
+        [["00"], 1],
+        [["-1"], 1],
+        [["1.0"], 1],
+        [["1e0"], 1],
+        [["1", "1"], 1],
+        [[(2n ** 256n).toString()], 1],
+        [Array.from({ length: 17 }, (_, index) => String(index)), 1],
+    ]) {
+        await f.write(
+            metadataPath,
+            JSON.stringify({ protocols: [{ protocol: "dolomite", ids, accountNumbers }] }),
+        );
+        const result = await f.run();
+        assert.equal(result.code, expected, result.output);
+    }
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            protocols: [
+                { protocol: "flux", ids: allowlist.flux.allowedIds, accountNumbers: ["0"] },
+            ],
+        }),
+    );
+    assert.equal((await f.run()).code, 1);
 });
