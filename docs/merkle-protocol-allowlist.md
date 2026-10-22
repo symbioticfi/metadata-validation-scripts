@@ -219,3 +219,9 @@ selects only the reviewed Ethereum rsETH pre-deposit vault
 `0x9694ab1b52e51e56390ec5fd3e6f78daae97c312`, including its complete owner
 withdrawal queue and current parking entitlements. These scopes do not admit
 arbitrary locks, Concrete vaults, or cross-chain destination claims.
+
+`axis_susdx` selects only canonical Ethereum USDx
+`0xa1fa7777974312f7d801a8880714a218f76233f8` and its fixed sUSDx staking
+vault, including the complete native controller aggregate of pending and
+claimable reserved USDx. It does not admit other deployments or establish
+a USDx dollar peg or signed primary-market operator permission.

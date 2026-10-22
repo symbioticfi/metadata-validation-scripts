@@ -409,5 +409,12 @@
     "allowedIds": [
       "0x9694ab1b52e51e56390ec5fd3e6f78daae97c312"
     ]
+  },
+  "axis_susdx": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0xa1fa7777974312f7d801a8880714a218f76233f8"
+    ]
   }
 }

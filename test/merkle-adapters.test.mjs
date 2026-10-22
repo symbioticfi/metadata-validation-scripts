@@ -29,6 +29,7 @@ const tokenAllowlist = JSON.parse(
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
 const newVenueProtocols = [
+    "axis_susdx",
     "neutrl",
     "concrete_movement",
     "frax_usdc_custodian",
