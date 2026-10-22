@@ -4,6 +4,18 @@ import schema from "./merkle-adapters.json";
 
 const entry = schema.properties.protocols.items;
 const tokensByChain: Record<string, Record<string, string>> = tokens;
+// Decimal strings avoid JSON number precision loss for native account IDs.
+const maxUint256 = (2n ** 256n - 1n).toString();
+const boundedDecimal = maxUint256.split("").flatMap((digit, index) => {
+    const minimum = index === 0 ? 1 : 0;
+
+    return Number(digit) > minimum
+        ? [
+              `${maxUint256.slice(0, index)}[${minimum}-${Number(digit) - 1}][0-9]{${maxUint256.length - index - 1}}`,
+          ]
+        : [];
+});
+const uint256Pattern = `^(?:0|[1-9][0-9]{0,76}|${[...boundedDecimal, maxUint256].join("|")})$`;
 
 /** Compile the allowlist into the bundled schema, without runtime config file reads. */
 export default function getMerkleAdapterSchema(chainId?: number) {
@@ -37,11 +49,8 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                     ? {
                           type: "array",
                           minItems: 1,
-                          ...(protocol === "euler" ? { maxItems: 48 } : {}),
+                          ...("maxIds" in rule ? { maxItems: rule.maxIds } : {}),
                           ...("allowedIds" in rule ? { maxItems: rule.allowedIds.length } : {}),
-                          ...(protocol === "morpho_blue" || protocol === "morpho_vaultv2"
-                              ? { maxItems: 16 }
-                              : {}),
                           items:
                               protocol === "tokens"
                                   ? tokenSchema
@@ -57,14 +66,18 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                                           pattern:
                                               rule.idType === "bytes32"
                                                   ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
-                                                  : protocol === "euler" ||
-                                                      protocol === "morpho_vaultv2"
-                                                    ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
-                                                    : "^0x[a-fA-F0-9]{40}$",
+                                                  : "^0x(?!0{40}$)[a-fA-F0-9]{40}$",
                                       },
                       }
                     : { type: "array", maxItems: 0 },
                 subaccounts: protocol === "euler" ? entry.properties.subaccounts : false,
+                accountNumbers:
+                    protocol === "dolomite"
+                        ? {
+                              ...entry.properties.accountNumbers,
+                              items: { type: "string", pattern: uint256Pattern },
+                          }
+                        : false,
             },
             ...(protocol === "euler"
                 ? {
@@ -88,7 +101,9 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                           };
                       }),
                   }
-                : {}),
+                : protocol === "dolomite"
+                  ? { required: ["accountNumbers"] }
+                  : {}),
         },
     }));
 

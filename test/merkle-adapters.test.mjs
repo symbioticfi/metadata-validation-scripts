@@ -28,6 +28,31 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+const newVenueProtocols = [
+    "axis_susdx",
+    "neutrl",
+    "concrete_movement",
+    "frax_usdc_custodian",
+    "flux",
+    "dolomite",
+    "accountable",
+    "cap_minting",
+    "strata_junior",
+    "fluid_lending",
+    "gearbox_pool",
+    "compound_v3",
+    "spark",
+    "maple",
+    "silo",
+    "pendle",
+    "spectra",
+    "symbiotic_vault",
+    "morpho_vaultv1",
+    "yearn_v3",
+    "upshift_pool",
+    "sky_susds",
+    "sky_grove_rewards",
+];
 const targetProtocols = [
     "aave_v3",
     "aave_v4",
@@ -36,7 +61,8 @@ const targetProtocols = [
     "morpho_blue",
     "morpho_vaultv2",
     "tokens",
-];
+    ...newVenueProtocols,
+].sort();
 const namedProducts = {
     midas: [
         "carrytradeusdtryleverage",
@@ -219,6 +245,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
                           ? [rule.allowedIds?.[0] ?? (rule.idType === "bytes32" ? marketId : vault)]
                           : [],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
             })),
         }),
     );
@@ -365,6 +392,7 @@ test("target-based integrations require at least one identifier", async (t) => {
                             protocol,
                             ids: [],
                             ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
                         },
                     ],
                 }),
@@ -483,6 +511,7 @@ test("portfolio protocols cannot be declared twice", async (t) => {
                 protocol,
                 ids: protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
             };
             await f.write(metadataPath, JSON.stringify({ protocols: [entry, entry] }));
             const result = await f.run();
@@ -505,7 +534,18 @@ test("Morpho metadata keeps the 16-market runtime bounds", async (t) => {
                     { length: count },
                     (_, i) => `0x${(i + 1).toString(16).padStart(width, "0")}`,
                 );
-                await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+                await f.write(
+                    metadataPath,
+                    JSON.stringify({
+                        protocols: [
+                            {
+                                protocol,
+                                ids,
+                                ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                            },
+                        ],
+                    }),
+                );
                 const result = await f.run();
                 assert.equal(result.code, code, result.output);
                 if (code) assert.match(result.output, /Add review/);
@@ -523,7 +563,18 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     ]) {
         await t.test(`${protocol}: ${name}`, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    protocols: [
+                        {
+                            protocol,
+                            ids,
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                        },
+                    ],
+                }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
@@ -967,4 +1018,94 @@ test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => 
             assert.equal(result.code, row.valid ? 0 : 1, result.output);
         });
     }
+});
+
+test("venue declarations retain native address scope and bounded inventory", async (t) => {
+    const f = await fixture(t);
+    for (const protocol of newVenueProtocols) {
+        const rule = allowlist[protocol];
+        const ids =
+            rule.allowedIds ??
+            Array.from(
+                { length: rule.maxIds },
+                (_, i) => `0x${(i + 1).toString(16).padStart(40, "0")}`,
+            );
+        await f.write(
+            metadataPath,
+            JSON.stringify({
+                protocols: [
+                    {
+                        protocol,
+                        ids,
+                        ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                    },
+                ],
+            }),
+        );
+        const accepted = await f.run();
+        assert.equal(accepted.code, 0, `${protocol}: ${accepted.output}`);
+        const invalid = [
+            [],
+            ["0x" + "0".repeat(40)],
+            [...ids, "0x9999999999999999999999999999999999999999"],
+            [ids[0], "0x" + ids[0].slice(2).toUpperCase()],
+        ];
+        for (const badIds of invalid) {
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    protocols: [
+                        {
+                            protocol,
+                            ids: badIds,
+                            ...(protocol === "dolomite" ? { accountNumbers: ["0"] } : {}),
+                        },
+                    ],
+                }),
+            );
+            const rejected = await f.run();
+            assert.equal(rejected.code, 1, `${protocol}: ${JSON.stringify(badIds)}`);
+        }
+        await f.write(
+            metadataPath,
+            JSON.stringify({ protocols: [{ protocol, ids, subaccounts: [0] }] }),
+        );
+        assert.equal((await f.run()).code, 1, `${protocol} must reject Euler subaccounts`);
+    }
+});
+
+test("Dolomite preserves exact uint256 account-number scope", async (t) => {
+    const f = await fixture(t);
+    const ids = allowlist.dolomite.allowedIds;
+    const max = (2n ** 256n - 1n).toString();
+    for (const [accountNumbers, expected] of [
+        [["0", "256", max], 0],
+        [undefined, 1],
+        [null, 1],
+        [[], 1],
+        [[0], 1],
+        [["00"], 1],
+        [["-1"], 1],
+        [["1.0"], 1],
+        [["1e0"], 1],
+        [["1", "1"], 1],
+        [[(2n ** 256n).toString()], 1],
+        [Array.from({ length: 17 }, (_, index) => String(index)), 1],
+    ]) {
+        await f.write(
+            metadataPath,
+            JSON.stringify({ protocols: [{ protocol: "dolomite", ids, accountNumbers }] }),
+        );
+        const result = await f.run();
+        assert.equal(result.code, expected, result.output);
+    }
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            protocols: [
+                { protocol: "flux", ids: allowlist.flux.allowedIds, accountNumbers: ["0"] },
+            ],
+        }),
+    );
+    assert.equal((await f.run()).code, 1);
 });

@@ -1,6 +1,6 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 57 metadata names: six integrations requiring target IDs, one integration with a fixed binding, the `tokens` entry, and 49 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains the reviewed portfolio names and their bounded identifier rules. The original 57-name catalogue includes six integrations requiring target IDs, one integration with a fixed binding, the `tokens` entry, and 49 named RWA products; the coordinated venue extension is listed below. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
 
 The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [`8d2f071764ff0dcbc83081578aae7eee29a97658`](https://github.com/symbioticfi/merkle-adapter-nav/commit/8d2f071764ff0dcbc83081578aae7eee29a97658), reviewed on 19 October 2026. The mGLO source bindings are pinned to this commit. The ordinary wallet-token inventory also retains the separately reviewed uniBTC/USDS admission. Sources:
 
@@ -142,3 +142,86 @@ Aave V3 and V4 declarations select runtime deployments. Omitting either version 
 Use `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` to select PPLUS. This singleton admission selects the existing NAV reader; it does not enable generic Ember-vault accounting. Empty, null, omitted, malformed, zero, duplicate or unsupported IDs are rejected. Omit the entire entry for exclusion. Selected held shares, pending withdrawals, fees and required-read failures keep their existing accounting; no blacklist status is acquired.
 
 `mglo` declares Ethereum mGLO (`0x1dd91a111606382b77a917633ed90feaf25e0f76`) as its own Midas product with `ids: []`. It is outside the ordinary wallet-token list. Held mGLO uses raw issuer NAV; standard claims retain the consumer's documented Midas escrow policy. Instant-redemption holdbacks are outside admitted accounting scope.
+
+## Additional Ethereum venue scope
+
+These declarations select the native readers in the companion mainnet-venue integration PR.
+They do not enable arbitrary ERC-4626 admission or prove a position belongs to the account.
+Every selected target still needs the reader's canonical factory, source binding, asset and
+ownership checks at the same block. Keep this action paired with that reader revision.
+
+| Metadata name     | Address selected by `ids`                                                  | Bound |
+| ----------------- | -------------------------------------------------------------------------- | ----- |
+| `fluid_lending`   | Fluid lending fToken                                                       | 16    |
+| `gearbox_pool`    | Gearbox lending pool                                                       | 16    |
+| `compound_v3`     | One of the six reviewed Ethereum Comet proxies                             | 6     |
+| `spark`           | Canonical Ethereum SparkLend pool                                          | 1     |
+| `maple`           | The three canonical Maple Syrup pools in `allowedIds`                      | 3     |
+| `silo` | Reviewed immutable Ethereum Silo V2/V3 vault addresses | 8 |
+| `pendle`          | Pendle market                                                              | 16    |
+| `spectra`         | Spectra pool                                                               | 16    |
+| `symbiotic_vault` | Nested Symbiotic vault                                                     | 16    |
+| `morpho_vaultv1`  | Canonical MetaMorpho V1.1 factory vaults                                   | 16    |
+| `yearn_v3`        | The three reviewed Ethereum Katana Yearn3.0.4 vaults                       | 3     |
+| `upshift_pool`    | Canonical upUSDC native loan pool; full global dated escrow reconciliation | 1     |
+| `sky_susds` | Canonical mainnet sUSDS vault | 1 |
+| `sky_grove_rewards` | Canonical mainnet USDS Grove farm | 1 |
+
+All IDs are unique nonzero addresses, ignoring hex case. An empty ID list is rejected.
+`subaccounts` remains Euler's XOR-offset scope and is forbidden on these entries. In
+particular, a Dolomite account number is not an Euler offset. Metadata cannot make an
+incomplete queued-withdrawal or credit-account inventory complete: the selected native
+reader must enumerate and validate the full admitted scope or fail.
+
+Compound membership is fixed to the USDC, USDS, USDT, WBTC, WETH and wstETH Comets from
+[Compound's Ethereum deployments](https://github.com/compound-finance/comet/tree/main/deployments/mainnet).
+Spark membership is fixed to pool `0xc13e21b648a5ee794902342038ff3adab66be987` from the
+[Spark address book](https://github.com/sparkdotfi/spark-address-registry).
+The shared catalogue's optional `maxIds` field specifies a collector's bound; it is
+validator configuration and is not an additional field in an adapter's `info.json`.
+
+The synchronous vault extension covers canonical MetaMorpho V1.1 shares, including Grove × Steakhouse USDC High Yield. Grove's current V2 vault uses `morpho_vaultv2`. Its canonical factory binding comes from the [official Morpho SDK registry](https://github.com/morpho-org/sdks/blob/main/packages/morpho-ts/src/addresses.ts); factory membership and `MORPHO()` are checked at the snapshot block. Yearn admission is limited to the Ethereum Katana pre-deposit USDC, USDT and WETH vaults, with exact native asset bindings and `apiVersion() == "3.0.4"`. These are Ethereum vault shares, not claims to positions on the Katana chain. See [Yearn deployment addresses](https://docs.yearn.fi/developers/addresses/v3-contracts) and the [official USDC vault page](https://powerglove.yearn.fi/vaults/1/0xF470EB50B4a60c9b069F7Fd6032532B8F5cC014d).
+
+`upshift_pool` admits only the reviewed native upUSDC loan pool `0x80e1048ede66ec4c364b4f22c8768fc657ff6a42`. It includes current held shares and net claims in the dated withdrawal escrow; it does not admit Upshift's separate multi-asset receipt-vault generations. The native collector scans bounded dates from the pool's on-chain deployment and reconciles all dated global shares with `globalLiabilityShares`, so a changed current withdrawal lag cannot hide older future claims. Missing or out-of-bound inventory fails the run. Other Upshift products need their own reviewed source and complete owner lifecycle.
+
+Flux selects only the canonical mainnet Comptroller
+`0x95af143a021df745bc78e845b54591c53a8b3a51`; NAV enumerates all five reviewed
+markets. Supplied fTokens reconstruct the exact current native exchange rate.
+Nonzero debt with a stale accrual checkpoint fails closed because individual
+borrow principal/index checkpoints have no public getter; this declaration
+does not admit approximate rescaling. ONDO rewards remain outside pricing.
+
+Dolomite selects only Ethereum DolomiteMargin
+`0x003ca23fd5f0ca87d01f6ec6cd14a8ae60c2b97d`. Its required `accountNumbers`
+contains 1–16 unique uint256 decimal strings, including `"0"` when applicable.
+JSON numbers, leading zeros, signs, exponent notation, overflow and duplicate
+numbers are rejected. Every other protocol forbids this field. The reader
+requires all nonzero balance markets in each declared account and bounds the
+complete transcript at 32 markets per account and 64 total pairs. Underlying
+isolation receipts still need an approved independent pricing route.
+
+`accountable` admits at most 16 open-term vault addresses, subsequently
+attested to the two canonical strategy-vault factories by the native reader.
+Fixed-term vaults remain excluded because their owner interest entitlement
+cannot be acquired through the necessary public getters. `cap_minting`
+selects the singleton canonical cUSD address and includes its canonical
+staked token lifecycle. `strata_junior` selects only the reviewed jrUSDe and
+jrNUSD deployments. These declarations never expand generic wallet or
+ERC-4626 price admission.
+
+`frax_usdc_custodian` selects only the reviewed Ethereum frxUSD USDC
+custodian `0x4f95c5ba0c7c69fb2f9340e190ccee890b3bd87c`. It does not admit
+cross-chain bridge or custodian deployments.
+
+`neutrl` selects the canonical Ethereum NUSD token and its reviewed sNUSD,
+cooldown and complete bounded router/AssetLock ledgers. `concrete_movement`
+selects only the reviewed Ethereum rsETH pre-deposit vault
+`0x9694ab1b52e51e56390ec5fd3e6f78daae97c312`, including its complete owner
+withdrawal queue and current parking entitlements. These scopes do not admit
+arbitrary locks, Concrete vaults, or cross-chain destination claims.
+
+`axis_susdx` selects only canonical Ethereum USDx
+`0xa1fa7777974312f7d801a8880714a218f76233f8` and its fixed sUSDx staking
+vault, including the complete native controller aggregate of pending and
+claimable reserved USDx. It does not admit other deployments or establish
+a USDx dollar peg or signed primary-market operator permission.
