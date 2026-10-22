@@ -4,6 +4,7 @@ import * as fs from "fs/promises";
 // @ts-expect-error - no types available
 import { parse } from "json-source-map";
 
+import protocolRules from "./config/merkle-protocols.json";
 import * as github from "./github";
 import * as messages from "./messages";
 import { getSchema } from "./schemas";
@@ -76,11 +77,8 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
             seenProtocols.add(entry.protocol);
 
-            if (
-                ["aave_v4", "ember", "euler", "morpho_blue", "morpho_vaultv2"].includes(
-                    entry.protocol,
-                )
-            ) {
+            const rule = protocolRules[entry.protocol as keyof typeof protocolRules];
+            if (rule.idType === "address" || rule.idType === "bytes32") {
                 const seenIds = new Set<string>();
                 for (const [idIndex, id] of entry.ids.entries()) {
                     const normalized = id.toLowerCase();

@@ -37,11 +37,8 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                     ? {
                           type: "array",
                           minItems: 1,
-                          ...(protocol === "euler" ? { maxItems: 48 } : {}),
+                          ...("maxIds" in rule ? { maxItems: rule.maxIds } : {}),
                           ...("allowedIds" in rule ? { maxItems: rule.allowedIds.length } : {}),
-                          ...(protocol === "morpho_blue" || protocol === "morpho_vaultv2"
-                              ? { maxItems: 16 }
-                              : {}),
                           items:
                               protocol === "tokens"
                                   ? tokenSchema
@@ -57,10 +54,7 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                                           pattern:
                                               rule.idType === "bytes32"
                                                   ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
-                                                  : protocol === "euler" ||
-                                                      protocol === "morpho_vaultv2"
-                                                    ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
-                                                    : "^0x[a-fA-F0-9]{40}$",
+                                                  : "^0x(?!0{40}$)[a-fA-F0-9]{40}$",
                                       },
                       }
                     : { type: "array", maxItems: 0 },

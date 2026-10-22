@@ -28,6 +28,22 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+const newVenueProtocols = [
+    "fluid_lending",
+    "gearbox_pool",
+    "compound_v3",
+    "spark",
+    "maple",
+    "silo",
+    "pendle",
+    "spectra",
+    "symbiotic_vault",
+    "morpho_vaultv1",
+    "yearn_v3",
+    "upshift_pool",
+    "sky_susds",
+    "sky_grove_rewards",
+];
 const targetProtocols = [
     "aave_v3",
     "aave_v4",
@@ -36,7 +52,8 @@ const targetProtocols = [
     "morpho_blue",
     "morpho_vaultv2",
     "tokens",
-];
+    ...newVenueProtocols,
+].sort();
 const namedProducts = {
     midas: [
         "carrytradeusdtryleverage",
@@ -966,5 +983,37 @@ test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => 
             const result = await f.run();
             assert.equal(result.code, row.valid ? 0 : 1, result.output);
         });
+    }
+});
+
+test("venue declarations retain native address scope and bounded inventory", async (t) => {
+    const f = await fixture(t);
+    for (const protocol of newVenueProtocols) {
+        const rule = allowlist[protocol];
+        const ids =
+            rule.allowedIds ??
+            Array.from(
+                { length: rule.maxIds },
+                (_, i) => `0x${(i + 1).toString(16).padStart(40, "0")}`,
+            );
+        await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+        const accepted = await f.run();
+        assert.equal(accepted.code, 0, `${protocol}: ${accepted.output}`);
+        const invalid = [
+            [],
+            ["0x" + "0".repeat(40)],
+            [...ids, "0x9999999999999999999999999999999999999999"],
+            [ids[0], "0x" + ids[0].slice(2).toUpperCase()],
+        ];
+        for (const badIds of invalid) {
+            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: badIds }] }));
+            const rejected = await f.run();
+            assert.equal(rejected.code, 1, `${protocol}: ${JSON.stringify(badIds)}`);
+        }
+        await f.write(
+            metadataPath,
+            JSON.stringify({ protocols: [{ protocol, ids, subaccounts: [0] }] }),
+        );
+        assert.equal((await f.run()).code, 1, `${protocol} must reject Euler subaccounts`);
     }
 });
