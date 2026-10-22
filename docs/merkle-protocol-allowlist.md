@@ -212,3 +212,10 @@ ERC-4626 price admission.
 `frax_usdc_custodian` selects only the reviewed Ethereum frxUSD USDC
 custodian `0x4f95c5ba0c7c69fb2f9340e190ccee890b3bd87c`. It does not admit
 cross-chain bridge or custodian deployments.
+
+`neutrl` selects the canonical Ethereum NUSD token and its reviewed sNUSD,
+cooldown and complete bounded router/AssetLock ledgers. `concrete_movement`
+selects only the reviewed Ethereum rsETH pre-deposit vault
+`0x9694ab1b52e51e56390ec5fd3e6f78daae97c312`, including its complete owner
+withdrawal queue and current parking entitlements. These scopes do not admit
+arbitrary locks, Concrete vaults, or cross-chain destination claims.

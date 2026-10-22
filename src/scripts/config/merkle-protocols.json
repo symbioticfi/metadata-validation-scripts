@@ -395,5 +395,19 @@
     "allowedIds": [
       "0x4f95c5ba0c7c69fb2f9340e190ccee890b3bd87c"
     ]
+  },
+  "neutrl": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0xe556aba6fe6036275ec1f87eda296be72c811bce"
+    ]
+  },
+  "concrete_movement": {
+    "requiresIds": true,
+    "idType": "address",
+    "allowedIds": [
+      "0x9694ab1b52e51e56390ec5fd3e6f78daae97c312"
+    ]
   }
 }
