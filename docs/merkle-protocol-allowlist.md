@@ -104,7 +104,7 @@ Each of these 49 names requires `ids: []`: canonical token and issuer contracts 
 | OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                                                                      |
 | Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                                                                          |
 
-`mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. All Pareto IDs are lowercase NAV catalogue symbols.
+`mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. The NAV catalogue uses these same lowercase RWA product IDs directly, without case conversion.
 
 PRIME/AUTO use the Hastra staking snapshot. Independently held wYLDS uses the separate Hastra yield snapshot, so `wylds` has its own entry. Likewise HYBOND/TBILL and sUSN/USN use independent snapshot lenses and product accounting.
 
