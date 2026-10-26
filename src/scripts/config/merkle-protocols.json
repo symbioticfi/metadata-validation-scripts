@@ -42,6 +42,10 @@
         "requiresIds": false,
         "idType": "none"
     },
+    "merkl": {
+        "requiresIds": false,
+        "idType": "none"
+    },
     "ember": {
         "requiresIds": true,
         "idType": "address",

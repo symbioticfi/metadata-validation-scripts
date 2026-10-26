@@ -191,7 +191,7 @@ test("empty metadata declares no integrations", async (t) => {
 test("bundled allowlist accepts every collected protocol and product", async (t) => {
     assert.deepEqual(
         Object.keys(allowlist).sort(),
-        [...targetProtocols, "three_f", ...Object.values(namedProducts).flat()].sort(),
+        [...targetProtocols, "three_f", "merkl", ...Object.values(namedProducts).flat()].sort(),
     );
     assert.deepEqual(
         Object.keys(allowlist)
@@ -320,7 +320,6 @@ test("unsupported products and execution-only integrations are not allowlisted",
         "weeth",
         "wsteth",
         "liquid_lane_connector",
-        "merkl",
         "cow_swap",
         "liquid_lane_redeem",
     ]) {
@@ -349,6 +348,24 @@ test("unpriced tokens are rejected even when their addresses are valid", async (
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
+        });
+    }
+});
+
+test("Merkl rewards require an explicit name-only declaration", async (t) => {
+    for (const [name, entry, valid] of [
+        ["selected", { protocol: "merkl", ids: [] }, true],
+        ["request IDs", { protocol: "merkl", ids: [vault] }, false],
+        ["missing IDs", { protocol: "merkl" }, false],
+    ]) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
+            const result = await f.run();
+            assert.equal(result.code, valid ? 0 : 1, result.output);
+            if (!valid) {
+                assert.match(result.output, /Add review/);
+            }
         });
     }
 });
