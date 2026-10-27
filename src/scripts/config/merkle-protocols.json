@@ -38,7 +38,7 @@
         "requiresIds": true,
         "idType": "address"
     },
-    "erc7540": {
+    "lagoon": {
         "requiresIds": true,
         "idType": "address"
     },

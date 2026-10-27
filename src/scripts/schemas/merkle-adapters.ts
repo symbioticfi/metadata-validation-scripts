@@ -39,7 +39,7 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                           minItems: 1,
                           ...(protocol === "euler" ? { maxItems: 48 } : {}),
                           ...("allowedIds" in rule ? { maxItems: rule.allowedIds.length } : {}),
-                          ...(["morpho_blue", "morpho_vaultv2", "erc7540"].includes(protocol)
+                          ...(["morpho_blue", "morpho_vaultv2", "lagoon"].includes(protocol)
                               ? { maxItems: 16 }
                               : {}),
                           items:
@@ -59,7 +59,7 @@ export default function getMerkleAdapterSchema(chainId?: number) {
                                                   ? "^0x(?!0{64}$)[a-fA-F0-9]{64}$"
                                                   : protocol === "euler" ||
                                                       protocol === "morpho_vaultv2" ||
-                                                      protocol === "erc7540"
+                                                      protocol === "lagoon"
                                                     ? "^0x(?!0{40}$)[a-fA-F0-9]{40}$"
                                                     : "^0x[a-fA-F0-9]{40}$",
                                       },

@@ -77,7 +77,7 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
             seenProtocols.add(entry.protocol);
 
             if (
-                ["aave_v4", "ember", "erc7540", "euler", "morpho_blue", "morpho_vaultv2"].includes(
+                ["aave_v4", "ember", "lagoon", "euler", "morpho_blue", "morpho_vaultv2"].includes(
                     entry.protocol,
                 )
             ) {

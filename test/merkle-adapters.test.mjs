@@ -32,8 +32,8 @@ const targetProtocols = [
     "aave_v3",
     "aave_v4",
     "ember",
-    "erc7540",
     "euler",
+    "lagoon",
     "morpho_blue",
     "morpho_vaultv2",
     "tokens",
@@ -511,7 +511,7 @@ test("portfolio protocols cannot be declared twice", async (t) => {
 });
 
 test("bounded vault metadata keeps the 16-market runtime bounds", async (t) => {
-    for (const protocol of ["morpho_blue", "morpho_vaultv2", "erc7540"]) {
+    for (const protocol of ["morpho_blue", "morpho_vaultv2", "lagoon"]) {
         for (const [count, code] of [
             [16, 0],
             [17, 1],
@@ -538,8 +538,8 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
         ["morpho_blue", "case duplicate", [marketId, `0x${marketId.slice(2).toUpperCase()}`]],
         ["morpho_vaultv2", "zero", [`0x${"0".repeat(40)}`]],
         ["morpho_vaultv2", "case duplicate", [usdc, `0x${usdc.slice(2).toUpperCase()}`]],
-        ["erc7540", "zero", [`0x${"0".repeat(40)}`]],
-        ["erc7540", "case duplicate", [usdc, `0x${usdc.slice(2).toUpperCase()}`]],
+        ["lagoon", "zero", [`0x${"0".repeat(40)}`]],
+        ["lagoon", "case duplicate", [usdc, `0x${usdc.slice(2).toUpperCase()}`]],
     ]) {
         await t.test(`${protocol}: ${name}`, async (context) => {
             const f = await fixture(context);
@@ -551,16 +551,23 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     }
 });
 
-test("ERC7540 accepts explicit reviewed vaults and forbids subaccounts", async (t) => {
+test("Lagoon accepts arbitrary vault addresses and forbids subaccounts and asset overrides", async (t) => {
     const ids = [
         "0x9e0db8f43bb91e2148b0db920e21370525cf3aab",
         "0xa5ae405242f42c47996a0c6857ff10a77f9bdee6",
         "0xcda323c2df692d989b24ba51d0acca924cf9a344",
     ];
     for (const [name, entry, code] of [
-        ["reviewed", { protocol: "erc7540", ids }, 0],
-        ["empty", { protocol: "erc7540", ids: [] }, 1],
-        ["subaccounts", { protocol: "erc7540", ids, subaccounts: [0] }, 1],
+        [
+            "arbitrary vault",
+            { protocol: "lagoon", ids: ["0x1111111111111111111111111111111111111111"] },
+            0,
+        ],
+        ["reviewed", { protocol: "lagoon", ids }, 0],
+        ["standard alias", { protocol: "erc7540", ids }, 1],
+        ["asset override", { protocol: "lagoon", ids, asset: usdc }, 1],
+        ["empty", { protocol: "lagoon", ids: [] }, 1],
+        ["subaccounts", { protocol: "lagoon", ids, subaccounts: [0] }, 1],
     ]) {
         await t.test(name, async (context) => {
             const f = await fixture(context);
