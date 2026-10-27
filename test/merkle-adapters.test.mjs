@@ -872,6 +872,30 @@ test("invalid JSON receives a PR comment", async (t) => {
     assert.match(result.output, /not valid JSON/);
 });
 
+test("duplicate JSON keys receive a PR comment", async (t) => {
+    const cases = [
+        ["root", '{"chains":[],"chains":[{"chainId":1,"protocols":[]}]}'],
+        ["array object", '{"chains":[{"chainId":10,"chainId":1,"protocols":[]}]}'],
+        [
+            "nested",
+            '{"chains":[{"chainId":1,"protocols":[{"protocol":"midas","ids":["mglobal"],"ids":["mfone"]}]}]}',
+        ],
+        ["identical values", '{"chains":[{"chainId":1,"protocols":[],"protocols":[]}]}'],
+        ["escaped key", String.raw`{"chains":[],"cha\u0069ns":[{"chainId":1,"protocols":[]}]}`],
+    ];
+
+    for (const [name, raw] of cases) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, raw);
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, /Add Comment/);
+            assert.match(result.output, /not valid JSON/);
+        });
+    }
+});
+
 test("folders accept only info.json at the adapter address", async (t) => {
     const cases = [
         ["logo", `merkle-adapters/${adapter}/logo.png`],

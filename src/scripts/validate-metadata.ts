@@ -3,6 +3,7 @@ import addFormats from "ajv-formats";
 import * as fs from "fs/promises";
 // @ts-expect-error - no types available
 import { parse } from "json-source-map";
+import { visit } from "jsonc-parser";
 
 import * as github from "./github";
 import * as messages from "./messages";
@@ -41,6 +42,23 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
     let parsed: ReturnType<typeof parse>;
 
     try {
+        const objects: Set<string>[] = [];
+        visit(metadataContent, {
+            onObjectBegin: () => {
+                objects.push(new Set());
+            },
+            onObjectProperty: (key) => {
+                const keys = objects.at(-1)!;
+                if (keys.has(key)) {
+                    throw new SyntaxError(`Duplicate JSON key: ${key}`);
+                }
+
+                keys.add(key);
+            },
+            onObjectEnd: () => {
+                objects.pop();
+            },
+        });
         parsed = parse(metadataContent);
     } catch {
         await github.addComment(messages.invalidInfoJson());

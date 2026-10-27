@@ -92,7 +92,7 @@ The full-info workflow includes these entries under `"merkle-adapters"`, using t
 
 - [`src/scripts/validate-fs.ts`](src/scripts/validate-fs.ts) - File system structure validation
 - [`src/scripts/validate-entity.ts`](src/scripts/validate-entity.ts) - On-chain registry checks
-- [`src/scripts/validate-metadata.ts`](src/scripts/validate-metadata.ts) - JSON schema validation with line-number error reporting
+- [`src/scripts/validate-metadata.ts`](src/scripts/validate-metadata.ts) - Rejects duplicate JSON keys using Microsoft's `jsonc-parser`, then validates the schema with line-number error reporting
 - [`src/scripts/validate-logo.ts`](src/scripts/validate-logo.ts) - Image validation (256x256 PNG, <100KB)
 - [`src/scripts/validate-collateral.ts`](src/scripts/validate-collateral.ts) - Vault collateral token validation
 - [`src/scripts/validate-rewards.ts`](src/scripts/validate-rewards.ts) - Vault rewards contract validation
