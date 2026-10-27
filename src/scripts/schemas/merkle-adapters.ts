@@ -6,6 +6,15 @@ const scope = schema.properties.chains.items;
 const entry = scope.properties.protocols.items;
 const tokensByChain: Record<string, Record<string, string>> = tokens;
 
+function addressPattern(addresses: string[]) {
+    const alternatives = addresses.map((address) =>
+        address
+            .slice(2)
+            .replace(/[a-f]/g, (character) => `[${character}${character.toUpperCase()}]`),
+    );
+    return `^0x(?:${alternatives.join("|")})$`;
+}
+
 /** Compile the allowlist into the bundled schema, without runtime config file reads. */
 export default function getMerkleAdapterSchema() {
     const idRules = Object.entries(protocols).map(([protocol, rule]) => ({
@@ -32,7 +41,7 @@ export default function getMerkleAdapterSchema() {
                                       ? { type: "string", enum: rule.allowedIds }
                                       : {
                                             type: "string",
-                                            pattern: `^0x(?:${rule.allowedIds.map((address) => address.slice(2).replace(/[a-f]/g, (character) => `[${character}${character.toUpperCase()}]`)).join("|")})$`,
+                                            pattern: addressPattern(rule.allowedIds),
                                         }
                                   : {
                                         type: "string",
@@ -122,19 +131,9 @@ export default function getMerkleAdapterSchema() {
                                                         items: chainId
                                                             ? {
                                                                   type: "string",
-                                                                  pattern: `^0x(?:${Object.values(
-                                                                      addresses,
-                                                                  )
-                                                                      .map((address) =>
-                                                                          address
-                                                                              .slice(2)
-                                                                              .replace(
-                                                                                  /[a-f]/g,
-                                                                                  (character) =>
-                                                                                      `[${character}${character.toUpperCase()}]`,
-                                                                              ),
-                                                                      )
-                                                                      .join("|")})$`,
+                                                                  pattern: addressPattern(
+                                                                      Object.values(addresses),
+                                                                  ),
                                                               }
                                                             : false,
                                                     },
