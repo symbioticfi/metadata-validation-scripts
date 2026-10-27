@@ -1,0 +1,556 @@
+{
+    "schemaVersion": 2,
+    "note": "Raw cases validated by the bundled metadata action with configured chain 1 and local mock registry/target RPC replies. Other chains receive schema validation only.",
+    "cases": [
+        {
+            "name": "empty_scope",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]}]}"
+        },
+        {
+            "name": "euler_offsets_0_255",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[0,255]}]}]}"
+        },
+        {
+            "name": "integer_offset_1.0",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[1.0]}]}]}"
+        },
+        {
+            "name": "integer_offset_1e0",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[1e0]}]}]}"
+        },
+        {
+            "name": "fractional_offset",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[0.5]}]}]}"
+        },
+        {
+            "name": "duplicate_after_integer_conversion",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[1,1.0]}]}]}"
+        },
+        {
+            "name": "missing_euler_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"]}]}]}"
+        },
+        {
+            "name": "null_euler_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":null}]}]}"
+        },
+        {
+            "name": "non_euler_null_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"mglobal\",\"ids\":[],\"subaccounts\":null}]}]}"
+        },
+        {
+            "name": "euler_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0x0000000000000000000000000000000000000000\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "euler_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"0xA0B86991C6218B36C1D19D4A2E9EB0CE3606EB48\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "euler_48_pairs",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0x0000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000006\"],\"subaccounts\":[0,1,2,3,4,5,6,7]}]}]}"
+        },
+        {
+            "name": "euler_49_pairs",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0x0000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000006\",\"0x0000000000000000000000000000000000000007\"],\"subaccounts\":[0,1,2,3,4,5,6]}]}]}"
+        },
+        {
+            "name": "morpho_blue_16",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_blue\",\"ids\":[\"0x0000000000000000000000000000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000000000000000000000000000006\",\"0x0000000000000000000000000000000000000000000000000000000000000007\",\"0x0000000000000000000000000000000000000000000000000000000000000008\",\"0x0000000000000000000000000000000000000000000000000000000000000009\",\"0x000000000000000000000000000000000000000000000000000000000000000a\",\"0x000000000000000000000000000000000000000000000000000000000000000b\",\"0x000000000000000000000000000000000000000000000000000000000000000c\",\"0x000000000000000000000000000000000000000000000000000000000000000d\",\"0x000000000000000000000000000000000000000000000000000000000000000e\",\"0x000000000000000000000000000000000000000000000000000000000000000f\",\"0x0000000000000000000000000000000000000000000000000000000000000010\"]}]}]}"
+        },
+        {
+            "name": "morpho_blue_17",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_blue\",\"ids\":[\"0x0000000000000000000000000000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000000000000000000000000000006\",\"0x0000000000000000000000000000000000000000000000000000000000000007\",\"0x0000000000000000000000000000000000000000000000000000000000000008\",\"0x0000000000000000000000000000000000000000000000000000000000000009\",\"0x000000000000000000000000000000000000000000000000000000000000000a\",\"0x000000000000000000000000000000000000000000000000000000000000000b\",\"0x000000000000000000000000000000000000000000000000000000000000000c\",\"0x000000000000000000000000000000000000000000000000000000000000000d\",\"0x000000000000000000000000000000000000000000000000000000000000000e\",\"0x000000000000000000000000000000000000000000000000000000000000000f\",\"0x0000000000000000000000000000000000000000000000000000000000000010\",\"0x0000000000000000000000000000000000000000000000000000000000000011\"]}]}]}"
+        },
+        {
+            "name": "morpho_blue_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_blue\",\"ids\":[\"0x0000000000000000000000000000000000000000000000000000000000000000\"]}]}]}"
+        },
+        {
+            "name": "morpho_blue_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_blue\",\"ids\":[\"0xabababababababababababababababababababababababababababababababab\",\"0xABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB\"]}]}]}"
+        },
+        {
+            "name": "morpho_vaultv2_16",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_vaultv2\",\"ids\":[\"0x0000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000006\",\"0x0000000000000000000000000000000000000007\",\"0x0000000000000000000000000000000000000008\",\"0x0000000000000000000000000000000000000009\",\"0x000000000000000000000000000000000000000a\",\"0x000000000000000000000000000000000000000b\",\"0x000000000000000000000000000000000000000c\",\"0x000000000000000000000000000000000000000d\",\"0x000000000000000000000000000000000000000e\",\"0x000000000000000000000000000000000000000f\",\"0x0000000000000000000000000000000000000010\"]}]}]}"
+        },
+        {
+            "name": "morpho_vaultv2_17",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_vaultv2\",\"ids\":[\"0x0000000000000000000000000000000000000001\",\"0x0000000000000000000000000000000000000002\",\"0x0000000000000000000000000000000000000003\",\"0x0000000000000000000000000000000000000004\",\"0x0000000000000000000000000000000000000005\",\"0x0000000000000000000000000000000000000006\",\"0x0000000000000000000000000000000000000007\",\"0x0000000000000000000000000000000000000008\",\"0x0000000000000000000000000000000000000009\",\"0x000000000000000000000000000000000000000a\",\"0x000000000000000000000000000000000000000b\",\"0x000000000000000000000000000000000000000c\",\"0x000000000000000000000000000000000000000d\",\"0x000000000000000000000000000000000000000e\",\"0x000000000000000000000000000000000000000f\",\"0x0000000000000000000000000000000000000010\",\"0x0000000000000000000000000000000000000011\"]}]}]}"
+        },
+        {
+            "name": "morpho_vaultv2_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_vaultv2\",\"ids\":[\"0x0000000000000000000000000000000000000000\"]}]}]}"
+        },
+        {
+            "name": "morpho_vaultv2_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"morpho_vaultv2\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"0xA0B86991C6218B36C1D19D4A2E9EB0CE3606EB48\"]}]}]}"
+        },
+        {
+            "name": "duplicate_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[0]},{\"protocol\":\"euler\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "unknown_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"unknown_protocol\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "all_17_wallet_tokens",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"tokens\",\"ids\":[\"0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf\",\"0x6b175474e89094c44da98b954eedeac495271d0f\",\"0x8236a87084f8b84306f72007f36f2618a5634494\",\"0x45804880de22913dafe09f4980848ece6ecbaf78\",\"0x6c3ea9036406852006290770bedfcaba0e23a0e8\",\"0x7a56e1c57c7475ccf742a1832b028f0456652f97\",\"0x18084fba666a33d37592fa2633fd49a74dd93a88\",\"0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8\",\"0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568\",\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"0x4c9edd5852cd905f086c759e8383e09bff1e68b3\",\"0xdc035d45d973e3ec169d2276ddab16f1e407384f\",\"0xdac17f958d2ee523a2206206994597c13d831ec7\",\"0x2260fac5e5542a773aa44fbcfedf7c193bc2c599\",\"0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee\",\"0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2\",\"0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_core_horizon",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"core\",\"horizon\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_all_four",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"core\",\"etherfi\",\"lido\",\"horizon\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_all_twelve",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x973a023a77420ba610f06b3858ad991df6d85a08\",\"0x58131e79531cab1d52301228d1f7b842f26b9649\",\"0xba1b3d55d249692b669a164024a838309b7508af\",\"0xd8b93635b8c6d0ff98cbe90b5988e3f2d1cd9da1\",\"0x65407b940966954b23dfa3caa5c0702bb42984dc\",\"0x7ec68b5695e803e98a21a9a05d744f28b0a7753d\",\"0x94e7a5dcbe816e498b89ab752661904e2f56c485\",\"0x956d8e0a89cfa3744428c4641b5a53b56167a7f9\",\"0xbf10bdfe177de0336afd7fccf80a904e15386219\",\"0x3131fe68c4722e726fe6b2819ed68e514395b9a4\",\"0xe1900480ac69f0b296841cd01cc37546d92f35cd\",\"0x774b9655413c34809c1f1b16b654465a89ebe989\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_case_variant",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x973A023A77420BA610F06B3858AD991DF6D85A08\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_pool_address",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_unknown",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"ethereum\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_miscased",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"Core\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"core\",\"core\"]}]}]}"
+        },
+        {
+            "name": "aave_v3_wrong_item",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[1]}]}]}"
+        },
+        {
+            "name": "aave_v4_unknown",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x1111111111111111111111111111111111111111\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x0000000000000000000000000000000000000000\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_treasury",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0xB9B0b8616f6Bf6841972a52058132BE08d723155\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_v3_pool",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x973a023a77420ba610f06b3858ad991df6d85a08\",\"0x973A023A77420BA610F06B3858AD991DF6D85A08\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_wrong_item",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[1]}]}]}"
+        },
+        {
+            "name": "aave_v3_missing_ids",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\"}]}]}"
+        },
+        {
+            "name": "aave_v3_empty",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "aave_v3_null",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":null}]}]}"
+        },
+        {
+            "name": "aave_v3_wrong_type",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":\"core\"}]}]}"
+        },
+        {
+            "name": "aave_v3_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"core\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "aave_v3_duplicate_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v3\",\"ids\":[\"core\"]},{\"protocol\":\"aave_v3\",\"ids\":[\"core\"]}]}]}"
+        },
+        {
+            "name": "aave_v4_missing_ids",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\"}]}]}"
+        },
+        {
+            "name": "aave_v4_empty",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "aave_v4_null",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":null}]}]}"
+        },
+        {
+            "name": "aave_v4_wrong_type",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":\"core\"}]}]}"
+        },
+        {
+            "name": "aave_v4_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x973a023a77420ba610f06b3858ad991df6d85a08\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "aave_v4_duplicate_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"aave_v4\",\"ids\":[\"0x973a023a77420ba610f06b3858ad991df6d85a08\"]},{\"protocol\":\"aave_v4\",\"ids\":[\"0x973a023a77420ba610f06b3858ad991df6d85a08\"]}]}]}"
+        },
+        {
+            "name": "ember_lower",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"]}]}]}"
+        },
+        {
+            "name": "ember_mixed",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe\"]}]}]}"
+        },
+        {
+            "name": "ember_omitted",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]}]}"
+        },
+        {
+            "name": "ember_unknown",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0x1111111111111111111111111111111111111111\"]}]}]}"
+        },
+        {
+            "name": "ember_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0x0000000000000000000000000000000000000000\"]}]}]}"
+        },
+        {
+            "name": "ember_nonaddress",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"PPLUS\"]}]}]}"
+        },
+        {
+            "name": "ember_short",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0x1234\"]}]}]}"
+        },
+        {
+            "name": "ember_bytes32",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xabababababababababababababababababababababababababababababababab\"]}]}]}"
+        },
+        {
+            "name": "ember_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\",\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"]}]}]}"
+        },
+        {
+            "name": "ember_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\",\"0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe\"]}]}]}"
+        },
+        {
+            "name": "ember_empty",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "ember_null",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":null}]}]}"
+        },
+        {
+            "name": "ember_wrong_type",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"}]}]}"
+        },
+        {
+            "name": "ember_nonstring",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[1]}]}]}"
+        },
+        {
+            "name": "ember_missing",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\"}]}]}"
+        },
+        {
+            "name": "ember_subaccounts_empty",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"],\"subaccounts\":[]}]}]}"
+        },
+        {
+            "name": "ember_subaccounts_null",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"],\"subaccounts\":null}]}]}"
+        },
+        {
+            "name": "ember_subaccounts_populated",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "ember_unknown_field",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"],\"vault\":\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"}]}]}"
+        },
+        {
+            "name": "ember_duplicate_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"]},{\"protocol\":\"ember\",\"ids\":[\"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe\"]}]}]}"
+        },
+        {
+            "name": "chain_id_string",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":\"1\",\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_boolean",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":true,\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_null",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":null,\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":0,\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_negative",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":-1,\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_fraction",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1.5,\"protocols\":[]}]}"
+        },
+        {
+            "name": "chain_id_unsafe",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":9007199254740992,\"protocols\":[]}]}"
+        },
+        {
+            "name": "missing_chains",
+            "valid": false,
+            "raw": "{}"
+        },
+        {
+            "name": "old_root_protocols",
+            "valid": false,
+            "raw": "{\"protocols\":[]}"
+        },
+        {
+            "name": "empty_chains",
+            "valid": false,
+            "raw": "{\"chains\":[]}"
+        },
+        {
+            "name": "null_chains",
+            "valid": false,
+            "raw": "{\"chains\":null}"
+        },
+        {
+            "name": "map_chains",
+            "valid": false,
+            "raw": "{\"chains\":{}}"
+        },
+        {
+            "name": "null_scope",
+            "valid": false,
+            "raw": "{\"chains\":[null]}"
+        },
+        {
+            "name": "missing_chain_id",
+            "valid": false,
+            "raw": "{\"chains\":[{\"protocols\":[]}]}"
+        },
+        {
+            "name": "missing_protocols",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1}]}"
+        },
+        {
+            "name": "null_protocols",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":null}]}"
+        },
+        {
+            "name": "map_protocols",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":{}}]}"
+        },
+        {
+            "name": "extra_scope_field",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[],\"extra\":true}]}"
+        },
+        {
+            "name": "extra_root_field",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]}],\"extra\":true}"
+        },
+        {
+            "name": "new_and_old_shape",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]}],\"protocols\":[]}"
+        },
+        {
+            "name": "missing_configured_chain",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":10,\"protocols\":[]}]}"
+        },
+        {
+            "name": "duplicate_active_chain",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":1,\"protocols\":[]}]}"
+        },
+        {
+            "name": "duplicate_inactive_chain",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[]},{\"chainId\":10,\"protocols\":[]}]}"
+        },
+        {
+            "name": "inactive_missing_protocols",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10}]}"
+        },
+        {
+            "name": "inactive_unknown_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"unknown_protocol\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "inactive_duplicate_protocol",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]},{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+        },
+        {
+            "name": "inactive_malformed_id",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0x1234\"]}]}]}"
+        },
+        {
+            "name": "inactive_case_duplicate_id",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"]}]}]}"
+        },
+        {
+            "name": "inactive_wrong_chain_token",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"tokens\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"]}]}]}"
+        },
+        {
+            "name": "tokens_case_duplicate",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"tokens\",\"ids\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"0xA0B86991C6218B36C1D19D4A2E9EB0CE3606EB48\"]}]}]}"
+        },
+        {
+            "name": "mainnet_after_other_chain",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]},{\"chainId\":1,\"protocols\":[]}]}"
+        },
+        {
+            "name": "mainnet_before_other_chain",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+        },
+        {
+            "name": "same_protocol_and_id_on_other_chain",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+        },
+        {
+            "name": "maximum_safe_inactive_chain",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":9007199254740991,\"protocols\":[]}]}"
+        },
+        {
+            "name": "integer_chain_1e0",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1e0,\"protocols\":[]}]}"
+        },
+        {
+            "name": "lagoon_valid",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+        },
+        {
+            "name": "merkl_valid",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"merkl\",\"ids\":[]}]}]}"
+        },
+        {
+            "name": "lagoon_zero",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0x0000000000000000000000000000000000000000\"]}]}]}"
+        },
+        {
+            "name": "lagoon_subaccounts",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"],\"subaccounts\":[0]}]}]}"
+        }
+    ]
+}

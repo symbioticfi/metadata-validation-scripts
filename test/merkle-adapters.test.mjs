@@ -19,7 +19,7 @@ const registry = "0x2222222222222222222222222222222222222222";
 const vault = "0x3333333333333333333333333333333333333333";
 const marketId = `0x${"ab".repeat(32)}`;
 const metadataPath = `merkle-adapters/${adapter}/info.json`;
-const emptyInfo = { protocols: [] };
+const emptyInfo = { chains: [{ chainId: 1, protocols: [] }] };
 const allowlist = JSON.parse(
     await readFile(new URL("../src/scripts/config/merkle-protocols.json", import.meta.url), "utf8"),
 );
@@ -114,7 +114,9 @@ async function fixture(t) {
         calls.push(call);
         response.setHeader("content-type", "application/json");
         const target = call.params?.[0]?.data?.slice(-64)?.replace(/^0+/, "")?.toLowerCase();
-        const valid = !state.invalidTargets.has(`0x${target?.padStart(call.params?.[0]?.data?.startsWith("0x5c60e39a") ? 64 : 40, "0")}`);
+        const valid = !state.invalidTargets.has(
+            `0x${target?.padStart(call.params?.[0]?.data?.startsWith("0x5c60e39a") ? 64 : 40, "0")}`,
+        );
         const market = call.params?.[0]?.data?.startsWith("0x5c60e39a");
         const result = market
             ? `0x${[0, 0, 0, 0, valid ? 1 : 0, 0].map((word) => word.toString(16).padStart(64, "0")).join("")}`
@@ -163,14 +165,19 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     await f.write(
         metadataPath,
         JSON.stringify({
-            protocols: [
-                { protocol: "aa_falconxusdc", ids: [] },
-                { protocol: "mglobal", ids: [] },
-                { protocol: "morpho_vaultv2", ids: [vault, adapter] },
-                { protocol: "morpho_blue", ids: [marketId] },
-                { protocol: "aave_v3", ids: ["core"] },
-                { protocol: "euler", ids: [vault], subaccounts: [0, 1] },
-                { protocol: "tokens", ids: [usdc] },
+            chains: [
+                {
+                    chainId: 1,
+                    protocols: [
+                        { protocol: "aa_falconxusdc", ids: [] },
+                        { protocol: "mglobal", ids: [] },
+                        { protocol: "morpho_vaultv2", ids: [vault, adapter] },
+                        { protocol: "morpho_blue", ids: [marketId] },
+                        { protocol: "aave_v3", ids: ["core"] },
+                        { protocol: "euler", ids: [vault], subaccounts: [0, 1] },
+                        { protocol: "tokens", ids: [usdc] },
+                    ],
+                },
             ],
         }),
     );
@@ -178,7 +185,12 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     assert.equal(result.code, 0, result.output);
     assert.equal(f.calls.length, 5);
     assert.ok(f.calls.every((call) => call.method === "eth_call"));
-    assert.ok(f.calls.some((call) => call.params[0].to === registry && call.params[0].data.endsWith(adapter.slice(2))));
+    assert.ok(
+        f.calls.some(
+            (call) =>
+                call.params[0].to === registry && call.params[0].data.endsWith(adapter.slice(2)),
+        ),
+    );
 });
 
 test("empty metadata declares no integrations", async (t) => {
@@ -198,7 +210,12 @@ test("on-chain protocol identity rejects unrelated targets", async (t) => {
         await t.test(protocol, async (context) => {
             const f = await fixture(context);
             f.state.invalidTargets.add(id.toLowerCase());
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: [id], ...extra }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    chains: [{ chainId: 1, protocols: [{ protocol, ids: [id], ...extra }] }],
+                }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
@@ -228,16 +245,24 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     await f.write(
         metadataPath,
         JSON.stringify({
-            protocols: Object.entries(allowlist).map(([protocol, rule]) => ({
-                protocol,
-                ids:
-                    protocol === "tokens"
-                        ? tokenIds
-                        : rule.requiresIds
-                          ? [rule.allowedIds?.[0] ?? (rule.idType === "bytes32" ? marketId : vault)]
-                          : [],
-                ...(protocol === "euler" ? { subaccounts: [0] } : {}),
-            })),
+            chains: [
+                {
+                    chainId: 1,
+                    protocols: Object.entries(allowlist).map(([protocol, rule]) => ({
+                        protocol,
+                        ids:
+                            protocol === "tokens"
+                                ? tokenIds
+                                : rule.requiresIds
+                                  ? [
+                                        rule.allowedIds?.[0] ??
+                                            (rule.idType === "bytes32" ? marketId : vault),
+                                    ]
+                                  : [],
+                        ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                    })),
+                },
+            ],
         }),
     );
     const result = await f.run();
@@ -269,7 +294,9 @@ test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        JSON.stringify({ protocols: [{ protocol: "tokens", ids: tokenIds }] }),
+        JSON.stringify({
+            chains: [{ chainId: 1, protocols: [{ protocol: "tokens", ids: tokenIds }] }],
+        }),
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
@@ -280,17 +307,22 @@ test("token address matching accepts checksum and uppercase hex spelling", async
     await f.write(
         metadataPath,
         JSON.stringify({
-            protocols: [
+            chains: [
                 {
-                    protocol: "tokens",
-                    ids: [
-                        "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-                        "0x" + tokenAllowlist["1"].weth.slice(2).toUpperCase(),
-                        "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
-                        "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
-                        "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
-                        "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568",
-                        "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
+                    chainId: 1,
+                    protocols: [
+                        {
+                            protocol: "tokens",
+                            ids: [
+                                "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                                "0x" + tokenAllowlist["1"].weth.slice(2).toUpperCase(),
+                                "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
+                                "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
+                                "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
+                                "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568",
+                                "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
+                            ],
+                        },
                     ],
                 },
             ],
@@ -304,12 +336,119 @@ test("token addresses cannot be reused on a chain without a token allowlist", as
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        JSON.stringify({ protocols: [{ protocol: "tokens", ids: tokenIds }] }),
+        JSON.stringify({
+            chains: [{ chainId: 11155111, protocols: [{ protocol: "tokens", ids: tokenIds }] }],
+        }),
     );
     const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /Add review/);
     assert.match(result.output, /info.json.*invalid/);
+});
+
+test("token allowlists follow each scope chain rather than the action chain", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            chains: [
+                { chainId: 1, protocols: [{ protocol: "tokens", ids: tokenIds }] },
+                { chainId: 11155111, protocols: [] },
+            ],
+        }),
+    );
+    const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
+    assert.equal(result.code, 0, result.output);
+    assert.equal(f.calls.length, 1);
+    assert.equal(f.calls[0].params[0].to, registry);
+});
+
+test("only configured-chain targets reach the action RPC", async (t) => {
+    for (const chainId of [1, 11155111]) {
+        await t.test(String(chainId), async (context) => {
+            const f = await fixture(context);
+            f.state.invalidTargets.add(adapter);
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    chains: [
+                        { chainId: 10, protocols: [{ protocol: "lagoon", ids: [adapter] }] },
+                        {
+                            chainId: 1,
+                            protocols: [{ protocol: "lagoon", ids: [vault] }],
+                        },
+                        { chainId: 11155111, protocols: [] },
+                    ],
+                }),
+            );
+            const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": String(chainId) });
+            assert.equal(result.code, 0, result.output);
+            assert.equal(f.calls.length, chainId === 1 ? 2 : 1);
+            assert.ok(
+                f.calls
+                    .filter((call) => call.params[0].to !== registry)
+                    .every((call) => call.params[0].data.endsWith(vault.slice(2))),
+            );
+        });
+    }
+});
+
+test("active non-mainnet protocol targets fail without mainnet RPC reads", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            chains: [{ chainId: 11155111, protocols: [{ protocol: "lagoon", ids: [vault] }] }],
+        }),
+    );
+    const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
+    assert.equal(result.code, 1, result.output);
+    assert.match(result.output, /Cannot verify this protocol target outside Ethereum mainnet/);
+    assert.equal(f.calls.length, 1);
+    assert.equal(f.calls[0].params[0].to, registry);
+});
+
+test("missing configured chain is rejected before target reads", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            chains: [{ chainId: 10, protocols: [{ protocol: "lagoon", ids: [adapter] }] }],
+        }),
+    );
+    const result = await f.run();
+    assert.equal(result.code, 1, result.output);
+    assert.match(result.output, /Must include the configured chain 1/);
+    assert.equal(f.calls.length, 1);
+    assert.equal(f.calls[0].params[0].to, registry);
+});
+
+test("duplicate chain errors retain the second chain ID value line", async (t) => {
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        '{\n  "chains": [\n    {"chainId": 1, "protocols": []},\n    {"chainId": 1, "protocols": []}\n  ]\n}\n',
+    );
+    const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
+    assert.equal(result.code, 1, result.output);
+    assert.equal(f.githubCalls.length, 1);
+    assert.equal(f.githubCalls[0].body.comments[0].line, 4);
+    assert.equal(f.githubCalls[0].body.comments[0].body, "Must not repeat a chain ID");
+});
+
+test("shared raw metadata corpus matches the bundled action", async (t) => {
+    const corpus = JSON.parse(
+        await readFile(new URL("./fixtures/merkle-schema-parity.json", import.meta.url), "utf8"),
+    );
+    for (const row of corpus.cases) {
+        await t.test(row.name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, row.raw);
+            const result = await f.run();
+            assert.equal(result.code, row.valid ? 0 : 1, result.output);
+            if (!row.valid) assert.match(result.output, /info.json.*invalid/);
+        });
+    }
 });
 
 test("unsupported products and execution-only integrations are not allowlisted", async (t) => {
@@ -343,7 +482,10 @@ test("unsupported products and execution-only integrations are not allowlisted",
     ]) {
         await t.test(protocol, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: [] }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({ chains: [{ chainId: 1, protocols: [{ protocol, ids: [] }] }] }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
@@ -361,7 +503,9 @@ test("unpriced tokens are rejected even when their addresses are valid", async (
             const f = await fixture(context);
             await f.write(
                 metadataPath,
-                JSON.stringify({ protocols: [{ protocol: "tokens", ids: [token] }] }),
+                JSON.stringify({
+                    chains: [{ chainId: 1, protocols: [{ protocol: "tokens", ids: [token] }] }],
+                }),
             );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
@@ -378,7 +522,10 @@ test("Merkl rewards require an explicit name-only declaration", async (t) => {
     ]) {
         await t.test(name, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({ chains: [{ chainId: 1, protocols: [entry] }] }),
+            );
             const result = await f.run();
             assert.equal(result.code, valid ? 0 : 1, result.output);
             if (!valid) {
@@ -395,11 +542,16 @@ test("target-based integrations require at least one identifier", async (t) => {
             await f.write(
                 metadataPath,
                 JSON.stringify({
-                    protocols: [
+                    chains: [
                         {
-                            protocol,
-                            ids: [],
-                            ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                            chainId: 1,
+                            protocols: [
+                                {
+                                    protocol,
+                                    ids: [],
+                                    ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                                },
+                            ],
                         },
                     ],
                 }),
@@ -416,7 +568,14 @@ test("Euler accepts explicit owner and XOR subaccount offsets through 255", asyn
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        JSON.stringify({ protocols: [{ protocol: "euler", ids: [vault], subaccounts: [0, 255] }] }),
+        JSON.stringify({
+            chains: [
+                {
+                    chainId: 1,
+                    protocols: [{ protocol: "euler", ids: [vault], subaccounts: [0, 255] }],
+                },
+            ],
+        }),
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
@@ -441,7 +600,14 @@ test("Euler rejects invalid or missing account scope with inline feedback", asyn
             const f = await fixture(context);
             await f.write(
                 metadataPath,
-                JSON.stringify({ protocols: [{ protocol: "euler", ids: [vault], subaccounts }] }),
+                JSON.stringify({
+                    chains: [
+                        {
+                            chainId: 1,
+                            protocols: [{ protocol: "euler", ids: [vault], subaccounts }],
+                        },
+                    ],
+                }),
             );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
@@ -458,7 +624,9 @@ test("other protocols reject Euler subaccount scope", async (t) => {
                 protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc];
             await f.write(
                 metadataPath,
-                JSON.stringify({ protocols: [{ protocol, ids, subaccounts: [0] }] }),
+                JSON.stringify({
+                    chains: [{ chainId: 1, protocols: [{ protocol, ids, subaccounts: [0] }] }],
+                }),
             );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
@@ -476,7 +644,11 @@ test("Euler rejects zero and case-duplicate vault addresses", async (t) => {
             const f = await fixture(context);
             await f.write(
                 metadataPath,
-                JSON.stringify({ protocols: [{ protocol: "euler", ids, subaccounts: [0] }] }),
+                JSON.stringify({
+                    chains: [
+                        { chainId: 1, protocols: [{ protocol: "euler", ids, subaccounts: [0] }] },
+                    ],
+                }),
             );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
@@ -501,7 +673,9 @@ test("Euler bounds the market and subaccount product at 48 pairs", async (t) => 
             const subaccounts = Array.from({ length: accounts }, (_, i) => i);
             await f.write(
                 metadataPath,
-                JSON.stringify({ protocols: [{ protocol: "euler", ids, subaccounts }] }),
+                JSON.stringify({
+                    chains: [{ chainId: 1, protocols: [{ protocol: "euler", ids, subaccounts }] }],
+                }),
             );
             const result = await f.run();
             assert.equal(result.code, code, result.output);
@@ -519,7 +693,10 @@ test("portfolio protocols cannot be declared twice", async (t) => {
                 ids: protocol === "mglobal" ? [] : [protocol === "morpho_blue" ? marketId : usdc],
                 ...(protocol === "euler" ? { subaccounts: [0] } : {}),
             };
-            await f.write(metadataPath, JSON.stringify({ protocols: [entry, entry] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({ chains: [{ chainId: 1, protocols: [entry, entry] }] }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
@@ -540,7 +717,10 @@ test("bounded vault metadata keeps the 16-market runtime bounds", async (t) => {
                     { length: count },
                     (_, i) => `0x${(i + 1).toString(16).padStart(width, "0")}`,
                 );
-                await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+                await f.write(
+                    metadataPath,
+                    JSON.stringify({ chains: [{ chainId: 1, protocols: [{ protocol, ids }] }] }),
+                );
                 const result = await f.run();
                 assert.equal(result.code, code, result.output);
                 if (code) assert.match(result.output, /Add review/);
@@ -560,7 +740,10 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     ]) {
         await t.test(`${protocol}: ${name}`, async (context) => {
             const f = await fixture(context);
-            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids }] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({ chains: [{ chainId: 1, protocols: [{ protocol, ids }] }] }),
+            );
             const result = await f.run();
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, /Add review/);
@@ -589,7 +772,10 @@ test("Lagoon requires a factory vault and forbids subaccounts and asset override
         await t.test(name, async (context) => {
             const f = await fixture(context);
             if (name === "arbitrary vault") f.state.invalidTargets.add(entry.ids[0].toLowerCase());
-            await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
+            await f.write(
+                metadataPath,
+                JSON.stringify({ chains: [{ chainId: 1, protocols: [entry] }] }),
+            );
             const result = await f.run();
             assert.equal(result.code, code, result.output);
         });
@@ -600,7 +786,7 @@ test("duplicate protocol errors retain the second protocol value line", async (t
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        '{\n  "protocols": [\n    {"protocol": "mglobal", "ids": []},\n    {"protocol": "mglobal", "ids": []}\n  ]\n}\n',
+        '{\n  "chains": [{"chainId": 1, "protocols": [\n    {"protocol": "mglobal", "ids": []},\n    {"protocol": "mglobal", "ids": []}\n  ]}]\n}\n',
     );
     const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
     assert.equal(result.code, 1, result.output);
@@ -609,7 +795,7 @@ test("duplicate protocol errors retain the second protocol value line", async (t
 });
 
 test("schema rejects malformed metadata with PR feedback", async (t) => {
-    const info = (entry) => ({ protocols: [entry] });
+    const info = (entry) => ({ chains: [{ chainId: 1, protocols: [entry] }] });
     const cases = [
         ["boolean ids", info({ protocol: "mglobal", ids: true })],
         ["string ids", info({ protocol: "mglobal", ids: vault })],
@@ -637,11 +823,11 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
         ],
         ["duplicate targets", info({ protocol: "morpho_vaultv2", ids: [vault, vault] })],
         ["array root", []],
-        ["missing protocols", {}],
+        ["missing chains", {}],
         ["legacy flat map", { mglobal: [] }],
-        ["extra root field", { protocols: [], extra: [] }],
-        ["protocols must be an array", { protocols: {} }],
-        ["entry must be an object", { protocols: ["mglobal"] }],
+        ["extra scope field", { chains: [{ chainId: 1, protocols: [], extra: [] }] }],
+        ["protocols must be an array", { chains: [{ chainId: 1, protocols: {} }] }],
+        ["entry must be an object", { chains: [{ chainId: 1, protocols: ["mglobal"] }] }],
         ["missing protocol name", info({ ids: [] })],
         ["missing ids", info({ protocol: "mglobal" })],
         ["old addresses field", info({ protocol: "mglobal", addresses: [] })],
@@ -670,7 +856,7 @@ test("invalid protocol names are reported on their value line", async (t) => {
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        '{\n    "protocols": [{\n        "protocol": "Invalid_Name",\n        "ids": []\n    }]\n}\n',
+        '{\n    "chains": [{"chainId": 1, "protocols": [{\n        "protocol": "Invalid_Name",\n        "ids": []\n    }]}]\n}\n',
     );
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
@@ -811,7 +997,9 @@ test("updated Actions SDK sends inline schema feedback through the GitHub API", 
     const f = await fixture(t);
     await f.write(
         metadataPath,
-        JSON.stringify({ protocols: [{ protocol: "mglobal", ids: [vault] }] }),
+        JSON.stringify({
+            chains: [{ chainId: 1, protocols: [{ protocol: "mglobal", ids: [vault] }] }],
+        }),
     );
     const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
     assert.equal(result.code, 1, result.output);
@@ -838,13 +1026,18 @@ test("updated Actions SDK sends registry errors through the GitHub API", async (
 test("full-info export preserves integration arrays and omits Merkle logos", async (t) => {
     const f = await fixture(t);
     const info = {
-        protocols: [
-            { protocol: "aa_falconxusdc", ids: [] },
-            { protocol: "mglobal", ids: [] },
-            { protocol: "morpho_vaultv2", ids: [vault] },
-            { protocol: "morpho_blue", ids: [marketId] },
-            { protocol: "euler", ids: [vault], subaccounts: [0, 255] },
-            { protocol: "tokens", ids: [usdc] },
+        chains: [
+            {
+                chainId: 1,
+                protocols: [
+                    { protocol: "aa_falconxusdc", ids: [] },
+                    { protocol: "mglobal", ids: [] },
+                    { protocol: "morpho_vaultv2", ids: [vault] },
+                    { protocol: "morpho_blue", ids: [marketId] },
+                    { protocol: "euler", ids: [vault], subaccounts: [0, 255] },
+                    { protocol: "tokens", ids: [usdc] },
+                ],
+            },
         ],
     };
     const legacyInfo = { name: "Adapter", description: "Example", links: [] };
@@ -884,7 +1077,7 @@ test("Aave metadata admits only reviewed market names and user-position spokes",
         [{ protocol: "aave_v4", ids: aaveV4Ids }],
         [{ protocol: "aave_v4", ids: ["0x" + aaveV4Ids[0].slice(2).toUpperCase()] }],
     ]) {
-        await f.write(metadataPath, JSON.stringify({ protocols }));
+        await f.write(metadataPath, JSON.stringify({ chains: [{ chainId: 1, protocols }] }));
         const result = await f.run();
         assert.equal(result.code, 0, result.output);
     }
@@ -914,7 +1107,10 @@ test("Aave metadata rejects aliases, omitted or invalid IDs, and subaccounts", a
         ]),
     ];
     for (const entry of cases) {
-        await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
+        await f.write(
+            metadataPath,
+            JSON.stringify({ chains: [{ chainId: 1, protocols: [entry] }] }),
+        );
         const result = await f.run();
         assert.equal(result.code, 1, JSON.stringify(entry) + result.output);
         assert.match(result.output, /info.json.*invalid/);
@@ -926,102 +1122,102 @@ test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => 
         {
             name: "ember_lower",
             valid: true,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}]}',
         },
         {
             name: "ember_mixed",
             valid: true,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}]}',
         },
         {
             name: "ember_omitted",
             valid: true,
-            raw: '{"protocols":[]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[]}]}',
         },
         {
             name: "ember_unknown",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0x1111111111111111111111111111111111111111"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0x1111111111111111111111111111111111111111"]}]}]}',
         },
         {
             name: "ember_zero",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0x0000000000000000000000000000000000000000"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0x0000000000000000000000000000000000000000"]}]}]}',
         },
         {
             name: "ember_nonaddress",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["PPLUS"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["PPLUS"]}]}]}',
         },
         {
             name: "ember_short",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0x1234"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0x1234"]}]}]}',
         },
         {
             name: "ember_bytes32",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xabababababababababababababababababababababababababababababababab"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xabababababababababababababababababababababababababababababababab"]}]}]}',
         },
         {
             name: "ember_duplicate",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}]}',
         },
         {
             name: "ember_case_duplicate",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe","0xbc5d3722376d44f3bC316C6EA61C9Bd553Be8CBe"]}]}]}',
         },
         {
             name: "ember_empty",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":[]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":[]}]}]}',
         },
         {
             name: "ember_null",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":null}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":null}]}]}',
         },
         {
             name: "ember_wrong_type",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}]}',
         },
         {
             name: "ember_nonstring",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":[1]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":[1]}]}]}',
         },
         {
             name: "ember_missing",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember"}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember"}]}]}',
         },
         {
             name: "ember_subaccounts_empty",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[]}]}]}',
         },
         {
             name: "ember_subaccounts_null",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":null}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":null}]}]}',
         },
         {
             name: "ember_subaccounts_populated",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[0]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"subaccounts":[0]}]}]}',
         },
         {
             name: "ember_unknown_field",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"vault":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"],"vault":"0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"}]}]}',
         },
         {
             name: "ember_duplicate_protocol",
             valid: false,
-            raw: '{"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]},{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}',
+            raw: '{"chains":[{"chainId":1,"protocols":[{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]},{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}]}]}',
         },
     ];
     for (const row of cases) {

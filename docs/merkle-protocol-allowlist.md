@@ -1,6 +1,6 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 59 metadata names: seven integrations requiring target IDs, 3F and Merkl, the `tokens` entry, and 49 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 59 metadata names: seven integrations requiring target IDs, 3F and Merkl, the `tokens` entry, and 49 named RWA products. The wire object requires `chains: [{chainId, protocols}]`, with a nonempty chain array, positive safe-integer chain IDs and a required protocols array per scope. Empty protocols arrays are permitted; duplicate chain IDs, extra scope fields and the old top-level protocols shape are rejected. Each protocol entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated within one chain; separate chains may repeat names and IDs. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
 
 The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [`8d2f071764ff0dcbc83081578aae7eee29a97658`](https://github.com/symbioticfi/merkle-adapter-nav/commit/8d2f071764ff0dcbc83081578aae7eee29a97658), reviewed on 19 October 2026. The mGLO source bindings are pinned to this commit. The ordinary wallet-token inventory also retains the separately reviewed uniBTC/USDS admission. Sources:
 
@@ -9,7 +9,7 @@ The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions. Ethereum target declarations are checked against canonical protocol contracts when those contracts expose membership.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions. All scopes receive schema and duplicate validation using their nested chain ID, including chain-specific token membership. The configured action `chain-id` must appear. Only its adapter registry and target declarations are checked through the configured RPC; Ethereum targets use canonical protocol contracts when those contracts expose membership. Other scopes receive no RPC identity attestation. Run the action under each chain configuration for that coverage; mainnet-only target checks reject active non-mainnet Euler, Morpho and Lagoon declarations.
 
 ## Integrations and target IDs
 
@@ -44,11 +44,16 @@ The adapter's `merkle-adapters/<adapter-address>/info.json` declares EVaults and
 
 ```json
 {
-    "protocols": [
+    "chains": [
         {
-            "protocol": "euler",
-            "ids": ["0x4444444444444444444444444444444444444444"],
-            "subaccounts": [0, 1]
+            "chainId": 1,
+            "protocols": [
+                {
+                    "protocol": "euler",
+                    "ids": ["0x4444444444444444444444444444444444444444"],
+                    "subaccounts": [0, 1]
+                }
+            ]
         }
     ]
 }
@@ -70,11 +75,11 @@ CHAIN_ID=1 METADATA_COMMIT=FULL_40_HEX_SHA \
     --out /path/to/prepared-config.json
 ```
 
-Replace `FULL_40_HEX_SHA` with the full 40-hex commit ID and `ADDRESS` with the adapter address before running the command. Preparation requires network access: it fetches that exact commit from the selected canonical repository into a temporary host Git store and reads the committed object for the adapter's exact `info.json`. There is no latest fallback. It generates a deterministic configuration containing `metadata` with `repository`, `commit`, `adapter`, `chainId` and `protocols`, bound to the configured adapter. Both native CLI and CRE consume this generated snapshot without runtime GitHub or metadata HTTP requests. The pinned commit records provenance; it does not attest onchain amounts or prove inventory completeness. No production adapter dataset is supplied here: a contributor must provide the actual retained scope in the metadata repository.
+Replace `FULL_40_HEX_SHA` with the full 40-hex commit ID and `ADDRESS` with the adapter address before running the command. Preparation requires network access: it fetches that exact commit from the selected canonical repository into a temporary host Git store and reads the committed object for the adapter's exact `info.json`. There is no latest fallback. It generates a deterministic configuration containing `metadata` with `repository`, `commit`, `adapter`, `chainId` and selected `protocols`, bound to the configured adapter. It selects the exact chain scope from the wire `chains` array; other chain declarations do not become runtime inventory. Both native CLI and CRE consume this generated snapshot without runtime GitHub or metadata HTTP requests. The pinned commit records provenance; it does not attest onchain amounts or prove inventory completeness. No production adapter dataset is supplied here: a contributor must provide the actual retained scope in the metadata repository.
 
 ## Wallet tokens
 
-`tokens.ids` accepts exactly these 17 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
+`tokens.ids` accepts exactly these 17 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Membership uses each enclosing scope's `chainId`, independently of the action chain. Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
 
 | Token   | Ethereum address                             |
 | ------- | -------------------------------------------- |

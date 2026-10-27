@@ -1,40 +1,56 @@
 {
     "type": "object",
-    "description": "Protocols and RWAs with optional vault, pool, or market identifiers.",
+    "description": "Chain-scoped protocols and RWAs with optional vault, pool, or market identifiers.",
     "properties": {
-        "protocols": {
+        "chains": {
             "type": "array",
+            "minItems": 1,
             "items": {
                 "type": "object",
                 "properties": {
-                    "protocol": {
-                        "type": "string",
-                        "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+                    "chainId": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
                     },
-                    "ids": {
+                    "protocols": {
                         "type": "array",
-                        "uniqueItems": true,
                         "items": {
-                            "type": "string"
-                        }
-                    },
-                    "subaccounts": {
-                        "type": "array",
-                        "minItems": 1,
-                        "maxItems": 48,
-                        "uniqueItems": true,
-                        "items": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 255
+                            "type": "object",
+                            "properties": {
+                                "protocol": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+                                },
+                                "ids": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "subaccounts": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "maxItems": 48,
+                                    "uniqueItems": true,
+                                    "items": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 255
+                                    }
+                                }
+                            },
+                            "required": ["protocol", "ids"],
+                            "additionalProperties": false
                         }
                     }
                 },
-                "required": ["protocol", "ids"],
+                "required": ["chainId", "protocols"],
                 "additionalProperties": false
             }
         }
     },
-    "required": ["protocols"],
+    "required": ["chains"],
     "additionalProperties": false
 }

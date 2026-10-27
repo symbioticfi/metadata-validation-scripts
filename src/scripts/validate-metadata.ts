@@ -36,12 +36,7 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
         return;
     }
 
-    const schema = getSchema(
-        entityType,
-        entityType === "merkle-adapters"
-            ? +github.getInput("chain-id", { required: true })
-            : undefined,
-    );
+    const schema = getSchema(entityType);
     const metadataContent = await fs.readFile(metadataPath, "utf8");
     let parsed: ReturnType<typeof parse>;
 
@@ -62,33 +57,56 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
     const validationErrors: ErrorObject[] = [...(ajv.errors ?? [])];
 
     if (schemaValid && entityType === "merkle-adapters") {
-        const { protocols } = metadata as { protocols: { protocol: string; ids: string[] }[] };
-        const seenProtocols = new Set<string>();
-        for (const [index, entry] of protocols.entries()) {
-            if (seenProtocols.has(entry.protocol)) {
+        const { chains } = metadata as {
+            chains: { chainId: number; protocols: { protocol: string; ids: string[] }[] }[];
+        };
+        const chainId = +github.getInput("chain-id", { required: true });
+        const activeIndex = chains.findIndex((scope) => scope.chainId === chainId);
+        if (activeIndex === -1) {
+            validationErrors.push({
+                keyword: "activeChain",
+                instancePath: "/chains",
+                schemaPath: "",
+                params: {},
+                message: `must include the configured chain ${chainId}`,
+            });
+        }
+
+        const seenChains = new Set<number>();
+        for (const [chainIndex, scope] of chains.entries()) {
+            if (seenChains.has(scope.chainId)) {
                 validationErrors.push({
-                    keyword: "uniqueProtocol",
-                    instancePath: `/protocols/${index}/protocol`,
+                    keyword: "uniqueChain",
+                    instancePath: `/chains/${chainIndex}/chainId`,
                     schemaPath: "",
                     params: {},
-                    message: "must not repeat a portfolio protocol",
+                    message: "must not repeat a chain ID",
                 });
             }
 
-            seenProtocols.add(entry.protocol);
+            seenChains.add(scope.chainId);
+            const seenProtocols = new Set<string>();
+            for (const [index, entry] of scope.protocols.entries()) {
+                const entryPath = `/chains/${chainIndex}/protocols/${index}`;
+                if (seenProtocols.has(entry.protocol)) {
+                    validationErrors.push({
+                        keyword: "uniqueProtocol",
+                        instancePath: `${entryPath}/protocol`,
+                        schemaPath: "",
+                        params: {},
+                        message: "must not repeat a portfolio protocol",
+                    });
+                }
 
-            if (
-                ["aave_v4", "ember", "lagoon", "euler", "morpho_blue", "morpho_vaultv2"].includes(
-                    entry.protocol,
-                )
-            ) {
+                seenProtocols.add(entry.protocol);
+
                 const seenIds = new Set<string>();
                 for (const [idIndex, id] of entry.ids.entries()) {
                     const normalized = id.toLowerCase();
                     if (seenIds.has(normalized)) {
                         validationErrors.push({
                             keyword: "uniqueMarketId",
-                            instancePath: `/protocols/${index}/ids/${idIndex}`,
+                            instancePath: `${entryPath}/ids/${idIndex}`,
                             schemaPath: "",
                             params: {},
                             message: "must not repeat a market identifier ignoring hex case",
@@ -101,11 +119,11 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
         }
 
         if (validationErrors.length === 0) {
-            const targetErrors = await validateMerkleTargets(protocols);
+            const targetErrors = await validateMerkleTargets(chains[activeIndex].protocols);
             for (const { index, idIndex, message } of targetErrors) {
                 validationErrors.push({
                     keyword: "protocolIdentity",
-                    instancePath: `/protocols/${index}/ids/${idIndex}`,
+                    instancePath: `/chains/${activeIndex}/protocols/${index}/ids/${idIndex}`,
                     schemaPath: "",
                     params: {},
                     message,

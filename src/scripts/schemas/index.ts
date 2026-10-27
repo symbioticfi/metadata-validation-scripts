@@ -17,7 +17,7 @@ const schemaMap: Partial<Record<EntityType, object>> = {
 /**
  * Get the JSON schema for a given entity type
  */
-export const getSchema = (entityType: EntityType, chainId?: number) =>
+export const getSchema = (entityType: EntityType) =>
     entityType === "merkle-adapters"
-        ? getMerkleAdapterSchema(chainId)
+        ? getMerkleAdapterSchema()
         : schemaMap[entityType] || defaultSchema;

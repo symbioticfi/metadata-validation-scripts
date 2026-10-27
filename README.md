@@ -17,49 +17,68 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
 
-The JSON object contains a `protocols` array. Each entry has a lowercase portfolio protocol or product name and an `ids` array of vault, pool, market, or common-token identifiers. Use underscores between words and an empty `ids` array when no specific targets are needed:
+The JSON object requires a nonempty `chains` array. Each strict scope contains a positive safe-integer `chainId` and a required `protocols` array, which may be empty. Chain IDs must be unique. The old top-level `protocols` shape is rejected. Within each chain, each entry has a lowercase portfolio protocol or product name and an `ids` array of vault, pool, market, or common-token identifiers. Use underscores between words and an empty `ids` array when no specific targets are needed:
 
 ```json
 {
-    "protocols": [
-        { "protocol": "aa_falconxusdc", "ids": [] },
-        { "protocol": "mglobal", "ids": [] },
+    "chains": [
         {
-            "protocol": "morpho_vaultv2",
-            "ids": [
-                "0x1111111111111111111111111111111111111111",
-                "0x2222222222222222222222222222222222222222"
-            ]
-        },
-        {
-            "protocol": "morpho_blue",
-            "ids": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
-        },
-        { "protocol": "aave_v3", "ids": ["core", "horizon"] },
-        { "protocol": "ember", "ids": ["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"] },
-        {
-            "protocol": "euler",
-            "ids": ["0x4444444444444444444444444444444444444444"],
-            "subaccounts": [0, 1]
-        },
-        {
-            "protocol": "tokens",
-            "ids": [
-                "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-                "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+            "chainId": 1,
+            "protocols": [
+                {
+                    "protocol": "aa_falconxusdc",
+                    "ids": []
+                },
+                {
+                    "protocol": "mglobal",
+                    "ids": []
+                },
+                {
+                    "protocol": "morpho_vaultv2",
+                    "ids": [
+                        "0x1111111111111111111111111111111111111111",
+                        "0x2222222222222222222222222222222222222222"
+                    ]
+                },
+                {
+                    "protocol": "morpho_blue",
+                    "ids": ["0x1111111111111111111111111111111111111111111111111111111111111111"]
+                },
+                {
+                    "protocol": "aave_v3",
+                    "ids": ["core", "horizon"]
+                },
+                {
+                    "protocol": "ember",
+                    "ids": ["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]
+                },
+                {
+                    "protocol": "euler",
+                    "ids": ["0x4444444444444444444444444444444444444444"],
+                    "subaccounts": [0, 1]
+                },
+                {
+                    "protocol": "tokens",
+                    "ids": [
+                        "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                        "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+                    ]
+                }
             ]
         }
     ]
 }
 ```
 
-The vault/pool/market targets above are illustrative. Allowed portfolio names and ID requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresIds: true` need at least one identifier: `idType: "name"` selects the exact lowercase Aave V3 names `core`, `etherfi`, `lido`, or `horizon`; `idType: "address"` accepts 20-byte EVM addresses; `idType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `ids: []`. Unknown names, repeated protocol declarations, duplicate IDs, and identifiers of the wrong type are rejected. Lagoon, Morpho Blue and Vault V2 each accept at most 16 nonzero IDs, unique ignoring hex case. Aave V4 accepts only the twelve reviewed user-position spoke addresses in `allowedIds`, ignoring hex case. Omit `aave_v3` or `aave_v4` to exclude that version; present entries require nonempty IDs and forbid `subaccounts`. NAV enumerates all reserves within the selected deployments. Add new integrations to the allowlist before using their names in metadata.
+Every scope receives schema, protocol and ID validation, including scopes for other chains. The configured action `chain-id` must have a matching scope. Adapter registry validation and canonical target RPC checks apply only to that scope, using the configured RPC; other scopes receive no target membership or adapter registration attestation. Run the action with each chain's configuration to obtain that coverage.
+
+The vault/pool/market targets above are illustrative. Allowed portfolio names and ID requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresIds: true` need at least one identifier: `idType: "name"` selects the exact lowercase Aave V3 names `core`, `etherfi`, `lido`, or `horizon`; `idType: "address"` accepts 20-byte EVM addresses; `idType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `ids: []`. Within each chain, unknown names, repeated protocol declarations, duplicate IDs, and identifiers of the wrong type are rejected. Lagoon, Morpho Blue and Vault V2 each accept at most 16 nonzero IDs, unique ignoring hex case. Aave V4 accepts only the twelve reviewed user-position spoke addresses in `allowedIds`, ignoring hex case. Omit `aave_v3` or `aave_v4` to exclude that version; present entries require nonempty IDs and forbid `subaccounts`. NAV enumerates all reserves within the selected deployments. Add new integrations to the allowlist before using their names in metadata.
 
 Euler additionally requires a nonempty `subaccounts` array of unique integers from 0 through 255. Offset 0 means the adapter's exact onchain `account()`; offset `n` means `address(uint160(account()) ^ uint160(n))`, using XOR rather than replacing the last byte. Euler EVault IDs must be nonzero and unique ignoring hex case, and the number of EVault IDs multiplied by the number of offsets must be at most 48. Every pair covers both supply and debt. Other protocols reject `subaccounts`. Keep every market and subaccount with outstanding positions when strategy permissions change. The [Euler scope and preparation guide](docs/merkle-protocol-allowlist.md#euler-scope-and-nav-preparation) describes the pending NAV consumer and the complete collector limit.
 
-For `tokens`, list selected common-token addresses in `ids`, using a nonempty subset of cbBTC, DAI, LBTC, PAXG, PYUSD, SolvBTC, tBTC, tETH, uniBTC, USDC, USDe, USDS, USDT, WBTC, weETH, WETH, and wstETH. The validator checks membership in [`src/scripts/config/merkle-tokens.json`](src/scripts/config/merkle-tokens.json) for the action's `chain-id`, accepting either lowercase or mixed-case hex addresses. The initial token allowlist covers Ethereum mainnet (`1`); other chains need an explicit allowlist. Token symbols and arbitrary contracts are rejected.
+For `tokens`, list selected common-token addresses in `ids`, using a nonempty subset of cbBTC, DAI, LBTC, PAXG, PYUSD, SolvBTC, tBTC, tETH, uniBTC, USDC, USDe, USDS, USDT, WBTC, weETH, WETH, and wstETH. The validator checks membership in [`src/scripts/config/merkle-tokens.json`](src/scripts/config/merkle-tokens.json) for the enclosing scope's `chainId`, accepting either lowercase or mixed-case hex addresses. The initial token allowlist covers Ethereum mainnet (`1`); other chains need an explicit allowlist. Token symbols and arbitrary contracts are rejected.
 
-The [protocol inventory](docs/merkle-protocol-allowlist.md) records 59 metadata names covering the reviewed NAV integrations and all 55 active RWA tokens through 49 product entries. Ember uses `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` for the only admitted Ethereum PPLUS vault; empty IDs and other vault addresses are rejected, and `subaccounts` is forbidden. Hex case is ignored for membership and uniqueness. Omit `ember` to exclude its protocol collector and ledger/queue discovery; generic idle balance reads still apply when PPLUS itself is the denomination. 3F uses `{"protocol":"three_f","ids":[]}` and discovers newly created requests itself. Merkl rewards require `{"protocol":"merkl","ids":[]}`. Each product declaration selects its held tokens and issuer requests; Pareto receipts belong to their selected tranche. `tokens.ids` selects ordinary wallet inventory. Omitted product entries exclude standalone holdings and issuer requests. Assets inside declared markets are valued with their required pricing dependencies without a separate token or product entry; `{ "protocols": [] }` selects no portfolio integrations or wallet tokens. Metadata is the operator-provided valuation scope, including when it omits an outstanding position. Both `protocol` and `ids` are required in each entry; Euler alone also requires `subaccounts`, and other fields are rejected. Metadata describes retained valuation scope and does not grant Merkle permissions, attest quantities, or prove universal inventory completeness. The existing one-entity-per-PR rule applies.
+The [protocol inventory](docs/merkle-protocol-allowlist.md) records 59 metadata names covering the reviewed NAV integrations and all 55 active RWA tokens through 49 product entries. Ember uses `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` for the only admitted Ethereum PPLUS vault; empty IDs and other vault addresses are rejected, and `subaccounts` is forbidden. Hex case is ignored for membership and uniqueness. Omit `ember` to exclude its protocol collector and ledger/queue discovery; generic idle balance reads still apply when PPLUS itself is the denomination. 3F uses `{"protocol":"three_f","ids":[]}` and discovers newly created requests itself. Merkl rewards require `{"protocol":"merkl","ids":[]}`. Each product declaration selects its held tokens and issuer requests; Pareto receipts belong to their selected tranche. `tokens.ids` selects ordinary wallet inventory. Omitted product entries exclude standalone holdings and issuer requests. Assets inside declared markets are valued with their required pricing dependencies without a separate token or product entry; `{ "chains": [{ "chainId": 1, "protocols": [] }] }` selects no portfolio integrations or wallet tokens. Metadata is the operator-provided valuation scope, including when it omits an outstanding position. Both `protocol` and `ids` are required in each entry; Euler alone also requires `subaccounts`, and other fields are rejected. Metadata describes retained valuation scope and does not grant Merkle permissions, attest quantities, or prove universal inventory completeness. The existing one-entity-per-PR rule applies.
 
 Lagoon scope uses `{"protocol":"lagoon","ids":["0x9e0db8f43bb91e2148b0db920e21370525cf3aab"]}`. At most 16 unique nonzero vault addresses select account-owned asynchronous positions and outstanding requests; omission makes no Lagoon read. `subaccounts`, an underlying asset field, and the generic `erc7540` protocol name are rejected. Vault addresses come only from metadata. NAV and APR derive `asset()`, validate `share()` and read decimals from each vault at the pinned block; the derived underlying still requires a supported pricing route. The [Lagoon accounting profile](docs/merkle-protocol-allowlist.md#lagoon-scope-and-accounting-profile) validates v0.6.0 own-share semantics without a static vault or USDC restriction. This change publishes no deployed adapter metadata or permissions.
 
