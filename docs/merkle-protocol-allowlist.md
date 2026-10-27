@@ -1,6 +1,6 @@
 # Merkle portfolio allowlist
 
-[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 58 metadata names: six integrations requiring target IDs, 3F and Merkl, the `tokens` entry, and 49 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
+[`merkle-protocols.json`](../src/scripts/config/merkle-protocols.json) contains 59 metadata names: seven integrations requiring target IDs, 3F and Merkl, the `tokens` entry, and 49 named RWA products. Each entry has `{protocol, ids}`; Euler additionally requires `subaccounts`. Protocol names cannot be repeated. `requiresIds` requires either a nonempty array or an empty array; `idType` is `address` (20 bytes), `bytes32` (32 bytes), `name` (exact lowercase name), or `none`.
 
 The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [`8d2f071764ff0dcbc83081578aae7eee29a97658`](https://github.com/symbioticfi/merkle-adapter-nav/commit/8d2f071764ff0dcbc83081578aae7eee29a97658), reviewed on 19 October 2026. The mGLO source bindings are pinned to this commit. The ordinary wallet-token inventory also retains the separately reviewed uniBTC/USDS admission. Sources:
 
@@ -9,7 +9,7 @@ The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Aave and Ember selection semantics, Euler account scope and metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions. Ethereum target declarations are checked against canonical protocol contracts when those contracts expose membership.
 
 ## Integrations and target IDs
 
@@ -20,14 +20,23 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership.                                                                   |
 | `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                                                                                    |
 | `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                                                                                                 |
+| `lagoon`         | `address` | At most 16 unique nonzero vault IDs, ignoring hex case; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                                                          |
 | `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied.                                                                   |
 | `ember`          | `address` | Only canonical Ethereum PPLUS vault `0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe`, including held shares and owner withdrawal requests. Required nonempty IDs; membership/uniqueness ignore hex case; no subaccounts. `pplus` is not a protocol name. |
 | `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                                                     |
 | `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                                                        |
 
-Target-ID validation checks format and any explicit `allowedIds` membership; it does not attest deployed contract identity. In pending NAV PR 22, Aave, Euler, Morpho and Ember scopes come from the embedded metadata snapshot prepared below. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
+Target-ID validation checks format and any explicit `allowedIds` membership. It also checks `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets, and `OptinProxyFactory.isInstance` for Lagoon. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/ember/ember.go).
+
+## Lagoon scope and accounting profile
+
+A `lagoon` declaration selects each vault's account-owned held shares and complete request/claim lifecycle. Keep the vault selected while any entitlement remains outstanding, including settled unclaimed shares or net asset claims. At most 16 unique nonzero vault addresses are allowed, ignoring hex case; subaccounts and an underlying asset field are forbidden. The generic `erc7540` protocol name is rejected.
+
+Addresses come from metadata. Consumers derive the underlying using `asset()`, validate `share()` against the Lagoon own-share profile, and read share and asset decimals dynamically from pinned state. There is no static vault-address or USDC-only restriction. The underlying must still have an admitted pricing route; unsupported or changed bindings fail closed. ERC165 alone does not establish fee, settlement or completeness semantics.
+
+The reviewed [Lagoon v0.6.0 implementation source](https://etherscan.io/address/0x6c77c47fb8168e22976c3b0338cb1769c952249f#code) uses epoch IDs, a zero-ID latest-request alias, synchronous cancellation refunds, and settlement-specific entry/exit fees. These rules belong to the Lagoon profile composed with shared ERC7540 acquisition and accounting. Paused or whitelist-suppressed max getters describe executability and cannot prove that economic entitlements are absent. The exact public version is an issuer-governance assertion, not proof of the active implementation slot. This catalogue adds no deployment row or account permission.
 
 ## Euler scope and NAV preparation
 
