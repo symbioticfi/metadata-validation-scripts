@@ -812,7 +812,7 @@ test("schema rejects malformed metadata with PR feedback", async (t) => {
         ["Blue requires a market ID", info({ protocol: "morpho_blue", ids: [vault] })],
         ["named product has no targets", info({ protocol: "mglobal", ids: [vault] })],
         ["3F discovers requests without supplied IDs", info({ protocol: "three_f", ids: [vault] })],
-        ["Ember uses the canonical PPLUS binding", info({ protocol: "ember", ids: [vault] })],
+        ["Ember rejects unreviewed vaults", info({ protocol: "ember", ids: [vault] })],
         ["unlisted token contract", info({ protocol: "tokens", ids: [vault] })],
         ["token symbol is not an ID", info({ protocol: "tokens", ids: ["usdc"] })],
         ["token cannot use a market ID", info({ protocol: "tokens", ids: [marketId] })],
@@ -1117,7 +1117,7 @@ test("Aave metadata rejects aliases, omitted or invalid IDs, and subaccounts", a
     }
 });
 
-test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => {
+test("Ember metadata selects only reviewed Ethereum vault addresses", async (t) => {
     const cases = [
         {
             name: "ember_lower",
@@ -1228,4 +1228,19 @@ test("Ember metadata selects only explicit PPLUS vault addresses", async (t) => 
             assert.equal(result.code, row.valid ? 0 : 1, result.output);
         });
     }
+});
+
+test("all reviewed Ember vaults are selectable together", async (t) => {
+    assert.equal(allowlist.ember.allowedIds.length, 27);
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            chains: [
+                { chainId: 1, protocols: [{ protocol: "ember", ids: allowlist.ember.allowedIds }] },
+            ],
+        }),
+    );
+    const result = await f.run();
+    assert.equal(result.code, 0, result.output);
 });

@@ -53,7 +53,35 @@
     "ember": {
         "requiresIds": true,
         "idType": "address",
-        "allowedIds": ["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]
+        "allowedIds": [
+            "0x065cfaf16d4586133fbcac01c4b440f6fc0e691a",
+            "0x08576b9368b9333a2e4be869ad1718c6dffd8d4b",
+            "0x0b9342c15143e8f54a83f887c280a922f4c48771",
+            "0x140560d74949c8b01e9ce238b18bdd94ca7b2874",
+            "0x1aa36795ad2e334cab8f57adfd62df22eea7cc19",
+            "0x1e739418366065f39ff42dde878004fe1e6c3982",
+            "0x2b13311fd553e74b421d4ccc96e348f71e179dcf",
+            "0x373152feef81cc59502da2c8de877b3d5ae2e342",
+            "0x43df1df9045443f24394ed79a5ed80d55c582f0c",
+            "0x4cd2bf79c4e7335f813e9f5697eeebffee2f72c3",
+            "0x518d3fb6804b2be9641f5712cff8c0f2b5f86afc",
+            "0x51acc92414d525cea228932362b3e4705c52464b",
+            "0x5c3ab21b6674fefe06891598bef757af2d1ea66a",
+            "0x66b998fb71ec6b2287be7df81168de2e2820129d",
+            "0x6da9b2c19adfcf73c4f5690d41e81b2afe948864",
+            "0x7180c7dd24eb82db2a17740996f47e42ff0203b6",
+            "0x953972ea0c1703c58f09fb6fd2477fdcf0fee074",
+            "0x9be9294722f8aad37b11a9792be2c782182cafa2",
+            "0x9d5970bba8b7d488100e9851e2892fa6f7c5cf8b",
+            "0x9f00c771253fb8d231c08b8d57390a989d48c938",
+            "0xb920ed46dec7455d0caf52b357d9a9f55b4daeca",
+            "0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe",
+            "0xbf3dcdf17f7f387d24a07dc78529f4eff3b4ad52",
+            "0xc3aacb558afb635307b66fdb405188138576fc4c",
+            "0xddde03447327d391cda265c307f8758ee365da86",
+            "0xe6bb49a6f88b81476181e63b58701313336c6f94",
+            "0xf3190a3ecc109f88e7947b849b281918c798a0c4"
+        ]
     },
     "aa_abraxas": {
         "requiresIds": false,
