@@ -8,6 +8,7 @@ import * as github from "./github";
 import * as messages from "./messages";
 import { getSchema } from "./schemas";
 import { Entity } from "./validate-fs";
+import { validateMerkleTargets } from "./validate-merkle-targets";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const normalizeErrors = (error: ErrorObject, lineMap: any) => {
@@ -96,6 +97,19 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
                     seenIds.add(normalized);
                 }
+            }
+        }
+
+        if (validationErrors.length === 0) {
+            const targetErrors = await validateMerkleTargets(protocols);
+            for (const { index, idIndex, message } of targetErrors) {
+                validationErrors.push({
+                    keyword: "protocolIdentity",
+                    instancePath: `/protocols/${index}/ids/${idIndex}`,
+                    schemaPath: "",
+                    params: {},
+                    message,
+                });
             }
         }
     }

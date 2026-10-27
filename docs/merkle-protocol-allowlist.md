@@ -9,7 +9,7 @@ The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions or verify protocol targets on-chain. The Aave and Ember selection semantics, Euler account scope and metadata consumption described below are coordinated with [pending NAV PR 22](https://github.com/symbioticfi/merkle-adapter-nav/pull/22). These changes extend the reviewed source revision above; they do not imply that either PR is merged or deployed.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter registration. It does not grant execution permissions. Ethereum target declarations are checked against canonical protocol contracts when those contracts expose membership.
 
 ## Integrations and target IDs
 
@@ -26,7 +26,7 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                                                     |
 | `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                                                        |
 
-Target-ID validation checks format and any explicit `allowedIds` membership; it does not attest deployed contract identity. In pending NAV PR 22, Aave, Euler, Morpho and Ember scopes come from the embedded metadata snapshot prepared below. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
+Target-ID validation checks format and any explicit `allowedIds` membership. It also checks `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets, and `OptinProxyFactory.isInstance` for Lagoon. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/ember/ember.go).
 

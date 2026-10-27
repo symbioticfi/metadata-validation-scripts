@@ -98,7 +98,7 @@ async function fixture(t) {
 
     const calls = [];
     const githubCalls = [];
-    const state = { registered: true };
+    const state = { registered: true, invalidTargets: new Set() };
     const server = createServer(async (request, response) => {
         let body = "";
         for await (const chunk of request) {
@@ -113,13 +113,13 @@ async function fixture(t) {
         }
         calls.push(call);
         response.setHeader("content-type", "application/json");
-        response.end(
-            JSON.stringify({
-                jsonrpc: "2.0",
-                id: call.id,
-                result: `0x${(state.registered ? "1" : "0").padStart(64, "0")}`,
-            }),
-        );
+        const target = call.params?.[0]?.data?.slice(-64)?.replace(/^0+/, "")?.toLowerCase();
+        const valid = !state.invalidTargets.has(`0x${target?.padStart(call.params?.[0]?.data?.startsWith("0x5c60e39a") ? 64 : 40, "0")}`);
+        const market = call.params?.[0]?.data?.startsWith("0x5c60e39a");
+        const result = market
+            ? `0x${[0, 0, 0, 0, valid ? 1 : 0, 0].map((word) => word.toString(16).padStart(64, "0")).join("")}`
+            : `0x${(call.params?.[0]?.to === registry ? Number(state.registered) : Number(valid)).toString(16).padStart(64, "0")}`;
+        response.end(JSON.stringify({ jsonrpc: "2.0", id: call.id, result }));
     });
     await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
     t.after(() => new Promise((resolve) => server.close(resolve)));
@@ -176,10 +176,9 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
-    assert.equal(f.calls.length, 1);
-    assert.equal(f.calls[0].method, "eth_call");
-    assert.equal(f.calls[0].params[0].to, registry);
-    assert.ok(f.calls[0].params[0].data.endsWith(adapter.slice(2)));
+    assert.equal(f.calls.length, 5);
+    assert.ok(f.calls.every((call) => call.method === "eth_call"));
+    assert.ok(f.calls.some((call) => call.params[0].to === registry && call.params[0].data.endsWith(adapter.slice(2))));
 });
 
 test("empty metadata declares no integrations", async (t) => {
@@ -187,6 +186,24 @@ test("empty metadata declares no integrations", async (t) => {
     await f.write(metadataPath, JSON.stringify(emptyInfo));
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
+});
+
+test("on-chain protocol identity rejects unrelated targets", async (t) => {
+    for (const [protocol, id, extra] of [
+        ["euler", vault, { subaccounts: [0] }],
+        ["morpho_vaultv2", vault, {}],
+        ["morpho_blue", marketId, {}],
+        ["lagoon", vault, {}],
+    ]) {
+        await t.test(protocol, async (context) => {
+            const f = await fixture(context);
+            f.state.invalidTargets.add(id.toLowerCase());
+            await f.write(metadataPath, JSON.stringify({ protocols: [{ protocol, ids: [id], ...extra }] }));
+            const result = await f.run();
+            assert.equal(result.code, 1, result.output);
+            assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
+        });
+    }
 });
 
 test("bundled allowlist accepts every collected protocol and product", async (t) => {
@@ -551,7 +568,7 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     }
 });
 
-test("Lagoon accepts arbitrary vault addresses and forbids subaccounts and asset overrides", async (t) => {
+test("Lagoon requires a factory vault and forbids subaccounts and asset overrides", async (t) => {
     const ids = [
         "0x9e0db8f43bb91e2148b0db920e21370525cf3aab",
         "0xa5ae405242f42c47996a0c6857ff10a77f9bdee6",
@@ -561,7 +578,7 @@ test("Lagoon accepts arbitrary vault addresses and forbids subaccounts and asset
         [
             "arbitrary vault",
             { protocol: "lagoon", ids: ["0x1111111111111111111111111111111111111111"] },
-            0,
+            1,
         ],
         ["reviewed", { protocol: "lagoon", ids }, 0],
         ["standard alias", { protocol: "erc7540", ids }, 1],
@@ -571,6 +588,7 @@ test("Lagoon accepts arbitrary vault addresses and forbids subaccounts and asset
     ]) {
         await t.test(name, async (context) => {
             const f = await fixture(context);
+            if (name === "arbitrary vault") f.state.invalidTargets.add(entry.ids[0].toLowerCase());
             await f.write(metadataPath, JSON.stringify({ protocols: [entry] }));
             const result = await f.run();
             assert.equal(result.code, code, result.output);
