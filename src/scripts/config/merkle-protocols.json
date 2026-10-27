@@ -38,6 +38,10 @@
         "requiresIds": true,
         "idType": "address"
     },
+    "lagoon": {
+        "requiresIds": true,
+        "idType": "address"
+    },
     "three_f": {
         "requiresIds": false,
         "idType": "none"
