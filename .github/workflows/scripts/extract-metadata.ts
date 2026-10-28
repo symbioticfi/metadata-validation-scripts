@@ -1,7 +1,6 @@
 import * as github from "@actions/github";
 import fs from "fs/promises";
 import path from "path";
-import { pathToFileURL } from "url";
 
 type Info = Partial<{
     name: string;
@@ -27,24 +26,30 @@ type Info = Partial<{
     ];
 }>;
 
+type MerkleAdapterInfo = {
+    protocols: { protocol: string; ids: string[]; subaccounts?: number[] }[];
+};
+
 type Entity = {
-    info: Info;
+    info: Info | MerkleAdapterInfo;
     logo?: string;
 };
 
-enum DIRECTORIES {
-    VAULTS = "vaults",
-    TOKENS = "tokens",
-    NETWORKS = "networks",
-    OPERATORS = "operators",
-    POINTS = "points",
-    CURATORS = "curators",
-    ADAPTERS = "adapters",
-}
+const DIRECTORIES = {
+    VAULTS: "vaults",
+    TOKENS: "tokens",
+    NETWORKS: "networks",
+    OPERATORS: "operators",
+    POINTS: "points",
+    CURATORS: "curators",
+    ADAPTERS: "adapters",
+    MERKLE_ADAPTERS: "merkle-adapters",
+} as const;
+type Directory = (typeof DIRECTORIES)[keyof typeof DIRECTORIES];
 
-type Template = Record<DIRECTORIES, Record<string, Entity>>;
+type Template = Record<Directory, Record<string, Entity>>;
 
-async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
+async function grabEntitiesInfo(globalDirs: Directory[]) {
     const repoPath = [github.context.repo.owner, github.context.repo.repo].join("/");
     const result = Object.values(DIRECTORIES).reduce<Template>((acc, curr) => {
         acc[curr] = {};
@@ -61,9 +66,7 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
                     const infoPath = path.join(entityPath, "info.json");
                     const logoPath = path.join(entityPath, "logo.png");
 
-                    const infoUrl = pathToFileURL(infoPath).href;
-                    const module = await import(infoUrl);
-                    const info: Info = module.default;
+                    const info: Entity["info"] = JSON.parse(await fs.readFile(infoPath, "utf8"));
                     const entity: Entity = { info };
 
                     const hasLogo = await fs
@@ -71,13 +74,13 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
                         .then((stats) => stats.isFile())
                         .catch(() => false);
 
-                    if (hasLogo) {
+                    if (hasLogo && dir !== DIRECTORIES.MERKLE_ADAPTERS) {
                         const logoUrl = `https://raw.githubusercontent.com/${repoPath}/main/${entityPath}/logo.png`;
 
                         entity.logo = logoUrl;
                     }
 
-                    result[dir as DIRECTORIES][subdir] = entity;
+                    result[dir][subdir] = entity;
                 } catch (error) {
                     console.error("Error processing entity in " + entityPath, error);
                 }

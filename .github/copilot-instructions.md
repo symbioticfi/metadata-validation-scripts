@@ -4,19 +4,20 @@
 
 This is a GitHub Action that validates metadata changes in Symbiotic ecosystem repositories (vaults, operators, networks, tokens, curators, adapters). It enforces strict file structure, performs JSON schema validation, checks logos, and validates on-chain registry state via RPC calls.
 
-**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.js`) using `tsup`.
+**Critical architectural constraint**: The action is distributed as a bundled single-file Node.js application (`dist/index.cjs`) using `tsup`.
 
 ## Entity Structure & Validation Pipeline
 
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`
+    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`
     - Off-chain (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
-- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`)
+- **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`). `merkle-adapters` folders contain only a regular `info.json` file; logos and other files are rejected.
+- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` requires a nonempty `chains` array of strict `{chainId, protocols}` scopes. Chain IDs are positive safe integers and unique; each protocols array is required and may be empty. The old top-level protocols shape is rejected. Each protocol entry is a `{protocol, ids}` object. Protocol/ID uniqueness is scoped to each chain. Allowed portfolio names, `requiresIds`, and `idType` come from `src/scripts/config/merkle-protocols.json`, imported at compile time. Entries requiring IDs must contain at least one identifier of the configured type (20-byte EVM address, bytes32 market ID or allowed deployment name); name-only entries require an empty array. The `tokens` entry additionally validates IDs against `src/scripts/config/merkle-tokens.json` for the enclosing scope's `chainId`, accepting hex case variations; initially only Ethereum mainnet is allowlisted. 3F requires empty IDs because its factory binding is fixed. Ember requires a nonempty address list containing only the 27 reviewed Ethereum vaults in `merkle-protocols.json`, with hex-case-insensitive membership/uniqueness and no subaccounts. Omission excludes the Ember protocol collector and ledger/queue discovery; generic idle balances still apply when PPLUS is the denomination. Other Ember vaults are unsupported until reviewed and added to the address list, since Ember publishes no vault factory. Lagoon uses 1–16 unique nonzero factory-registered vault addresses in `lagoon.ids`, ignoring hex case, without subaccounts or asset overrides. Consumers derive the underlying asset and decimals on-chain and validate the Lagoon own-share profile; no static vault or USDC restriction applies. Every scope is schema validated. The configured action chain must be present, and only that scope receives target RPC validation; other scopes are never queried through this chain's RPC. Euler, Morpho V2, Morpho Blue and Lagoon target identities in the active mainnet scope are verified against their canonical factories or market storage. Inactive scopes receive no target membership attestation. The generic `erc7540` protocol name is rejected. All active RWA products, including TBILL, wYLDS and USN, have entries; Pareto receipts remain part of their tranche accounting. Merkl rewards use an explicit `merkl` entry with empty IDs. Execution plumbing has no separate portfolio entry. Declared markets include required asset-pricing dependencies without separate product entries; standalone wallet balances and issuer requests remain explicitly selected. Keep the allowlists aligned with the pinned NAV runtime rather than planned or deferred readers. Registration uses the existing `adapter-registry` input. Research sources and coverage limits are recorded in `docs/merkle-protocol-allowlist.md`.
 
 ### Validation Flow (src/main.ts)
 
@@ -202,7 +203,7 @@ await github.addReview({
 
 **Why Promise.allSettled?** Collect all validation errors in one pass instead of failing fast, providing better UX for contributors.
 
-**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.js`.
+**Why single dist file?** GitHub Actions require self-contained JavaScript. `tsup` bundles TypeScript + dependencies into `dist/index.cjs`.
 
 **Why viem over ethers?** Modern, tree-shakeable, better TypeScript support, built-in chain configs.
 
@@ -210,7 +211,7 @@ await github.addReview({
 
 **Why upstream-checkout-path?** Allows validating cross-references (e.g., vault collateral tokens) against both PR changes and existing repo state.
 
-**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.js` bundle is completely self-contained.
+**Why bundle schemas?** JSON schemas are imported and bundled at compile time via TypeScript's `resolveJsonModule`, eliminating runtime file I/O and ensuring the `dist/index.cjs` bundle is completely self-contained.
 
 ## Dependencies Reference
 
@@ -219,5 +220,5 @@ await github.addReview({
 - **ajv, ajv-formats**: JSON Schema validation with format validators (uri, date, etc.)
 - **image-js**: Image processing for logo validation (size, dimensions, format)
 - **json-source-map**: Maps JSON paths to source locations for error reporting
-- **tsup**: Bundles TypeScript + dependencies into single `dist/index.js`
+- **tsup**: Bundles TypeScript + dependencies into single `dist/index.cjs`
 - **@github/local-action**: Local GitHub Action runner for development

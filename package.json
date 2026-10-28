@@ -14,41 +14,48 @@
         "symbiotic"
     ],
     "exports": {
-        ".": "./dist/index.js"
+        ".": "./dist/index.cjs"
     },
     "engines": {
-        "node": ">=22"
+        "node": ">=24"
     },
     "scripts": {
         "bundle": "npm run package",
         "lint": "eslint .",
+        "typecheck": "tsc --noEmit",
         "local-action": "cd metadata && local-action ../ src/main.ts ../.env",
         "package": "tsup",
         "package:watch": "tsup --watch",
         "prepare": "husky",
-        "test": "node --disable-warning=ExperimentalWarning --test test/get-vault-token-address.test.mjs"
+        "test": "npm run bundle && node --disable-warning=ExperimentalWarning --test test/*.test.mjs"
     },
     "license": "MIT",
+    "overrides": {
+        "esbuild": "^0.28.2",
+        "undici": "^6.29.0"
+    },
     "dependencies": {
-        "@actions/core": "^1.11.1",
-        "@actions/github": "^6.0.1",
-        "ajv": "^8.17.1",
+        "@actions/core": "^3.0.1",
+        "@actions/github": "^9.1.1",
+        "ajv": "^8.20.0",
         "ajv-formats": "^3.0.1",
-        "image-js": "^1.2.0",
+        "image-js": "^1.7.1",
         "json-source-map": "^0.6.1",
-        "viem": "^2.41.2"
+        "jsonc-parser": "^3.3.1",
+        "viem": "^2.57.4"
     },
     "devDependencies": {
-        "@github/local-action": "^6.0.2",
-        "@symbiotic/eslint-config": "0.5.1",
-        "@symbiotic/prettier-config": "^0.0.4",
-        "@types/node": "^24.10.1",
-        "eslint": "9.39.1",
+        "@github/local-action": "^7.0.1",
+        "@symbiotic/eslint-config": "0.9.1",
+        "@symbiotic/prettier-config": "^0.0.6",
+        "@types/node": "^24.19.2",
+        "@typescript/native": "npm:typescript@^7.0.2",
+        "eslint": "10.12.0",
         "husky": "^9.1.7",
-        "lint-staged": "^16.2.7",
-        "prettier": "3.7.4",
+        "lint-staged": "^17.6.0",
+        "prettier": "3.9.10",
         "ts-node": "^10.9.2",
         "tsup": "^8.5.1",
-        "typescript": "^5.9.3"
+        "typescript": "npm:@typescript/typescript6@^6.0.2"
     }
 }

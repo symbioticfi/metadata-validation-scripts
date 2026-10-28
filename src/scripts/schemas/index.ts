@@ -2,6 +2,7 @@ import type { EntityType } from "../validate-fs";
 import adapters from "./adapters.json";
 import curators from "./curators.json";
 import defaultSchema from "./info.json";
+import getMerkleAdapterSchema from "./merkle-adapters";
 import points from "./points.json";
 
 /**
@@ -16,4 +17,7 @@ const schemaMap: Partial<Record<EntityType, object>> = {
 /**
  * Get the JSON schema for a given entity type
  */
-export const getSchema = (entityType: EntityType) => schemaMap[entityType] || defaultSchema;
+export const getSchema = (entityType: EntityType) =>
+    entityType === "merkle-adapters"
+        ? getMerkleAdapterSchema()
+        : schemaMap[entityType] || defaultSchema;
