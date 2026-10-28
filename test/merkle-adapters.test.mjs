@@ -156,7 +156,7 @@ async function fixture(t) {
                 cwd,
                 env: { ...env, INPUT_FILES: files.join(" "), ...inputs },
             }),
-        extract: () => execute(["--experimental-transform-types", extractorPath], { cwd, env }),
+        extract: () => execute([extractorPath], { cwd, env }),
     };
 }
 

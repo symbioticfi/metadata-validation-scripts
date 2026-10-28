@@ -35,20 +35,21 @@ type Entity = {
     logo?: string;
 };
 
-enum DIRECTORIES {
-    VAULTS = "vaults",
-    TOKENS = "tokens",
-    NETWORKS = "networks",
-    OPERATORS = "operators",
-    POINTS = "points",
-    CURATORS = "curators",
-    ADAPTERS = "adapters",
-    MERKLE_ADAPTERS = "merkle-adapters",
-}
+const DIRECTORIES = {
+    VAULTS: "vaults",
+    TOKENS: "tokens",
+    NETWORKS: "networks",
+    OPERATORS: "operators",
+    POINTS: "points",
+    CURATORS: "curators",
+    ADAPTERS: "adapters",
+    MERKLE_ADAPTERS: "merkle-adapters",
+} as const;
+type Directory = (typeof DIRECTORIES)[keyof typeof DIRECTORIES];
 
-type Template = Record<DIRECTORIES, Record<string, Entity>>;
+type Template = Record<Directory, Record<string, Entity>>;
 
-async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
+async function grabEntitiesInfo(globalDirs: Directory[]) {
     const repoPath = [github.context.repo.owner, github.context.repo.repo].join("/");
     const result = Object.values(DIRECTORIES).reduce<Template>((acc, curr) => {
         acc[curr] = {};
@@ -79,7 +80,7 @@ async function grabEntitiesInfo(globalDirs: DIRECTORIES[]) {
                         entity.logo = logoUrl;
                     }
 
-                    result[dir as DIRECTORIES][subdir] = entity;
+                    result[dir][subdir] = entity;
                 } catch (error) {
                     console.error("Error processing entity in " + entityPath, error);
                 }
