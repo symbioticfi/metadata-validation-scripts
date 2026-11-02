@@ -75,6 +75,7 @@ Replace `FULL_40_HEX_SHA` with the full 40-hex commit ID and `ADDRESS` with the 
 | PYUSD   | `0x6c3ea9036406852006290770bedfcaba0e23a0e8` |
 | SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` |
 | tBTC    | `0x18084fba666a33d37592fa2633fd49a74dd93a88` |
+| tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` |
 | uniBTC  | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` |
 | USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` |
 | USDe    | `0x4c9edd5852cd905f086c759e8383e09bff1e68b3` |
@@ -87,7 +88,7 @@ Replace `FULL_40_HEX_SHA` with the full 40-hex commit ID and `ADDRESS` with the 
 
 uniBTC uses the reviewed Chainlink uniBTC/BTC exchange rate multiplied by BTC/USD. USDS uses the reviewed Chainlink USDS/USD feed. These follow the normal NAV round and freshness checks; neither token relies on assumed parity. Both remain ordinary tokens, including supported Merkl rewards.
 
-weETH and wstETH remain tokens; there are no EtherFi or Lido protocol entries. Aave's Ether.fi and Lido pools remain part of Aave. Wallet metadata excludes generic ERC-4626 shares and wrapper-only valuation routes.
+tETH, weETH and wstETH remain ordinary wallet tokens; they have no separate protocol entries. Aave's Ether.fi and Lido pools remain part of Aave. Admitting these named tokens does not admit arbitrary ERC-4626 vaults.
 
 ## RWA products
 
