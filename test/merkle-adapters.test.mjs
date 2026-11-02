@@ -269,7 +269,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the sixteen NAV wallet token addresses", async (t) => {
+test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
         "cbbtc",
@@ -279,6 +279,7 @@ test("tokens accepts exactly the sixteen NAV wallet token addresses", async (t) 
         "pyusd",
         "solvbtc",
         "tbtc",
+        "teth",
         "unibtc",
         "usdc",
         "usde",
@@ -289,7 +290,7 @@ test("tokens accepts exactly the sixteen NAV wallet token addresses", async (t) 
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 16);
+    assert.equal(new Set(tokenIds).size, 17);
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -301,7 +302,7 @@ test("tokens accepts exactly the sixteen NAV wallet token addresses", async (t) 
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens excludes standalone ERC-4626 wrapper tETH", async (t) => {
+test("tETH is admitted as an ordinary wallet token", async (t) => {
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -317,8 +318,7 @@ test("tokens excludes standalone ERC-4626 wrapper tETH", async (t) => {
         }),
     );
     const result = await f.run();
-    assert.notEqual(result.code, 0);
-    assert.match(result.output, /Must match pattern/);
+    assert.equal(result.code, 0, result.output);
 });
 
 test("token address matching accepts checksum and uppercase hex spelling", async (t) => {
@@ -335,6 +335,7 @@ test("token address matching accepts checksum and uppercase hex spelling", async
                             ids: [
                                 "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
                                 "0x" + tokenAllowlist["1"].weth.slice(2).toUpperCase(),
+                                "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
                                 "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
                                 "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
                                 "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568",
