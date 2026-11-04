@@ -510,17 +510,17 @@
         {
             "name": "mainnet_after_other_chain",
             "valid": true,
-            "raw": "{\"chains\":[{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]},{\"chainId\":1,\"protocols\":[]}]}"
+            "raw": "{\"chains\":[{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]},{\"chainId\":1,\"protocols\":[]}]}"
         },
         {
             "name": "mainnet_before_other_chain",
             "valid": true,
-            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]}]}"
         },
         {
             "name": "same_protocol_and_id_on_other_chain",
             "valid": true,
-            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]},{\"chainId\":10,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]}]}"
         },
         {
             "name": "maximum_safe_inactive_chain",
@@ -535,7 +535,7 @@
         {
             "name": "lagoon_valid",
             "valid": true,
-            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]}]}"
         },
         {
             "name": "merkl_valid",
@@ -551,6 +551,11 @@
             "name": "lagoon_subaccounts",
             "valid": false,
             "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"],\"subaccounts\":[0]}]}]}"
+        },
+        {
+            "name": "lagoon_unlisted",
+            "valid": false,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]}]}]}"
         }
     ]
 }

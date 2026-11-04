@@ -20,21 +20,31 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership.                                     |
 | `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                                                      |
 | `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                                                                   |
-| `lagoon`         | `address` | At most 16 unique nonzero vault IDs, ignoring hex case; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                            |
+| `lagoon`         | `address` | Only the seven reviewed Ethereum vaults listed below; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                              |
 | `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied.                                     |
 | `ember`          | `address` | 27 reviewed Ethereum vaults from the NAV catalogue, including held shares and owner withdrawal requests. Required nonempty IDs; membership/uniqueness ignore hex case; no subaccounts. `pplus` is not a protocol name. |
 | `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                       |
 | `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                          |
 
-Target-ID validation checks format and any explicit `allowedIds` membership. It also checks `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets, and `OptinProxyFactory.isInstance` for Lagoon. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
+Target-ID validation checks format and any explicit `allowedIds` membership. It also checks `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/8d2f071764ff0dcbc83081578aae7eee29a97658/internal/client/ember/ember.go).
 
 ## Lagoon scope and accounting profile
 
-A `lagoon` declaration selects each vault's account-owned held shares and complete request/claim lifecycle. Keep the vault selected while any entitlement remains outstanding, including settled unclaimed shares or net asset claims. At most 16 unique nonzero vault addresses are allowed, ignoring hex case; subaccounts and an underlying asset field are forbidden. The generic `erc7540` protocol name is rejected.
+A `lagoon` declaration selects each vault's account-owned held shares and complete request/claim lifecycle. Keep the vault selected while any entitlement remains outstanding, including settled unclaimed shares or net asset claims. Only the seven vault addresses below are allowed, ignoring hex case; subaccounts and an underlying asset field are forbidden. The generic `erc7540` protocol name is rejected.
 
-Addresses come from metadata. Consumers derive the underlying using `asset()`, validate `share()` against the Lagoon own-share profile, and read share and asset decimals dynamically from pinned state. There is no static vault-address or USDC-only restriction. The underlying must still have an admitted pricing route; unsupported or changed bindings fail closed. ERC165 alone does not establish fee, settlement or completeness semantics.
+Addresses come from metadata. Consumers derive the underlying using `asset()`, validate `share()` against the Lagoon own-share profile, and read share and asset decimals dynamically from pinned state. The vault address must be allowlisted; the underlying is read from the vault. The underlying must still have an admitted pricing route; unsupported or changed bindings fail closed. ERC165 alone does not establish fee, settlement or completeness semantics.
+
+The Lagoon allowlist is exactly:
+
+- `0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46`
+- `0xce0b790ae0d8cf91e01f3fb69025e14569b574f3`
+- `0x03d1ec0d01b659b89a87eabb56e4af5cb6e14bfc`
+- `0x28663161f9fa2963eb6102b88a741e195e974df6`
+- `0x6a39fe461278376f61acbbb6759550e24a78a7b2`
+- `0xd2386d8413c2ec4a761901da14c74a98ebe5054b`
+- `0xcda323c2df692d989b24ba51d0acca924cf9a344`
 
 The reviewed [Lagoon v0.6.0 implementation source](https://etherscan.io/address/0x6c77c47fb8168e22976c3b0338cb1769c952249f#code) uses epoch IDs, a zero-ID latest-request alias, synchronous cancellation refunds, and settlement-specific entry/exit fees. These rules belong to the Lagoon profile composed with shared ERC7540 acquisition and accounting. Paused or whitelist-suppressed max getters describe executability and cannot prove that economic entitlements are absent. The exact public version is an issuer-governance assertion, not proof of the active implementation slot. This catalogue adds no deployment row or account permission.
 
