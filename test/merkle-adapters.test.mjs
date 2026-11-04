@@ -28,6 +28,15 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+const lagoonVaults = [
+    "0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46",
+    "0xce0b790ae0d8cf91e01f3fb69025e14569b574f3",
+    "0x03d1ec0d01b659b89a87eabb56e4af5cb6e14bfc",
+    "0x28663161f9fa2963eb6102b88a741e195e974df6",
+    "0x6a39fe461278376f61acbbb6759550e24a78a7b2",
+    "0xd2386d8413c2ec4a761901da14c74a98ebe5054b",
+    "0xcda323c2df692d989b24ba51d0acca924cf9a344",
+];
 const targetProtocols = [
     "aave_v3",
     "aave_v4",
@@ -205,7 +214,6 @@ test("on-chain protocol identity rejects unrelated targets", async (t) => {
         ["euler", vault, { subaccounts: [0] }],
         ["morpho_vaultv2", vault, {}],
         ["morpho_blue", marketId, {}],
-        ["lagoon", vault, {}],
     ]) {
         await t.test(protocol, async (context) => {
             const f = await fixture(context);
@@ -391,10 +399,13 @@ test("only configured-chain targets reach the action RPC", async (t) => {
                 metadataPath,
                 JSON.stringify({
                     chains: [
-                        { chainId: 10, protocols: [{ protocol: "lagoon", ids: [adapter] }] },
+                        {
+                            chainId: 10,
+                            protocols: [{ protocol: "euler", ids: [adapter], subaccounts: [0] }],
+                        },
                         {
                             chainId: 1,
-                            protocols: [{ protocol: "lagoon", ids: [vault] }],
+                            protocols: [{ protocol: "euler", ids: [vault], subaccounts: [0] }],
                         },
                         { chainId: 11155111, protocols: [] },
                     ],
@@ -417,7 +428,9 @@ test("active non-mainnet protocol targets fail without mainnet RPC reads", async
     await f.write(
         metadataPath,
         JSON.stringify({
-            chains: [{ chainId: 11155111, protocols: [{ protocol: "lagoon", ids: [vault] }] }],
+            chains: [
+                { chainId: 11155111, protocols: [{ protocol: "lagoon", ids: [lagoonVaults[0]] }] },
+            ],
         }),
     );
     const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
@@ -432,7 +445,7 @@ test("missing configured chain is rejected before target reads", async (t) => {
     await f.write(
         metadataPath,
         JSON.stringify({
-            chains: [{ chainId: 10, protocols: [{ protocol: "lagoon", ids: [adapter] }] }],
+            chains: [{ chainId: 10, protocols: [{ protocol: "lagoon", ids: [lagoonVaults[0]] }] }],
         }),
     );
     const result = await f.run();
@@ -724,7 +737,7 @@ test("portfolio protocols cannot be declared twice", async (t) => {
 });
 
 test("bounded vault metadata keeps the 16-market runtime bounds", async (t) => {
-    for (const protocol of ["morpho_blue", "morpho_vaultv2", "lagoon"]) {
+    for (const protocol of ["morpho_blue", "morpho_vaultv2"]) {
         for (const [count, code] of [
             [16, 0],
             [17, 1],
@@ -770,12 +783,9 @@ test("Morpho rejects zero and case-duplicate market identifiers", async (t) => {
     }
 });
 
-test("Lagoon requires a factory vault and forbids subaccounts and asset overrides", async (t) => {
-    const ids = [
-        "0x9e0db8f43bb91e2148b0db920e21370525cf3aab",
-        "0xa5ae405242f42c47996a0c6857ff10a77f9bdee6",
-        "0xcda323c2df692d989b24ba51d0acca924cf9a344",
-    ];
+test("Lagoon admits exactly the reviewed vaults without a factory lookup", async (t) => {
+    assert.deepEqual(allowlist.lagoon.allowedIds, lagoonVaults);
+    const ids = lagoonVaults;
     for (const [name, entry, code] of [
         [
             "arbitrary vault",
@@ -783,6 +793,21 @@ test("Lagoon requires a factory vault and forbids subaccounts and asset override
             1,
         ],
         ["reviewed", { protocol: "lagoon", ids }, 0],
+        [
+            "mixed case",
+            { protocol: "lagoon", ids: ids.map((id) => "0x" + id.slice(2).toUpperCase()) },
+            0,
+        ],
+        [
+            "removed vault",
+            { protocol: "lagoon", ids: ["0x9e0db8f43bb91e2148b0db920e21370525cf3aab"] },
+            1,
+        ],
+        [
+            "removed vault",
+            { protocol: "lagoon", ids: ["0xa5ae405242f42c47996a0c6857ff10a77f9bdee6"] },
+            1,
+        ],
         ["standard alias", { protocol: "erc7540", ids }, 1],
         ["asset override", { protocol: "lagoon", ids, asset: usdc }, 1],
         ["empty", { protocol: "lagoon", ids: [] }, 1],
@@ -790,13 +815,14 @@ test("Lagoon requires a factory vault and forbids subaccounts and asset override
     ]) {
         await t.test(name, async (context) => {
             const f = await fixture(context);
-            if (name === "arbitrary vault") f.state.invalidTargets.add(entry.ids[0].toLowerCase());
+            f.state.invalidTargets = new Set(ids);
             await f.write(
                 metadataPath,
                 JSON.stringify({ chains: [{ chainId: 1, protocols: [entry] }] }),
             );
             const result = await f.run();
             assert.equal(result.code, code, result.output);
+            if (code === 0) assert.equal(f.calls.length, 1);
         });
     }
 });
