@@ -36,6 +36,7 @@ const lagoonVaults = [
     "0x6a39fe461278376f61acbbb6759550e24a78a7b2",
     "0xd2386d8413c2ec4a761901da14c74a98ebe5054b",
     "0xcda323c2df692d989b24ba51d0acca924cf9a344",
+    "0x78295b34d940c780c8c02a607fedf58242e7df2c",
 ];
 const targetProtocols = [
     "aave_v3",
