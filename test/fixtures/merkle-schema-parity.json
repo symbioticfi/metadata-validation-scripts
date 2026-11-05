@@ -538,6 +538,11 @@
             "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46\"]}]}]}"
         },
         {
+            "name": "lagoon_usdtest",
+            "valid": true,
+            "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"lagoon\",\"ids\":[\"0x78295b34d940C780c8c02A607FEDF58242E7df2c\"]}]}]}"
+        },
+        {
             "name": "merkl_valid",
             "valid": true,
             "raw": "{\"chains\":[{\"chainId\":1,\"protocols\":[{\"protocol\":\"merkl\",\"ids\":[]}]}]}"

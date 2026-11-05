@@ -20,7 +20,7 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership.                                     |
 | `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                                                      |
 | `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                                                                   |
-| `lagoon`         | `address` | Only the seven reviewed Ethereum vaults listed below; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                              |
+| `lagoon`         | `address` | Only the reviewed Ethereum vaults listed below; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                                    |
 | `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied.                                     |
 | `ember`          | `address` | 27 reviewed Ethereum vaults from the NAV catalogue, including held shares and owner withdrawal requests. Required nonempty IDs; membership/uniqueness ignore hex case; no subaccounts. `pplus` is not a protocol name. |
 | `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                       |
@@ -32,7 +32,7 @@ Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-na
 
 ## Lagoon scope and accounting profile
 
-A `lagoon` declaration selects each vault's account-owned held shares and complete request/claim lifecycle. Keep the vault selected while any entitlement remains outstanding, including settled unclaimed shares or net asset claims. Only the seven vault addresses below are allowed, ignoring hex case; subaccounts and an underlying asset field are forbidden. The generic `erc7540` protocol name is rejected.
+A `lagoon` declaration selects each vault's account-owned held shares and complete request/claim lifecycle. Keep the vault selected while any entitlement remains outstanding, including settled unclaimed shares or net asset claims. Only the vault addresses below are allowed, ignoring hex case; subaccounts and an underlying asset field are forbidden. The generic `erc7540` protocol name is rejected.
 
 Addresses come from metadata. Consumers derive the underlying using `asset()`, validate `share()` against the Lagoon own-share profile, and read share and asset decimals dynamically from pinned state. The vault address must be allowlisted; the underlying is read from the vault. The underlying must still have an admitted pricing route; unsupported or changed bindings fail closed. ERC165 alone does not establish fee, settlement or completeness semantics.
 
@@ -45,6 +45,7 @@ The Lagoon allowlist is exactly:
 - `0x6a39fe461278376f61acbbb6759550e24a78a7b2`
 - `0xd2386d8413c2ec4a761901da14c74a98ebe5054b`
 - `0xcda323c2df692d989b24ba51d0acca924cf9a344`
+- `0x78295b34d940c780c8c02a607fedf58242e7df2c`
 
 The reviewed [Lagoon v0.6.0 implementation source](https://etherscan.io/address/0x6c77c47fb8168e22976c3b0338cb1769c952249f#code) uses epoch IDs, a zero-ID latest-request alias, synchronous cancellation refunds, and settlement-specific entry/exit fees. These rules belong to the Lagoon profile composed with shared ERC7540 acquisition and accounting. Paused or whitelist-suppressed max getters describe executability and cannot prove that economic entitlements are absent. The exact public version is an issuer-governance assertion, not proof of the active implementation slot. This catalogue adds no deployment row or account permission.
 
