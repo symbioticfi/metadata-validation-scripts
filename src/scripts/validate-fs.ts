@@ -4,7 +4,14 @@ import path from "path";
 import * as github from "./github";
 import * as messages from "./messages";
 
-const onChainTypes = ["vaults", "operators", "networks", "tokens", "adapters"] as const;
+const onChainTypes = [
+    "vaults",
+    "operators",
+    "networks",
+    "tokens",
+    "adapters",
+    "merkle-adapters",
+] as const;
 const offChainTypes = ["points", "curators"] as const;
 
 const allowedTypes = [...onChainTypes, ...offChainTypes];
@@ -31,9 +38,11 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
 
     for (const filePath of changedFiles) {
         const dir = path.dirname(filePath);
-        const [type, identifier, fileName] = filePath.split(path.sep);
+        const segments = filePath.split(path.sep);
+        const [type, identifier, fileName] = segments;
+        const entityFiles = type === "merkle-adapters" ? ["info.json"] : allowedFiles;
 
-        if (!isValidEntity(type) || !allowedFiles.includes(fileName)) {
+        if (segments.length !== 3 || !isValidEntity(type) || !entityFiles.includes(fileName)) {
             notAllowed.add(filePath);
 
             continue;
@@ -78,6 +87,18 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
 
     const existingFiles: string[] = await fs.readdir(entityDir).catch(() => []);
 
+    if (entityType === "merkle-adapters") {
+        const notAllowedFiles = existingFiles
+            .filter((name) => name !== "info.json")
+            .map((name) => path.join(entityDir, name));
+
+        if (notAllowedFiles.length) {
+            await github.addComment(messages.notAllowedChanges(notAllowedFiles));
+
+            throw new Error("Merkle adapter folders may contain only `info.json`");
+        }
+    }
+
     const entityDirExists = existingFiles.length > 0;
     const [metadataPath, logoPath] = allowedFiles.map((name) => {
         return existingFiles.includes(name) ? path.join(entityDir, name) : undefined;
@@ -90,7 +111,11 @@ export async function validateFs(changedFiles: string[]): Promise<Entity> {
     /**
      * Validate that metadata present in the entity folder.
      */
-    if (entityDirExists && !metadataPath) {
+    const hasMetadata =
+        metadataPath &&
+        (entityType !== "merkle-adapters" || (await fs.lstat(metadataPath)).isFile());
+
+    if (entityDirExists && !hasMetadata) {
         await github.addComment(messages.noInfoJson(entityDir));
 
         throw new Error("`info.json` is not found in the entity folder");
