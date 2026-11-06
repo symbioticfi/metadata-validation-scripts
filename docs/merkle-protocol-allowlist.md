@@ -117,13 +117,13 @@ tETH, weETH and wstETH remain ordinary wallet tokens; they have no separate prot
 
 ## RWA products
 
-Each of these 49 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+Each of these 43 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
 
 | Family              | Metadata names                                                                                                                                                                                                                                                                         |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Midas (24)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mevusd`, `mfarm`, `mfone`, `mglo`, `mglobal`, `mhyper`, `mhyperbtc`, `mhypereth`, `mm1usd`, `mmev`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `mevbtc`, `msyrupusd`, `msyrupusdp` |
 | Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                                                                   |
-| Pareto (12)         | `aa_falconxusdc`, `bb_falconxusdc`, `aa_fasanara`, `bb_fasanara`, `aa_bastion`, `bb_bastion`, `aa_adaptivefrontier`, `bb_adaptivefrontier`, `aa_rockawayx`, `bb_rockawayx`, `aa_abraxas`, `bb_abraxas`                                                                                 |
+| Pareto (6)          | `aa_falconxusdc`, `aa_fasanara`, `aa_bastion`, `aa_adaptivefrontier`, `aa_rockawayx`, `aa_abraxas`                                                                                                                                                                                     |
 | Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                                                                               |
 | OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                                                                      |
 | Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                                                                          |
@@ -132,7 +132,7 @@ Each of these 49 names requires `ids: []`: canonical token and issuer contracts 
 
 PRIME/AUTO use the Hastra staking snapshot. Independently held wYLDS uses the separate Hastra yield snapshot, so `wylds` has its own entry. Likewise HYBOND/TBILL and sUSN/USN use independent snapshot lenses and product accounting.
 
-The six auxiliary Pareto receipt tokens remain within their respective AA/BB product accounting, covering all 55 active RWA token rows without requiring receipt declarations:
+Pareto BB tranches are not supported. The six auxiliary Pareto receipt tokens remain within their respective AA product accounting, covering all 49 active RWA token rows without requiring receipt declarations:
 
 | Pareto product   | Receipt token                                |
 | ---------------- | -------------------------------------------- |
@@ -153,7 +153,7 @@ Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V
 
 ## Corrections from the previous inventory
 
-- Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the eleven missing Pareto AA/BB tranches. All 23 Midas products already matched.
+- Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the five additional Pareto AA tranches. All 23 Midas products already matched.
 - Changed `three_f` from required request addresses to empty IDs, matching automatic request discovery.
 - Removed `erc4626`, `morpho_midnight` and `derive_v3`, which lack runtime discovery readers.
 - Removed Securitize's `acred`, `buidl`, `hinc`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.

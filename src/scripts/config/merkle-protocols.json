@@ -124,30 +124,6 @@
         "requiresIds": false,
         "idType": "none"
     },
-    "bb_abraxas": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "bb_adaptivefrontier": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "bb_bastion": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "bb_falconxusdc": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "bb_fasanara": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "bb_rockawayx": {
-        "requiresIds": false,
-        "idType": "none"
-    },
     "carrytradeusdtryleverage": {
         "requiresIds": false,
         "idType": "none"

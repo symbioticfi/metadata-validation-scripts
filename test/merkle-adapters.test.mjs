@@ -77,17 +77,11 @@ const namedProducts = {
     centrifuge: ["acrdx", "hyb", "jaaa", "jtrsy", "dejaaa", "dejtrsy"],
     pareto: [
         "aa_falconxusdc",
-        "bb_falconxusdc",
         "aa_fasanara",
-        "bb_fasanara",
         "aa_bastion",
-        "bb_bastion",
         "aa_adaptivefrontier",
-        "bb_adaptivefrontier",
         "aa_rockawayx",
-        "bb_rockawayx",
         "aa_abraxas",
-        "bb_abraxas",
     ],
     hastra: ["prime", "auto", "wylds"],
     openeden: ["hybond", "tbill"],
@@ -485,6 +479,12 @@ test("shared raw metadata corpus matches the bundled action", async (t) => {
 
 test("unsupported products and execution-only integrations are not allowlisted", async (t) => {
     for (const protocol of [
+        "bb_abraxas",
+        "bb_adaptivefrontier",
+        "bb_bastion",
+        "bb_falconxusdc",
+        "bb_fasanara",
+        "bb_rockawayx",
         "acred",
         "beqty",
         "buidl",
