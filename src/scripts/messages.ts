@@ -33,14 +33,15 @@ export const notRegisteredEntity = (
     address: string,
     chain: string,
     registryContract: string,
+    registryType: "registry" | "factory" = "registry",
 ) =>
-    `${label} \`${address}\` is not registered in ${label.toLowerCase()} registry on ${chain} network (registry address: \`${registryContract}\`). ${contributionGuidelines}`;
+    `${label} \`${address}\` is not registered in ${label.toLowerCase()} ${registryType} on ${chain} network (${registryType} address: \`${registryContract}\`). ${contributionGuidelines}`;
 
 export const invalidVault = (address: string, chain: string) =>
     `Contract \`${address}\` is not a valid Vault on ${chain} network. ${contributionGuidelines}`;
 
 export const noVaultTokenInfo = (tokenAddress: string) =>
-    `Information for the vault collateral is not found in the repository. \nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
+    `Information for the vault collateral is not found in the repository.\nPlease, make sure info for token \`${tokenAddress}\` is present in this repository. If not, please create Pull Request for it first. ${contributionGuidelines}`;
 
 export const invalidRewardsType = (address: string, type: string) =>
     `Rewards contract \`${address}\` has invalid type \`${type}\`. Expected type is \`defaultStakingRewardsV2\`. ${contributionGuidelines}`;
