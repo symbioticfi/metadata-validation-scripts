@@ -1,0 +1,21 @@
+{
+    "1": {
+        "cbbtc": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+        "dai": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "lbtc": "0x8236a87084f8b84306f72007f36f2618a5634494",
+        "paxg": "0x45804880de22913dafe09f4980848ece6ecbaf78",
+        "pyusd": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+        "solvbtc": "0x7a56e1c57c7475ccf742a1832b028f0456652f97",
+        "tbtc": "0x18084fba666a33d37592fa2633fd49a74dd93a88",
+        "teth": "0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8",
+        "unibtc": "0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+        "usdc": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "usde": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+        "usds": "0xdc035d45d973e3ec169d2276ddab16f1e407384f",
+        "usdt": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "wbtc": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "weeth": "0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+        "weth": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "wsteth": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+    }
+}
