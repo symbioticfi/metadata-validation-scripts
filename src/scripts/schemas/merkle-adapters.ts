@@ -12,6 +12,7 @@ function addressPattern(addresses: string[]) {
             .slice(2)
             .replace(/[a-f]/g, (character) => `[${character}${character.toUpperCase()}]`),
     );
+
     return `^0x(?:${alternatives.join("|")})$`;
 }
 
