@@ -56,21 +56,17 @@ const namedProducts = {
         "mbasis",
         "mbtc",
         "medge",
-        "mevusd",
-        "mfarm",
         "mfone",
         "mglo",
         "mglobal",
         "mhyper",
         "mhyperbtc",
-        "mhypereth",
         "mm1usd",
         "mrox",
         "mre7btc",
         "mre7yield",
         "msl",
         "mtbill",
-        "mevbtc",
         "msyrupusd",
         "msyrupusdp",
     ],
@@ -506,6 +502,10 @@ test("unsupported products and execution-only integrations are not allowlisted",
         "weeth",
         "wsteth",
         "liquid_lane_connector",
+        "mevbtc",
+        "mevusd",
+        "mfarm",
+        "mhypereth",
         "cow_swap",
         "liquid_lane_redeem",
     ]) {
@@ -521,26 +521,6 @@ test("unsupported products and execution-only integrations are not allowlisted",
             assert.match(result.output, /allowed values/);
         });
     }
-});
-
-test("retired Midas declarations remain available only as retained NAV inventory", async (t) => {
-    const retired = ["mevbtc", "mevusd", "mfarm", "mhypereth"];
-    assert.deepEqual(
-        Object.entries(allowlist)
-            .filter(([, rule]) => rule.retired)
-            .map(([name]) => name)
-            .sort(),
-        retired,
-    );
-    const f = await fixture(t);
-    await f.write(
-        metadataPath,
-        JSON.stringify({
-            chains: [{ chainId: 1, protocols: retired.map((protocol) => ({ protocol, ids: [] })) }],
-        }),
-    );
-    const result = await f.run();
-    assert.equal(result.code, 0, result.output);
 });
 
 test("unpriced tokens are rejected even when their addresses are valid", async (t) => {

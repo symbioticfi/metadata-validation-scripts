@@ -26,12 +26,6 @@ export default function getMerkleAdapterSchema() {
         },
         then: {
             type: "object",
-            ...("retired" in rule && rule.retired
-                ? {
-                      description:
-                          "Retired product: retain this declaration while NAV inventory exists.",
-                  }
-                : {}),
             properties: {
                 ids: rule.requiresIds
                     ? {

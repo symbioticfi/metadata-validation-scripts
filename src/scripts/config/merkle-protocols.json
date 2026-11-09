@@ -165,21 +165,6 @@
         "requiresIds": false,
         "idType": "none"
     },
-    "mevbtc": {
-        "requiresIds": false,
-        "idType": "none",
-        "retired": true
-    },
-    "mevusd": {
-        "requiresIds": false,
-        "idType": "none",
-        "retired": true
-    },
-    "mfarm": {
-        "requiresIds": false,
-        "idType": "none",
-        "retired": true
-    },
     "mfone": {
         "requiresIds": false,
         "idType": "none"
@@ -199,11 +184,6 @@
     "mhyperbtc": {
         "requiresIds": false,
         "idType": "none"
-    },
-    "mhypereth": {
-        "requiresIds": false,
-        "idType": "none",
-        "retired": true
     },
     "mm1usd": {
         "requiresIds": false,
