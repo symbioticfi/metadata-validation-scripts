@@ -9,6 +9,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { encodePng, Image } from "image-js";
+import { getAddress } from "viem";
 
 const actionPath = fileURLToPath(new URL("../dist/index.cjs", import.meta.url));
 const extractorPath = fileURLToPath(
@@ -211,6 +212,55 @@ test("on-chain protocol identity rejects unrelated targets", async (t) => {
             assert.equal(result.code, 1, result.output);
             assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
         });
+    }
+});
+
+test("target address casing preserves canonical membership checks", async (t) => {
+    const cases = [
+        ["lowercase", usdc, true],
+        ["checksum", getAddress(usdc), true],
+        ["uppercase", `0x${usdc.slice(2).toUpperCase()}`, true],
+        ["mixed", `0xA${usdc.slice(3)}`, true],
+        ["unregistered uppercase", `0x${usdc.slice(2).toUpperCase()}`, false],
+    ];
+
+    for (const protocol of ["euler", "morpho_vaultv2"]) {
+        for (const [name, id, registered] of cases) {
+            await t.test(`${protocol}: ${name}`, async (context) => {
+                const f = await fixture(context);
+                if (!registered) {
+                    f.state.invalidTargets.add(usdc);
+                }
+                await f.write(
+                    metadataPath,
+                    JSON.stringify({
+                        chains: [
+                            {
+                                chainId: 1,
+                                protocols: [
+                                    {
+                                        protocol,
+                                        ids: [id],
+                                        ...(protocol === "euler" ? { subaccounts: [0] } : {}),
+                                    },
+                                ],
+                            },
+                        ],
+                    }),
+                );
+                const result = await f.run();
+                assert.equal(result.code, registered ? 0 : 1, result.output);
+                if (!registered) {
+                    assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
+                }
+                assert.equal(f.calls.length, 2);
+                assert.ok(
+                    f.calls
+                        .find((call) => call.params[0].to !== registry)
+                        .params[0].data.endsWith(usdc.slice(2)),
+                );
+            });
+        }
     }
 });
 
@@ -912,6 +962,38 @@ test("invalid JSON receives a PR comment", async (t) => {
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /Add Comment/);
     assert.match(result.output, /not valid JSON/);
+});
+
+test("prototype properties cannot supply required metadata fields", async (t) => {
+    const cases = [
+        ["root", '{\n  "__proto__": {"chains":[{"chainId":1,"protocols":[]}]}\n}', 2],
+        ["chain", '{\n  "chains": [{\n    "__proto__": {"chainId":1,"protocols":[]}\n  }]\n}', 3],
+        [
+            "protocol",
+            '{\n  "chains": [{"chainId":1,"protocols":[{\n    "__proto__": {"protocol":"merkl","ids":[]}\n  }]}]\n}',
+            3,
+        ],
+    ];
+
+    for (const [name, raw, line] of cases) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, raw);
+            const result = await f.run([metadataPath], { LOCAL_ACTION_RUN: "false" });
+            assert.equal(result.code, 1, result.output);
+            const review = f.githubCalls.find((call) => call.url.endsWith("/reviews"));
+            assert.ok(review);
+            assert.ok(
+                review.body.comments.some(
+                    (comment) =>
+                        comment.path === metadataPath &&
+                        comment.line === line &&
+                        comment.body === "Must NOT have additional properties",
+                ),
+            );
+            assert.equal(f.calls.length, 1);
+        });
+    }
 });
 
 test("duplicate JSON keys receive a PR comment", async (t) => {

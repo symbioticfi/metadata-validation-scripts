@@ -185,7 +185,8 @@ import { getSchema } from "./schemas";
 import { parse } from "json-source-map";
 
 const schema = getSchema(entityType); // Returns bundled JSON schema
-const { data: metadata, pointers: lineMap } = parse(metadataContent);
+const metadata = JSON.parse(metadataContent);
+const { pointers: lineMap } = parse(metadataContent);
 // Validate metadata...
 const line = lineMap[error.instancePath]?.value?.line || 1;
 

@@ -39,9 +39,11 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
 
     const schema = getSchema(entityType);
     const metadataContent = await fs.readFile(metadataPath, "utf8");
-    let parsed: ReturnType<typeof parse>;
+    let metadata: unknown;
+    let lineMap: ReturnType<typeof parse>["pointers"];
 
     try {
+        metadata = JSON.parse(metadataContent);
         const objects: Set<string>[] = [];
         visit(metadataContent, {
             onObjectBegin: () => {
@@ -59,14 +61,12 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
                 objects.pop();
             },
         });
-        parsed = parse(metadataContent);
+        ({ pointers: lineMap } = parse(metadataContent));
     } catch {
         await github.addComment(messages.invalidInfoJson());
 
         throw new Error("The `info.json` file is not valid JSON");
     }
-
-    const { data: metadata, pointers: lineMap } = parsed;
 
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
