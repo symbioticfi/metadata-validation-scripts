@@ -36,6 +36,7 @@ const lagoonVaults = [
     "0x6a39fe461278376f61acbbb6759550e24a78a7b2",
     "0xd2386d8413c2ec4a761901da14c74a98ebe5054b",
     "0xcda323c2df692d989b24ba51d0acca924cf9a344",
+    "0x78295b34d940c780c8c02a607fedf58242e7df2c",
 ];
 const targetProtocols = [
     "aave_v3",
@@ -64,7 +65,6 @@ const namedProducts = {
         "mhyperbtc",
         "mhypereth",
         "mm1usd",
-        "mmev",
         "mrox",
         "mre7btc",
         "mre7yield",
@@ -75,14 +75,7 @@ const namedProducts = {
         "msyrupusdp",
     ],
     centrifuge: ["acrdx", "hyb", "jaaa", "jtrsy", "dejaaa", "dejtrsy"],
-    pareto: [
-        "aa_falconxusdc",
-        "aa_fasanara",
-        "aa_bastion",
-        "aa_adaptivefrontier",
-        "aa_rockawayx",
-        "aa_abraxas",
-    ],
+    pareto: ["aa_falconxusdc", "aa_fasanara", "aa_bastion", "aa_adaptivefrontier", "aa_rockawayx"],
     hastra: ["prime", "auto", "wylds"],
     openeden: ["hybond", "tbill"],
     noon: ["susn", "usn"],
@@ -479,6 +472,10 @@ test("shared raw metadata corpus matches the bundled action", async (t) => {
 
 test("unsupported products and execution-only integrations are not allowlisted", async (t) => {
     for (const protocol of [
+        "mmev",
+        "aa_abraxas",
+        "paretoreceipt",
+        "paretoreceipt_abraxas",
         "bb_abraxas",
         "bb_adaptivefrontier",
         "bb_bastion",
@@ -524,6 +521,26 @@ test("unsupported products and execution-only integrations are not allowlisted",
             assert.match(result.output, /allowed values/);
         });
     }
+});
+
+test("retired Midas declarations remain available only as retained NAV inventory", async (t) => {
+    const retired = ["mevbtc", "mevusd", "mfarm", "mhypereth"];
+    assert.deepEqual(
+        Object.entries(allowlist)
+            .filter(([, rule]) => rule.retired)
+            .map(([name]) => name)
+            .sort(),
+        retired,
+    );
+    const f = await fixture(t);
+    await f.write(
+        metadataPath,
+        JSON.stringify({
+            chains: [{ chainId: 1, protocols: retired.map((protocol) => ({ protocol, ids: [] })) }],
+        }),
+    );
+    const result = await f.run();
+    assert.equal(result.code, 0, result.output);
 });
 
 test("unpriced tokens are rejected even when their addresses are valid", async (t) => {

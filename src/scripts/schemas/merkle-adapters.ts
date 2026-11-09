@@ -12,6 +12,7 @@ function addressPattern(addresses: string[]) {
             .slice(2)
             .replace(/[a-f]/g, (character) => `[${character}${character.toUpperCase()}]`),
     );
+
     return `^0x(?:${alternatives.join("|")})$`;
 }
 
@@ -25,6 +26,12 @@ export default function getMerkleAdapterSchema() {
         },
         then: {
             type: "object",
+            ...("retired" in rule && rule.retired
+                ? {
+                      description:
+                          "Retired product: retain this declaration while NAV inventory exists.",
+                  }
+                : {}),
             properties: {
                 ids: rule.requiresIds
                     ? {

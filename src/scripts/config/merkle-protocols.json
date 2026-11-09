@@ -48,7 +48,8 @@
             "0x28663161f9fa2963eb6102b88a741e195e974df6",
             "0x6a39fe461278376f61acbbb6759550e24a78a7b2",
             "0xd2386d8413c2ec4a761901da14c74a98ebe5054b",
-            "0xcda323c2df692d989b24ba51d0acca924cf9a344"
+            "0xcda323c2df692d989b24ba51d0acca924cf9a344",
+            "0x78295b34d940c780c8c02a607fedf58242e7df2c"
         ]
     },
     "three_f": {
@@ -91,10 +92,6 @@
             "0xe6bb49a6f88b81476181e63b58701313336c6f94",
             "0xf3190a3ecc109f88e7947b849b281918c798a0c4"
         ]
-    },
-    "aa_abraxas": {
-        "requiresIds": false,
-        "idType": "none"
     },
     "aa_adaptivefrontier": {
         "requiresIds": false,
@@ -170,15 +167,18 @@
     },
     "mevbtc": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "retired": true
     },
     "mevusd": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "retired": true
     },
     "mfarm": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "retired": true
     },
     "mfone": {
         "requiresIds": false,
@@ -202,13 +202,10 @@
     },
     "mhypereth": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "retired": true
     },
     "mm1usd": {
-        "requiresIds": false,
-        "idType": "none"
-    },
-    "mmev": {
         "requiresIds": false,
         "idType": "none"
     },
