@@ -20,10 +20,15 @@ const isEntityAbi = [
     },
 ] as const;
 
-const adapterMeta: EntityMeta = {
-    label: "Adapter",
-    contract: github.getInput("adapter-registry", { required: true }),
-};
+const factoryAbi = [
+    {
+        inputs: [],
+        name: "FACTORY",
+        outputs: [{ internalType: "address", name: "", type: "address" }],
+        stateMutability: "view",
+        type: "function",
+    },
+] as const;
 
 const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
     vaults: {
@@ -40,22 +45,28 @@ const entityMetaMap: Partial<Record<EntityType, EntityMeta>> = {
         label: "Operator",
         contract: github.getInput("operator-registry", { required: true }),
     },
-
-    adapters: adapterMeta,
-
-    "merkle-adapters": adapterMeta,
 };
 
 export const validateEntity = async ({ entityType, entityId }: Entity) => {
     const entityAddress = entityId as Address;
-    const entityMeta = entityMetaMap[entityType];
+    const configuredMeta = entityMetaMap[entityType];
+    const isAdapter = entityType === "adapters" || entityType === "merkle-adapters";
 
-    if (!entityMeta) {
+    if (!configuredMeta && !isAdapter) {
         return;
     }
 
     const chain = getChain();
     const client = createClient();
+    const entityMeta: EntityMeta = configuredMeta ?? {
+        label: "Adapter",
+        contract: await client.readContract({
+            address: entityAddress,
+            abi: factoryAbi,
+            functionName: "FACTORY",
+        }),
+    };
+    const registryType = isAdapter ? "factory" : "registry";
     const isEntity = await client.readContract({
         address: entityMeta.contract as Address,
         abi: isEntityAbi,
@@ -70,11 +81,12 @@ export const validateEntity = async ({ entityType, entityId }: Entity) => {
                 entityAddress,
                 chain.name,
                 entityMeta.contract,
+                registryType,
             ),
         );
 
         throw new Error(
-            `${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} registry on ${chain.name} network (registry address: \`${entityMeta.contract}\`)`,
+            `${entityMeta.label} \`${entityAddress}\` is not registered in ${entityMeta.label.toLowerCase()} ${registryType} on ${chain.name} network (${registryType} address: \`${entityMeta.contract}\`)`,
         );
     }
 };

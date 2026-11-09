@@ -10,12 +10,12 @@ Entities are organized as: `{entityType}/{identifier}/{info.json,logo.png}`
 
 **Entity types:**
 
-- **Address-based**: `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`. All except `tokens` require registry validation.
+- **Address-based**: `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`. Vaults, operators and networks require registry validation. Adapters and Merkle adapters require membership in their own deployment factory; tokens have no entity registry check.
 - **Off-chain** (no registry check): `points`, `curators`
 
 ### Merkle Adapter Metadata
 
-Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The adapter must be registered in the configured `adapter-registry`. Each folder contains only `info.json`; logos are not allowed.
+Use `merkle-adapters/<adapter-address>/info.json`. The identifier is the vault adapter address, whose `account()` holds strategy positions. The validator reads `FACTORY()` from the adapter and requires that factory's `isEntity(adapter)` to return true. It does not check vault whitelist status. Each folder contains only `info.json`; logos are not allowed.
 
 The JSON object requires a nonempty `chains` array. Each strict scope contains a positive safe-integer `chainId` and a required `protocols` array, which may be empty. Chain IDs must be unique. The old top-level `protocols` shape is rejected. Within each chain, each entry has a lowercase portfolio protocol or product name and an `ids` array of vault, pool, market, or common-token identifiers. Use underscores between words and an empty `ids` array when no specific targets are needed:
 
@@ -70,7 +70,7 @@ The JSON object requires a nonempty `chains` array. Each strict scope contains a
 }
 ```
 
-Every scope receives schema, protocol and ID validation, including scopes for other chains. The configured action `chain-id` must have a matching scope. Adapter registry validation and canonical target RPC checks apply only to that scope, using the configured RPC; other scopes receive no target membership or adapter registration attestation. Run the action with each chain's configuration to obtain that coverage.
+Every scope receives schema, protocol and ID validation, including scopes for other chains. The configured action `chain-id` must have a matching scope. Adapter factory membership and canonical target RPC checks apply only to that scope, using the configured RPC; other scopes receive no target membership or attestation of adapter factory membership. Run the action with each chain's configuration to obtain that coverage.
 
 The vault/pool/market targets above are illustrative. Allowed portfolio names and ID requirements are defined in [`src/scripts/config/merkle-protocols.json`](src/scripts/config/merkle-protocols.json), which is bundled into the validator. Entries with `requiresIds: true` need at least one identifier: `idType: "name"` selects the exact lowercase Aave V3 names `core`, `etherfi`, `lido`, or `horizon`; `idType: "address"` accepts 20-byte EVM addresses; `idType: "bytes32"` accepts 32-byte market IDs. Name-only entries require `ids: []`. Within each chain, unknown names, repeated protocol declarations, duplicate IDs, and identifiers of the wrong type are rejected. Morpho Blue and Vault V2 each accept at most 16 nonzero IDs, unique ignoring hex case. Lagoon accepts only its seven reviewed Ethereum vaults. Aave V4 accepts only the twelve reviewed user-position spoke addresses in `allowedIds`, ignoring hex case. Omit `aave_v3` or `aave_v4` to exclude that version; present entries require nonempty IDs and forbid `subaccounts`. NAV enumerates all reserves within the selected deployments. Add new integrations to the allowlist before using their names in metadata.
 
@@ -123,7 +123,7 @@ Validation skips remaining steps if entity is deleted.
 - `vault-registry` (required): Vaults registry contract address.
 - `operator-registry` (required): Operators registry contract address.
 - `network-registry` (required): Networks registry contract address.
-- `adapter-registry` (required): Adapter registry contract address for `adapters` and `merkle-adapters`.
+- `adapter-registry` (optional, deprecated): Ignored for compatibility with existing workflows. Both adapter types use their own `FACTORY()` and its `isEntity(adapter)` check.
 - `chain-id` (required): Chain ID for on-chain validation.
 - `rpc-url` (optional): RPC URL for on-chain validation.
 - `upstream-checkout-path` (optional): Path to upstream repo checkout.

@@ -91,7 +91,12 @@ async function fixture(t) {
 
     const calls = [];
     const githubCalls = [];
-    const state = { registered: true, invalidTargets: new Set() };
+    const state = {
+        registered: true,
+        factory: registry,
+        factoryResult: undefined,
+        invalidTargets: new Set(),
+    };
     const server = createServer(async (request, response) => {
         let body = "";
         for await (const chunk of request) {
@@ -106,6 +111,29 @@ async function fixture(t) {
         }
         calls.push(call);
         response.setHeader("content-type", "application/json");
+        if (call.params?.[0]?.to === adapter && call.params[0].data === "0x2dd31000") {
+            response.end(
+                JSON.stringify({
+                    jsonrpc: "2.0",
+                    id: call.id,
+                    result: state.factoryResult ?? `0x${state.factory.slice(2).padStart(64, "0")}`,
+                }),
+            );
+            return;
+        }
+        if (
+            (call.params?.[0]?.to === registry || call.params?.[0]?.to === state.factory) &&
+            call.params[0].data !== `0x14887c58${adapter.slice(2).padStart(64, "0")}`
+        ) {
+            response.end(
+                JSON.stringify({
+                    jsonrpc: "2.0",
+                    id: call.id,
+                    error: { code: -32000, message: "Unsupported factory or registry call" },
+                }),
+            );
+            return;
+        }
         const target = call.params?.[0]?.data?.slice(-64)?.replace(/^0+/, "")?.toLowerCase();
         const valid = !state.invalidTargets.has(
             `0x${target?.padStart(call.params?.[0]?.data?.startsWith("0x5c60e39a") ? 64 : 40, "0")}`,
@@ -113,7 +141,7 @@ async function fixture(t) {
         const market = call.params?.[0]?.data?.startsWith("0x5c60e39a");
         const result = market
             ? `0x${[0, 0, 0, 0, valid ? 1 : 0, 0].map((word) => word.toString(16).padStart(64, "0")).join("")}`
-            : `0x${(call.params?.[0]?.to === registry ? Number(state.registered) : Number(valid)).toString(16).padStart(64, "0")}`;
+            : `0x${(call.params?.[0]?.to === registry || call.params?.[0]?.to === state.factory ? Number(state.registered) : Number(valid)).toString(16).padStart(64, "0")}`;
         response.end(JSON.stringify({ jsonrpc: "2.0", id: call.id, result }));
     });
     await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
@@ -176,7 +204,7 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
-    assert.equal(f.calls.length, 5);
+    assert.equal(f.calls.length, 6);
     assert.ok(f.calls.every((call) => call.method === "eth_call"));
     assert.ok(
         f.calls.some(
@@ -253,10 +281,13 @@ test("target address casing preserves canonical membership checks", async (t) =>
                 if (!registered) {
                     assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
                 }
-                assert.equal(f.calls.length, 2);
+                assert.equal(f.calls.length, 3);
                 assert.ok(
                     f.calls
-                        .find((call) => call.params[0].to !== registry)
+                        .find(
+                            (call) =>
+                                call.params[0].to !== registry && call.params[0].to !== adapter,
+                        )
                         .params[0].data.endsWith(usdc.slice(2)),
                 );
             });
@@ -419,8 +450,8 @@ test("token allowlists follow each scope chain rather than the action chain", as
     );
     const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
     assert.equal(result.code, 0, result.output);
-    assert.equal(f.calls.length, 1);
-    assert.equal(f.calls[0].params[0].to, registry);
+    assert.equal(f.calls.length, 2);
+    assert.equal(f.calls[1].params[0].to, registry);
 });
 
 test("only configured-chain targets reach the action RPC", async (t) => {
@@ -446,10 +477,12 @@ test("only configured-chain targets reach the action RPC", async (t) => {
             );
             const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": String(chainId) });
             assert.equal(result.code, 0, result.output);
-            assert.equal(f.calls.length, chainId === 1 ? 2 : 1);
+            assert.equal(f.calls.length, chainId === 1 ? 3 : 2);
             assert.ok(
                 f.calls
-                    .filter((call) => call.params[0].to !== registry)
+                    .filter(
+                        (call) => call.params[0].to !== registry && call.params[0].to !== adapter,
+                    )
                     .every((call) => call.params[0].data.endsWith(vault.slice(2))),
             );
         });
@@ -469,8 +502,8 @@ test("active non-mainnet protocol targets fail without mainnet RPC reads", async
     const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": "11155111" });
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /Cannot verify this protocol target outside Ethereum mainnet/);
-    assert.equal(f.calls.length, 1);
-    assert.equal(f.calls[0].params[0].to, registry);
+    assert.equal(f.calls.length, 2);
+    assert.equal(f.calls[1].params[0].to, registry);
 });
 
 test("missing configured chain is rejected before target reads", async (t) => {
@@ -484,8 +517,8 @@ test("missing configured chain is rejected before target reads", async (t) => {
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
     assert.match(result.output, /Must include the configured chain 1/);
-    assert.equal(f.calls.length, 1);
-    assert.equal(f.calls[0].params[0].to, registry);
+    assert.equal(f.calls.length, 2);
+    assert.equal(f.calls[1].params[0].to, registry);
 });
 
 test("duplicate chain errors retain the second chain ID value line", async (t) => {
@@ -869,7 +902,7 @@ test("Lagoon admits exactly the reviewed vaults without a factory lookup", async
             );
             const result = await f.run();
             assert.equal(result.code, code, result.output);
-            if (code === 0) assert.equal(f.calls.length, 1);
+            if (code === 0) assert.equal(f.calls.length, 2);
         });
     }
 });
@@ -991,7 +1024,7 @@ test("prototype properties cannot supply required metadata fields", async (t) =>
                         comment.body === "Must NOT have additional properties",
                 ),
             );
-            assert.equal(f.calls.length, 1);
+            assert.equal(f.calls.length, 2);
         });
     }
 });
@@ -1071,25 +1104,67 @@ test("multiple adapter folders are rejected", async (t) => {
     assert.equal(f.calls.length, 0);
 });
 
+test("adapter factory membership uses the returned factory without a registry input", async (t) => {
+    for (const entityType of ["adapters", "merkle-adapters"]) {
+        await t.test(entityType, async (context) => {
+            const f = await fixture(context);
+            f.state.factory = "0x4444444444444444444444444444444444444444";
+            const infoPath = `${entityType}/${adapter}/info.json`;
+            await f.write(
+                infoPath,
+                JSON.stringify(
+                    entityType === "adapters"
+                        ? { name: "Adapter", description: "Example", links: [] }
+                        : emptyInfo,
+                ),
+            );
+            if (entityType === "adapters")
+                await f.write(`${entityType}/${adapter}/logo.png`, "unchanged logo");
+            const result = await f.run([infoPath], { "INPUT_ADAPTER-REGISTRY": "" });
+            assert.equal(result.code, 0, result.output);
+            assert.deepEqual(
+                f.calls.map(({ params }) => ({ to: params[0].to, data: params[0].data })),
+                [
+                    { to: adapter, data: "0x2dd31000" },
+                    {
+                        to: f.state.factory,
+                        data: `0x14887c58${adapter.slice(2).padStart(64, "0")}`,
+                    },
+                ],
+            );
+        });
+    }
+});
+
+test("adapter factory membership fails when FACTORY returns no data", async (t) => {
+    const f = await fixture(t);
+    f.state.factoryResult = "0x";
+    await f.write(metadataPath, JSON.stringify(emptyInfo));
+    const result = await f.run();
+    assert.equal(result.code, 1, result.output);
+    assert.match(result.output, /FACTORY.*returned no data/s);
+    assert.equal(f.calls.length, 1);
+});
+
 test("unregistered adapter is rejected with a PR comment", async (t) => {
     const f = await fixture(t);
     f.state.registered = false;
     await f.write(metadataPath, JSON.stringify(emptyInfo));
     const result = await f.run();
     assert.equal(result.code, 1, result.output);
-    assert.match(result.output, /not registered in adapter registry/);
+    assert.match(result.output, /not registered in adapter factory/);
     assert.match(result.output, /Add Comment/);
-    assert.equal(f.calls.length, 1);
+    assert.equal(f.calls.length, 2);
 });
 
-test("deleted adapter metadata skips registry and schema validation", async (t) => {
+test("deleted adapter metadata skips factory and schema validation", async (t) => {
     const f = await fixture(t);
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
     assert.equal(f.calls.length, 0);
 });
 
-test("ordinary adapters retain metadata, registry, and logo behavior", async (t) => {
+test("ordinary adapters retain metadata and logo behavior with factory validation", async (t) => {
     const f = await fixture(t);
     const legacyPath = `adapters/${adapter}/info.json`;
     await f.write(
@@ -1099,12 +1174,25 @@ test("ordinary adapters retain metadata, registry, and logo behavior", async (t)
     await f.write(`adapters/${adapter}/logo.png`, "unchanged logo");
     const result = await f.run([legacyPath]);
     assert.equal(result.code, 0, result.output);
-    assert.equal(f.calls.length, 1);
+    assert.equal(f.calls.length, 2);
 
     await f.write(legacyPath, JSON.stringify(emptyInfo));
     const invalid = await f.run([legacyPath]);
     assert.equal(invalid.code, 1, invalid.output);
     assert.match(invalid.output, /Add review/);
+});
+
+test("networks retain configured registry validation without an adapter registry", async (t) => {
+    const f = await fixture(t);
+    const infoPath = `networks/${adapter}/info.json`;
+    await f.write(infoPath, JSON.stringify({ name: "Network", tags: [], links: [] }));
+    await f.write(`networks/${adapter}/logo.png`, "unchanged logo");
+    const result = await f.run([infoPath], { "INPUT_ADAPTER-REGISTRY": "" });
+    assert.equal(result.code, 0, result.output);
+    assert.deepEqual(
+        f.calls.map(({ params }) => ({ to: params[0].to, data: params[0].data })),
+        [{ to: registry, data: `0x14887c58${adapter.slice(2).padStart(64, "0")}` }],
+    );
 });
 
 test("updated image decoder accepts a 256x256 PNG", async (t) => {
@@ -1159,7 +1247,7 @@ test("updated Actions SDK sends inline schema feedback through the GitHub API", 
     assert.equal(f.githubCalls[0].body.comments[0].line, 1);
 });
 
-test("updated Actions SDK sends registry errors through the GitHub API", async (t) => {
+test("updated Actions SDK sends factory errors through the GitHub API", async (t) => {
     const f = await fixture(t);
     f.state.registered = false;
     await f.write(metadataPath, JSON.stringify(emptyInfo));

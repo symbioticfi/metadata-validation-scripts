@@ -11,20 +11,20 @@ This is a GitHub Action that validates metadata changes in Symbiotic ecosystem r
 The codebase validates entities organized as: `{entityType}/{address}/{info.json,logo.png}`
 
 - **Entity types**:
-    - On-chain (require registry validation): `vaults`, `operators`, `networks`, `tokens`, `adapters`, `merkle-adapters`
+    - On-chain: `vaults`, `operators` and `networks` use configured registry validation; `adapters` and `merkle-adapters` use their own `FACTORY().isEntity(adapter)`; `tokens` have no entity registry check
     - Off-chain (no registry check): `points`, `curators`
 - **Identifier format**:
     - On-chain: Ethereum address `/^0x[a-fA-F0-9]{40}$/`
     - Off-chain: Kebab-case name `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`
 - **Allowed files**: Only `info.json` and `logo.png` per entity (enforced in `validate-fs.ts`). `merkle-adapters` folders contain only a regular `info.json` file; logos and other files are rejected.
-- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` requires a nonempty `chains` array of strict `{chainId, protocols}` scopes. Chain IDs are positive safe integers and unique; each protocols array is required and may be empty. The old top-level protocols shape is rejected. Each protocol entry is a `{protocol, ids}` object. Protocol/ID uniqueness is scoped to each chain. Allowed portfolio names, `requiresIds`, and `idType` come from `src/scripts/config/merkle-protocols.json`, imported at compile time. Entries requiring IDs must contain at least one identifier of the configured type (20-byte EVM address, bytes32 market ID or allowed deployment name); name-only entries require an empty array. The `tokens` entry additionally validates IDs against `src/scripts/config/merkle-tokens.json` for the enclosing scope's `chainId`, accepting hex case variations; initially only Ethereum mainnet is allowlisted. 3F requires empty IDs because its factory binding is fixed. Ember requires a nonempty address list containing only the 27 reviewed Ethereum vaults in `merkle-protocols.json`, with hex-case-insensitive membership/uniqueness and no subaccounts. Omission excludes the Ember protocol collector and ledger/queue discovery; generic idle balances still apply when PPLUS is the denomination. Other Ember vaults are unsupported until reviewed and added to the address list, since Ember publishes no vault factory. Lagoon accepts only the eight reviewed Ethereum vault addresses in `lagoon.allowedIds`, ignoring hex case, without subaccounts or asset overrides. Consumers derive the underlying asset and decimals on-chain and validate the Lagoon own-share profile. Every scope is schema validated. The configured action chain must be present, and only that scope receives target RPC validation; other scopes are never queried through this chain's RPC. Euler, Morpho V2 and Morpho Blue target identities in the active mainnet scope are verified against their canonical factories or market storage. Lagoon uses its reviewed address allowlist without a factory lookup. Inactive scopes receive no target membership attestation. The generic `erc7540` protocol name is rejected. All active RWA products, including TBILL, wYLDS and USN, have entries; Pareto receipts remain part of their tranche accounting. Merkl rewards use an explicit `merkl` entry with empty IDs. Execution plumbing has no separate portfolio entry. Declared markets include required asset-pricing dependencies without separate product entries; standalone wallet balances and issuer requests remain explicitly selected. Keep the allowlists aligned with the pinned NAV runtime rather than planned or deferred readers. Registration uses the existing `adapter-registry` input. Research sources and coverage limits are recorded in `docs/merkle-protocol-allowlist.md`.
+- **Merkle adapter metadata**: `merkle-adapters/{adapterAddress}/info.json` requires a nonempty `chains` array of strict `{chainId, protocols}` scopes. Chain IDs are positive safe integers and unique; each protocols array is required and may be empty. The old top-level protocols shape is rejected. Each protocol entry is a `{protocol, ids}` object. Protocol/ID uniqueness is scoped to each chain. Allowed portfolio names, `requiresIds`, and `idType` come from `src/scripts/config/merkle-protocols.json`, imported at compile time. Entries requiring IDs must contain at least one identifier of the configured type (20-byte EVM address, bytes32 market ID or allowed deployment name); name-only entries require an empty array. The `tokens` entry additionally validates IDs against `src/scripts/config/merkle-tokens.json` for the enclosing scope's `chainId`, accepting hex case variations; initially only Ethereum mainnet is allowlisted. 3F requires empty IDs because its factory binding is fixed. Ember requires a nonempty address list containing only the 27 reviewed Ethereum vaults in `merkle-protocols.json`, with hex-case-insensitive membership/uniqueness and no subaccounts. Omission excludes the Ember protocol collector and ledger/queue discovery; generic idle balances still apply when PPLUS is the denomination. Other Ember vaults are unsupported until reviewed and added to the address list, since Ember publishes no vault factory. Lagoon accepts only the eight reviewed Ethereum vault addresses in `lagoon.allowedIds`, ignoring hex case, without subaccounts or asset overrides. Consumers derive the underlying asset and decimals on-chain and validate the Lagoon own-share profile. Every scope is schema validated. The configured action chain must be present, and only that scope receives target RPC validation; other scopes are never queried through this chain's RPC. Euler, Morpho V2 and Morpho Blue target identities in the active mainnet scope are verified against their canonical factories or market storage. Lagoon uses its reviewed address allowlist without a factory lookup. Inactive scopes receive no target membership attestation. The generic `erc7540` protocol name is rejected. All active RWA products, including TBILL, wYLDS and USN, have entries; Pareto receipts remain part of their tranche accounting. Merkl rewards use an explicit `merkl` entry with empty IDs. Execution plumbing has no separate portfolio entry. Declared markets include required asset-pricing dependencies without separate product entries; standalone wallet balances and issuer requests remain explicitly selected. Keep the allowlists aligned with the pinned NAV runtime rather than planned or deferred readers. Adapter validation reads `FACTORY()` and checks `isEntity(adapter)` on that factory; it does not check whitelist status. The legacy `adapter-registry` input is optional and ignored. Research sources and coverage limits are recorded in `docs/merkle-protocol-allowlist.md`.
 
 ### Validation Flow (src/main.ts)
 
 All validations run in **parallel** via `Promise.allSettled()` to collect all errors before failing:
 
 1. **File System** (`validate-fs.ts`): Validates directory structure, ensures **one entity per PR** (critical constraint)
-2. **Entity Registry** (`validate-entity.ts`): Checks on-chain registry using `isEntity()` contract call (skipped for off-chain entities: `points`, `curators`)
+2. **Entity Registry** (`validate-entity.ts`): Checks configured registries using `isEntity()` for vaults, operators and networks. For adapters and Merkle adapters, reads `FACTORY()` then requires `isEntity(adapter)` on that factory. No whitelist check is performed; tokens and off-chain entities skip entity validation.
 3. **Metadata Schema** (`validate-metadata.ts`): Validates `info.json` against type-specific schemas imported from `schemas/index.ts` (bundled at compile time)
 4. **Logo** (`validate-logo.ts`): Enforces 256x256 PNG, max 100KB
 5. **Collateral** (`validate-collateral.ts`): For vaults only, validates collateral token exists in repo
@@ -38,12 +38,12 @@ All validations run in **parallel** via `Promise.allSettled()` to collect all er
 
 - Uses `viem` for Ethereum interactions (not ethers)
 - Chain determined by `chain-id` input, RPC from `rpc-url` or viem's default public RPCs
-- Registry contracts accessed via action inputs: `vault-registry`, `operator-registry`, `network-registry`, `adapter-registry`
+- Registry contracts accessed via action inputs: `vault-registry`, `operator-registry`, `network-registry`. Adapter factories are discovered from `FACTORY()`; the deprecated `adapter-registry` input is ignored.
 
 **Contract interaction patterns**:
 
 ```typescript
-// Registry validation (all registries)
+// Registry validation (configured registries or an adapter's FACTORY())
 const isEntity = await createClient().readContract({
     address: registryAddress as Address,
     abi: isEntityAbi,
@@ -125,7 +125,6 @@ The local action run is configured to use the `metadata/` directory as the sourc
     INPUT_VAULT-REGISTRY="0x407a039d94948484d356efb765b3c74382a050b4"
     INPUT_OPERATOR-REGISTRY="0x6f75a4fff97326a00e52662d82ea4fde86a2c548"
     INPUT_NETWORK-REGISTRY="0x7d03b7343bf8d5cec7c0c27ece084a20113d15c9"
-    INPUT_ADAPTER-REGISTRY="0xF33339BD72A512777E0FbF5817003E47A4a9ab66"
     ```
 
 3. **Run the action** using the configured environment:
