@@ -48,7 +48,7 @@ export async function validateMerkleTargets(entries: TargetEntry[]): Promise<Tar
                             address: eulerFactory,
                             abi: eulerAbi,
                             functionName: "isProxy",
-                            args: [id as Address],
+                            args: [id.toLowerCase() as Address],
                         });
                         break;
                     case "morpho_vaultv2":
@@ -56,7 +56,7 @@ export async function validateMerkleTargets(entries: TargetEntry[]): Promise<Tar
                             address: morphoVaultFactory,
                             abi: morphoVaultAbi,
                             functionName: "isVaultV2",
-                            args: [id as Address],
+                            args: [id.toLowerCase() as Address],
                         });
                         break;
                     case "lagoon":
