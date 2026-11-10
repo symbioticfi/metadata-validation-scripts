@@ -119,13 +119,13 @@ tETH, weETH and wstETH remain ordinary wallet tokens; they have no separate prot
 
 ## RWA products
 
-Each of these 37 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+Each of these 36 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
 
 | Family              | Metadata names                                                                                                                                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Midas (19)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mfone`, `mglo`, `mglobal`, `mhyper`, `mhyperbtc`, `mm1usd`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `msyrupusd`, `msyrupusdp` |
 | Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                 |
-| Pareto (5)          | `aa_falconxusdc`, `aa_fasanara`, `aa_bastion`, `aa_adaptivefrontier`, `aa_rockawayx`                                                                                                                                                 |
+| Pareto (4)          | `aa_falconxusdc`, `aa_fasanara`, `aa_adaptivefrontier`, `aa_rockawayx`                                                                                                                                                               |
 | Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                             |
 | OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                    |
 | Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                        |
@@ -134,13 +134,12 @@ Each of these 37 names requires `ids: []`: canonical token and issuer contracts 
 
 PRIME/AUTO use the Hastra staking snapshot. Independently held wYLDS uses the separate Hastra yield snapshot, so `wylds` has its own entry. Likewise HYBOND/TBILL and sUSN/USN use independent snapshot lenses and product accounting.
 
-Pareto BB tranches are not supported. The five auxiliary Pareto receipt tokens remain within their respective AA product accounting, covering all 46 RWA token rows without requiring receipt declarations:
+Bastion Trading and Pareto BB tranches are not supported. The four auxiliary Pareto receipt tokens remain within their respective AA product accounting, covering all 40 RWA token rows without requiring receipt declarations:
 
 | Pareto product   | Receipt token                                |
 | ---------------- | -------------------------------------------- |
 | FalconX          | `0x17e9ab2992dfecbe779a06a92a6cdb9fe6aeeef3` |
 | Fasanara         | `0xc35d078092872ec1f2ae82bcd6f0b6b89f0850de` |
-| Bastion          | `0x06975bb418effb0029fe278a6fa15b92bb97496f` |
 | AdaptiveFrontier | `0xa30be796fb2babf9228359e86a041c14e29f86fc` |
 | RockawayX        | `0x3fc0265e92eeafed0ccd9f8621764ce0981882ce` |
 

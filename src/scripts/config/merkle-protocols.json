@@ -97,10 +97,6 @@
         "requiresIds": false,
         "idType": "none"
     },
-    "aa_bastion": {
-        "requiresIds": false,
-        "idType": "none"
-    },
     "aa_falconxusdc": {
         "requiresIds": false,
         "idType": "none"
