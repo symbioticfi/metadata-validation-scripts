@@ -141,7 +141,7 @@ export async function validateMetadata({ entityType, metadata: metadataPath }: E
             for (const { index, idIndex, message } of targetErrors) {
                 validationErrors.push({
                     keyword: "protocolIdentity",
-                    instancePath: `/chains/${activeIndex}/protocols/${index}/ids/${idIndex}`,
+                    instancePath: `/chains/${activeIndex}/protocols/${index}${idIndex < 0 ? "" : `/ids/${idIndex}`}`,
                     schemaPath: "",
                     params: {},
                     message,

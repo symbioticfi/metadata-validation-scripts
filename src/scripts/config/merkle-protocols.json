@@ -1,7 +1,10 @@
 {
     "tokens": {
         "requiresIds": true,
-        "idType": "address"
+        "idType": "address",
+        "conversions": {
+            "0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+        }
     },
     "aave_v3": {
         "requiresIds": true,
@@ -95,146 +98,227 @@
     },
     "aa_adaptivefrontier": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xae7913c672c7f1f76c2a1a0ac4de97d082681234",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "aa_falconxusdc": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xc26a6fa2c37b38e549a4a1807543801db684f99c",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "aa_fasanara": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x45054c6753b4bce40c5d54418dabc20b070f85be",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "aa_rockawayx": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xec6a70f62a83418c7fb238182ed2865f80491a8b",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "acrdx": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x9477724bb54ad5417de8baff29e59df3fb4da74f",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "auto": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x997e2efbce91d170b00ea402e35a66c887ee1da9",
+        "requires": [
+            "0x6ad038ca6c04e885630851278ca0a856ad9a66cc",
+            "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        ]
     },
     "carrytradeusdtryleverage": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x2bf11d2e04bc40daa95c24b8b90ec4f5c57dd326",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "dejaaa": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xaaa0008c8cf3a7dca931adaf04336a5d808c82cc",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "dejtrsy": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xa6233014b9b7aaa74f38fa1977ffc7a89642dc72",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "hyb": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x4827c7ecce4f07adfe44a97165f06a199e7d2505",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "hybond": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x1204371ac0e5176f4b8c5b2f16c2bec551b6fc1a",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "jaaa": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x5a0f93d040de44e78f251b03c43be9cf317dcf64",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "jtrsy": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x8c213ee79581ff4984583c6a801e5263418c4b86",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mapollo": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x7cf9dec92ca9fd46f8d86e7798b72624bc116c05",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mbasis": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x2a8c22e3b10036f3aef5875d04f8441d4188b656",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mbtc": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x007115416ab6c266329a03b09a8aa39ac2ef7d9d",
+        "requires": ["0x18084fba666a33d37592fa2633fd49a74dd93a88"]
     },
     "medge": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xbb51e2a15a9158ebe2b0ceb8678511e063ab7a55",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mfone": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x238a700ed6165261cf8b2e544ba797bc11e466ba",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mglo": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x1dd91a111606382b77a917633ed90feaf25e0f76",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mglobal": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x7433806912eae67919e66aea853d46fa0aef98a8",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mhyper": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x9b5528528656dbc094765e2abb79f293c21191b9",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mhyperbtc": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xc8495eaff71d3a563b906295fcf2f685b1783085",
+        "requires": ["0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf"]
     },
     "mm1usd": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xcc5c22c7a6bcc25e66726aef011dde74289ed203",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mre7btc": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x9fb442d6b612a6dcd2acc67bb53771ef1d9f661a",
+        "requires": ["0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"]
     },
     "mre7yield": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x87c9053c819bb28e0d73d33059e1b3da80afb0cf",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "mrox": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x67e1f506b148d0fc95a4e3ffb49068ceb6855c05",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "msl": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x76cc16608aa7cd32631bb151801bb095313f7bbd",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "msyrupusd": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x20226607b4fa64228abf3072ce561d6257683464",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "msyrupusdp": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x2fe058ccf29f123f9dd2aec0418aa66a877d8e50",
+        "requires": ["0xdac17f958d2ee523a2206206994597c13d831ec7"]
     },
     "mtbill": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xdd629e5241cbc5919847783e6c96b2de4754e438",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "prime": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x19ebb35279a16207ec4ba82799cc64715065f7f6",
+        "requires": [
+            "0x6ad038ca6c04e885630851278ca0a856ad9a66cc",
+            "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        ]
     },
     "stockmarkettrbasistrade": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x827ce7e8e35861d9ac7fe002755767b695a5594a",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "susn": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xe24a3dc889621612422a64e6388927901608b91d",
+        "requires": [
+            "0xda67b4284609d2d48e5d10cfac411572727dc1ed",
+            "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        ]
     },
     "tbill": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xdd50c053c096cb04a3e3362e2b622529ec5f2e8a",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "usn": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0xda67b4284609d2d48e5d10cfac411572727dc1ed",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
     "wylds": {
         "requiresIds": false,
-        "idType": "none"
+        "idType": "none",
+        "token": "0x6ad038ca6c04e885630851278ca0a856ad9a66cc",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     }
 }
