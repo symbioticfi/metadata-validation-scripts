@@ -189,12 +189,6 @@
         "token": "0x2a8c22e3b10036f3aef5875d04f8441d4188b656",
         "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
-    "mbtc": {
-        "requiresIds": false,
-        "idType": "none",
-        "token": "0x007115416ab6c266329a03b09a8aa39ac2ef7d9d",
-        "requires": ["0x18084fba666a33d37592fa2633fd49a74dd93a88"]
-    },
     "medge": {
         "requiresIds": false,
         "idType": "none",
@@ -260,18 +254,6 @@
         "idType": "none",
         "token": "0x76cc16608aa7cd32631bb151801bb095313f7bbd",
         "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
-    },
-    "msyrupusd": {
-        "requiresIds": false,
-        "idType": "none",
-        "token": "0x20226607b4fa64228abf3072ce561d6257683464",
-        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
-    },
-    "msyrupusdp": {
-        "requiresIds": false,
-        "idType": "none",
-        "token": "0x2fe058ccf29f123f9dd2aec0418aa66a877d8e50",
-        "requires": ["0xdac17f958d2ee523a2206206994597c13d831ec7"]
     },
     "mtbill": {
         "requiresIds": false,

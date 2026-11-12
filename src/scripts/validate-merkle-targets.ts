@@ -1,4 +1,4 @@
-import { Address, Hex, parseAbi, zeroAddress } from "viem";
+import { Address, Hex, isAddress, parseAbi, zeroAddress } from "viem";
 
 import { createClient, getChain } from "./blockchain";
 import protocols from "./config/merkle-protocols.json";
@@ -24,6 +24,41 @@ const morphoMarketAbi = parseAbi([
 const assetAbi = parseAbi(["function asset() view returns (address)"]);
 
 const vaultProtocols = ["euler", "morpho_vaultv2", "lagoon", "ember"];
+
+// Factory provenance does not distinguish active and deprecated EVaults.
+async function activeEulerVaults(): Promise<Set<string>> {
+    const response = await fetch("https://app.euler.finance/api/public/metadata?chainId=1", {
+        signal: AbortSignal.timeout(15_000),
+    });
+    if (!response.ok) {
+        throw new Error("Euler metadata unavailable");
+    }
+
+    const data: unknown = await response.json();
+    if (!data || typeof data !== "object" || Array.isArray(data)) {
+        throw new Error("Invalid Euler metadata");
+    }
+
+    const active = Object.values(data).flatMap((entry: unknown) => {
+        if (!entry || typeof entry !== "object") {
+            return [];
+        }
+
+        const vault = entry as Record<string, unknown>;
+
+        return vault.type === "evk" &&
+            vault.deprecated !== true &&
+            typeof vault.address === "string" &&
+            isAddress(vault.address, { strict: false })
+            ? [vault.address.toLowerCase()]
+            : [];
+    });
+    if (active.length === 0) {
+        throw new Error("Empty Euler metadata");
+    }
+
+    return new Set(active);
+}
 
 // The NAV counts a position only in a token metadata lists: tokens.ids, a selected
 // vault or a selected product token. Every token a selection touches must be listed.
@@ -68,6 +103,9 @@ export async function validateMerkleTargets(entries: TargetEntry[]): Promise<Tar
             : []),
     ]);
 
+    const eulerVaults = selected.some(({ protocol }) => protocol === "euler")
+        ? await activeEulerVaults().catch(() => null)
+        : null;
     const client = createClient();
     const results = await Promise.all(
         selected.map(async ({ protocol, id, index, idIndex }) => {
@@ -75,6 +113,18 @@ export async function validateMerkleTargets(entries: TargetEntry[]): Promise<Tar
                 let valid: boolean;
                 switch (protocol) {
                     case "euler":
+                        if (!eulerVaults) {
+                            return {
+                                index,
+                                idIndex,
+                                message: "could not verify active Euler vaults",
+                            };
+                        }
+
+                        if (!eulerVaults.has(id.toLowerCase())) {
+                            return { index, idIndex, message: "is not an active Euler EVault" };
+                        }
+
                         valid = await client.readContract({
                             address: eulerFactory,
                             abi: eulerAbi,
