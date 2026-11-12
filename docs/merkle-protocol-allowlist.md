@@ -91,21 +91,30 @@ Use the reviewed chain-specific deployment profile, metadata commit and adapter 
 
 ## Wallet tokens
 
-`tokens.ids` accepts exactly these 17 Ethereum mainnet addresses from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Membership uses each enclosing scope's `chainId`, independently of the action chain. Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
+`tokens.ids` accepts exactly these 26 Ethereum mainnet addresses, the NAV's priced wallet routes, from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Membership uses each enclosing scope's `chainId`, independently of the action chain. Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
 
 | Token   | Ethereum address                             |
 | ------- | -------------------------------------------- |
+| AAVE    | `0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9` |
+| AUSD    | `0x00000000efe302beaa2b3e6e1b18d08d69a9012a` |
 | cbBTC   | `0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf` |
 | DAI     | `0x6b175474e89094c44da98b954eedeac495271d0f` |
+| EURC    | `0x1abaea1f7c830bd89acc67ec4af516284b1bc33c` |
+| frxUSD  | `0xcacd6fd266af91b8aed52accc382b4e165586e29` |
+| GHO     | `0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f` |
 | LBTC    | `0x8236a87084f8b84306f72007f36f2618a5634494` |
+| LINK    | `0x514910771af9ca656af840dff83e8264ecf986ca` |
 | PAXG    | `0x45804880de22913dafe09f4980848ece6ecbaf78` |
 | PYUSD   | `0x6c3ea9036406852006290770bedfcaba0e23a0e8` |
+| RLUSD   | `0x8292bb45bf1ee4d140127049757c2e0ff06317ed` |
 | SolvBTC | `0x7a56e1c57c7475ccf742a1832b028f0456652f97` |
 | tBTC    | `0x18084fba666a33d37592fa2633fd49a74dd93a88` |
 | tETH    | `0xd11c452fc99cf405034ee446803b6f6c1f6d5ed8` |
 | uniBTC  | `0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568` |
+| USD1    | `0x8d0d000ee44948fc98c9b98a4fa4921476f08b0d` |
 | USDC    | `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48` |
 | USDe    | `0x4c9edd5852cd905f086c759e8383e09bff1e68b3` |
+| USDG    | `0xe343167631d89b6ffc58b88d6b7fb0228795491d` |
 | USDS    | `0xdc035d45d973e3ec169d2276ddab16f1e407384f` |
 | USDT    | `0xdac17f958d2ee523a2206206994597c13d831ec7` |
 | WBTC    | `0x2260fac5e5542a773aa44fbcfedf7c193bc2c599` |
@@ -115,7 +124,9 @@ Use the reviewed chain-specific deployment profile, metadata commit and adapter 
 
 uniBTC uses the reviewed Chainlink uniBTC/BTC exchange rate multiplied by BTC/USD. USDS uses the reviewed Chainlink USDS/USD feed. These follow the normal NAV round and freshness checks; neither token relies on assumed parity. Both remain ordinary tokens, including supported Merkl rewards.
 
-tETH, weETH and wstETH remain ordinary wallet tokens; they have no separate protocol entries. Aave's Ether.fi and Lido pools remain part of Aave. Admitting these named tokens does not admit arbitrary ERC-4626 vaults.
+tETH, weETH and wstETH remain ordinary wallet tokens; they have no separate protocol entries. Listing tETH requires listing wstETH, its quote asset.
+
+The NAV counts a non-debt position only in a token the metadata lists: a `tokens` entry, a selected Euler, Morpho V2, Lagoon or Ember vault, or a selected product's token. Every token a selection touches must therefore be listed. Each product's `requires` in `merkle-protocols.json` names its payout tokens (sUSN needs USN and USDC; PRIME needs wYLDS and USDC), and tETH needs its wstETH quote asset. In the active mainnet scope the validator also reads each selected Morpho Blue market's loan and collateral tokens and each selected vault's `asset()`. Tokens only live positions reveal, such as Aave reserves, HYBOND deposit currencies, 3F assets or Merkl rewards, are not checked; the NAV ignores them unless they are listed. Aave's Ether.fi and Lido pools remain part of Aave. Admitting these named tokens does not admit arbitrary ERC-4626 vaults.
 
 ## RWA products
 

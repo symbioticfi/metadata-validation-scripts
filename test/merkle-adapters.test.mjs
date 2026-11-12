@@ -29,6 +29,7 @@ const tokenAllowlist = JSON.parse(
 );
 const tokenIds = Object.values(tokenAllowlist["1"]);
 const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+const zero = `0x${"0".repeat(40)}`;
 const lagoonVaults = [
     "0xdae854d0896ad2fee335689a3f7b4a95fd1a3e46",
     "0xce0b790ae0d8cf91e01f3fb69025e14569b574f3",
@@ -96,6 +97,10 @@ async function fixture(t) {
         factory: registry,
         factoryResult: undefined,
         invalidTargets: new Set(),
+        // Tokens that vault asset() and market idToMarketParams() report; the zero
+        // address touches no token.
+        assets: {},
+        marketTokens: [zero, zero],
     };
     const server = createServer(async (request, response) => {
         let body = "";
@@ -132,6 +137,19 @@ async function fixture(t) {
                     error: { code: -32000, message: "Unsupported factory or registry call" },
                 }),
             );
+            return;
+        }
+        const word = (address) => address.slice(2).padStart(64, "0");
+        if (call.params?.[0]?.data === "0x38d52e0f") {
+            const token = state.assets[call.params[0].to.toLowerCase()] ?? zero;
+            response.end(
+                JSON.stringify({ jsonrpc: "2.0", id: call.id, result: `0x${word(token)}` }),
+            );
+            return;
+        }
+        if (call.params?.[0]?.data?.startsWith("0x2c3c9157")) {
+            const result = `0x${[...state.marketTokens, zero, zero, zero].map(word).join("")}`;
+            response.end(JSON.stringify({ jsonrpc: "2.0", id: call.id, result }));
             return;
         }
         const target = call.params?.[0]?.data?.slice(-64)?.replace(/^0+/, "")?.toLowerCase();
@@ -204,7 +222,8 @@ test("bundled action accepts name-only RWAs, vaults, pools, and bytes32 markets"
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
-    assert.equal(f.calls.length, 6);
+    // Adapter factory and membership, four target identities, then one token read each.
+    assert.equal(f.calls.length, 10);
     assert.ok(f.calls.every((call) => call.method === "eth_call"));
     assert.ok(
         f.calls.some(
@@ -281,7 +300,7 @@ test("target address casing preserves canonical membership checks", async (t) =>
                 if (!registered) {
                     assert.match(result.output, new RegExp(`not a registered ${protocol} target`));
                 }
-                assert.equal(f.calls.length, 3);
+                assert.equal(f.calls.length, registered ? 4 : 3);
                 assert.ok(
                     f.calls
                         .find(
@@ -341,20 +360,29 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t) => {
+test("tokens accepts exactly the twenty-six NAV wallet token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
+        "aave",
+        "ausd",
         "cbbtc",
         "dai",
+        "eurc",
+        "frxusd",
+        "gho",
         "lbtc",
+        "link",
         "paxg",
         "pyusd",
+        "rlusd",
         "solvbtc",
         "tbtc",
         "teth",
         "unibtc",
+        "usd1",
         "usdc",
         "usde",
+        "usdg",
         "usds",
         "usdt",
         "wbtc",
@@ -362,7 +390,7 @@ test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 17);
+    assert.equal(new Set(tokenIds).size, 26);
     const f = await fixture(t);
     await f.write(
         metadataPath,
@@ -374,23 +402,25 @@ test("tokens accepts exactly the seventeen NAV wallet token addresses", async (t
     assert.equal(result.code, 0, result.output);
 });
 
-test("tETH is admitted as an ordinary wallet token", async (t) => {
-    const f = await fixture(t);
-    await f.write(
-        metadataPath,
-        JSON.stringify({
-            chains: [
-                {
-                    chainId: 1,
-                    protocols: [
-                        { protocol: "tokens", ids: ["0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8"] },
-                    ],
-                },
-            ],
-        }),
-    );
-    const result = await f.run();
-    assert.equal(result.code, 0, result.output);
+test("tETH is a wallet token that also requires its wstETH quote asset", async (t) => {
+    const teth = "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8";
+    for (const [name, ids, code] of [
+        ["alone", [teth], 1],
+        ["with wstETH", [teth, tokenAllowlist["1"].wsteth], 0],
+    ]) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    chains: [{ chainId: 1, protocols: [{ protocol: "tokens", ids }] }],
+                }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, code, result.output);
+            if (code) assert.match(result.output, new RegExp(tokenAllowlist["1"].wsteth));
+        });
+    }
 });
 
 test("token address matching accepts checksum and uppercase hex spelling", async (t) => {
@@ -408,6 +438,7 @@ test("token address matching accepts checksum and uppercase hex spelling", async
                                 "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
                                 "0x" + tokenAllowlist["1"].weth.slice(2).toUpperCase(),
                                 "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
+                                "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
                                 "0x7A56E1C57C7475CCf742a1832B028F0456652F97",
                                 "0x45804880De22913dAFE09f4980848ECE6EcbAf78",
                                 "0x004E9C3EF86bc1ca1f0bB5C7662861Ee93350568",
@@ -477,11 +508,14 @@ test("only configured-chain targets reach the action RPC", async (t) => {
             );
             const result = await f.run([metadataPath], { "INPUT_CHAIN-ID": String(chainId) });
             assert.equal(result.code, 0, result.output);
-            assert.equal(f.calls.length, chainId === 1 ? 3 : 2);
+            assert.equal(f.calls.length, chainId === 1 ? 4 : 2);
             assert.ok(
                 f.calls
                     .filter(
-                        (call) => call.params[0].to !== registry && call.params[0].to !== adapter,
+                        (call) =>
+                            call.params[0].to !== registry &&
+                            call.params[0].to !== adapter &&
+                            call.params[0].data !== "0x38d52e0f",
                     )
                     .every((call) => call.params[0].data.endsWith(vault.slice(2))),
             );
@@ -904,7 +938,8 @@ test("Lagoon admits exactly the reviewed vaults without a factory lookup", async
             );
             const result = await f.run();
             assert.equal(result.code, code, result.output);
-            if (code === 0) assert.equal(f.calls.length, 2);
+            // Adapter factory and membership, then one asset() read per vault.
+            if (code === 0) assert.equal(f.calls.length, 2 + entry.ids.length);
         });
     }
 });
@@ -1481,4 +1516,137 @@ test("all reviewed Ember vaults are selectable together", async (t) => {
     );
     const result = await f.run();
     assert.equal(result.code, 0, result.output);
+});
+
+test("products require every token they pay out to be listed", async (t) => {
+    const token = (name) => allowlist[name].token;
+    for (const [name, protocols, missing] of [
+        ["mTBILL without USDC", [{ protocol: "mtbill", ids: [] }], [usdc]],
+        [
+            "mTBILL with USDC",
+            [
+                { protocol: "mtbill", ids: [] },
+                { protocol: "tokens", ids: [usdc] },
+            ],
+            [],
+        ],
+        [
+            "sUSN without USN",
+            [
+                { protocol: "susn", ids: [] },
+                { protocol: "tokens", ids: [usdc] },
+            ],
+            [token("usn")],
+        ],
+        [
+            "sUSN with the USN product",
+            [
+                { protocol: "susn", ids: [] },
+                { protocol: "usn", ids: [] },
+                { protocol: "tokens", ids: [usdc] },
+            ],
+            [],
+        ],
+        [
+            "PRIME without wYLDS",
+            [
+                { protocol: "prime", ids: [] },
+                { protocol: "tokens", ids: [usdc] },
+            ],
+            [token("wylds")],
+        ],
+        ["mBTC without tBTC", [{ protocol: "mbtc", ids: [] }], [tokenAllowlist["1"].tbtc]],
+    ]) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            await f.write(metadataPath, JSON.stringify({ chains: [{ chainId: 1, protocols }] }));
+            const result = await f.run();
+            assert.equal(result.code, missing.length ? 1 : 0, result.output);
+            for (const address of missing) {
+                assert.match(
+                    result.output,
+                    new RegExp(`touches ${address}, which metadata must list`, "i"),
+                );
+            }
+        });
+    }
+});
+
+test("vault and market tokens must be listed", async (t) => {
+    const lbtc = tokenAllowlist["1"].lbtc;
+    const targets = [
+        ["euler", vault, { subaccounts: [0] }],
+        ["morpho_vaultv2", vault, {}],
+        ["lagoon", lagoonVaults[0], {}],
+        ["ember", allowlist.ember.allowedIds[0], {}],
+        ["morpho_blue", marketId, {}],
+    ];
+    for (const [protocol, id, extra] of targets) {
+        for (const listed of [[usdc], [usdc, lbtc]]) {
+            await t.test(`${protocol} with ${listed.length} listed`, async (context) => {
+                const f = await fixture(context);
+                f.state.assets[id.toLowerCase()] = lbtc;
+                f.state.marketTokens = [usdc, lbtc];
+                await f.write(
+                    metadataPath,
+                    JSON.stringify({
+                        chains: [
+                            {
+                                chainId: 1,
+                                protocols: [
+                                    { protocol, ids: [id], ...extra },
+                                    { protocol: "tokens", ids: listed },
+                                ],
+                            },
+                        ],
+                    }),
+                );
+                const result = await f.run();
+                assert.equal(result.code, listed.includes(lbtc) ? 0 : 1, result.output);
+                if (!listed.includes(lbtc)) {
+                    assert.match(
+                        result.output,
+                        new RegExp(`touches ${lbtc}, which metadata must list`, "i"),
+                    );
+                }
+            });
+        }
+    }
+});
+
+test("a selected product token satisfies a market token", async (t) => {
+    const prime = allowlist.prime.token;
+    for (const [name, products, code] of [
+        [
+            "PRIME selected",
+            [
+                { protocol: "prime", ids: [] },
+                { protocol: "wylds", ids: [] },
+            ],
+            0,
+        ],
+        ["PRIME omitted", [], 1],
+    ]) {
+        await t.test(name, async (context) => {
+            const f = await fixture(context);
+            f.state.marketTokens = [usdc, prime];
+            await f.write(
+                metadataPath,
+                JSON.stringify({
+                    chains: [
+                        {
+                            chainId: 1,
+                            protocols: [
+                                { protocol: "morpho_blue", ids: [marketId] },
+                                { protocol: "tokens", ids: [usdc] },
+                                ...products,
+                            ],
+                        },
+                    ],
+                }),
+            );
+            const result = await f.run();
+            assert.equal(result.code, code, result.output);
+        });
+    }
 });
