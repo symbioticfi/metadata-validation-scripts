@@ -9,7 +9,7 @@ The catalogue baseline for this inventory is the Merkle adapter NAV runtime at [
 - [Active RWA products and issuer bindings](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/internal/client/rwa/catalog.go).
 - [Protocol and deferred-asset scope](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/docs/supported-assets.md).
 
-Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads or catalogue HTTP requests. This action validates portfolio declarations and adapter factory membership. It does not grant execution permissions. All scopes receive schema and duplicate validation using their nested chain ID, including chain-specific token membership. The configured action `chain-id` must appear. Only its adapter factory membership and target declarations are checked through the configured RPC; Ethereum targets use canonical protocol contracts when those contracts expose membership. Other scopes receive no RPC identity attestation. Run the action under each chain configuration for that coverage; mainnet-only target checks reject active non-mainnet Euler, Morpho and Lagoon declarations.
+Both allowlists are imported into the validator bundle; validation makes no runtime config-file reads. Selected Euler targets also require the official Euler metadata API to identify an active EVK vault; unavailable or empty metadata rejects admission. This action validates portfolio declarations and adapter factory membership. It does not grant execution permissions. All scopes receive schema and duplicate validation using their nested chain ID, including chain-specific token membership. The configured action `chain-id` must appear. Only its adapter factory membership and target declarations are checked through the configured RPC; Ethereum targets use canonical protocol contracts when those contracts expose membership. Other scopes receive no RPC identity attestation. Run the action under each chain configuration for that coverage; mainnet-only target checks reject active non-mainnet Euler, Morpho and Lagoon declarations.
 
 ## Integrations and target IDs
 
@@ -26,7 +26,7 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 | `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                       |
 | `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                          |
 
-Target-ID validation checks format and any explicit `allowedIds` membership. It also checks `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
+Target-ID validation checks format and any explicit `allowedIds` membership. It also checks active EVK membership in the [official Euler directory](https://app.euler.finance/api/public/metadata?chainId=1) and `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
 Sources: [Aave/Euler catalogue](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/internal/client/lending/catalog.go), [Morpho configuration](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/nav/config.json), [3F reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/internal/client/threef/threef.go), [Ember reader](https://github.com/symbioticfi/merkle-adapter-nav/blob/de7853f4/internal/client/ember/ember.go).
 
@@ -130,16 +130,16 @@ The NAV counts a non-debt position only in a token the metadata lists: a `tokens
 
 ## RWA products
 
-Each of these 36 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+Each of these 33 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
 
-| Family              | Metadata names                                                                                                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Midas (19)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `mbtc`, `medge`, `mfone`, `mglo`, `mglobal`, `mhyper`, `mhyperbtc`, `mm1usd`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill`, `msyrupusd`, `msyrupusdp` |
-| Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                                                                 |
-| Pareto (4)          | `aa_falconxusdc`, `aa_fasanara`, `aa_adaptivefrontier`, `aa_rockawayx`                                                                                                                                                               |
-| Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                                                             |
-| OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                                                    |
-| Noon (2)            | `susn`, `usn`                                                                                                                                                                                                                        |
+| Family              | Metadata names                                                                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Midas (16)          | `carrytradeusdtryleverage`, `stockmarkettrbasistrade`, `mapollo`, `mbasis`, `medge`, `mfone`, `mglo`, `mglobal`, `mhyper`, `mhyperbtc`, `mm1usd`, `mrox`, `mre7btc`, `mre7yield`, `msl`, `mtbill` |
+| Centrifuge (6)      | `acrdx`, `hyb`, `jaaa`, `jtrsy`, `dejaaa`, `dejtrsy`                                                                                                                                              |
+| Pareto (4)          | `aa_falconxusdc`, `aa_fasanara`, `aa_adaptivefrontier`, `aa_rockawayx`                                                                                                                            |
+| Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                          |
+| OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                 |
+| Noon (2)            | `susn`, `usn`                                                                                                                                                                                     |
 
 `mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. The NAV catalogue uses these same lowercase RWA product IDs directly, without case conversion.
 
@@ -166,7 +166,7 @@ Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V
 
 ## Corrections from the previous inventory
 
-- Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the five additional Pareto AA tranches. The current catalog admits 19 Midas products.
+- Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the five additional Pareto AA tranches. The current catalog admits 16 Midas products.
 - Changed `three_f` from required request addresses to empty IDs, matching automatic request discovery.
 - Removed `erc4626`, `morpho_midnight` and `derive_v3`, which lack runtime discovery readers.
 - Removed Securitize's `acred`, `buidl`, `hinc`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.
@@ -185,3 +185,5 @@ The Ember expansion was checked at finalized Ethereum block 26286110 against
 Ember's [deployment manifest](https://github.com/ember-protocol/Ember-Vaults-EVM/blob/102ed27794cfc083de6cf28bdad1d80113eb8e21/deployments/mainnet-deployment.json)
 and [official product API](https://vaults.api.prod.ember.so/api/v2/vaults).
 The [pinned NAV vault review](https://github.com/symbioticfi/merkle-adapter-nav/blob/c691d44cfddb13ade97b8674f542cad0b6b41947/docs/ember-vaults.md) records addresses, implementation and exclusions.
+
+Retired Midas products `mbtc`, `msyrupusd`, and `msyrupusdp` are excluded, as listed in the [Midas product directory](https://midas.app/products).

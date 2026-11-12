@@ -56,7 +56,6 @@ const namedProducts = {
         "stockmarkettrbasistrade",
         "mapollo",
         "mbasis",
-        "mbtc",
         "medge",
         "mfone",
         "mglo",
@@ -69,8 +68,6 @@ const namedProducts = {
         "mre7yield",
         "msl",
         "mtbill",
-        "msyrupusd",
-        "msyrupusdp",
     ],
     centrifuge: ["acrdx", "hyb", "jaaa", "jtrsy", "dejaaa", "dejtrsy"],
     pareto: ["aa_falconxusdc", "aa_fasanara", "aa_adaptivefrontier", "aa_rockawayx"],
@@ -93,6 +90,9 @@ async function fixture(t) {
     const calls = [];
     const githubCalls = [];
     const state = {
+        eulerMetadata: undefined,
+        defaultEulerMetadata: {},
+        eulerStatus: 200,
         registered: true,
         factory: registry,
         factoryResult: undefined,
@@ -103,6 +103,11 @@ async function fixture(t) {
         marketTokens: [zero, zero],
     };
     const server = createServer(async (request, response) => {
+        if (request.url === "/euler-metadata") {
+            response.writeHead(state.eulerStatus, { "content-type": "application/json" });
+            response.end(JSON.stringify(state.eulerMetadata ?? state.defaultEulerMetadata));
+            return;
+        }
         let body = "";
         for await (const chunk of request) {
             body += chunk;
@@ -165,6 +170,17 @@ async function fixture(t) {
     await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
     t.after(() => new Promise((resolve) => server.close(resolve)));
 
+    const bootstrapPath = path.join(cwd, "mock-euler.mjs");
+    await writeFile(
+        bootstrapPath,
+        `
+const original = globalThis.fetch;
+globalThis.fetch = (input, init) => original(
+    input === "https://app.euler.finance/api/public/metadata?chainId=1"
+        ? "http://127.0.0.1:${server.address().port}/euler-metadata" : input, init);
+`,
+    );
+
     const env = {
         ...process.env,
         GITHUB_REPOSITORY: "symbioticfi/metadata-mainnet",
@@ -190,11 +206,29 @@ async function fixture(t) {
             await mkdir(path.dirname(fullPath), { recursive: true });
             await writeFile(fullPath, content);
         },
-        run: (files = [metadataPath], inputs = {}) =>
-            execute([actionPath], {
+        run: async (files = [metadataPath], inputs = {}) => {
+            // Unless a test supplies lifecycle evidence, selected synthetic EVaults are active.
+            state.defaultEulerMetadata = {};
+            for (const file of files) {
+                try {
+                    const info = JSON.parse(await readFile(path.join(cwd, file), "utf8"));
+                    for (const chain of info.chains ?? []) {
+                        for (const entry of chain.protocols ?? []) {
+                            if (entry.protocol !== "euler") continue;
+                            for (const address of entry.ids ?? []) {
+                                state.defaultEulerMetadata[address] = { address, type: "evk" };
+                            }
+                        }
+                    }
+                } catch {
+                    /* Invalid documents are handled by the action itself. */
+                }
+            }
+            return execute(["--import", bootstrapPath, actionPath], {
                 cwd,
                 env: { ...env, INPUT_FILES: files.join(" "), ...inputs },
-            }),
+            });
+        },
         extract: () => execute([extractorPath], { cwd, env }),
     };
 }
@@ -586,6 +620,9 @@ test("shared raw metadata corpus matches the bundled action", async (t) => {
 test("unsupported products and execution-only integrations are not allowlisted", async (t) => {
     for (const protocol of [
         "mmev",
+        "mbtc",
+        "msyrupusd",
+        "msyrupusdp",
         "aa_abraxas",
         "aa_bastion",
         "paretoreceipt_bastion",
@@ -1555,7 +1592,7 @@ test("products require every token they pay out to be listed", async (t) => {
             ],
             [token("wylds")],
         ],
-        ["mBTC without tBTC", [{ protocol: "mbtc", ids: [] }], [tokenAllowlist["1"].tbtc]],
+        ["mRe7BTC without WBTC", [{ protocol: "mre7btc", ids: [] }], [tokenAllowlist["1"].wbtc]],
     ]) {
         await t.test(name, async (context) => {
             const f = await fixture(context);
@@ -1650,3 +1687,35 @@ test("a selected product token satisfies a market token", async (t) => {
         });
     }
 });
+
+for (const [name, metadata, status] of [
+    ["deprecated", { [vault]: { address: vault, type: "evk", deprecated: true } }, 200],
+    ["unknown", { [adapter]: { address: adapter, type: "evk" } }, 200],
+    ["non-EVK", { [vault]: { address: vault, type: "earn" } }, 200],
+    ["unavailable", {}, 503],
+    ["malformed", [], 200],
+]) {
+    test(`Euler ${name} vault metadata rejects admission despite canonical provenance`, async (t) => {
+        const f = await fixture(t);
+        f.state.eulerMetadata = metadata;
+        f.state.eulerStatus = status;
+        await f.write(
+            metadataPath,
+            JSON.stringify({
+                chains: [
+                    {
+                        chainId: 1,
+                        protocols: [{ protocol: "euler", ids: [vault], subaccounts: [0] }],
+                    },
+                ],
+            }),
+        );
+        const result = await f.run();
+        assert.notEqual(result.code, 0, result.output);
+        assert.match(result.output, /active Euler/);
+        assert.equal(
+            f.calls.some((call) => call.params?.[0]?.data === "0x38d52e0f"),
+            false,
+        );
+    });
+}
