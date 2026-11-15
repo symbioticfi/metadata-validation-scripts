@@ -1540,8 +1540,43 @@ test("Ember metadata selects only reviewed Ethereum vault addresses", async (t) 
     }
 });
 
+test("unlisted and retired Ember vaults cannot be admitted", async (t) => {
+    const f = await fixture(t);
+    for (const id of [
+        "0x065cfaf16d4586133fbcac01c4b440f6fc0e691a",
+        "0x08576b9368b9333a2e4be869ad1718c6dffd8d4b",
+        "0x0b9342c15143e8f54a83f887c280a922f4c48771",
+        "0x1aa36795ad2e334cab8f57adfd62df22eea7cc19",
+        "0x1e739418366065f39ff42dde878004fe1e6c3982",
+        "0x2b13311fd553e74b421d4ccc96e348f71e179dcf",
+        "0x373152feef81cc59502da2c8de877b3d5ae2e342",
+        "0x4cd2bf79c4e7335f813e9f5697eeebffee2f72c3",
+        "0x51acc92414d525cea228932362b3e4705c52464b",
+        "0x5c3ab21b6674fefe06891598bef757af2d1ea66a",
+        "0x66b998fb71ec6b2287be7df81168de2e2820129d",
+        "0x6da9b2c19adfcf73c4f5690d41e81b2afe948864",
+        "0x7180c7dd24eb82db2a17740996f47e42ff0203b6",
+        "0x9d5970bba8b7d488100e9851e2892fa6f7c5cf8b",
+        "0xb920ed46dec7455d0caf52b357d9a9f55b4daeca",
+        "0xc3aacb558afb635307b66fdb405188138576fc4c",
+        "0xddde03447327d391cda265c307f8758ee365da86",
+        "0xe6bb49a6f88b81476181e63b58701313336c6f94",
+        "0xf3190a3ecc109f88e7947b849b281918c798a0c4",
+    ]) {
+        await f.write(
+            metadataPath,
+            JSON.stringify({
+                chains: [{ chainId: 1, protocols: [{ protocol: "ember", ids: [id] }] }],
+            }),
+        );
+        const result = await f.run();
+        assert.equal(result.code, 1, id + result.output);
+        assert.match(result.output, /info.json.*invalid/);
+    }
+});
+
 test("all reviewed Ember vaults are selectable together", async (t) => {
-    assert.equal(allowlist.ember.allowedIds.length, 27);
+    assert.equal(allowlist.ember.allowedIds.length, 8);
     const f = await fixture(t);
     await f.write(
         metadataPath,
