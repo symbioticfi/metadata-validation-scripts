@@ -13,18 +13,18 @@ Both allowlists are imported into the validator bundle; validation makes no runt
 
 ## Integrations and target IDs
 
-| Metadata name    | `idType`  | `ids` and runtime scope                                                                                                                                                                                                |
-| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `aave_v3`        | `name`    | Exact names `core`, `etherfi`, `lido`, `horizon` select the corresponding catalogued pools.                                                                                                                            |
-| `aave_v4`        | `address` | Only the twelve user-position spoke addresses in `allowedIds`, ignoring hex case. Treasury and tokenization-only spokes are excluded.                                                                                  |
-| `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership.                                     |
-| `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                                                      |
-| `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                                                                   |
-| `lagoon`         | `address` | Only the eight reviewed Ethereum vaults listed below; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                              |
-| `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied.                                     |
-| `ember`          | `address` | 27 reviewed Ethereum vaults from the NAV catalogue, including held shares and owner withdrawal requests. Required nonempty IDs; membership/uniqueness ignore hex case; no subaccounts. `pplus` is not a protocol name. |
-| `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                       |
-| `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                          |
+| Metadata name    | `idType`  | `ids` and runtime scope                                                                                                                                                                                                                  |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `aave_v3`        | `name`    | Exact names `core`, `etherfi`, `lido`, `horizon` select the corresponding catalogued pools.                                                                                                                                              |
+| `aave_v4`        | `address` | Only the twelve user-position spoke addresses in `allowedIds`, ignoring hex case. Treasury and tokenization-only spokes are excluded.                                                                                                    |
+| `euler`          | `address` | Retained collateral and debt EVaults, paired with every declared XOR subaccount offset. At most 48 seed pairs; NAV also attests canonical factory membership and pinned ownership.                                                       |
+| `morpho_blue`    | `bytes32` | At most 16 market IDs. NAV validates immutable market parameters against each ID.                                                                                                                                                        |
+| `morpho_vaultv2` | `address` | At most 16 Vault V2 contracts; Vault V1 is excluded.                                                                                                                                                                                     |
+| `lagoon`         | `address` | Only the eight reviewed Ethereum vaults listed below; no subaccounts. The consumer requires a reviewed accounting profile. Omission makes no family read.                                                                                |
+| `three_f`        | `none`    | Empty array. Runtime enumerates factory requests from its fixed launch baseline, index 71, and reads owned PT/YT positions. Request addresses are discovered rather than supplied.                                                       |
+| `ember`          | `address` | eight active, publicly listed Ethereum vaults from the NAV catalogue, including held shares and owner withdrawal requests. Required nonempty IDs; membership/uniqueness ignore hex case; no subaccounts. `pplus` is not a protocol name. |
+| `merkl`          | `none`    | Empty array. Selects reward discovery for declared wallet tokens and RWA products; omission skips the rewards API and collector.                                                                                                         |
+| `tokens`         | `address` | Nonempty subset of the chain-specific wallet catalogue below.                                                                                                                                                                            |
 
 Target-ID validation checks format and any explicit `allowedIds` membership. It also checks active EVK membership in the [official Euler directory](https://app.euler.finance/api/public/metadata?chainId=1) and `EVaultFactory.isProxy` for Euler, `VaultV2Factory.isVaultV2` for Morpho V2, `Morpho.market(id).lastUpdate` for Blue markets. Failed or unreadable membership rejects the declaration. Ember has no published vault factory or registry, so its reviewed address list remains the provenance check. Aave deployment IDs use the reviewed catalogues. Reserve IDs, recipients, policies and execution permissions belong to execution configuration.
 
@@ -177,13 +177,43 @@ Aave V3 and V4 declarations select runtime deployments. Omitting either version 
 
 ## Ember vault selection
 
-Use `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` to select PPLUS. The reviewed catalogue admits 27 Ethereum vaults through the existing generic Ember reader; arbitrary addresses remain rejected. All share the reviewed USDC-backed tokenized profile; underlying assets are still derived from each vault. Active parking lots, missing required getters, native-ETH variants and tokenless AtomicLiquidity remain excluded. Empty, null, omitted, malformed, zero, duplicate or unsupported IDs are rejected. Omit the entire entry for exclusion. Selected held shares, pending withdrawals, fees and required-read failures keep their existing accounting; no blacklist status is acquired.
+Use `{"protocol":"ember","ids":["0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe"]}` to select PPLUS. The reviewed catalogue admits eight active, publicly listed Ethereum vaults through the existing generic Ember reader; arbitrary addresses remain rejected. All share the reviewed USDC-backed tokenized profile; underlying assets are still derived from each vault. Active parking lots, missing required getters, native-ETH variants and tokenless AtomicLiquidity remain excluded. Empty, null, omitted, malformed, zero, duplicate or unsupported IDs are rejected. Omit the entire entry for exclusion. Selected held shares, pending withdrawals, fees and required-read failures keep their existing accounting; no blacklist status is acquired.
 
 `mglo` declares Ethereum mGLO (`0x1dd91a111606382b77a917633ed90feaf25e0f76`) as its own Midas product with `ids: []`. It is outside the ordinary wallet-token list. Held mGLO uses raw issuer NAV; standard claims retain the consumer's documented Midas escrow policy. Instant-redemption holdbacks are outside admitted accounting scope.
 
-The Ember expansion was checked at finalized Ethereum block 26286110 against
+The source-profile review was checked at finalized Ethereum block 26286110 against
 Ember's [deployment manifest](https://github.com/ember-protocol/Ember-Vaults-EVM/blob/102ed27794cfc083de6cf28bdad1d80113eb8e21/deployments/mainnet-deployment.json)
 and [official product API](https://vaults.api.prod.ember.so/api/v2/vaults).
 The [pinned NAV vault review](https://github.com/symbioticfi/merkle-adapter-nav/blob/c691d44cfddb13ade97b8674f542cad0b6b41947/docs/ember-vaults.md) records addresses, implementation and exclusions.
 
 Retired Midas products `mbtc`, `msyrupusd`, and `msyrupusdp` are excluded, as listed in the [Midas product directory](https://midas.app/products).
+
+## Current Ember admission policy
+
+Reviewed on 15 November 2026 against [Ember Earn](https://ember.so/earn) and the
+[official product API](https://vaults.api.prod.ember.so/api/v2/vaults). Admission is
+an intersection: publicly listed, not deprecated/delisted/retired, and already
+reviewed for the supported synchronous-deposit Ember profile. Hidden beta products
+are excluded. Newly listed products still require an accounting review.
+
+| Product | Ethereum address                             |
+| ------- | -------------------------------------------- |
+| HIGH    | `0x140560d74949c8b01e9ce238b18bdd94ca7b2874` |
+| ATMC    | `0x43df1df9045443f24394ed79a5ed80d55c582f0c` |
+| eTPLUS  | `0x518d3fb6804b2be9641f5712cff8c0f2b5f86afc` |
+| eY10K   | `0x953972ea0c1703c58f09fb6fd2477fdcf0fee074` |
+| eEARN   | `0x9be9294722f8aad37b11a9792be2c782182cafa2` |
+| hLEND   | `0x9f00c771253fb8d231c08b8d57390a989d48c938` |
+| PPLUS   | `0xbc5d3722376d44f3bc316c6ea61c9bd553be8cbe` |
+| ENGI    | `0xbf3dcdf17f7f387d24a07dc78529f4eff3b4ad52` |
+
+HIGH is listed as Updating Product, and eY10K is Private; neither is tagged
+retired or deprecated. pALPHA is publicly visible but carries the API's
+`deprecated` tag and is excluded along with eACRED, ePOLY, eTHIRD and eUDL.
+The old HIGH address and BARB are absent. The other removed entries are unlisted
+beta products. Publicly listed oneUSD and tulPRWA remain outside admission
+because their asynchronous-deposit parking-lot accounting is unsupported.
+
+This restricts future metadata admission; it does not alter published metadata,
+existing permissions, on-chain balances, or the NAV reader's ability to value
+explicitly selected older positions and requests.
