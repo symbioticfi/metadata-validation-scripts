@@ -395,7 +395,7 @@ test("bundled allowlist accepts every collected protocol and product", async (t)
     assert.equal(result.code, 0, result.output);
 });
 
-test("tokens accepts exactly the twenty-six NAV wallet token addresses", async (t) => {
+test("tokens accepts exactly the twenty-seven NAV wallet token addresses", async (t) => {
     assert.deepEqual(Object.keys(tokenAllowlist), ["1"]);
     assert.deepEqual(Object.keys(tokenAllowlist["1"]).sort(), [
         "aave",
@@ -407,6 +407,7 @@ test("tokens accepts exactly the twenty-six NAV wallet token addresses", async (
         "gho",
         "lbtc",
         "link",
+        "musd",
         "paxg",
         "pyusd",
         "rlusd",
@@ -425,7 +426,7 @@ test("tokens accepts exactly the twenty-six NAV wallet token addresses", async (
         "weth",
         "wsteth",
     ]);
-    assert.equal(new Set(tokenIds).size, 26);
+    assert.equal(new Set(tokenIds).size, 27);
     const f = await fixture(t);
     await f.write(
         metadataPath,

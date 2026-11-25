@@ -92,7 +92,7 @@ Use the reviewed chain-specific deployment profile, metadata commit and adapter 
 
 ## Wallet tokens
 
-`tokens.ids` accepts exactly these 26 Ethereum mainnet addresses, the NAV's priced wallet routes, from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Membership uses each enclosing scope's `chainId`, independently of the action chain. Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
+`tokens.ids` accepts exactly these 27 Ethereum mainnet addresses, the NAV's priced wallet routes, from [`merkle-tokens.json`](../src/scripts/config/merkle-tokens.json). Membership uses each enclosing scope's `chainId`, independently of the action chain. Matching accepts lowercase, checksum and uppercase hex spelling. Symbols are not IDs. Other chains require their own explicit token allowlist.
 
 | Token   | Ethereum address                             |
 | ------- | -------------------------------------------- |
@@ -105,6 +105,7 @@ Use the reviewed chain-specific deployment profile, metadata commit and adapter 
 | GHO     | `0x40d16fc0246ad3160ccc09b8d0d3a2cd28ae6c2f` |
 | LBTC    | `0x8236a87084f8b84306f72007f36f2618a5634494` |
 | LINK    | `0x514910771af9ca656af840dff83e8264ecf986ca` |
+| mUSD    | `0xaca92e438df0b2401ff60da7e4337b687a2435da` |
 | PAXG    | `0x45804880de22913dafe09f4980848ece6ecbaf78` |
 | PYUSD   | `0x6c3ea9036406852006290770bedfcaba0e23a0e8` |
 | RLUSD   | `0x8292bb45bf1ee4d140127049757c2e0ff06317ed` |
