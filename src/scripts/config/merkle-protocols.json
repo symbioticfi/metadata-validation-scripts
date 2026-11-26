@@ -135,6 +135,12 @@
         "token": "0xa6233014b9b7aaa74f38fa1977ffc7a89642dc72",
         "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
     },
+    "hinc": {
+        "requiresIds": false,
+        "idType": "none",
+        "token": "0x015c477a4e2881c4b3bb8999f59ee4a04e812344",
+        "requires": ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"]
+    },
     "hyb": {
         "requiresIds": false,
         "idType": "none",

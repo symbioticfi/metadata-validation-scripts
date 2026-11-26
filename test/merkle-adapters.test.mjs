@@ -75,6 +75,7 @@ const namedProducts = {
     hastra: ["prime", "auto", "wylds"],
     openeden: ["hybond", "tbill"],
     noon: ["susn", "usn"],
+    securitize: ["hinc"],
 };
 
 const execute = (args, options) =>
@@ -642,7 +643,6 @@ test("unsupported products and execution-only integrations are not allowlisted",
         "derive_v3",
         "dusd",
         "erc4626",
-        "hinc",
         "liusd13w",
         "liusd4w",
         "morpho_midnight",
@@ -1594,6 +1594,15 @@ test("all reviewed Ember vaults are selectable together", async (t) => {
 test("products require every token they pay out to be listed", async (t) => {
     const token = (name) => allowlist[name].token;
     for (const [name, protocols, missing] of [
+        ["HINC without USDC", [{ protocol: "hinc", ids: [] }], [usdc]],
+        [
+            "HINC with USDC",
+            [
+                { protocol: "hinc", ids: [] },
+                { protocol: "tokens", ids: [usdc] },
+            ],
+            [],
+        ],
         ["mTBILL without USDC", [{ protocol: "mtbill", ids: [] }], [usdc]],
         [
             "mTBILL with USDC",
