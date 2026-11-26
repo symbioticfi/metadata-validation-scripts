@@ -131,7 +131,7 @@ The NAV counts a non-debt position only in a token the metadata lists: a `tokens
 
 ## RWA products
 
-Each of these 33 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
+Each of these 34 names requires `ids: []`: canonical token and issuer contracts are fixed in the NAV catalogue. Separate products retain separate names even when their issuer or underlying currency is shared.
 
 | Family              | Metadata names                                                                                                                                                                                    |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -141,6 +141,7 @@ Each of these 33 names requires `ids: []`: canonical token and issuer contracts 
 | Hastra / Figure (3) | `prime`, `auto`, `wylds`                                                                                                                                                                          |
 | OpenEden (2)        | `hybond`, `tbill`                                                                                                                                                                                 |
 | Noon (2)            | `susn`, `usn`                                                                                                                                                                                     |
+| Securitize (1)      | `hinc`                                                                                                                                                                                            |
 
 `mfone` means Midas mF-ONE and `mm1usd` means mM1-USD. OpenEden `tbill` is distinct from Midas `mtbill`. The NAV catalogue uses these same lowercase RWA product IDs directly, without case conversion.
 
@@ -163,14 +164,14 @@ mFARM, mevBTC, mEVUSD, mHyperETH, mMEV and Abraxas are unsupported and rejected.
 
 Declare `{"protocol":"merkl","ids":[]}` to select reward accounting. Omission skips the reward API and on-chain discovery. The reader verifies proofs against the pinned distributor root and subtracts claimed amounts. It admits selected wallet tokens and RWA products; unsupported pricing, including MORPHO/EUL/rEUL, is skipped. `liquid_lane_connector`, `liquid_lane_redeem` and `cow_swap` remain excluded metadata names.
 
-Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V3 are absent from the selected runtime. Named protocol readers retain their shared ERC-4626 accounting helpers; those helpers do not admit standalone vaults. Securitize is removed. The 14 deferred RWA tokens in the pinned NAV documentation are also outside the active reader and have no metadata entries here.
+Generic ERC-4626 wallet discovery, Morpho Midnight, Morpho Vault V1 and Derive V3 are absent from the selected runtime. Named protocol readers retain their shared ERC-4626 accounting helpers; those helpers do not admit standalone vaults. HINC is the only admitted Securitize product. Declare `{"protocol":"hinc","ids":[]}` alongside USDC in `tokens.ids` on mainnet. Activation also requires the matching HINC NAV runtime and collector from [NAV PR #71](https://github.com/symbioticfi/merkle-adapter-nav/pull/71). The 14 deferred RWA tokens in the pinned NAV documentation are also outside the active reader and have no metadata entries here.
 
 ## Corrections from the previous inventory
 
 - Added `ember`, OpenEden `tbill`, independent `wylds` and `usn`, plus the five additional Pareto AA tranches. The current catalog admits 16 Midas products.
 - Changed `three_f` from required request addresses to empty IDs, matching automatic request discovery.
 - Removed `erc4626`, `morpho_midnight` and `derive_v3`, which lack runtime discovery readers.
-- Removed Securitize's `acred`, `buidl`, `hinc`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.
+- Excluded Securitize's `acred`, `buidl`, `stac`, `vbill`, and deferred products `beqty`, `decrdx`, `dusd`, `liusd13w`, `liusd4w`, `said`, `spkcc`, `sthusd`, `susd3`, `uscc`.
 - Added wallet tokens cbBTC, DAI, PYUSD, tBTC and USDe. uniBTC and USDS remain admitted, with explicit NAV price routes added for both.
 - Replaced research across divergent branches and planned integrations with the pinned runtime revision above. Target admission and the separate NAV configuration remain explicit boundaries.
 
