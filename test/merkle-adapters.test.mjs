@@ -353,7 +353,13 @@ test("target address casing preserves canonical membership checks", async (t) =>
 test("bundled allowlist accepts every collected protocol and product", async (t) => {
     assert.deepEqual(
         Object.keys(allowlist).sort(),
-        [...targetProtocols, "three_f", "merkl", ...Object.values(namedProducts).flat()].sort(),
+        [
+            ...targetProtocols,
+            "three_f",
+            "merkl",
+            "iris",
+            ...Object.values(namedProducts).flat(),
+        ].sort(),
     );
     assert.deepEqual(
         Object.keys(allowlist)
@@ -979,6 +985,22 @@ test("Lagoon admits exactly the reviewed vaults without a factory lookup", async
             // Adapter factory and membership, then one asset() read per vault.
             if (code === 0) assert.equal(f.calls.length, 2 + entry.ids.length);
         });
+    }
+});
+
+test("Iris metadata accepts account-wide discovery on Ethereum only", async (t) => {
+    const f = await fixture(t);
+    for (const [chainId, ids, code] of [
+        [1, [], 0],
+        [1, [vault], 1],
+        [11155111, [], 1],
+    ]) {
+        await f.write(
+            metadataPath,
+            JSON.stringify({ chains: [{ chainId, protocols: [{ protocol: "iris", ids }] }] }),
+        );
+        const result = await f.run();
+        assert.equal(result.code, code, result.output);
     }
 });
 

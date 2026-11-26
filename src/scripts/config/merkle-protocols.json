@@ -56,6 +56,11 @@
             "0x4ef75e307f7edbf0462c679192c1ff7e911c389a"
         ]
     },
+    "iris": {
+        "requiresIds": false,
+        "idType": "none",
+        "chainIds": [1]
+    },
     "three_f": {
         "requiresIds": false,
         "idType": "none"
