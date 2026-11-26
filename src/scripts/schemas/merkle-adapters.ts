@@ -85,6 +85,35 @@ export default function getMerkleAdapterSchema() {
         },
     }));
 
+    const chainRules = Object.entries(protocols).flatMap(([protocol, rule]) =>
+        "chainIds" in rule
+            ? [
+                  {
+                      if: {
+                          properties: {
+                              chainId: { not: { enum: rule.chainIds } },
+                          },
+                      },
+                      then: {
+                          properties: {
+                              protocols: {
+                                  type: "array",
+                                  items: {
+                                      type: "object",
+                                      properties: {
+                                          protocol: {
+                                              not: { const: protocol },
+                                          },
+                                      },
+                                  },
+                              },
+                          },
+                      },
+                  },
+              ]
+            : [],
+    );
+
     return {
         ...schema,
         properties: {
@@ -109,43 +138,52 @@ export default function getMerkleAdapterSchema() {
                             },
                         },
                     },
-                    allOf: [...Object.entries(tokensByChain), [undefined, {}] as const].map(
-                        ([chainId, addresses]) => ({
-                            if: {
-                                properties: {
-                                    chainId: chainId
-                                        ? { const: Number(chainId) }
-                                        : { not: { enum: Object.keys(tokensByChain).map(Number) } },
+                    allOf: [
+                        ...chainRules,
+                        ...[...Object.entries(tokensByChain), [undefined, {}] as const].map(
+                            ([chainId, addresses]) => ({
+                                if: {
+                                    properties: {
+                                        chainId: chainId
+                                            ? { const: Number(chainId) }
+                                            : {
+                                                  not: {
+                                                      enum: Object.keys(tokensByChain).map(Number),
+                                                  },
+                                              },
+                                    },
                                 },
-                            },
-                            then: {
-                                properties: {
-                                    protocols: {
-                                        type: "array",
-                                        items: {
-                                            type: "object",
-                                            if: { properties: { protocol: { const: "tokens" } } },
-                                            then: {
-                                                properties: {
-                                                    ids: {
-                                                        type: "array",
-                                                        items: chainId
-                                                            ? {
-                                                                  type: "string",
-                                                                  pattern: addressPattern(
-                                                                      Object.values(addresses),
-                                                                  ),
-                                                              }
-                                                            : false,
+                                then: {
+                                    properties: {
+                                        protocols: {
+                                            type: "array",
+                                            items: {
+                                                type: "object",
+                                                if: {
+                                                    properties: { protocol: { const: "tokens" } },
+                                                },
+                                                then: {
+                                                    properties: {
+                                                        ids: {
+                                                            type: "array",
+                                                            items: chainId
+                                                                ? {
+                                                                      type: "string",
+                                                                      pattern: addressPattern(
+                                                                          Object.values(addresses),
+                                                                      ),
+                                                                  }
+                                                                : false,
+                                                        },
                                                     },
                                                 },
                                             },
                                         },
                                     },
                                 },
-                            },
-                        }),
-                    ),
+                            }),
+                        ),
+                    ],
                 },
             },
         },
