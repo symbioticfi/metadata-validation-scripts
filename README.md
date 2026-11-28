@@ -135,7 +135,7 @@ Validation skips remaining steps if entity is deleted.
 
 ### Usage
 
-Integrate into your workflow to validate metadata changes on pull requests:
+Add this workflow to validate metadata changes on pull requests. The action needs a token with write access to pull requests to post comments and reviews. GitHub normally gives fork pull requests a read-only `GITHUB_TOKEN`.
 
 ```yaml
 name: Validate metadata
@@ -150,27 +150,36 @@ jobs:
             contents: read
             pull-requests: write
         steps:
-            - uses: actions/checkout@v4
-                with:
-                    fetch-depth: 0
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  fetch-depth: 0
+                  persist-credentials: false
 
-            # Collect changed files (example using tj-actions/changed-files)
-            - uses: tj-actions/changed-files@v45
-                id: changes
+            - name: Collect changed paths
+              id: changes
+              shell: bash
+              env:
+                  BASE_SHA: ${{ github.event.pull_request.base.sha }}
+                  HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+              run: |
+                  files=$(git diff --name-only --no-renames "$BASE_SHA...$HEAD_SHA" | paste -sd ' ' -)
+                  printf 'files=%s\n' "$files" >> "$GITHUB_OUTPUT"
 
             - name: Run validator
-                uses: symbioticfi/metadata-validation-scripts@main
-                with:
-                    files: ${{ steps.changes.outputs.all_changed_files }}
-                    issue: ${{ github.event.pull_request.number }}
-                    token: ${{ secrets.GITHUB_TOKEN }}
-                    chain-id: 1
-                    rpc-url: ${{ secrets.RPC_URL }}
-                    vault-registry: "0x..."
-                    operator-registry: "0x..."
-                    network-registry: "0x..."
-                    rewards-factory: "0x..."
+              uses: symbioticfi/metadata-validation-scripts@main
+              with:
+                  files: ${{ steps.changes.outputs.files }}
+                  issue: ${{ github.event.pull_request.number }}
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  chain-id: 1
+                  rpc-url: ${{ secrets.RPC_URL }}
+                  vault-registry: "0x..."
+                  operator-registry: "0x..."
+                  network-registry: "0x..."
+                  rewards-factory: "0x..."
 ```
+
+The file list uses the pull request's merge-base diff. It includes deleted paths and both paths of a rename, so the validator can enforce its one-entity rule.
 
 ### Local Development
 
